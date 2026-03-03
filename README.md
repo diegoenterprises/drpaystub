@@ -59,17 +59,15 @@ Every generated PDF is individually password-protected, digitally watermarked, a
   </tr>
   <tr>
     <td align="center">
-      <img src="docs/screenshots/admin.png" alt="Admin Dashboard" /><br/>
-      <sub><b>Admin Dashboard</b> — Revenue, Stripe, user & paystub analytics</sub>
+      <img src="docs/screenshots/admin.png" alt="Customer Reviews" /><br/>
+      <sub><b>Customer Reviews</b> — Star ratings and testimonials</sub>
     </td>
     <td align="center">
-      <img src="docs/screenshots/email.png" alt="Email Delivery" /><br/>
-      <sub><b>Branded Email</b> — Password-protected PDFs via Azure ACS</sub>
+      <img src="docs/screenshots/email.png" alt="Secure Login" /><br/>
+      <sub><b>Secure Login</b> — JWT-authenticated user access</sub>
     </td>
   </tr>
 </table>
-
-> **Note:** To add screenshots, place PNG images in the `docs/screenshots/` directory with the filenames referenced above.
 
 ---
 
