@@ -1,0 +1,40 @@
+.App {
+    font-family: 'Segoe UI';
+    text-align: center;
+    font-size: small;
+    border: '1 solid red';
+    position: relative;
+}
+.Table {
+    /* display: flex;
+    justify-content: center; */
+    padding-bottom: 1%;
+}
+.Table2 {
+    /* display: flex;
+    justify-content: center; */
+    text-align: center;
+    padding-bottom: 1%;
+}
+.TableHeading {
+    background-color: #abd3f5;
+    text-align: start;
+}
+.TableData {
+    text-align: left;
+}
+.text {
+    font-weight: bolder;
+    padding: 1%;
+}
+.text1 {
+    font-weight: bolder;
+    display: flex;
+    justify-content: flex-end;
+}
+.td {
+    background-color: silver;
+}
+.h {
+    width: 100%;
+}

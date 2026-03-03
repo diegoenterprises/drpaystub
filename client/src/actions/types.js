@@ -1,0 +1,3 @@
+export const SET_STATE = 'SET_STATE';
+export const SET_EMPLOYMENT_STATUS = 'SET_EMPLOYMENT_STATUS';
+export const SET_PAID_TYPE = 'SET_PAID_TYPE';

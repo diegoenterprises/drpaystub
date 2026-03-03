@@ -1,0 +1,138 @@
+$primary-color-1: #1473FF;
+$primary-color-2: #BE01FF;
+$secondary-color-1: #ffffff;
+$bg-color: #f8f9fc;
+$bg-light: #f8f9fc;
+
+@font-face {
+    font-family: 'Nunito';
+    src: URL('./assets/fonts/Nunito/Nunito-Regular.ttf') format('truetype');
+}
+/* Bootstrap theme override — uses CSS vars from App.scss */
+$theme-colors: (
+    'info': #0ea5e9,
+    'danger': #ef4444,
+    'primary': $primary-color-1,
+);
+@import '~bootstrap/scss/bootstrap';
+body {
+    margin: 0;
+    font-family: var(--font-stack);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-bg) !important;
+}
+
+.btn {
+    padding: 8px 20px;
+    outline: none;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    transition: all 0.25s ease;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+}
+.btn-outline-primary {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+.btn-outline-primary:hover {
+    color: #fff;
+    background: var(--gradient-brand) !important;
+    border-color: transparent !important;
+}
+.btn-primary {
+    border: none;
+    background: var(--gradient-brand);
+    box-shadow: var(--shadow-brand);
+}
+.text-primary {
+    color: var(--color-accent) !important;
+}
+.btn-secondary {
+    border: none;
+    background: var(--gradient-brand);
+    box-shadow: var(--shadow-brand);
+}
+.btn-secondary:hover {
+    background: var(--gradient-brand);
+    filter: brightness(1.08);
+}
+.btn-secondary:not(:disabled):not(.disabled):active {
+    background: var(--gradient-brand);
+    border-color: transparent;
+}
+.btn-secondary:focus {
+    background: var(--gradient-brand);
+    border-color: transparent;
+    box-shadow: var(--shadow-brand);
+}
+a {
+    text-decoration: none !important;
+}
+.bg-light {
+    background-color: var(--color-bg) !important;
+}
+.bg-half,
+.bg-half-170 {
+    background-size: cover;
+    align-self: center;
+    position: relative;
+    background-position: 50%;
+}
+.bg-half-170 {
+    padding: 140px 0;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-stack);
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+.fea {
+    stroke-width: 1.8;
+}
+.fea.icon-sm {
+    height: 16px;
+    width: 16px;
+}
+.form-group .icons {
+    position: absolute;
+    top: 13px;
+    left: 18px;
+}
+
+.form-radio {
+    font-size: 20px;
+}
+
+.nav-sticky {
+    background: var(--color-bg-glass);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.badge.badge-pill {
+    font-weight: 500;
+    border-radius: 980px;
+}
+.badge-soft-primary {
+    background: var(--gradient-brand-subtle) !important;
+    border: none !important;
+    color: var(--color-accent) !important;
+}
+
+//global media queries
+@media screen and (max-width: 767px) {
+    .bg-half-170 {
+        padding: 150px 0;
+    }
+}
+.carousel .control-dots {
+    bottom: -25px !important;
+}

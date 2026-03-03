@@ -1,0 +1,12 @@
+[
+  {
+    "name": "AZURE_EMAIL_CONNECTION_STRING",
+    "value": "endpoint=https://drpaystub-comm.unitedstates.communication.azure.com/;accesskey=1ATOKU67BZx7gxYqyvBc2vuLZX8Wcq71hBqT748vDdV20pJ5jIDHJQQJ99CCACULyCpT07APAAAAAZCS2y0o",
+    "slotSetting": false
+  },
+  {
+    "name": "FROM_EMAIL",
+    "value": "DoNotReply@0003956d-949c-4258-9527-dc41e0bf249a.azurecomm.net",
+    "slotSetting": false
+  }
+]

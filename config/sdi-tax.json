@@ -1,0 +1,22 @@
+{
+  "CALIFORNIA": {
+    "stateCode": "CA",
+    "tax": 1.1
+  },
+  "HAWAII": {
+    "stateCode": "HI",
+    "tax": 0.5
+  },
+  "NEW JERSEY": {
+    "stateCode": "NJ",
+    "tax": 0.06
+  },
+  "NEW YORK": {
+    "stateCode": "NY",
+    "tax": 0.5
+  },
+  "RHODE ISLAND": {
+    "stateCode": "RI",
+    "tax": 1.2
+  }
+}

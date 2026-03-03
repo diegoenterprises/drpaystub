@@ -1,0 +1,107 @@
+.howItWorks {
+  margin-top: 10%;
+}
+
+.howItWorks img {
+  height: 150px;
+  width: 100%;
+}
+
+.howItWorks .item {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.howItWorks .item-card {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.howItWorks .item-card-title {
+  font-size: 15px;
+  -webkit-transition: 1s;
+  transition: 1s;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.howItWorks .item-card-title i {
+  font-size: 30px;
+  padding-top: 10px;
+  -webkit-transition: 1s;
+  transition: 1s;
+  cursor: pointer;
+  color: #336bfe;
+}
+
+.howItWorks .card-title i:hover {
+  -webkit-transform: scale(1.25) rotate(100deg);
+          transform: scale(1.25) rotate(100deg);
+  color: #18d4ca;
+}
+
+.howItWorks .card:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+          box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.howItWorks .card-text {
+  height: 80px;
+  padding: 0 10px;
+}
+
+.howItWorks .card-title {
+  padding: 0 10px;
+}
+
+.howItWorks .card::before,
+.howItWorks .card::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: scale3d(0, 0, 1);
+          transform: scale3d(0, 0, 1);
+  -webkit-transition: -webkit-transform 0.3s ease-out 0s;
+  transition: -webkit-transform 0.3s ease-out 0s;
+  transition: transform 0.3s ease-out 0s;
+  transition: transform 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+  background: rgba(255, 255, 255, 0.1);
+  content: "";
+  pointer-events: none;
+}
+
+.howItWorks .card::before {
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+}
+
+.howItWorks .card::after {
+  -webkit-transform-origin: right bottom;
+          transform-origin: right bottom;
+}
+
+.howItWorks .card {
+  border-radius: 14px;
+}
+
+.howItWorks .card:hover::before,
+.howItWorks .card:hover::after,
+.howItWorks .card:focus::before,
+.howItWorks .card:focus::after {
+  -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+}
+
+@media screen and (max-width: 767px) {
+  .howItWorks .card {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 3%;
+  }
+}
+/*# sourceMappingURL=HowItWorks.css.map */

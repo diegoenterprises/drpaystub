@@ -1,0 +1,3519 @@
+{
+  "ALABAMA": {
+    "stateCode": "AL",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 500,
+        "tax": 2
+      },
+      {
+        "min": 501,
+        "max": 3000,
+        "tax": 4
+      },
+      {
+        "min": 3001,
+        "max": 3001,
+        "tax": 5
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 1000,
+        "tax": 2
+      },
+      {
+        "min": 1001,
+        "max": 6000,
+        "tax": 4
+      },
+      {
+        "min": 6001,
+        "max": 6001,
+        "tax": 5
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 500,
+        "tax": 2
+      },
+      {
+        "min": 501,
+        "max": 3000,
+        "tax": 4
+      },
+      {
+        "min": 3001,
+        "max": 3001,
+        "tax": 5
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 500,
+        "tax": 2
+      },
+      {
+        "min": 501,
+        "max": 3000,
+        "tax": 4
+      },
+      {
+        "min": 3001,
+        "max": 3001,
+        "tax": 5
+      }
+    ]
+  },
+  "ALASKA": {
+    "stateCode": "AK",
+    "hasTax": false
+  },
+  "ARIZONA": {
+    "stateCode": "AZ",
+    "tax": 2.5,
+    "hasFlatRate": true
+  },
+  "ARKANSAS": {
+    "stateCode": "AR",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 4000,
+        "tax": 2
+      },
+      {
+        "min": 4001,
+        "max": 8000,
+        "tax": 4
+      },
+      {
+        "min": 8001,
+        "max": 79300,
+        "tax": 5.9
+      },
+      {
+        "min": 79301,
+        "max": 79301,
+        "tax": 6.6
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 4000,
+        "tax": 2
+      },
+      {
+        "min": 4001,
+        "max": 8000,
+        "tax": 4
+      },
+      {
+        "min": 8001,
+        "max": 79300,
+        "tax": 5.9
+      },
+      {
+        "min": 79301,
+        "max": 79301,
+        "tax": 6.6
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 4000,
+        "tax": 2
+      },
+      {
+        "min": 4001,
+        "max": 8000,
+        "tax": 4
+      },
+      {
+        "min": 8001,
+        "max": 79300,
+        "tax": 5.9
+      },
+      {
+        "min": 79301,
+        "max": 79301,
+        "tax": 6.6
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 4000,
+        "tax": 2
+      },
+      {
+        "min": 4001,
+        "max": 8000,
+        "tax": 4
+      },
+      {
+        "min": 8001,
+        "max": 79300,
+        "tax": 5.9
+      },
+      {
+        "min": 79301,
+        "max": 79301,
+        "tax": 6.6
+      }
+    ]
+  },
+  "CALIFORNIA": {
+    "stateCode": "CA",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 8932,
+        "tax": 1
+      },
+      {
+        "min": 8933,
+        "max": 21175,
+        "tax": 2
+      },
+      {
+        "min": 21176,
+        "max": 33421,
+        "tax": 4
+      },
+      {
+        "min": 33422,
+        "max": 46394,
+        "tax": 6
+      },
+      {
+        "min": 46395,
+        "max": 58634,
+        "tax": 8
+      },
+      {
+        "min": 58635,
+        "max": 299508,
+        "tax": 9.3
+      },
+      {
+        "min": 299509,
+        "max": 359407,
+        "tax": 10.3
+      },
+      {
+        "min": 359408,
+        "max": 599012,
+        "tax": 11.3
+      },
+      {
+        "min": 599013,
+        "max": 599013,
+        "tax": 12.3
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 17864,
+        "tax": 1
+      },
+      {
+        "min": 17865,
+        "max": 42350,
+        "tax": 2
+      },
+      {
+        "min": 42351,
+        "max": 66842,
+        "tax": 4
+      },
+      {
+        "min": 66843,
+        "max": 92788,
+        "tax": 6
+      },
+      {
+        "min": 92789,
+        "max": 117268,
+        "tax": 8
+      },
+      {
+        "min": 117269,
+        "max": 599016,
+        "tax": 9.3
+      },
+      {
+        "min": 599017,
+        "max": 718814,
+        "tax": 10.3
+      },
+      {
+        "min": 718815,
+        "max": 1198024,
+        "tax": 11.3
+      },
+      {
+        "min": 1198024,
+        "max": 1198024,
+        "tax": 12.3
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 8932,
+        "tax": 1
+      },
+      {
+        "min": 8933,
+        "max": 21175,
+        "tax": 2
+      },
+      {
+        "min": 21176,
+        "max": 33421,
+        "tax": 4
+      },
+      {
+        "min": 33422,
+        "max": 46394,
+        "tax": 6
+      },
+      {
+        "min": 46395,
+        "max": 58634,
+        "tax": 8
+      },
+      {
+        "min": 58635,
+        "max": 299508,
+        "tax": 9.3
+      },
+      {
+        "min": 299509,
+        "max": 359407,
+        "tax": 10.3
+      },
+      {
+        "min": 359408,
+        "max": 599012,
+        "tax": 11.3
+      },
+      {
+        "min": 599013,
+        "max": 599013,
+        "tax": 12.3
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 17864,
+        "tax": 1
+      },
+      {
+        "min": 17865,
+        "max": 42353,
+        "tax": 2
+      },
+      {
+        "min": 42354,
+        "max": 54597,
+        "tax": 4
+      },
+      {
+        "min": 54598,
+        "max": 67569,
+        "tax": 6
+      },
+      {
+        "min": 67570,
+        "max": 79812,
+        "tax": 8
+      },
+      {
+        "min": 79813,
+        "max": 407329,
+        "tax": 9.3
+      },
+      {
+        "min": 407330,
+        "max": 488796,
+        "tax": 10.3
+      },
+      {
+        "min": 488797,
+        "max": 814658,
+        "tax": 11.3
+      },
+      {
+        "min": 814659,
+        "max": 814659,
+        "tax": 12.3
+      }
+    ]
+  },
+  "COLORADO": {
+    "stateCode": "CO",
+    "tax": 4.25,
+    "hasFlatRate": true
+  },
+  "CONNECTICUT": {
+    "stateCode": "CT",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 10000,
+        "tax": 3
+      },
+      {
+        "min": 10001,
+        "max": 50000,
+        "tax": 5
+      },
+      {
+        "min": 50001,
+        "max": 100000,
+        "tax": 5.5
+      },
+      {
+        "min": 100001,
+        "max": 200000,
+        "tax": 6
+      },
+      {
+        "min": 200001,
+        "max": 250000,
+        "tax": 6.5
+      },
+      {
+        "min": 250001,
+        "max": 500000,
+        "tax": 6.9
+      },
+      {
+        "min": 500001,
+        "max": 500001,
+        "tax": 6.99
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 20000,
+        "tax": 3
+      },
+      {
+        "min": 20001,
+        "max": 100000,
+        "tax": 5
+      },
+      {
+        "min": 100001,
+        "max": 200000,
+        "tax": 5.5
+      },
+      {
+        "min": 200001,
+        "max": 400000,
+        "tax": 6
+      },
+      {
+        "min": 400001,
+        "max": 500000,
+        "tax": 6.5
+      },
+      {
+        "min": 500001,
+        "max": 1000000,
+        "tax": 6.9
+      },
+      {
+        "min": 1000001,
+        "max": 1000001,
+        "tax": 6.99
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 10000,
+        "tax": 3
+      },
+      {
+        "min": 10001,
+        "max": 50000,
+        "tax": 5
+      },
+      {
+        "min": 50001,
+        "max": 100000,
+        "tax": 5.5
+      },
+      {
+        "min": 100001,
+        "max": 200000,
+        "tax": 6
+      },
+      {
+        "min": 200001,
+        "max": 250000,
+        "tax": 6.5
+      },
+      {
+        "min": 250001,
+        "max": 500000,
+        "tax": 6.9
+      },
+      {
+        "min": 500001,
+        "max": 500001,
+        "tax": 6.99
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 16000,
+        "tax": 3
+      },
+      {
+        "min": 16001,
+        "max": 80000,
+        "tax": 5
+      },
+      {
+        "min": 80001,
+        "max": 160000,
+        "tax": 5.5
+      },
+      {
+        "min": 160001,
+        "max": 320000,
+        "tax": 6
+      },
+      {
+        "min": 320001,
+        "max": 400000,
+        "tax": 6.5
+      },
+      {
+        "min": 400001,
+        "max": 800000,
+        "tax": 6.9
+      },
+      {
+        "min": 800001,
+        "max": 800001,
+        "tax": 6.99
+      }
+    ]
+  },
+  "DELAWARE": {
+    "stateCode": "DE",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 2000,
+        "tax": 0
+      },
+      {
+        "min": 2001,
+        "max": 5000,
+        "tax": 2.2
+      },
+      {
+        "min": 5001,
+        "max": 10000,
+        "tax": 3.9
+      },
+      {
+        "min": 10001,
+        "max": 20000,
+        "tax": 4.8
+      },
+      {
+        "min": 20001,
+        "max": 25000,
+        "tax": 5.2
+      },
+      {
+        "min": 25001,
+        "max": 60000,
+        "tax": 5.5
+      },
+      {
+        "min": 60001,
+        "max": 60001,
+        "tax": 6.6
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 2000,
+        "tax": 0
+      },
+      {
+        "min": 2001,
+        "max": 5000,
+        "tax": 2.2
+      },
+      {
+        "min": 5001,
+        "max": 10000,
+        "tax": 3.9
+      },
+      {
+        "min": 10001,
+        "max": 20000,
+        "tax": 4.8
+      },
+      {
+        "min": 20001,
+        "max": 25000,
+        "tax": 5.2
+      },
+      {
+        "min": 25001,
+        "max": 60000,
+        "tax": 5.5
+      },
+      {
+        "min": 60001,
+        "max": 60001,
+        "tax": 6.6
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 2000,
+        "tax": 0
+      },
+      {
+        "min": 2001,
+        "max": 5000,
+        "tax": 2.2
+      },
+      {
+        "min": 5001,
+        "max": 10000,
+        "tax": 3.9
+      },
+      {
+        "min": 10001,
+        "max": 20000,
+        "tax": 4.8
+      },
+      {
+        "min": 20001,
+        "max": 25000,
+        "tax": 5.2
+      },
+      {
+        "min": 25001,
+        "max": 60000,
+        "tax": 5.5
+      },
+      {
+        "min": 60001,
+        "max": 60001,
+        "tax": 6.6
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 2000,
+        "tax": 0
+      },
+      {
+        "min": 2001,
+        "max": 5000,
+        "tax": 2.2
+      },
+      {
+        "min": 5001,
+        "max": 10000,
+        "tax": 3.9
+      },
+      {
+        "min": 10001,
+        "max": 20000,
+        "tax": 4.8
+      },
+      {
+        "min": 20001,
+        "max": 25000,
+        "tax": 5.2
+      },
+      {
+        "min": 25001,
+        "max": 60000,
+        "tax": 5.5
+      },
+      {
+        "min": 60001,
+        "max": 60001,
+        "tax": 6.6
+      }
+    ]
+  },
+  "FLORIDA": {
+    "stateCode": "FL",
+    "hasTax": false
+  },
+  "GEORGIA": {
+    "stateCode": "GA",
+    "tax": 5.39,
+    "hasFlatRate": true
+  },
+  "HAWAII": {
+    "stateCode": "HI",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 2400,
+        "tax": 1.4
+      },
+      {
+        "min": 2401,
+        "max": 4800,
+        "tax": 3.2
+      },
+      {
+        "min": 4801,
+        "max": 9600,
+        "tax": 5.5
+      },
+      {
+        "min": 9601,
+        "max": 14400,
+        "tax": 6.4
+      },
+      {
+        "min": 14401,
+        "max": 19200,
+        "tax": 6.8
+      },
+      {
+        "min": 19201,
+        "max": 24000,
+        "tax": 7.2
+      },
+      {
+        "min": 24001,
+        "max": 36000,
+        "tax": 7.6
+      },
+      {
+        "min": 36001,
+        "max": 48000,
+        "tax": 7.9
+      },
+      {
+        "min": 48001,
+        "max": 150000,
+        "tax": 8.25
+      },
+      {
+        "min": 150001,
+        "max": 175000,
+        "tax": 9
+      },
+      {
+        "min": 175001,
+        "max": 200000,
+        "tax": 10
+      },
+      {
+        "min": 200001,
+        "max": 200001,
+        "tax": 11
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 4800,
+        "tax": 1.4
+      },
+      {
+        "min": 4801,
+        "max": 9600,
+        "tax": 3.2
+      },
+      {
+        "min": 9601,
+        "max": 19200,
+        "tax": 5.5
+      },
+      {
+        "min": 19201,
+        "max": 28800,
+        "tax": 6.4
+      },
+      {
+        "min": 28801,
+        "max": 38400,
+        "tax": 6.8
+      },
+      {
+        "min": 38401,
+        "max": 38401,
+        "tax": 7.2
+      },
+      {
+        "min": 48001,
+        "max": 72000,
+        "tax": 7.6
+      },
+      {
+        "min": 72001,
+        "max": 96000,
+        "tax": 7.9
+      },
+      {
+        "min": 96001,
+        "max": 300000,
+        "tax": 8.25
+      },
+      {
+        "min": 300001,
+        "max": 350000,
+        "tax": 9
+      },
+      {
+        "min": 350001,
+        "max": 400000,
+        "tax": 10
+      },
+      {
+        "min": 400001,
+        "max": 400001,
+        "tax": 11
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 2400,
+        "tax": 1.4
+      },
+      {
+        "min": 2401,
+        "max": 4800,
+        "tax": 3.2
+      },
+      {
+        "min": 4801,
+        "max": 9600,
+        "tax": 5.5
+      },
+      {
+        "min": 9601,
+        "max": 14400,
+        "tax": 6.4
+      },
+      {
+        "min": 14401,
+        "max": 19200,
+        "tax": 6.8
+      },
+      {
+        "min": 19201,
+        "max": 24000,
+        "tax": 7.2
+      },
+      {
+        "min": 24001,
+        "max": 36000,
+        "tax": 7.6
+      },
+      {
+        "min": 36001,
+        "max": 48000,
+        "tax": 7.9
+      },
+      {
+        "min": 48001,
+        "max": 150000,
+        "tax": 8.25
+      },
+      {
+        "min": 150001,
+        "max": 175000,
+        "tax": 9
+      },
+      {
+        "min": 175001,
+        "max": 200000,
+        "tax": 10
+      },
+      {
+        "min": 200001,
+        "max": 200001,
+        "tax": 11
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 3600,
+        "tax": 1.4
+      },
+      {
+        "min": 3601,
+        "max": 7200,
+        "tax": 3.2
+      },
+      {
+        "min": 7201,
+        "max": 14400,
+        "tax": 5.5
+      },
+      {
+        "min": 14401,
+        "max": 21600,
+        "tax": 6.4
+      },
+      {
+        "min": 21601,
+        "max": 28800,
+        "tax": 6.8
+      },
+      {
+        "min": 28801,
+        "max": 36000,
+        "tax": 7.2
+      },
+      {
+        "min": 36001,
+        "max": 54000,
+        "tax": 7.6
+      },
+      {
+        "min": 54001,
+        "max": 72000,
+        "tax": 7.9
+      },
+      {
+        "min": 72001,
+        "max": 225000,
+        "tax": 8.25
+      },
+      {
+        "min": 225001,
+        "max": 262500,
+        "tax": 9
+      },
+      {
+        "min": 262501,
+        "max": 300000,
+        "tax": 10
+      },
+      {
+        "min": 300001,
+        "max": 300001,
+        "tax": 11
+      }
+    ]
+  },
+  "IDAHO": {
+    "stateCode": "ID",
+    "tax": 5.695,
+    "hasFlatRate": true
+  },
+  "ILLINOIS": {
+    "stateCode": "IL",
+    "tax": 4.95,
+    "hasFlatRate": true
+  },
+  "INDIANA": {
+    "stateCode": "IN",
+    "tax": 3.05,
+    "hasFlatRate": true
+  },
+  "IOWA": {
+    "stateCode": "IA",
+    "tax": 3.8,
+    "hasFlatRate": true
+  },
+  "KANSAS": {
+    "stateCode": "KS",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 15000,
+        "tax": 3.1
+      },
+      {
+        "min": 15001,
+        "max": 30000,
+        "tax": 5.25
+      },
+      {
+        "min": 30001,
+        "max": 30001,
+        "tax": 5.7
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 30000,
+        "tax": 3.1
+      },
+      {
+        "min": 30001,
+        "max": 60000,
+        "tax": 5.25
+      },
+      {
+        "min": 60001,
+        "max": 60001,
+        "tax": 5.7
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 15000,
+        "tax": 3.1
+      },
+      {
+        "min": 15001,
+        "max": 30000,
+        "tax": 5.25
+      },
+      {
+        "min": 30001,
+        "max": 30001,
+        "tax": 5.7
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 15000,
+        "tax": 3.1
+      },
+      {
+        "min": 15001,
+        "max": 30000,
+        "tax": 5.25
+      },
+      {
+        "min": 30001,
+        "max": 30001,
+        "tax": 5.7
+      }
+    ]
+  },
+  "KENTUCKY": {
+    "stateCode": "KY",
+    "tax": 4,
+    "hasFlatRate": true
+  },
+  "LOUISIANA": {
+    "stateCode": "LA",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 12500,
+        "tax": 2
+      },
+      {
+        "min": 12501,
+        "max": 50000,
+        "tax": 4
+      },
+      {
+        "min": 50001,
+        "max": 50001,
+        "tax": 6
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 25000,
+        "tax": 2
+      },
+      {
+        "min": 25001,
+        "max": 100000,
+        "tax": 4
+      },
+      {
+        "min": 100001,
+        "max": 100001,
+        "tax": 6
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 12500,
+        "tax": 2
+      },
+      {
+        "min": 12501,
+        "max": 50000,
+        "tax": 4
+      },
+      {
+        "min": 50001,
+        "max": 50001,
+        "tax": 6
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 12500,
+        "tax": 2
+      },
+      {
+        "min": 12501,
+        "max": 50000,
+        "tax": 4
+      },
+      {
+        "min": 50001,
+        "max": 50001,
+        "tax": 6
+      }
+    ]
+  },
+  "MAINE": {
+    "stateCode": "ME",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 21849,
+        "tax": 5.8
+      },
+      {
+        "min": 21850,
+        "max": 51699,
+        "tax": 6.75
+      },
+      {
+        "min": 51700,
+        "max": 51700,
+        "tax": 7.15
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 43699,
+        "tax": 5.8
+      },
+      {
+        "min": 43700,
+        "max": 103399,
+        "tax": 6.75
+      },
+      {
+        "min": 103400,
+        "max": 103400,
+        "tax": 7.15
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 21849,
+        "tax": 5.8
+      },
+      {
+        "min": 21850,
+        "max": 51699,
+        "tax": 6.75
+      },
+      {
+        "min": 51700,
+        "max": 51700,
+        "tax": 7.15
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 32749,
+        "tax": 5.8
+      },
+      {
+        "min": 32750,
+        "max": 77549,
+        "tax": 6.75
+      },
+      {
+        "min": 77550,
+        "max": 77550,
+        "tax": 7.15
+      }
+    ]
+  },
+  "MARYLAND": {
+    "stateCode": "MD",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 1000,
+        "tax": 2
+      },
+      {
+        "min": 1001,
+        "max": 2000,
+        "tax": 3
+      },
+      {
+        "min": 2001,
+        "max": 3000,
+        "tax": 4
+      },
+      {
+        "min": 3001,
+        "max": 100000,
+        "tax": 4.75
+      },
+      {
+        "min": 100001,
+        "max": 125000,
+        "tax": 5
+      },
+      {
+        "min": 125001,
+        "max": 150000,
+        "tax": 5.25
+      },
+      {
+        "min": 150001,
+        "max": 250000,
+        "tax": 5.5
+      },
+      {
+        "min": 250001,
+        "max": 250001,
+        "tax": 5.75
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 1000,
+        "tax": 2
+      },
+      {
+        "min": 1001,
+        "max": 2000,
+        "tax": 3
+      },
+      {
+        "min": 2001,
+        "max": 3000,
+        "tax": 4
+      },
+      {
+        "min": 3001,
+        "max": 150000,
+        "tax": 4.75
+      },
+      {
+        "min": 150001,
+        "max": 175000,
+        "tax": 5
+      },
+      {
+        "min": 175001,
+        "max": 225000,
+        "tax": 5.25
+      },
+      {
+        "min": 225001,
+        "max": 300000,
+        "tax": 5.5
+      },
+      {
+        "min": 300001,
+        "max": 300001,
+        "tax": 5.75
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 1000,
+        "tax": 2
+      },
+      {
+        "min": 1001,
+        "max": 2000,
+        "tax": 3
+      },
+      {
+        "min": 2001,
+        "max": 3000,
+        "tax": 4
+      },
+      {
+        "min": 3001,
+        "max": 100000,
+        "tax": 4.75
+      },
+      {
+        "min": 100001,
+        "max": 125000,
+        "tax": 5
+      },
+      {
+        "min": 125001,
+        "max": 150000,
+        "tax": 5.25
+      },
+      {
+        "min": 150001,
+        "max": 250000,
+        "tax": 5.5
+      },
+      {
+        "min": 250001,
+        "max": 250001,
+        "tax": 5.75
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 1000,
+        "tax": 2
+      },
+      {
+        "min": 1001,
+        "max": 2000,
+        "tax": 3
+      },
+      {
+        "min": 2001,
+        "max": 3000,
+        "tax": 4
+      },
+      {
+        "min": 3001,
+        "max": 150000,
+        "tax": 4.75
+      },
+      {
+        "min": 150001,
+        "max": 175000,
+        "tax": 5
+      },
+      {
+        "min": 175001,
+        "max": 225000,
+        "tax": 5.25
+      },
+      {
+        "min": 225001,
+        "max": 300000,
+        "tax": 5.5
+      },
+      {
+        "min": 300001,
+        "max": 300001,
+        "tax": 5.75
+      }
+    ]
+  },
+  "MASSACHUSETTS": {
+    "stateCode": "MA",
+    "tax": 5,
+    "hasFlatRate": true
+  },
+  "MICHIGAN": {
+    "stateCode": "MI",
+    "tax": 4.05,
+    "hasFlatRate": true
+  },
+  "MINNESOTA": {
+    "stateCode": "MN",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 26960,
+        "tax": 5.35
+      },
+      {
+        "min": 26961,
+        "max": 88550,
+        "tax": 6.8
+      },
+      {
+        "min": 88551,
+        "max": 164400,
+        "tax": 7.85
+      },
+      {
+        "min": 164401,
+        "max": 164401,
+        "tax": 9.85
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 39410,
+        "tax": 5.35
+      },
+      {
+        "min": 39411,
+        "max": 156570,
+        "tax": 6.8
+      },
+      {
+        "min": 156571,
+        "max": 273470,
+        "tax": 7.85
+      },
+      {
+        "min": 273471,
+        "max": 273471,
+        "tax": 9.85
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 19705,
+        "tax": 5.35
+      },
+      {
+        "min": 19706,
+        "max": 78285,
+        "tax": 6.8
+      },
+      {
+        "min": 78286,
+        "max": 136735,
+        "tax": 7.85
+      },
+      {
+        "min": 136736,
+        "max": 136736,
+        "tax": 9.85
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 33190,
+        "tax": 5.35
+      },
+      {
+        "min": 33191,
+        "max": 133360,
+        "tax": 6.8
+      },
+      {
+        "min": 133361,
+        "max": 218540,
+        "tax": 7.85
+      },
+      {
+        "min": 218541,
+        "max": 218541,
+        "tax": 9.85
+      }
+    ]
+  },
+  "MISSISSIPPI": {
+    "stateCode": "MS",
+    "tax": 4.7,
+    "hasFlatRate": true
+  },
+  "MISSOURI": {
+    "stateCode": "MO",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 106,
+        "tax": 0
+      },
+      {
+        "min": 107,
+        "max": 1073,
+        "tax": 1.5
+      },
+      {
+        "min": 1074,
+        "max": 2146,
+        "tax": 2
+      },
+      {
+        "min": 2147,
+        "max": 3219,
+        "tax": 2.5
+      },
+      {
+        "min": 3220,
+        "max": 4292,
+        "tax": 3
+      },
+      {
+        "min": 4293,
+        "max": 5365,
+        "tax": 3.5
+      },
+      {
+        "min": 5366,
+        "max": 6438,
+        "tax": 4
+      },
+      {
+        "min": 6439,
+        "max": 7511,
+        "tax": 4.5
+      },
+      {
+        "min": 7512,
+        "max": 8584,
+        "tax": 5
+      },
+      {
+        "min": 8585,
+        "max": 8585,
+        "tax": 5.4
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 106,
+        "tax": 0
+      },
+      {
+        "min": 107,
+        "max": 1073,
+        "tax": 1.5
+      },
+      {
+        "min": 1074,
+        "max": 2146,
+        "tax": 2
+      },
+      {
+        "min": 2147,
+        "max": 3219,
+        "tax": 2.5
+      },
+      {
+        "min": 3220,
+        "max": 4292,
+        "tax": 3
+      },
+      {
+        "min": 4293,
+        "max": 5365,
+        "tax": 3.5
+      },
+      {
+        "min": 5366,
+        "max": 6438,
+        "tax": 4
+      },
+      {
+        "min": 6439,
+        "max": 7511,
+        "tax": 4.5
+      },
+      {
+        "min": 7512,
+        "max": 8584,
+        "tax": 5
+      },
+      {
+        "min": 8585,
+        "max": 8585,
+        "tax": 5.4
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 106,
+        "tax": 0
+      },
+      {
+        "min": 107,
+        "max": 1073,
+        "tax": 1.5
+      },
+      {
+        "min": 1074,
+        "max": 2146,
+        "tax": 2
+      },
+      {
+        "min": 2147,
+        "max": 3219,
+        "tax": 2.5
+      },
+      {
+        "min": 3220,
+        "max": 4292,
+        "tax": 3
+      },
+      {
+        "min": 4293,
+        "max": 5365,
+        "tax": 3.5
+      },
+      {
+        "min": 5366,
+        "max": 6438,
+        "tax": 4
+      },
+      {
+        "min": 6439,
+        "max": 7511,
+        "tax": 4.5
+      },
+      {
+        "min": 7512,
+        "max": 8584,
+        "tax": 5
+      },
+      {
+        "min": 8585,
+        "max": 8585,
+        "tax": 5.4
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 106,
+        "tax": 0
+      },
+      {
+        "min": 107,
+        "max": 1073,
+        "tax": 1.5
+      },
+      {
+        "min": 1074,
+        "max": 2146,
+        "tax": 2
+      },
+      {
+        "min": 2147,
+        "max": 3219,
+        "tax": 2.5
+      },
+      {
+        "min": 3220,
+        "max": 4292,
+        "tax": 3
+      },
+      {
+        "min": 4293,
+        "max": 5365,
+        "tax": 3.5
+      },
+      {
+        "min": 5366,
+        "max": 6438,
+        "tax": 4
+      },
+      {
+        "min": 6439,
+        "max": 7511,
+        "tax": 4.5
+      },
+      {
+        "min": 7512,
+        "max": 8584,
+        "tax": 5
+      },
+      {
+        "min": 8585,
+        "max": 8585,
+        "tax": 5.4
+      }
+    ]
+  },
+  "MONTANA": {
+    "stateCode": "MT",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 3100,
+        "tax": 1
+      },
+      {
+        "min": 3101,
+        "max": 5400,
+        "tax": 2
+      },
+      {
+        "min": 5401,
+        "max": 8200,
+        "tax": 3
+      },
+      {
+        "min": 8201,
+        "max": 11100,
+        "tax": 4
+      },
+      {
+        "min": 11101,
+        "max": 14300,
+        "tax": 5
+      },
+      {
+        "min": 14301,
+        "max": 18400,
+        "tax": 6
+      },
+      {
+        "min": 18401,
+        "max": 18401,
+        "tax": 6.9
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 3100,
+        "tax": 1
+      },
+      {
+        "min": 3101,
+        "max": 5400,
+        "tax": 2
+      },
+      {
+        "min": 5401,
+        "max": 8200,
+        "tax": 3
+      },
+      {
+        "min": 8201,
+        "max": 11100,
+        "tax": 4
+      },
+      {
+        "min": 11101,
+        "max": 14300,
+        "tax": 5
+      },
+      {
+        "min": 14301,
+        "max": 18400,
+        "tax": 6
+      },
+      {
+        "min": 18401,
+        "max": 18401,
+        "tax": 6.9
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 3100,
+        "tax": 1
+      },
+      {
+        "min": 3101,
+        "max": 5400,
+        "tax": 2
+      },
+      {
+        "min": 5401,
+        "max": 8200,
+        "tax": 3
+      },
+      {
+        "min": 8201,
+        "max": 11100,
+        "tax": 4
+      },
+      {
+        "min": 11101,
+        "max": 14300,
+        "tax": 5
+      },
+      {
+        "min": 14301,
+        "max": 18400,
+        "tax": 6
+      },
+      {
+        "min": 18401,
+        "max": 18401,
+        "tax": 6.9
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 3100,
+        "tax": 1
+      },
+      {
+        "min": 3101,
+        "max": 5400,
+        "tax": 2
+      },
+      {
+        "min": 5401,
+        "max": 8200,
+        "tax": 3
+      },
+      {
+        "min": 8201,
+        "max": 11100,
+        "tax": 4
+      },
+      {
+        "min": 11101,
+        "max": 14300,
+        "tax": 5
+      },
+      {
+        "min": 14301,
+        "max": 18400,
+        "tax": 6
+      },
+      {
+        "min": 18401,
+        "max": 18401,
+        "tax": 6.9
+      }
+    ]
+  },
+  "NEBRASKA": {
+    "stateCode": "NE",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 3290,
+        "tax": 2.46
+      },
+      {
+        "min": 3291,
+        "max": 19700,
+        "tax": 3.51
+      },
+      {
+        "min": 19701,
+        "max": 31750,
+        "tax": 5.01
+      },
+      {
+        "min": 31751,
+        "max": 31751,
+        "tax": 6.84
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 6570,
+        "tax": 2.46
+      },
+      {
+        "min": 6571,
+        "max": 39410,
+        "tax": 3.51
+      },
+      {
+        "min": 39411,
+        "max": 63500,
+        "tax": 5.01
+      },
+      {
+        "min": 63501,
+        "max": 63501,
+        "tax": 6.84
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 3290,
+        "tax": 2.46
+      },
+      {
+        "min": 3291,
+        "max": 19700,
+        "tax": 3.51
+      },
+      {
+        "min": 19701,
+        "max": 31750,
+        "tax": 5.01
+      },
+      {
+        "min": 31751,
+        "max": 31751,
+        "tax": 6.84
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 6130,
+        "tax": 2.46
+      },
+      {
+        "min": 6131,
+        "max": 31530,
+        "tax": 3.51
+      },
+      {
+        "min": 31531,
+        "max": 47080,
+        "tax": 5.01
+      },
+      {
+        "min": 47081,
+        "max": 47081,
+        "tax": 6.84
+      }
+    ]
+  },
+  "NEVADA": {
+    "stateCode": "NV",
+    "hasTax": false
+  },
+  "NEW HAMPSHIRE": {
+    "stateCode": "NH",
+    "hasTax": false
+  },
+  "NEW JERSEY": {
+    "stateCode": "NJ",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 20000,
+        "tax": 1.4
+      },
+      {
+        "min": 20001,
+        "max": 35000,
+        "tax": 1.75
+      },
+      {
+        "min": 35001,
+        "max": 40000,
+        "tax": 3.5
+      },
+      {
+        "min": 40001,
+        "max": 75000,
+        "tax": 5.525
+      },
+      {
+        "min": 75001,
+        "max": 500000,
+        "tax": 6.37
+      },
+      {
+        "min": 500001,
+        "max": 5000000,
+        "tax": 8.97
+      },
+      {
+        "min": 5000001,
+        "max": 5000001,
+        "tax": 10.75
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 20000,
+        "tax": 1.4
+      },
+      {
+        "min": 20001,
+        "max": 35000,
+        "tax": 1.75
+      },
+      {
+        "min": 35001,
+        "max": 40000,
+        "tax": 3.5
+      },
+      {
+        "min": 40001,
+        "max": 75000,
+        "tax": 5.525
+      },
+      {
+        "min": 75001,
+        "max": 500000,
+        "tax": 6.37
+      },
+      {
+        "min": 500001,
+        "max": 5000000,
+        "tax": 8.97
+      },
+      {
+        "min": 5000001,
+        "max": 5000001,
+        "tax": 10.75
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 20000,
+        "tax": 1.4
+      },
+      {
+        "min": 20001,
+        "max": 35000,
+        "tax": 1.75
+      },
+      {
+        "min": 35001,
+        "max": 40000,
+        "tax": 3.5
+      },
+      {
+        "min": 40001,
+        "max": 75000,
+        "tax": 5.525
+      },
+      {
+        "min": 75001,
+        "max": 500000,
+        "tax": 6.37
+      },
+      {
+        "min": 500001,
+        "max": 5000000,
+        "tax": 8.97
+      },
+      {
+        "min": 5000001,
+        "max": 5000001,
+        "tax": 10.75
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 20000,
+        "tax": 1.4
+      },
+      {
+        "min": 20001,
+        "max": 35000,
+        "tax": 1.75
+      },
+      {
+        "min": 35001,
+        "max": 40000,
+        "tax": 3.5
+      },
+      {
+        "min": 40001,
+        "max": 75000,
+        "tax": 5.525
+      },
+      {
+        "min": 75001,
+        "max": 500000,
+        "tax": 6.37
+      },
+      {
+        "min": 500001,
+        "max": 5000000,
+        "tax": 8.97
+      },
+      {
+        "min": 5000001,
+        "max": 5000001,
+        "tax": 10.75
+      }
+    ]
+  },
+  "NEW MEXICO": {
+    "stateCode": "NM",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 5500,
+        "tax": 1.7
+      },
+      {
+        "min": 5501,
+        "max": 11000,
+        "tax": 3.2
+      },
+      {
+        "min": 11001,
+        "max": 16000,
+        "tax": 4.7
+      },
+      {
+        "min": 16001,
+        "max": 16001,
+        "tax": 4.9
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 8000,
+        "tax": 1.7
+      },
+      {
+        "min": 8001,
+        "max": 16000,
+        "tax": 3.2
+      },
+      {
+        "min": 16001,
+        "max": 24000,
+        "tax": 4.7
+      },
+      {
+        "min": 24001,
+        "max": 24001,
+        "tax": 4.9
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 4000,
+        "tax": 1.7
+      },
+      {
+        "min": 4001,
+        "max": 8000,
+        "tax": 3.2
+      },
+      {
+        "min": 8001,
+        "max": 12000,
+        "tax": 4.7
+      },
+      {
+        "min": 12001,
+        "max": 12001,
+        "tax": 4.9
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 8000,
+        "tax": 1.7
+      },
+      {
+        "min": 8001,
+        "max": 16000,
+        "tax": 3.2
+      },
+      {
+        "min": 16001,
+        "max": 24000,
+        "tax": 4.7
+      },
+      {
+        "min": 24001,
+        "max": 24001,
+        "tax": 4.9
+      }
+    ]
+  },
+  "NEW YORK": {
+    "stateCode": "NY",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 8500,
+        "tax": 4
+      },
+      {
+        "min": 8501,
+        "max": 11700,
+        "tax": 4.5
+      },
+      {
+        "min": 11701,
+        "max": 13900,
+        "tax": 5.25
+      },
+      {
+        "min": 13901,
+        "max": 21400,
+        "tax": 5.9
+      },
+      {
+        "min": 21401,
+        "max": 80650,
+        "tax": 6.09
+      },
+      {
+        "min": 80651,
+        "max": 215400,
+        "tax": 6.41
+      },
+      {
+        "min": 215401,
+        "max": 1077550,
+        "tax": 6.85
+      },
+      {
+        "min": 1077551,
+        "max": 1077551,
+        "tax": 8.82
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 17150,
+        "tax": 4
+      },
+      {
+        "min": 17151,
+        "max": 23600,
+        "tax": 4.5
+      },
+      {
+        "min": 23601,
+        "max": 27900,
+        "tax": 5.25
+      },
+      {
+        "min": 27901,
+        "max": 43000,
+        "tax": 5.9
+      },
+      {
+        "min": 43001,
+        "max": 161550,
+        "tax": 6.09
+      },
+      {
+        "min": 161551,
+        "max": 323200,
+        "tax": 6.41
+      },
+      {
+        "min": 323201,
+        "max": 2155350,
+        "tax": 6.85
+      },
+      {
+        "min": 2155351,
+        "max": 2155351,
+        "tax": 8.82
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 8500,
+        "tax": 4
+      },
+      {
+        "min": 8501,
+        "max": 11700,
+        "tax": 4.5
+      },
+      {
+        "min": 11701,
+        "max": 13900,
+        "tax": 5.25
+      },
+      {
+        "min": 13901,
+        "max": 21400,
+        "tax": 5.9
+      },
+      {
+        "min": 21401,
+        "max": 80650,
+        "tax": 6.09
+      },
+      {
+        "min": 80651,
+        "max": 215400,
+        "tax": 6.41
+      },
+      {
+        "min": 215401,
+        "max": 1077550,
+        "tax": 6.85
+      },
+      {
+        "min": 1077551,
+        "max": 1077551,
+        "tax": 8.82
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 12800,
+        "tax": 4
+      },
+      {
+        "min": 12801,
+        "max": 17650,
+        "tax": 4.5
+      },
+      {
+        "min": 17651,
+        "max": 20900,
+        "tax": 5.25
+      },
+      {
+        "min": 20901,
+        "max": 32200,
+        "tax": 5.9
+      },
+      {
+        "min": 32201,
+        "max": 107650,
+        "tax": 6.09
+      },
+      {
+        "min": 107651,
+        "max": 269300,
+        "tax": 6.41
+      },
+      {
+        "min": 269301,
+        "max": 1616450,
+        "tax": 6.85
+      },
+      {
+        "min": 1616451,
+        "max": 1616451,
+        "tax": 8.82
+      }
+    ]
+  },
+  "NORTH CAROLINA": {
+    "stateCode": "NC",
+    "tax": 4.5,
+    "hasFlatRate": true
+  },
+  "NORTH DAKOTA": {
+    "stateCode": "ND",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 39450,
+        "tax": 1.1
+      },
+      {
+        "min": 39451,
+        "max": 95500,
+        "tax": 2.04
+      },
+      {
+        "min": 95501,
+        "max": 199250,
+        "tax": 2.27
+      },
+      {
+        "min": 199251,
+        "max": 433200,
+        "tax": 2.64
+      },
+      {
+        "min": 433201,
+        "max": 433201,
+        "tax": 2.9
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 65900,
+        "tax": 1.1
+      },
+      {
+        "min": 65901,
+        "max": 159200,
+        "tax": 2.04
+      },
+      {
+        "min": 159201,
+        "max": 242550,
+        "tax": 2.27
+      },
+      {
+        "min": 242551,
+        "max": 433200,
+        "tax": 2.64
+      },
+      {
+        "min": 433201,
+        "max": 433201,
+        "tax": 2.9
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 32950,
+        "tax": 1.1
+      },
+      {
+        "min": 32951,
+        "max": 79600,
+        "tax": 2.04
+      },
+      {
+        "min": 79601,
+        "max": 121275,
+        "tax": 2.27
+      },
+      {
+        "min": 121276,
+        "max": 216600,
+        "tax": 2.64
+      },
+      {
+        "min": 216601,
+        "max": 216601,
+        "tax": 2.9
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 52850,
+        "tax": 1.1
+      },
+      {
+        "min": 65901,
+        "max": 136450,
+        "tax": 2.04
+      },
+      {
+        "min": 136451,
+        "max": 220900,
+        "tax": 2.27
+      },
+      {
+        "min": 220901,
+        "max": 433200,
+        "tax": 2.64
+      },
+      {
+        "min": 433201,
+        "max": 433201,
+        "tax": 2.9
+      }
+    ]
+  },
+  "OHIO": {
+    "stateCode": "OH",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 22150,
+        "tax": 0
+      },
+      {
+        "min": 22151,
+        "max": 44250,
+        "tax": 2.85
+      },
+      {
+        "min": 44251,
+        "max": 88450,
+        "tax": 3.326
+      },
+      {
+        "min": 88451,
+        "max": 110650,
+        "tax": 3.802
+      },
+      {
+        "min": 110651,
+        "max": 221300,
+        "tax": 4.413
+      },
+      {
+        "min": 221301,
+        "max": 221301,
+        "tax": 4.797
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 22150,
+        "tax": 0
+      },
+      {
+        "min": 22151,
+        "max": 44250,
+        "tax": 2.85
+      },
+      {
+        "min": 44251,
+        "max": 88450,
+        "tax": 3.326
+      },
+      {
+        "min": 88451,
+        "max": 110650,
+        "tax": 3.802
+      },
+      {
+        "min": 110651,
+        "max": 221300,
+        "tax": 4.413
+      },
+      {
+        "min": 221301,
+        "max": 221301,
+        "tax": 4.797
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 22150,
+        "tax": 0
+      },
+      {
+        "min": 22151,
+        "max": 44250,
+        "tax": 2.85
+      },
+      {
+        "min": 44251,
+        "max": 88450,
+        "tax": 3.326
+      },
+      {
+        "min": 88451,
+        "max": 110650,
+        "tax": 3.802
+      },
+      {
+        "min": 110651,
+        "max": 221300,
+        "tax": 4.413
+      },
+      {
+        "min": 221301,
+        "max": 221301,
+        "tax": 4.797
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 22150,
+        "tax": 0
+      },
+      {
+        "min": 22151,
+        "max": 44250,
+        "tax": 2.85
+      },
+      {
+        "min": 44251,
+        "max": 88450,
+        "tax": 3.326
+      },
+      {
+        "min": 88451,
+        "max": 110650,
+        "tax": 3.802
+      },
+      {
+        "min": 110651,
+        "max": 221300,
+        "tax": 4.413
+      },
+      {
+        "min": 221301,
+        "max": 221301,
+        "tax": 4.797
+      }
+    ]
+  },
+  "OKLAHOMA": {
+    "stateCode": "OK",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 1000,
+        "tax": 0.5
+      },
+      {
+        "min": 1001,
+        "max": 2500,
+        "tax": 1
+      },
+      {
+        "min": 2501,
+        "max": 3750,
+        "tax": 2
+      },
+      {
+        "min": 3751,
+        "max": 4900,
+        "tax": 3
+      },
+      {
+        "min": 4901,
+        "max": 7200,
+        "tax": 4
+      },
+      {
+        "min": 7201,
+        "max": 7201,
+        "tax": 5
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 2000,
+        "tax": 0.5
+      },
+      {
+        "min": 2001,
+        "max": 5000,
+        "tax": 1
+      },
+      {
+        "min": 5001,
+        "max": 7500,
+        "tax": 2
+      },
+      {
+        "min": 7501,
+        "max": 9800,
+        "tax": 3
+      },
+      {
+        "min": 9801,
+        "max": 12200,
+        "tax": 4
+      },
+      {
+        "min": 12201,
+        "max": 12201,
+        "tax": 5
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 1000,
+        "tax": 0.5
+      },
+      {
+        "min": 1001,
+        "max": 2500,
+        "tax": 1
+      },
+      {
+        "min": 2501,
+        "max": 3750,
+        "tax": 2
+      },
+      {
+        "min": 3751,
+        "max": 4900,
+        "tax": 3
+      },
+      {
+        "min": 4901,
+        "max": 7200,
+        "tax": 4
+      },
+      {
+        "min": 7201,
+        "max": 7201,
+        "tax": 5
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 2000,
+        "tax": 0.5
+      },
+      {
+        "min": 2001,
+        "max": 5000,
+        "tax": 1
+      },
+      {
+        "min": 5001,
+        "max": 7500,
+        "tax": 2
+      },
+      {
+        "min": 7501,
+        "max": 9800,
+        "tax": 3
+      },
+      {
+        "min": 9801,
+        "max": 12200,
+        "tax": 4
+      },
+      {
+        "min": 12201,
+        "max": 12201,
+        "tax": 5
+      }
+    ]
+  },
+  "OREGON": {
+    "stateCode": "OR",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 3600,
+        "tax": 4.75
+      },
+      {
+        "min": 3601,
+        "max": 9050,
+        "tax": 6.75
+      },
+      {
+        "min": 9051,
+        "max": 125000,
+        "tax": 8.75
+      },
+      {
+        "min": 125001,
+        "max": 125001,
+        "tax": 9.9
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 7200,
+        "tax": 4.75
+      },
+      {
+        "min": 7201,
+        "max": 18100,
+        "tax": 6.75
+      },
+      {
+        "min": 18101,
+        "max": 250000,
+        "tax": 8.75
+      },
+      {
+        "min": 250001,
+        "max": 250001,
+        "tax": 9.9
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 3600,
+        "tax": 4.75
+      },
+      {
+        "min": 3601,
+        "max": 9050,
+        "tax": 6.75
+      },
+      {
+        "min": 9051,
+        "max": 125000,
+        "tax": 8.75
+      },
+      {
+        "min": 125001,
+        "max": 125001,
+        "tax": 9.9
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 7200,
+        "tax": 4.75
+      },
+      {
+        "min": 7201,
+        "max": 18100,
+        "tax": 6.75
+      },
+      {
+        "min": 18101,
+        "max": 250000,
+        "tax": 8.75
+      },
+      {
+        "min": 250001,
+        "max": 250001,
+        "tax": 9.9
+      }
+    ]
+  },
+
+  "PENNSYLVANIA": { "stateCode": "PA", "tax": 3.07, "hasFlatRate": true },
+  "RHODE ISLAND": {
+    "stateCode": "RI",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 65250,
+        "tax": 3.75
+      },
+      {
+        "min": 65251,
+        "max": 148350,
+        "tax": 4.75
+      },
+      {
+        "min": 148351,
+        "max": 148351,
+        "tax": 5.99
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 65250,
+        "tax": 3.75
+      },
+      {
+        "min": 65251,
+        "max": 148350,
+        "tax": 4.75
+      },
+      {
+        "min": 148351,
+        "max": 148351,
+        "tax": 5.99
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 65250,
+        "tax": 3.75
+      },
+      {
+        "min": 65251,
+        "max": 148350,
+        "tax": 4.75
+      },
+      {
+        "min": 148351,
+        "max": 148351,
+        "tax": 5.99
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 65250,
+        "tax": 3.75
+      },
+      {
+        "min": 65251,
+        "max": 148350,
+        "tax": 4.75
+      },
+      {
+        "min": 148351,
+        "max": 148351,
+        "tax": 5.99
+      }
+    ]
+  },
+  "SOUTH CAROLINA": {
+    "stateCode": "SC",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 3069,
+        "tax": 0
+      },
+      {
+        "min": 3070,
+        "max": 6149,
+        "tax": 3
+      },
+      {
+        "min": 6150,
+        "max": 9229,
+        "tax": 4
+      },
+      {
+        "min": 9230,
+        "max": 12309,
+        "tax": 5
+      },
+      {
+        "min": 12310,
+        "max": 15399,
+        "tax": 6
+      },
+      {
+        "min": 15400,
+        "max": 15400,
+        "tax": 7
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 3069,
+        "tax": 0
+      },
+      {
+        "min": 3070,
+        "max": 6149,
+        "tax": 3
+      },
+      {
+        "min": 6150,
+        "max": 9229,
+        "tax": 4
+      },
+      {
+        "min": 9230,
+        "max": 12309,
+        "tax": 5
+      },
+      {
+        "min": 12310,
+        "max": 15399,
+        "tax": 6
+      },
+      {
+        "min": 15400,
+        "max": 15400,
+        "tax": 7
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 3069,
+        "tax": 0
+      },
+      {
+        "min": 3070,
+        "max": 6149,
+        "tax": 3
+      },
+      {
+        "min": 6150,
+        "max": 9229,
+        "tax": 4
+      },
+      {
+        "min": 9230,
+        "max": 12309,
+        "tax": 5
+      },
+      {
+        "min": 12310,
+        "max": 15399,
+        "tax": 6
+      },
+      {
+        "min": 15400,
+        "max": 15400,
+        "tax": 7
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 3069,
+        "tax": 0
+      },
+      {
+        "min": 3070,
+        "max": 6149,
+        "tax": 3
+      },
+      {
+        "min": 6150,
+        "max": 9229,
+        "tax": 4
+      },
+      {
+        "min": 9230,
+        "max": 12309,
+        "tax": 5
+      },
+      {
+        "min": 12310,
+        "max": 15399,
+        "tax": 6
+      },
+      {
+        "min": 15400,
+        "max": 15400,
+        "tax": 7
+      }
+    ]
+  },
+
+  "SOUTH DAKOTA": { "stateCode": "SD", "hasTax": false },
+
+  "TENNESSEE": { "stateCode": "TN", "hasTax": false },
+
+  "TEXAS": { "stateCode": "TX", "hasTax": false },
+
+  "UTAH": { "stateCode": "UT", "tax": 4.65, "hasFlatRate": true },
+  "VERMONT": {
+    "stateCode": "VT",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 40350,
+        "tax": 3.35
+      },
+      {
+        "min": 40351,
+        "max": 97800,
+        "tax": 6.6
+      },
+      {
+        "min": 97801,
+        "max": 204000,
+        "tax": 7.6
+      },
+      {
+        "min": 204001,
+        "max": 204001,
+        "tax": 8.75
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 67450,
+        "tax": 3.35
+      },
+      {
+        "min": 67451,
+        "max": 163000,
+        "tax": 6.6
+      },
+      {
+        "min": 163001,
+        "max": 248350,
+        "tax": 7.6
+      },
+      {
+        "min": 248351,
+        "max": 248351,
+        "tax": 8.75
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 33725,
+        "tax": 3.35
+      },
+      {
+        "min": 33726,
+        "max": 81500,
+        "tax": 6.6
+      },
+      {
+        "min": 81501,
+        "max": 124175,
+        "tax": 7.6
+      },
+      {
+        "min": 124176,
+        "max": 124176,
+        "tax": 8.75
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 54100,
+        "tax": 3.35
+      },
+      {
+        "min": 54101,
+        "max": 139650,
+        "tax": 6.6
+      },
+      {
+        "min": 139651,
+        "max": 226200,
+        "tax": 7.6
+      },
+      {
+        "min": 226201,
+        "max": 226201,
+        "tax": 8.75
+      }
+    ]
+  },
+  "VIRGINIA": {
+    "stateCode": "VA",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 3000,
+        "tax": 2
+      },
+      {
+        "min": 3001,
+        "max": 5000,
+        "tax": 3
+      },
+      {
+        "min": 5001,
+        "max": 17000,
+        "tax": 5
+      },
+      {
+        "min": 17001,
+        "max": 17001,
+        "tax": 5.75
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 3000,
+        "tax": 2
+      },
+      {
+        "min": 3001,
+        "max": 5000,
+        "tax": 3
+      },
+      {
+        "min": 5001,
+        "max": 17000,
+        "tax": 5
+      },
+      {
+        "min": 17001,
+        "max": 17001,
+        "tax": 5.75
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 3000,
+        "tax": 2
+      },
+      {
+        "min": 3001,
+        "max": 5000,
+        "tax": 3
+      },
+      {
+        "min": 5001,
+        "max": 17000,
+        "tax": 5
+      },
+      {
+        "min": 17001,
+        "max": 17001,
+        "tax": 5.75
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 3000,
+        "tax": 2
+      },
+      {
+        "min": 3001,
+        "max": 5000,
+        "tax": 3
+      },
+      {
+        "min": 5001,
+        "max": 17000,
+        "tax": 5
+      },
+      {
+        "min": 17001,
+        "max": 17001,
+        "tax": 5.75
+      }
+    ]
+  },
+
+  "WASHINGTON": { "stateCode": "WA", "hasTax": false },
+  "WASHINGTON DC": {
+    "stateCode": "WA",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 10000,
+        "tax": 4
+      },
+      {
+        "min": 10001,
+        "max": 40000,
+        "tax": 6
+      },
+      {
+        "min": 40001,
+        "max": 60000,
+        "tax": 6.5
+      },
+      {
+        "min": 60001,
+        "max": 350000,
+        "tax": 8.5
+      },
+      {
+        "min": 350001,
+        "max": 1000000,
+        "tax": 8.75
+      },
+      {
+        "min": 1000001,
+        "max": 1000001,
+        "tax": 8.95
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 10000,
+        "tax": 4
+      },
+      {
+        "min": 10001,
+        "max": 40000,
+        "tax": 6
+      },
+      {
+        "min": 40001,
+        "max": 60000,
+        "tax": 6.5
+      },
+      {
+        "min": 60001,
+        "max": 350000,
+        "tax": 8.5
+      },
+      {
+        "min": 350001,
+        "max": 1000000,
+        "tax": 8.75
+      },
+      {
+        "min": 1000001,
+        "max": 1000001,
+        "tax": 8.95
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 10000,
+        "tax": 4
+      },
+      {
+        "min": 10001,
+        "max": 40000,
+        "tax": 6
+      },
+      {
+        "min": 40001,
+        "max": 60000,
+        "tax": 6.5
+      },
+      {
+        "min": 60001,
+        "max": 350000,
+        "tax": 8.5
+      },
+      {
+        "min": 350001,
+        "max": 1000000,
+        "tax": 8.75
+      },
+      {
+        "min": 1000001,
+        "max": 1000001,
+        "tax": 8.95
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 10000,
+        "tax": 4
+      },
+      {
+        "min": 10001,
+        "max": 40000,
+        "tax": 6
+      },
+      {
+        "min": 40001,
+        "max": 60000,
+        "tax": 6.5
+      },
+      {
+        "min": 60001,
+        "max": 350000,
+        "tax": 8.5
+      },
+      {
+        "min": 350001,
+        "max": 1000000,
+        "tax": 8.75
+      },
+      {
+        "min": 1000001,
+        "max": 1000001,
+        "tax": 8.95
+      }
+    ]
+  },
+  "WEST VIRGINIA": {
+    "stateCode": "WV",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 9999,
+        "tax": 3
+      },
+      {
+        "min": 10000,
+        "max": 24999,
+        "tax": 4
+      },
+      {
+        "min": 25000,
+        "max": 39999,
+        "tax": 4.5
+      },
+      {
+        "min": 40000,
+        "max": 59999,
+        "tax": 6
+      },
+      {
+        "min": 60000,
+        "max": 60000,
+        "tax": 6.5
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 9999,
+        "tax": 3
+      },
+      {
+        "min": 10000,
+        "max": 24999,
+        "tax": 4
+      },
+      {
+        "min": 25000,
+        "max": 39999,
+        "tax": 4.5
+      },
+      {
+        "min": 40000,
+        "max": 59999,
+        "tax": 6
+      },
+      {
+        "min": 60000,
+        "max": 60000,
+        "tax": 6.5
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 4999,
+        "tax": 3
+      },
+      {
+        "min": 5000,
+        "max": 12499,
+        "tax": 4
+      },
+      {
+        "min": 12500,
+        "max": 19999,
+        "tax": 4.5
+      },
+      {
+        "min": 20000,
+        "max": 29999,
+        "tax": 6
+      },
+      {
+        "min": 30000,
+        "max": 30000,
+        "tax": 6.5
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 9999,
+        "tax": 3
+      },
+      {
+        "min": 10000,
+        "max": 24999,
+        "tax": 4
+      },
+      {
+        "min": 25000,
+        "max": 39999,
+        "tax": 4.5
+      },
+      {
+        "min": 40000,
+        "max": 59999,
+        "tax": 6
+      },
+      {
+        "min": 60000,
+        "max": 60000,
+        "tax": 6.5
+      }
+    ]
+  },
+  "WISCONSIN": {
+    "stateCode": "WI",
+    "Single Taxpayers": [
+      {
+        "min": 0,
+        "max": 11970,
+        "tax": 3.54
+      },
+      {
+        "min": 11971,
+        "max": 23930,
+        "tax": 4.65
+      },
+      {
+        "min": 23931,
+        "max": 263480,
+        "tax": 6.27
+      },
+      {
+        "min": 263481,
+        "max": 263481,
+        "tax": 7.65
+      }
+    ],
+    "Married Jointly & Surviving Spouses": [
+      {
+        "min": 0,
+        "max": 15960,
+        "tax": 3.54
+      },
+      {
+        "min": 15961,
+        "max": 31910,
+        "tax": 4.65
+      },
+      {
+        "min": 31911,
+        "max": 351310,
+        "tax": 6.27
+      },
+      {
+        "min": 351311,
+        "max": 351311,
+        "tax": 7.65
+      }
+    ],
+    "Married Filing Separately": [
+      {
+        "min": 0,
+        "max": 7980,
+        "tax": 3.54
+      },
+      {
+        "min": 7981,
+        "max": 15960,
+        "tax": 4.65
+      },
+      {
+        "min": 15961,
+        "max": 175660,
+        "tax": 6.27
+      },
+      {
+        "min": 175661,
+        "max": 175661,
+        "tax": 7.65
+      }
+    ],
+    "Head of Household": [
+      {
+        "min": 0,
+        "max": 11970,
+        "tax": 3.54
+      },
+      {
+        "min": 11971,
+        "max": 23930,
+        "tax": 4.65
+      },
+      {
+        "min": 23931,
+        "max": 263480,
+        "tax": 6.27
+      },
+      {
+        "min": 263481,
+        "max": 263481,
+        "tax": 7.65
+      }
+    ]
+  },
+  "WYOMING": { "stateCode": "WY", "hasTax": false }
+}

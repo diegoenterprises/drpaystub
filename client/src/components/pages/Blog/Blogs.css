@@ -1,0 +1,139 @@
+.blogsPage {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.blogsPage img {
+  height: 200px;
+  width: 100%;
+}
+
+.blogsPage .item {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.blogsPage .item-card {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.blogsPage .item-card-title {
+  font-size: 15px;
+  -webkit-transition: 1s;
+  transition: 1s;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.blogsPage .item-card-title i {
+  font-size: 30px;
+  padding-top: 10px;
+  -webkit-transition: 1s;
+  transition: 1s;
+  cursor: pointer;
+  color: #336bfe;
+}
+
+.blogsPage .card-title i:hover {
+  -webkit-transform: scale(1.25) rotate(100deg);
+          transform: scale(1.25) rotate(100deg);
+  color: #18d4ca;
+}
+
+.blogsPage .card:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+          box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.blogsPage .card-text {
+  height: 80px;
+  padding: 0 10px;
+}
+
+.blogsPage .card::before,
+.blogsPage .card::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: scale3d(0, 0, 1);
+          transform: scale3d(0, 0, 1);
+  -webkit-transition: -webkit-transform 0.3s ease-out 0s;
+  transition: -webkit-transform 0.3s ease-out 0s;
+  transition: transform 0.3s ease-out 0s;
+  transition: transform 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+  background: rgba(255, 255, 255, 0.1);
+  content: "";
+  pointer-events: none;
+}
+
+.blogsPage .card::before {
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+}
+
+.blogsPage .card::after {
+  -webkit-transform-origin: right bottom;
+          transform-origin: right bottom;
+}
+
+.blogsPage .card .card-body {
+  padding: 1.5rem;
+}
+
+.blogsPage .card:hover::before,
+.blogsPage .card:hover::after,
+.blogsPage .card:focus::before,
+.blogsPage .card:focus::after {
+  -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+}
+
+.blogsPage .blog .author {
+  top: 5%;
+  left: 5%;
+}
+
+.blogsPage .blog .author,
+.blogsPage .blog .course-fee,
+.blogsPage .blog .teacher {
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.blogsPage .blog:hover .author,
+.blogsPage .blog:hover .course-fee,
+.blogsPage .blog:hover .teacher {
+  opacity: 1;
+}
+
+.blogsPage .blog {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.blogsPage .blog:hover {
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+}
+
+.blogsPage .readmore i {
+  color: #6772E5;
+}
+
+@media screen and (max-width: 767px) {
+  .blogsPage .card {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 3%;
+  }
+}
+/*# sourceMappingURL=Blogs.css.map */

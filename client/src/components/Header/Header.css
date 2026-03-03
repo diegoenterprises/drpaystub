@@ -1,0 +1,129 @@
+.header {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 1030;
+  background-color: #f8f9fa;
+  border: 0;
+}
+
+.header .nav-link {
+  color: #3c4858;
+}
+
+.header .nav-link:hover {
+  color: #6772e5 !important;  
+}
+
+.header .navbar-toggle .lines {
+  width: 25px;
+  display: block;
+  position: relative;
+  margin: 28px 20px;
+  height: 18px;
+}
+
+.header .menu-extras {
+  float: right;
+}
+
+.header .sticky-top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  height: 74px;
+}
+
+.header .navbar-brand img {
+  height: 7rem;
+}
+
+.header .logo {
+  float: left;
+  color: #3c4858 !important;
+}
+
+.header .stub-button {
+  float: right;
+  line-height: 68px;
+}
+
+.header .navigation-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.header .navigation-menu li > a {
+  display: block;
+  color: #3c4858;
+  font-size: 13px;
+  background-color: transparent !important;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 24px;
+  text-transform: uppercase;
+  font-family: 'Nunito', sans-serif;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 10px;
+}
+
+.header .navigation-menu li.active > .nav-link {
+  color: #336bfe;
+}
+
+@media (min-width: 992px) {
+  .header .stub-button {
+    padding-left: 15px;
+    margin-left: 15px;
+  }
+}
+
+@media (max-width: 991px) {
+  .header {
+    -webkit-box-shadow: 0 0 3px rgba(60, 72, 88, 0.15);
+            box-shadow: 0 0 3px rgba(60, 72, 88, 0.15);
+    min-height: 74px;
+  }
+  .header .menu-extras .menu-item {
+    border-color: #8492a6;
+  }
+  .header .stub-button {
+    display: none;
+  }
+  .header .collapse.show {
+    position: absolute;
+    top: 74px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding-bottom: 0;
+    overflow: auto;
+    border-top: 1px solid #f1f3f9;
+    border-bottom: 1px solid #f1f3f9;
+    background-color: #fff;
+    max-height: 400px;
+  }
+  .header .navigation-menu > li {
+    float: none;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header .navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .header .navbar-brand img {
+    height: 5rem;
+    margin-top: -10px;
+  }
+}
+/*# sourceMappingURL=Header.css.map */

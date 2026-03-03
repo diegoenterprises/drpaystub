@@ -1,0 +1,841 @@
+/* ═══════════════════════════════════════════════════
+   Saurellius — Premium Design System
+   EusoTrip Gradient · Glass Morphism · Dark-first
+   ═══════════════════════════════════════════════════ */
+
+:root,
+[data-theme="light"] {
+  --color-bg: #f8f9fc;
+  --color-bg-secondary: #eef0f5;
+  --color-bg-elevated: #ffffff;
+  --color-bg-glass: rgba(255, 255, 255, 0.72);
+  --color-bg-card: #ffffff;
+  --color-bg-input: #ffffff;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+  --color-text-tertiary: #94a3b8;
+  --color-accent: #1473FF;
+  --color-accent-end: #BE01FF;
+  --color-accent-hover: #0d5fd9;
+  --color-border: rgba(0, 0, 0, 0.06);
+  --color-border-strong: rgba(0, 0, 0, 0.1);
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --gradient-brand: linear-gradient(135deg, #1473FF 0%, #BE01FF 100%);
+  --gradient-brand-reverse: linear-gradient(135deg, #BE01FF 0%, #1473FF 100%);
+  --gradient-brand-subtle: linear-gradient(135deg, rgba(20,115,255,0.06) 0%, rgba(190,1,255,0.06) 100%);
+  --gradient-surface: linear-gradient(180deg, #ffffff 0%, #f8f9fc 100%);
+  --shadow-brand: 0 4px 24px rgba(20, 115, 255, 0.25);
+  --shadow-brand-lg: 0 8px 40px rgba(20, 115, 255, 0.3);
+  --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.06);
+  --shadow-card-hover: 0 8px 40px rgba(0,0,0,0.1);
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+[data-theme="dark"] {
+  --color-bg: #0b0d14;
+  --color-bg-secondary: #12141c;
+  --color-bg-elevated: #191c27;
+  --color-bg-glass: rgba(11, 13, 20, 0.85);
+  --color-bg-card: #171a24;
+  --color-bg-input: #1e2130;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #64748b;
+  --color-accent: #5b9dff;
+  --color-accent-end: #d46dff;
+  --color-accent-hover: #7ab3ff;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-strong: rgba(255, 255, 255, 0.1);
+  --color-success: #4ade80;
+  --color-error: #f87171;
+  --color-warning: #fbbf24;
+  --gradient-brand: linear-gradient(135deg, #5b9dff 0%, #d46dff 100%);
+  --gradient-brand-reverse: linear-gradient(135deg, #d46dff 0%, #5b9dff 100%);
+  --gradient-brand-subtle: linear-gradient(135deg, rgba(91,157,255,0.1) 0%, rgba(212,109,255,0.1) 100%);
+  --gradient-surface: linear-gradient(180deg, #191c27 0%, #12141c 100%);
+  --shadow-brand: 0 4px 24px rgba(91, 157, 255, 0.2);
+  --shadow-brand-lg: 0 8px 40px rgba(91, 157, 255, 0.25);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.2), 0 4px 24px rgba(0,0,0,0.15);
+  --shadow-card-hover: 0 8px 40px rgba(0,0,0,0.3);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+a, a:hover, a:focus, a:active, a:visited,
+h1, h2, h3, h4, h5, h6 {
+  text-decoration: none !important;
+}
+
+body {
+  font-family: var(--font-stack) !important;
+  color: var(--color-text-primary) !important;
+  background: var(--color-bg) !important;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  background: var(--color-bg) !important;
+  overflow-x: hidden;
+  width: 100vw;
+  transition: background 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-stack) !important;
+  font-weight: 600 !important;
+  color: var(--color-text-primary) !important;
+  letter-spacing: -0.025em;
+}
+
+a {
+  color: var(--color-accent);
+  transition: color var(--transition-fast);
+}
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+.text-muted {
+  color: var(--color-text-secondary) !important;
+}
+
+.text-primary {
+  color: var(--color-accent) !important;
+}
+
+/* ─── Buttons ─── */
+.btn-secondary {
+  background: var(--gradient-brand) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  letter-spacing: -0.01em;
+  padding: 13px 32px !important;
+  border-radius: var(--radius-md) !important;
+  transition: all var(--transition-normal) !important;
+  box-shadow: var(--shadow-brand) !important;
+  position: relative;
+  overflow: hidden;
+}
+.btn-secondary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+  background: var(--gradient-brand) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-brand-lg) !important;
+  filter: brightness(1.08);
+}
+
+.btn-outline-secondary,
+.btn-outline-primary {
+  background: transparent !important;
+  border: 1.5px solid var(--color-border-strong) !important;
+  color: var(--color-text-primary) !important;
+  font-weight: 500 !important;
+  font-size: 15px !important;
+  padding: 12px 28px !important;
+  border-radius: var(--radius-md) !important;
+  transition: all var(--transition-normal) !important;
+}
+.btn-outline-secondary:hover,
+.btn-outline-primary:hover {
+  background: var(--gradient-brand-subtle) !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-accent) !important;
+}
+
+.btn-block {
+  width: 100%;
+  display: block;
+}
+
+.btn-theme {
+  background: var(--gradient-brand) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  padding: 13px 32px !important;
+  border-radius: var(--radius-md) !important;
+}
+
+/* ─── Form Controls ─── */
+.form-control {
+  font-family: var(--font-stack) !important;
+  border: 1.5px solid var(--color-border-strong) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 12px 16px !important;
+  font-size: 15px !important;
+  color: var(--color-text-primary) !important;
+  background: var(--color-bg-input) !important;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast) !important;
+}
+.form-control:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 3px rgba(20, 115, 255, 0.12) !important;
+  outline: none !important;
+  background: var(--color-bg-elevated) !important;
+}
+.form-control::placeholder {
+  color: var(--color-text-tertiary) !important;
+}
+
+select.form-control {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 14px center !important;
+  padding-right: 36px !important;
+  height: auto !important;
+  line-height: 1.5 !important;
+}
+select.form-control option {
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  padding: 8px 12px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* ─── Cards ─── */
+.card {
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-card) !important;
+  overflow: hidden;
+  background: var(--color-bg-card) !important;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal) !important;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover) !important;
+}
+.card-body {
+  padding: 28px !important;
+}
+
+/* ─── Glass card variant ─── */
+.glass-card {
+  background: var(--color-bg-glass) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-xl) !important;
+}
+
+/* ─── Checkboxes & Radios ─── */
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: var(--color-accent) !important;
+  background-color: var(--color-accent) !important;
+}
+.form-check-input:checked,
+.form-radio:checked {
+  accent-color: var(--color-accent);
+}
+.custom-control-label {
+  color: var(--color-text-primary);
+  font-size: 14px;
+}
+.custom-checkbox .custom-control-label::before {
+  border-radius: var(--radius-xs) !important;
+  border: 1.5px solid var(--color-border-strong);
+}
+
+/* ─── Progress Bar ─── */
+.progress {
+  height: 8px !important;
+  border-radius: 100px !important;
+  background: var(--color-bg-secondary) !important;
+  overflow: hidden;
+}
+.progress .progress-bar,
+.progress-bar.bg-primary {
+  background: var(--gradient-brand) !important;
+  border-radius: 100px !important;
+}
+.bg-primary {
+  background: var(--gradient-brand) !important;
+}
+
+/* ─── Badges ─── */
+.badge-soft-primary {
+  background: var(--gradient-brand-subtle) !important;
+  border: none !important;
+  color: var(--color-accent) !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  padding: 6px 14px !important;
+  border-radius: 980px !important;
+}
+
+/* ─── Scroll to top ─── */
+.scrollToTop {
+  background: var(--gradient-brand);
+  border-radius: var(--radius-md);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all var(--transition-normal);
+  color: #fff;
+  box-shadow: var(--shadow-brand);
+  border: none;
+}
+.scrollToTop i {
+  font-size: 16px;
+  line-height: 1;
+}
+.scrollToTop:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-brand-lg);
+}
+.scrollToTop:hover i {
+  color: #fff;
+}
+
+/* ─── Footer links ─── */
+.footer .footer-bottom a {
+  color: var(--color-accent);
+}
+
+/* ─── Section spacing ─── */
+.section-gap {
+  padding: 100px 0;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 767px) {
+  .stepOne {
+    width: 100% !important;
+    padding: 25px 10px !important;
+  }
+}
+
+/* ─── Active nav ─── */
+.navbar-nav .nav-active {
+  color: var(--color-accent) !important;
+  background-color: transparent !important;
+}
+
+/* ─── Gradient utilities ─── */
+.gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg {
+  background: var(--gradient-brand);
+}
+
+.gradient-border {
+  position: relative;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: var(--gradient-brand);
+  z-index: -1;
+}
+
+/* ─── Smooth transitions for theme switch ─── */
+body, #root, .header, .footer, .card,
+.form-control, .btn, .PayStubForm,
+.contact, .contact-form {
+  transition: background 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ─── Theme toggle button ─── */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border-strong);
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-left: 12px;
+  padding: 0;
+  font-size: 16px;
+}
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+  transform: scale(1.08);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ─── Contact / Login / Register pages ─── */
+.contact {
+  min-height: 100vh;
+  padding-top: 120px;
+  padding-bottom: 60px;
+  background: var(--color-bg);
+}
+.contact-form {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 40px 36px;
+  box-shadow: var(--shadow-card);
+}
+.contact-form h1 {
+  font-size: 24px !important;
+  margin-bottom: 28px !important;
+  text-align: center;
+}
+.forget-link {
+  color: var(--color-accent) !important;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.forget-link:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+/* ─── Dropdown menus ─── */
+.dropdown-menu {
+  background: var(--color-bg-elevated) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-lg) !important;
+  padding: 8px !important;
+}
+.dropdown-item,
+.dropdown-menu .nav-link {
+  color: var(--color-text-primary) !important;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px !important;
+  font-size: 14px;
+}
+.dropdown-item:hover,
+.dropdown-menu .nav-link:hover {
+  background: var(--gradient-brand-subtle) !important;
+}
+
+/* ─── Modal ─── */
+.modal-content {
+  background: var(--color-bg-card) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-xl) !important;
+  color: var(--color-text-primary);
+}
+
+/* ─── List group ─── */
+.list-group-item {
+  background: transparent !important;
+  color: var(--color-text-primary);
+}
+
+/* ─── Confirm alert override ─── */
+.react-confirm-alert-overlay {
+  background: rgba(0,0,0,0.6) !important;
+  backdrop-filter: blur(8px);
+}
+.react-confirm-alert-body {
+  background: var(--color-bg-card) !important;
+  color: var(--color-text-primary) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-xl) !important;
+  border: 1px solid var(--color-border);
+}
+.react-confirm-alert-body h1 {
+  color: var(--color-text-primary) !important;
+}
+.react-confirm-alert-button-group button {
+  background: var(--gradient-brand) !important;
+  border: none !important;
+  border-radius: var(--radius-md) !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================================= */
+/* GLOBAL TILE CASCADE — EusoTrip-style staggered load animation */
+/* Auto-animates cards, sections, form-groups on page load       */
+/* ============================================================= */
+
+@keyframes tile-cascade {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Auto-cascade for PayStubForm wizard and dashboard only */
+.PayStubForm .formStep,
+.PayStubForm .formStep .form-group,
+.PayStubForm .progressBar,
+.PayStubForm .myProgressBar,
+.dashboard-page .card,
+.dashboard-page .row > [class*="col-"] {
+  animation: tile-cascade 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Stagger form-group children inside PayStubForm */
+.PayStubForm .formStep .form-group:nth-child(1) { animation-delay: 0.04s; }
+.PayStubForm .formStep .form-group:nth-child(2) { animation-delay: 0.08s; }
+.PayStubForm .formStep .form-group:nth-child(3) { animation-delay: 0.12s; }
+.PayStubForm .formStep .form-group:nth-child(4) { animation-delay: 0.16s; }
+.PayStubForm .formStep .form-group:nth-child(5) { animation-delay: 0.20s; }
+.PayStubForm .formStep .form-group:nth-child(6) { animation-delay: 0.24s; }
+.PayStubForm .formStep .form-group:nth-child(7) { animation-delay: 0.28s; }
+.PayStubForm .formStep .form-group:nth-child(8) { animation-delay: 0.32s; }
+.PayStubForm .formStep .form-group:nth-child(9) { animation-delay: 0.36s; }
+.PayStubForm .formStep .form-group:nth-child(10) { animation-delay: 0.40s; }
+.PayStubForm .formStep .form-group:nth-child(11) { animation-delay: 0.44s; }
+.PayStubForm .formStep .form-group:nth-child(12) { animation-delay: 0.48s; }
+
+/* Stagger dashboard cards */
+.dashboard-page .row > :nth-child(1) { animation-delay: 0.04s; }
+.dashboard-page .row > :nth-child(2) { animation-delay: 0.08s; }
+.dashboard-page .row > :nth-child(3) { animation-delay: 0.12s; }
+.dashboard-page .row > :nth-child(4) { animation-delay: 0.16s; }
+
+/* Page-level tile-in for main content sections */
+@keyframes tileIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.PayStubForm,
+.dashboard-page,
+.contact-form-main,
+.review-section,
+.home-section,
+.login-page,
+.register-page {
+  animation: tileIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Stat cards in dashboard */
+.stat-card:nth-child(1) { animation-delay: 0.05s; }
+.stat-card:nth-child(2) { animation-delay: 0.10s; }
+.stat-card:nth-child(3) { animation-delay: 0.15s; }
+.stat-card:nth-child(4) { animation-delay: 0.20s; }
+
+/* Dashboard sidebar links */
+.sidebar-link {
+  animation: tile-cascade 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.sidebar-link:nth-child(1) { animation-delay: 0.06s; }
+.sidebar-link:nth-child(2) { animation-delay: 0.12s; }
+.sidebar-link:nth-child(3) { animation-delay: 0.18s; }
+.sidebar-link:nth-child(4) { animation-delay: 0.24s; }
+
+/* ============================================================= */
+/* CHECKOUT — Jony Ive-inspired payment experience               */
+/* ============================================================= */
+
+.checkout-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .checkout-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checkout-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* ─── Order Summary ─── */
+.checkout-summary {
+  padding: 28px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+}
+.checkout-summary-header {
+  margin-bottom: 24px;
+}
+.checkout-line-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px 0;
+}
+.checkout-line-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.checkout-line-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.checkout-line-meta {
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+}
+.checkout-line-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.checkout-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 4px 0;
+}
+.checkout-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0 20px;
+}
+.checkout-total-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.checkout-total-amount {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Promo code */
+.checkout-promo {
+  display: flex;
+  gap: 8px;
+}
+.checkout-promo-input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-input);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.checkout-promo-input:focus {
+  border-color: var(--color-accent);
+}
+.checkout-promo-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+.checkout-promo-btn {
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.checkout-promo-btn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.checkout-promo-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.checkout-promo-error {
+  color: #ff5252;
+  font-size: 13px;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+/* ─── Payment Section ─── */
+.checkout-payment {
+  padding: 28px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+}
+.checkout-payment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.checkout-secure {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  i { font-size: 11px; }
+}
+
+/* Express checkout (Apple Pay / Google Pay) */
+.checkout-express {
+  margin-bottom: 20px;
+}
+.checkout-or {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  span {
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+    white-space: nowrap;
+  }
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+}
+
+/* Submit button */
+.checkout-submit-btn {
+  width: 100%;
+  padding: 14px 28px;
+  margin-top: 24px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--gradient-brand);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+}
+.checkout-submit-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+.checkout-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading spinner */
+.checkout-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: checkout-spin 0.6s linear infinite;
+}
+@keyframes checkout-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Free / discount state */
+.checkout-free {
+  text-align: center;
+  padding: 48px 24px;
+  .checkout-free-icon {
+    font-size: 48px;
+    color: #34c759;
+    margin-bottom: 16px;
+  }
+  h4 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
+  }
+  p {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}

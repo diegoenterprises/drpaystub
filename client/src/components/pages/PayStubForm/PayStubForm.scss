@@ -1,0 +1,444 @@
+.PayStubForm {
+    margin-top: 100px;
+    margin-bottom: 60px;
+    padding: 0 16px;
+
+    .help-icon {
+        background: var(--gradient-brand-subtle);
+        padding: 2px 8px;
+        border-radius: 980px;
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center;
+        margin-left: 6px;
+        color: var(--color-text-secondary);
+        cursor: help;
+        display: inline-block;
+    }
+
+    ol {
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 28px !important;
+        letter-spacing: -0.03em;
+        text-align: center;
+    }
+
+    .formStep {
+        width: 90%;
+        max-width: 960px;
+        margin: 0 auto;
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: 36px 32px 44px;
+        box-shadow: var(--shadow-card);
+        display: flex;
+        justify-content: center;
+    }
+
+    .progressBar {
+        width: 60%;
+        max-width: 680px;
+        margin: 0 auto 24px;
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: 24px 32px;
+        box-shadow: var(--shadow-card);
+    }
+
+    .form-group.required .label-input::after {
+        content: '*';
+        color: var(--color-error);
+        margin-left: 4px;
+        font-weight: 600;
+    }
+
+    .image-input {
+        padding-bottom: 28px;
+        cursor: pointer;
+    }
+
+    .stup-template-img {
+        width: 100%;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+        transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    }
+    .stup-template-img:hover {
+        transform: scale(1.02);
+        box-shadow: var(--shadow-md);
+    }
+
+    .greentick {
+        color: var(--color-success);
+        font-size: 18px;
+        margin-left: 8px;
+    }
+
+    .formStep3 {
+        .react-datepicker-wrapper {
+            display: block;
+        }
+    }
+
+    /* ── Wizard Step Indicators ── */
+    .myProgressBar {
+        width: 60%;
+        max-width: 680px;
+        margin: 0 auto 24px;
+        text-align: center;
+
+        ul {
+            margin-left: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            list-style: none;
+        }
+
+        li {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: var(--radius-md);
+            background: var(--gradient-brand);
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: var(--shadow-brand);
+            transition: all var(--transition-normal);
+        }
+
+        li::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -48px;
+            width: 48px;
+            height: 3px;
+            background: var(--gradient-brand);
+            z-index: -1;
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        li:first-child::before {
+            display: none;
+        }
+
+        li:first-child {
+            margin-left: 0;
+        }
+
+        li + li {
+            margin-left: 48px;
+        }
+
+        .active {
+            background: var(--gradient-brand);
+            box-shadow: var(--shadow-brand-lg);
+            transform: scale(1.1);
+        }
+
+        .active ~ li {
+            background: var(--color-bg-secondary);
+            color: var(--color-text-tertiary);
+            box-shadow: none;
+            border: 1.5px solid var(--color-border-strong);
+        }
+
+        .active ~ li::before {
+            background: var(--color-border-strong);
+        }
+    }
+
+    .addPayDate {
+        cursor: pointer;
+        color: var(--color-accent);
+        font-weight: 500;
+        font-size: 14px;
+        transition: color var(--transition-fast);
+    }
+    .addPayDate:hover {
+        filter: brightness(1.2);
+    }
+
+    .cross {
+        cursor: pointer;
+        color: var(--color-error);
+        font-size: 18px;
+        vertical-align: bottom;
+        opacity: 0.7;
+        transition: opacity var(--transition-fast);
+    }
+    .cross:hover {
+        opacity: 1;
+    }
+
+    .group-border {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: 16px;
+        background: var(--color-bg-elevated);
+    }
+
+    .previous-button {
+        .btn {
+            border-radius: var(--radius-md) !important;
+        }
+    }
+
+    @media only screen and (max-width: 400px) {
+        .hide-in-mobile {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        margin-top: 100px;
+        margin-bottom: 40px;
+
+        .formStep {
+            width: 100%;
+            padding: 24px 16px 32px;
+        }
+
+        .progressBar {
+            width: 100%;
+            padding: 20px 16px;
+        }
+
+        .myProgressBar {
+            width: 100%;
+
+            li {
+                width: 36px;
+                height: 36px;
+                line-height: 36px;
+                font-size: 14px;
+            }
+            li + li {
+                margin-left: 32px;
+            }
+            li::before {
+                left: -32px;
+                width: 32px;
+            }
+        }
+    }
+}
+
+.form-control.is-invalid {
+    border: 1.5px solid var(--color-error) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+#passwordHelp {
+    color: var(--color-error) !important;
+    font-size: 13px;
+}
+
+.sigCanvas {
+    border: 1.5px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    margin: 24px;
+    height: 80vh;
+    background: var(--color-bg-elevated);
+}
+
+.signature-preview {
+    width: 100%;
+    height: 100px;
+    margin: 10px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+}
+
+.btn-outline-new {
+    color: var(--color-accent) !important;
+    border-color: var(--color-accent) !important;
+    border-radius: var(--radius-md) !important;
+    font-weight: 500 !important;
+    transition: all var(--transition-normal) !important;
+}
+
+.btn-outline-new:hover {
+    color: #fff !important;
+    background: var(--gradient-brand) !important;
+    border-color: transparent !important;
+    box-shadow: var(--shadow-brand);
+}
+
+.paydate-label {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════
+   Generating Animation — Document Builder
+   ═══════════════════════════════════════════════════ */
+.gen-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 20px 40px;
+  animation: gen-fade-in 0.6s ease both;
+}
+@keyframes gen-fade-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Document card */
+.gen-doc {
+  position: relative;
+  width: 140px;
+  height: 180px;
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-border-strong);
+  border-radius: 10px;
+  padding: 20px 16px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  margin-bottom: 28px;
+  animation: gen-doc-pop 0.5s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes gen-doc-pop {
+  0% { transform: scale(0.7) rotateX(15deg); opacity: 0; }
+  100% { transform: scale(1) rotateX(0); opacity: 1; }
+}
+
+/* Header bar (company name placeholder) */
+.gen-doc-header {
+  width: 60%;
+  height: 10px;
+  border-radius: 4px;
+  background: var(--gradient-brand);
+  margin-bottom: 14px;
+  animation: gen-line-appear 0.4s 0.3s ease both;
+}
+
+/* Content lines */
+.gen-doc-line {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-bg-secondary);
+  margin-bottom: 8px;
+  animation: gen-line-appear 0.3s ease both;
+}
+.gen-doc-line--1 { width: 100%; animation-delay: 0.5s; }
+.gen-doc-line--2 { width: 85%; animation-delay: 0.7s; }
+.gen-doc-line--3 { width: 92%; animation-delay: 0.9s; }
+.gen-doc-line--4 { width: 70%; animation-delay: 1.1s; }
+.gen-doc-line--5 { width: 78%; animation-delay: 1.3s; }
+@keyframes gen-line-appear {
+  0% { transform: scaleX(0); opacity: 0; transform-origin: left; }
+  100% { transform: scaleX(1); opacity: 1; transform-origin: left; }
+}
+
+/* Scanning beam */
+.gen-doc-scan {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-brand);
+  box-shadow: 0 0 12px rgba(20,115,255,0.5), 0 0 24px rgba(190,1,255,0.3);
+  animation: gen-scan-move 2s 1.5s ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes gen-scan-move {
+  0% { top: 0; opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Shield icon */
+.gen-doc-shield {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  color: var(--color-success);
+  opacity: 0;
+  animation: gen-shield-appear 0.4s 2s ease both;
+}
+.gen-doc-shield svg {
+  width: 100%;
+  height: 100%;
+}
+.gen-doc-shield-check {
+  stroke-dasharray: 12;
+  stroke-dashoffset: 12;
+  animation: gen-shield-check-draw 0.4s 2.3s ease forwards;
+}
+@keyframes gen-shield-appear {
+  0% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes gen-shield-check-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Title */
+.gen-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  animation: gen-fade-in 0.4s 0.6s ease both;
+}
+
+/* Progress bar */
+.gen-progress {
+  width: 220px;
+  height: 5px;
+  border-radius: 5px;
+  background: var(--color-bg-secondary);
+  overflow: hidden;
+  margin-bottom: 14px;
+  animation: gen-fade-in 0.3s 0.8s ease both;
+}
+.gen-progress-bar {
+  height: 100%;
+  border-radius: 5px;
+  background: var(--gradient-brand);
+  animation: gen-progress-fill 3s 1s ease-in-out infinite;
+}
+@keyframes gen-progress-fill {
+  0% { width: 0%; }
+  50% { width: 75%; }
+  80% { width: 90%; }
+  100% { width: 30%; }
+}
+
+/* Subtitle */
+.gen-subtitle {
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+  margin: 0;
+  animation: gen-pulse 2s 1.5s ease-in-out infinite both;
+}
+@keyframes gen-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}

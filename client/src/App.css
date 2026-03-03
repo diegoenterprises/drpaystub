@@ -1,0 +1,6 @@
+/* App.css — overridden by App.scss design system */
+#root {
+  background: var(--color-bg) !important;
+  overflow-x: hidden;
+  width: 100vw;
+}

@@ -1,0 +1,61 @@
+.navbar-nav {
+    .nav-active {
+        color: blue !important ;
+        background-color: red !important;
+    }
+}
+
+.w2-stub {
+    position: relative;
+    input,
+    input:focus,
+    input:active {
+        font-size: 12px;
+        padding: 0px 10px;
+        border: none;
+        width: 100%;
+    }
+
+    select {
+        font-size: 10px;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    @media (min-width: 992px) {
+        .modal-dialog.modal-lg {
+            max-width: 1000px;
+        }
+    }
+    .inline-border-example {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        label,
+        input {
+            margin: 0 !important;
+            width: auto;
+            display: inline-block !important;
+        }
+        input {
+            margin: 0 !important;
+            margin-left: 10px !important;
+        }
+    }
+
+    .block-example {
+        word-break: break-all;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .block-example {
+            padding: 10px;
+        }
+
+        &.border {
+            border: 1px solid rgb(189, 189, 189) !important;
+        }
+    }
+}

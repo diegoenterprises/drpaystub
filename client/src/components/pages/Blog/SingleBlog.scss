@@ -1,0 +1,128 @@
+.singleBlog {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  img {
+    height: 450px;
+  }
+  .item {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .item-card {
+    transition: 0.5s;
+    cursor: pointer;
+  }
+  .item-card-title {
+    font-size: 15px;
+    transition: 1s;
+    cursor: pointer;
+    padding: 0 10px;
+  }
+  .item-card-title i {
+    font-size: 30px;
+    padding-top: 10px;
+    transition: 1s;
+    cursor: pointer;
+    color: #336bfe;
+  }
+  .card-title i:hover {
+    transform: scale(1.25) rotate(100deg);
+    color: #18d4ca;
+  }
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+  }
+  .card-text {
+    height: 80px;
+    padding: 0 10px;
+  }
+  .card::before,
+  .card::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: scale3d(0, 0, 1);
+    transition: transform 0.3s ease-out 0s;
+    background: rgba(255, 255, 255, 0.1);
+    content: "";
+    pointer-events: none;
+  }
+  .card::before {
+    transform-origin: left top;
+  }
+  .card::after {
+    transform-origin: right bottom;
+  }
+  .card .card-body {
+    padding: 1.5rem;
+  }
+  .card:hover::before,
+  .card:hover::after,
+  .card:focus::before,
+  .card:focus::after {
+    transform: scale3d(1, 1, 1);
+  }
+  .blog .author {
+    top: 5%;
+    left: 5%;
+  }
+  .blog .author,
+  .blog .course-fee,
+  .blog .teacher {
+    position: absolute;
+    z-index: 1;
+    opacity: 1;
+    transition: all 0.5s ease;
+    color: #000;
+  }
+  .blog:hover .author,
+  .blog:hover .course-fee,
+  .blog:hover .teacher {
+    opacity: 1;
+  }
+  .blog {
+    transition: all 0.3s ease;
+  }
+  .blog:hover {
+    transform: translateY(-10px);
+  }
+  .blog-content {
+    padding: 1.5rem;
+  }
+  .blog-footer {
+    padding: 1.5rem;
+    i {
+      color: #346cfe;
+    }
+  }
+  ul{
+    display: inline;
+  }
+  li{
+    list-style-type: none;
+    display: inline;
+  }
+  .tag {
+    margin: 0 2px;
+    padding: 4px 10px;
+    font-size: 80%;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .blog-content img{
+    width: 100%;
+  }
+  @media screen and (max-width: 767px) {
+    .card {
+      width: 100%;
+      margin: 0 auto;
+      margin-top: 3%;
+    }
+    img {
+      height: 350px;
+    }
+  }
+}

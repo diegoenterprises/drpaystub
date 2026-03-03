@@ -1,0 +1,74 @@
+.navbar-nav .nav-active {
+  color: #6772e5 !important;
+  background-color: red !important;
+}
+
+.w2-stub {
+  position: relative;
+}
+
+.w2-stub input,
+.w2-stub input:focus,
+.w2-stub input:active {
+  font-size: 12px;
+  padding: 0px 10px;
+  border: none;
+  width: 100%;
+}
+
+.w2-stub select {
+  font-size: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 992px) {
+  .w2-stub .modal-dialog.modal-lg {
+    max-width: 1000px;
+  }
+}
+
+.w2-stub .inline-border-example {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+}
+
+.w2-stub .inline-border-example label,
+.w2-stub .inline-border-example input {
+  margin: 0 !important;
+  width: auto;
+  display: inline-block !important;
+}
+
+.w2-stub .inline-border-example input {
+  margin: 0 !important;
+  margin-left: 10px !important;
+}
+
+.w2-stub .block-example {
+  word-break: break-all;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.w2-stub .block-example .block-example {
+  padding: 10px;
+}
+
+.w2-stub .block-example.border {
+  border: 1px solid #bdbdbd !important;
+}
+/*# sourceMappingURL=modalW2.css.map */

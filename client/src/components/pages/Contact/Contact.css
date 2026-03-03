@@ -1,0 +1,41 @@
+.contact {
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+.contact .contact-form {
+  -webkit-box-shadow: 0 4px 20px rgba(34, 34, 34, 0.1);
+          box-shadow: 0 4px 20px rgba(34, 34, 34, 0.1);
+  padding: 55px;
+  background: #fff;
+}
+
+.contact .contact-form h1 {
+  font-size: 30px;
+  color: black;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.contact .contact-form input.form-control {
+  height: 50px;
+}
+
+@media screen and (max-width: 767px) {
+  .contact {
+    margin-top: 25%;
+    margin-bottom: 10%;
+  }
+}
+
+.modal-content .p-5.modal-body .closePopup {
+  background: transparent;
+  border: none;
+  position: absolute;
+  color: gray;
+  right: 25px;
+  top: 20px;
+  font-size: 20px;
+}
+/*# sourceMappingURL=Contact.css.map */

@@ -1,0 +1,25 @@
+.skipbutton22 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end !important;
+}
+.passworddiv {
+  position: relative;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 20px;
+  top: 30%;
+  cursor: pointer;
+  color: var(--color-text-tertiary);
+  transition: color 0.2s ease;
+}
+.password-toggle-icon:hover {
+  color: var(--color-accent);
+}
+.text-center {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

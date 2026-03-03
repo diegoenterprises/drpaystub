@@ -1,0 +1,56 @@
+.App {
+    font-family: 'Segoe UI';
+    text-align: center;
+    font-size: small;
+    border: '1 solid red';
+    position: relative;
+}
+.watermark {
+    opacity: 0.2;
+    color: rgba(70, 94, 230, 0.959);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%) rotate(10deg);
+    font-size: 120px;
+}
+.Table {
+    /* display: flex;
+    justify-content: center; */
+    padding-bottom: 1%;
+}
+.Table2 {
+    /* display: flex;
+    justify-content: center; */
+    text-align: center;
+    padding-bottom: 1%;
+}
+.TableHeading {
+    background-color: #abd3f5;
+    text-align: start;
+}
+.TableData {
+    text-align: left;
+}
+.text {
+    font-weight: bolder;
+    padding: 1%;
+}
+.text1 {
+    font-weight: bolder;
+    display: flex;
+    justify-content: flex-end;
+}
+.td {
+    background-color: silver;
+}
+.h {
+    width: 100%;
+}
+@media only screen and (max-width: 600px) {
+    .watermark {
+        font-size: 80px;
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+}

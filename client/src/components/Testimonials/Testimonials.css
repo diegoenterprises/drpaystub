@@ -1,0 +1,21 @@
+.testimonials {
+  margin-top: 14%;
+}
+
+.testimonials .testimonial-body {
+  padding: 30px;
+  border-radius: 30px;
+  background: #fff;
+  margin-top: 5% !important;
+  width: 50%;
+  margin: 0 auto;
+  -webkit-box-shadow: 0 3px 5px 0 #97a8d6;
+          box-shadow: 0 3px 5px 0 #97a8d6;
+}
+
+@media screen and (max-width: 767px) {
+  .testimonials .testimonial-body {
+    width: 90%;
+  }
+}
+/*# sourceMappingURL=Testimonials.css.map */

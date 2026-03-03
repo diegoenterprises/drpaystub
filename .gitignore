@@ -1,0 +1,16 @@
+# dependencies
+/node_modules
+client/node_modules
+/public
+
+# Env
+.env
+
+# Misc
+.history
+*.zip
+deploy.zip
+
+#build
+client/build/
+client/.eslintcache

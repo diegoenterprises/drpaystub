@@ -1,0 +1,29 @@
+$breakpoint-tablet: 675px;
+$breakpoint-phone: 375px;
+
+.featuredIn {
+  margin-top: 10%;
+  background: linear-gradient(
+    90deg,
+    rgba(183, 7, 247, 1) 13%,
+    rgba(51, 107, 254, 1) 100%
+  );
+  padding: 30px 0;
+  box-sizing: border-box;
+  h1 {
+    text-align: center;
+  }
+  .img-item {
+    img {
+      width: 80%;
+    }
+  }
+  @media only screen and (max-width: $breakpoint-tablet) {
+    .img-item {
+      margin-bottom: 5%;
+      img {
+        width: 80%;
+      }
+    }
+  }
+}

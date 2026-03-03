@@ -1,0 +1,17 @@
+.features {
+  margin-top: 7%;
+}
+
+.features i {
+  font-size: 50px;
+  padding-top: 10px;
+  -webkit-transition: 1s;
+  transition: 1s;   
+  color: #6772e5 !important;
+  padding-right: 5px;
+}
+
+.features hr {
+  margin-bottom: 9%;
+}
+/*# sourceMappingURL=Features.css.map */
