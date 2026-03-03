@@ -4,11 +4,47 @@ const auth = require("../middlewares/auth");
 const roleCheck = require("../middlewares/roleCheck");
 const { User } = require("../models/user");
 const Paystub = require("../models/Paystub");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const { STRIPE_LIVE_KEY, STRIPE_TEST_KEY, STRIPE_MODE } = process.env;
 const stripeKey = STRIPE_MODE === "dev" ? STRIPE_TEST_KEY : STRIPE_LIVE_KEY;
 const stripe = require("stripe")(stripeKey);
+
+// ─── Admin Login (standalone — bypasses email verification) ─────────────────
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ status: 400, message: "Email and password are required" });
+    }
+    const user = await User.findOne({ email: email.toLowerCase() });
+    if (!user) {
+      return res.status(200).json({ status: 404, message: "Invalid credentials" });
+    }
+    if (user.role !== "admin") {
+      return res.status(200).json({ status: 403, message: "Access denied" });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(200).json({ status: 400, message: "Invalid credentials" });
+    }
+    const tokens = jwt.sign(
+      { payload: { user: user._id, role: user.role } },
+      process.env.JWT_SECRET
+    );
+    return res.status(200).json({
+      status: 200,
+      message: "Admin login successful",
+      data: { _id: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email, role: user.role },
+      tokens,
+    });
+  } catch (err) {
+    console.error("[Admin] login error:", err);
+    res.status(500).json({ status: 500, message: "Server error" });
+  }
+});
 
 // ─── Admin Dashboard Stats ──────────────────────────────────────────────────
 router.get("/stats", auth(), roleCheck("admin"), async (req, res) => {

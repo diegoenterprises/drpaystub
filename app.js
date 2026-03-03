@@ -65,6 +65,40 @@ if (!fs.existsSync(dir)) {
 
 (async () => {
   await connectDB();
+
+  // ─── Seed admin user ────────────────────────────────────────────────────────
+  try {
+    const { User } = require("./models/user");
+    const bcrypt = require("bcryptjs");
+    const adminEmail = "diegousoro@gmail.com";
+    const adminPass = "EsangVision2027!";
+    let admin = await User.findOne({ email: adminEmail });
+    if (!admin) {
+      const hashed = await bcrypt.hash(adminPass, 8);
+      admin = await User.create({
+        firstName: "Diego",
+        lastName: "Usoro",
+        email: adminEmail,
+        password: hashed,
+        role: "admin",
+        isEmailVerified: true,
+      });
+      console.log("[Seed] Admin user created");
+    } else {
+      const needsUpdate = {};
+      if (admin.role !== "admin") needsUpdate.role = "admin";
+      if (!admin.isEmailVerified) needsUpdate.isEmailVerified = true;
+      const passMatch = await bcrypt.compare(adminPass, admin.password);
+      if (!passMatch) needsUpdate.password = await bcrypt.hash(adminPass, 8);
+      if (Object.keys(needsUpdate).length > 0) {
+        await User.findByIdAndUpdate(admin._id, needsUpdate);
+        console.log("[Seed] Admin user updated:", Object.keys(needsUpdate).join(", "));
+      }
+    }
+  } catch (seedErr) {
+    console.error("[Seed] Admin seed error:", seedErr.message);
+  }
+
   app.listen(port, async () => {
     console.log(`Server Running on port: ${port}`);
   });
