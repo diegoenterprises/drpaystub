@@ -1,4 +1,9 @@
 import React, { useEffect } from "react";
+import {
+  FaBullseye, FaBolt, FaLock, FaHandshake,
+  FaFileAlt, FaCalculator, FaMapMarkedAlt, FaMobileAlt, FaShieldAlt, FaHeadset,
+  FaLandmark,
+} from "react-icons/fa";
 
 const FeatureCard = ({ icon, title, desc }) => (
   <div className="col-md-6 col-lg-4">
@@ -66,13 +71,13 @@ export default function About() {
             <div className="dash-section-card" style={{ padding: 32, background: "var(--color-surface-elevated)" }}>
               <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 16, letterSpacing: "-0.01em" }}>Our Core Values</h3>
               {[
-                { emoji: "🎯", title: "Accuracy First", desc: "Every calculation is validated against the Internal Revenue Code (IRC), Title 26 of the U.S. Code, and verified by our professional accountant partners." },
-                { emoji: "⚡", title: "Speed & Simplicity", desc: "Generate complete, professional pay stubs in under 5 minutes. No software to install, no learning curve." },
-                { emoji: "🔒", title: "Privacy & Security", desc: "Your personal and financial information is encrypted and never shared. We take data protection seriously." },
-                { emoji: "🤝", title: "Customer Commitment", desc: "Real support from real people. If you ever have a question, our team is here to help." },
+                { icon: <FaBullseye />, title: "Accuracy First", desc: "Every calculation is validated against the Internal Revenue Code (IRC), Title 26 of the U.S. Code, and verified by our professional accountant partners." },
+                { icon: <FaBolt />, title: "Speed & Simplicity", desc: "Generate complete, professional pay stubs in under 5 minutes. No software to install, no learning curve." },
+                { icon: <FaLock />, title: "Privacy & Security", desc: "Your personal and financial information is encrypted and never shared. We take data protection seriously." },
+                { icon: <FaHandshake />, title: "Customer Commitment", desc: "Real support from real people. If you ever have a question, our team is here to help." },
               ].map((v, i) => (
                 <div key={i} style={{ display: "flex", gap: 14, marginBottom: i < 3 ? 18 : 0 }}>
-                  <span style={{ fontSize: 20, flexShrink: 0, marginTop: 2 }}>{v.emoji}</span>
+                  <span style={{ fontSize: 18, flexShrink: 0, marginTop: 2, color: "var(--color-accent)" }}>{v.icon}</span>
                   <div>
                     <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 2 }}>{v.title}</div>
                     <div style={{ fontSize: 13, lineHeight: 1.6, color: "var(--color-text-secondary)" }}>{v.desc}</div>
@@ -94,32 +99,32 @@ export default function About() {
 
         <div className="row" style={{ gap: "20px 0", marginBottom: 56 }}>
           <FeatureCard
-            icon="📄"
+            icon={<FaFileAlt />}
             title="Professional Pay Stubs"
             desc="Choose from multiple templates and generate polished, detailed pay stubs that are accepted by lenders, landlords, and government agencies."
           />
           <FeatureCard
-            icon="🧮"
+            icon={<FaCalculator />}
             title="Automatic Tax Calculations"
             desc="Federal income tax, state income tax, Social Security, Medicare, and additional deductions — all calculated automatically based on the latest tax tables."
           />
           <FeatureCard
-            icon="🗺️"
+            icon={<FaMapMarkedAlt />}
             title="All 50 States Supported"
             desc="Whether you're in California with its 13.3% top rate or tax-free Texas, our engine handles every state's unique withholding rules and rates."
           />
           <FeatureCard
-            icon="📱"
+            icon={<FaMobileAlt />}
             title="Instant Digital Delivery"
             desc="Your pay stubs are generated as secure PDFs and delivered instantly to your email. Download anytime from your personal dashboard."
           />
           <FeatureCard
-            icon="🔐"
+            icon={<FaShieldAlt />}
             title="Secure & Encrypted"
             desc="All data is transmitted over encrypted connections and stored securely. Your sensitive information is protected with industry-standard security practices."
           />
           <FeatureCard
-            icon="💬"
+            icon={<FaHeadset />}
             title="Dedicated Support"
             desc="Have a question about tax withholding or need help with your stub? Our support team and knowledge base are always available to assist you."
           />
@@ -158,8 +163,8 @@ export default function About() {
         {/* IRS Compliance */}
         <div style={{ textAlign: "center", marginBottom: 56, padding: "0 20px" }}>
           <div className="dash-section-card" style={{ padding: "36px 32px", maxWidth: 700, margin: "0 auto" }}>
-            <div style={{ width: 56, height: 56, borderRadius: 14, background: "var(--gradient-brand-subtle)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, margin: "0 auto 16px" }}>
-              🏛️
+            <div style={{ width: 56, height: 56, borderRadius: 14, background: "var(--gradient-brand-subtle)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, margin: "0 auto 16px", color: "var(--color-accent)" }}>
+              <FaLandmark />
             </div>
             <h3 style={{ fontSize: 22, fontWeight: 700, letterSpacing: "-0.02em", marginBottom: 8 }}>IRS-Compliant Calculations</h3>
             <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--color-text-secondary)", maxWidth: 560, margin: "0 auto 8px" }}>
