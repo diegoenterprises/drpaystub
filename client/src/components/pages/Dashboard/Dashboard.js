@@ -6,6 +6,7 @@ import { axios } from "../../../HelperFunctions/axios";
 import "./dashboard.css";
 import actionCreater from "../../../redux/actions/actionCreater";
 import DashboardLayout from "./layout/DashboardLayout";
+import WeatherWidget from "./WeatherWidget";
 import moment from "moment";
 
 class Dashboard extends Component {
@@ -79,6 +80,8 @@ class Dashboard extends Component {
       <DashboardLayout>
         <h1 className="dash-page-title">{greeting}, {userName}</h1>
         <p className="dash-page-subtitle">Here's a snapshot of your account</p>
+
+        <WeatherWidget />
 
         {/* Stat Cards */}
         <div className="dash-stat-grid">
