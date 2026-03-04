@@ -94,11 +94,15 @@ class AdminPage extends Component {
       const res = await fetch(`${API_URL}api/admin/stats`, {
         headers: { Authorization: `bearer ${this.state.adminToken}` },
       });
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.message || errData.error || `HTTP ${res.status}`);
+      }
       const data = await res.json();
-      this.setState({ stats: data, loading: false });
+      this.setState({ stats: data, loading: false, error: null });
     } catch (e) {
       console.error("Admin stats error:", e);
-      this.setState({ loading: false });
+      this.setState({ loading: false, error: `Stats: ${e.message}` });
     }
   };
 
@@ -107,11 +111,15 @@ class AdminPage extends Component {
       const res = await fetch(`${API_URL}api/admin/stripe-revenue`, {
         headers: { Authorization: `bearer ${this.state.adminToken}` },
       });
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.message || errData.error || `HTTP ${res.status}`);
+      }
       const data = await res.json();
-      this.setState({ revenue: data, revenueLoading: false });
+      this.setState({ revenue: data, revenueLoading: false, revenueError: null });
     } catch (e) {
       console.error("Admin revenue error:", e);
-      this.setState({ revenueLoading: false });
+      this.setState({ revenueLoading: false, revenueError: `Revenue: ${e.message}` });
     }
   };
 
