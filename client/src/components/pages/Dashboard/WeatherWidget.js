@@ -383,18 +383,35 @@ class WeatherWidget extends Component {
 
   fetchWeather = async () => {
     try {
-      // Get user location via browser geolocation
+      // Get user location — try browser geolocation first, then IP fallback
       let lat, lon;
       try {
         const pos = await new Promise((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000, enableHighAccuracy: false });
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            timeout: 15000,
+            maximumAge: 600000, // accept cached position up to 10 min old
+            enableHighAccuracy: false,
+          });
         });
         lat = pos.coords.latitude;
         lon = pos.coords.longitude;
-      } catch {
-        // Default to New York if geolocation denied
-        lat = 40.7128;
-        lon = -74.006;
+      } catch (geoErr) {
+        console.log("[Weather] Browser geolocation failed, trying IP fallback:", geoErr?.message || geoErr);
+        // IP-based fallback (free, no key)
+        try {
+          const ipRes = await fetch("https://ipapi.co/json/", { timeout: 6000 }).then((r) => r.json());
+          if (ipRes?.latitude && ipRes?.longitude) {
+            lat = ipRes.latitude;
+            lon = ipRes.longitude;
+          }
+        } catch (ipErr) {
+          console.log("[Weather] IP geolocation also failed:", ipErr?.message);
+        }
+        // Last resort default
+        if (!lat || !lon) {
+          lat = 40.7128;
+          lon = -74.006;
+        }
       }
 
       // Fetch weather + reverse geocode in parallel

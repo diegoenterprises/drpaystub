@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.aa010e77.css",
-    "main.js": "/static/js/main.c3cc8178.js",
+    "main.js": "/static/js/main.91739187.js",
     "static/media/arial.ttf": "/static/media/arial.c54859dda733c50328d8.ttf",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/saurellius-logo.svg": "/static/media/saurellius-logo.7ec1af2c218aac926717f7a0f3ac0c3a.svg",
@@ -16,10 +16,10 @@
     "static/media/cross.webp": "/static/media/cross.4476de376c6a9a4dca14.webp",
     "index.html": "/index.html",
     "main.aa010e77.css.map": "/static/css/main.aa010e77.css.map",
-    "main.c3cc8178.js.map": "/static/js/main.c3cc8178.js.map"
+    "main.91739187.js.map": "/static/js/main.91739187.js.map"
   },
   "entrypoints": [
     "static/css/main.aa010e77.css",
-    "static/js/main.c3cc8178.js"
+    "static/js/main.91739187.js"
   ]
 }
