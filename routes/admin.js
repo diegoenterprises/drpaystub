@@ -57,10 +57,23 @@ router.get("/health", async (req, res) => {
   }
 });
 
-// ─── Admin Dashboard Stats (comprehensive KPIs) ────────────────────────────
+// ─── Admin Dashboard Stats (comprehensive KPIs — Cosmos DB compatible) ──────
 router.get("/stats", auth(), roleCheck("admin"), async (req, res) => {
   try {
     const now = new Date();
+    console.log("[Admin] Fetching stats (Cosmos DB safe)...");
+
+    // ── Fetch ALL users & paystubs in two queries (no .sort / no date filter) ──
+    // This avoids Cosmos DB "order-by index excluded" errors entirely.
+    const allUsersRaw = await User.find()
+      .select("firstName lastName email role isEmailVerified createdAt").lean();
+    const allStubsRaw = await Paystub.find().lean();
+
+    // ── Sort in JS ──
+    allUsersRaw.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    allStubsRaw.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    // ── Date boundaries ──
     const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const startOfYesterday = new Date(startOfToday); startOfYesterday.setDate(startOfYesterday.getDate() - 1);
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -72,49 +85,52 @@ router.get("/stats", auth(), roleCheck("admin"), async (req, res) => {
     const last7d = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
     const last30d = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
 
-    console.log("[Admin] Fetching stats...");
+    // Helper: count items in date range
+    const inRange = (arr, from, to) => arr.filter((d) => {
+      const t = new Date(d.createdAt).getTime();
+      return t >= from.getTime() && (!to || t <= to.getTime());
+    }).length;
 
-    // ── User KPIs ──
-    const totalUsers = await User.countDocuments();
-    const verifiedUsers = await User.countDocuments({ isEmailVerified: true });
-    const adminUsers = await User.countDocuments({ role: "admin" });
-    const newUsersToday = await User.countDocuments({ createdAt: { $gte: startOfToday } });
-    const newUsersYesterday = await User.countDocuments({ createdAt: { $gte: startOfYesterday, $lt: startOfToday } });
-    const newUsersThisWeek = await User.countDocuments({ createdAt: { $gte: startOfWeek } });
-    const newUsersLastWeek = await User.countDocuments({ createdAt: { $gte: startOfLastWeek, $lt: startOfWeek } });
-    const newUsersThisMonth = await User.countDocuments({ createdAt: { $gte: startOfMonth } });
-    const newUsersLastMonth = await User.countDocuments({ createdAt: { $gte: startOfLastMonth, $lte: endOfLastMonth } });
-    const newUsersLast24h = await User.countDocuments({ createdAt: { $gte: last24h } });
-    const newUsersLast7d = await User.countDocuments({ createdAt: { $gte: last7d } });
-    const newUsersLast30d = await User.countDocuments({ createdAt: { $gte: last30d } });
+    // ── User KPIs (computed from allUsersRaw in JS) ──
+    const totalUsers = allUsersRaw.length;
+    const verifiedUsers = allUsersRaw.filter((u) => u.isEmailVerified).length;
+    const adminUsers = allUsersRaw.filter((u) => u.role === "admin").length;
     const verificationRate = totalUsers > 0 ? Math.round((verifiedUsers / totalUsers) * 100) : 0;
 
-    // ── Paystub KPIs ──
-    const totalPaystubs = await Paystub.countDocuments();
-    const paidPaystubs = await Paystub.countDocuments({ "params.paymentStatus": "success" });
-    const paystubsToday = await Paystub.countDocuments({ createdAt: { $gte: startOfToday } });
-    const paystubsYesterday = await Paystub.countDocuments({ createdAt: { $gte: startOfYesterday, $lt: startOfToday } });
-    const paystubsThisWeek = await Paystub.countDocuments({ createdAt: { $gte: startOfWeek } });
-    const paystubsLastWeek = await Paystub.countDocuments({ createdAt: { $gte: startOfLastWeek, $lt: startOfWeek } });
-    const paystubsThisMonth = await Paystub.countDocuments({ createdAt: { $gte: startOfMonth } });
-    const paystubsLastMonth = await Paystub.countDocuments({ createdAt: { $gte: startOfLastMonth, $lte: endOfLastMonth } });
-    const paidThisMonth = await Paystub.countDocuments({ "params.paymentStatus": "success", createdAt: { $gte: startOfMonth } });
-    const paidLastMonth = await Paystub.countDocuments({ "params.paymentStatus": "success", createdAt: { $gte: startOfLastMonth, $lte: endOfLastMonth } });
+    const newUsersToday = inRange(allUsersRaw, startOfToday);
+    const newUsersYesterday = inRange(allUsersRaw, startOfYesterday, startOfToday);
+    const newUsersThisWeek = inRange(allUsersRaw, startOfWeek);
+    const newUsersLastWeek = inRange(allUsersRaw, startOfLastWeek, startOfWeek);
+    const newUsersThisMonth = inRange(allUsersRaw, startOfMonth);
+    const newUsersLastMonth = inRange(allUsersRaw, startOfLastMonth, endOfLastMonth);
+    const newUsersLast24h = inRange(allUsersRaw, last24h);
+    const newUsersLast7d = inRange(allUsersRaw, last7d);
+    const newUsersLast30d = inRange(allUsersRaw, last30d);
+
+    // ── Paystub KPIs (computed from allStubsRaw in JS) ──
+    const totalPaystubs = allStubsRaw.length;
+    const paidStubs = allStubsRaw.filter((p) => p.params?.paymentStatus === "success");
+    const paidPaystubs = paidStubs.length;
+
+    const paystubsToday = inRange(allStubsRaw, startOfToday);
+    const paystubsYesterday = inRange(allStubsRaw, startOfYesterday, startOfToday);
+    const paystubsThisWeek = inRange(allStubsRaw, startOfWeek);
+    const paystubsLastWeek = inRange(allStubsRaw, startOfLastWeek, startOfWeek);
+    const paystubsThisMonth = inRange(allStubsRaw, startOfMonth);
+    const paystubsLastMonth = inRange(allStubsRaw, startOfLastMonth, endOfLastMonth);
+    const paidThisMonth = paidStubs.filter((p) => new Date(p.createdAt) >= startOfMonth).length;
+    const paidLastMonth = paidStubs.filter((p) => {
+      const t = new Date(p.createdAt);
+      return t >= startOfLastMonth && t <= endOfLastMonth;
+    }).length;
     const conversionRate = totalPaystubs > 0 ? Math.round((paidPaystubs / totalPaystubs) * 100) : 0;
     const avgPaystubsPerUser = totalUsers > 0 ? (totalPaystubs / totalUsers).toFixed(1) : "0";
 
-    // ── Recent activity ──
-    const recentPaystubs = await Paystub.find({ "params.paymentStatus": "success" })
-      .sort("-createdAt").limit(15).lean();
-    const recentUsers = await User.find()
-      .select("firstName lastName email role isEmailVerified createdAt")
-      .sort("-createdAt").limit(20).lean();
-    // All users for the full table
-    const allUsers = await User.find()
-      .select("firstName lastName email role isEmailVerified createdAt")
-      .sort("-createdAt").lean();
+    // ── Recent activity (already sorted) ──
+    const recentPaystubs = paidStubs.slice(0, 15);
+    const recentUsers = allUsersRaw.slice(0, 20);
 
-    // ── Monthly trends (last 12 months) ──
+    // ── Monthly trends (last 12 months — computed in JS from arrays) ──
     const monthlyUsers = [];
     const monthlyPaystubs = [];
     const monthlyPaid = [];
@@ -122,12 +138,9 @@ router.get("/stats", auth(), roleCheck("admin"), async (req, res) => {
       const mStart = new Date(now.getFullYear(), now.getMonth() - i, 1);
       const mEnd = new Date(now.getFullYear(), now.getMonth() - i + 1, 0, 23, 59, 59);
       const label = mStart.toLocaleString("default", { month: "short", year: "2-digit" });
-      const uCount = await User.countDocuments({ createdAt: { $gte: mStart, $lte: mEnd } });
-      const pCount = await Paystub.countDocuments({ createdAt: { $gte: mStart, $lte: mEnd } });
-      const pdCount = await Paystub.countDocuments({ "params.paymentStatus": "success", createdAt: { $gte: mStart, $lte: mEnd } });
-      monthlyUsers.push({ label, count: uCount });
-      monthlyPaystubs.push({ label, count: pCount });
-      monthlyPaid.push({ label, count: pdCount });
+      monthlyUsers.push({ label, count: inRange(allUsersRaw, mStart, mEnd) });
+      monthlyPaystubs.push({ label, count: inRange(allStubsRaw, mStart, mEnd) });
+      monthlyPaid.push({ label, count: inRange(paidStubs, mStart, mEnd) });
     }
 
     // ── Daily trend (last 14 days) ──
@@ -137,13 +150,11 @@ router.get("/stats", auth(), roleCheck("admin"), async (req, res) => {
       const dStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i);
       const dEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i + 1);
       const label = dStart.toLocaleString("default", { month: "short", day: "numeric" });
-      const uC = await User.countDocuments({ createdAt: { $gte: dStart, $lt: dEnd } });
-      const pC = await Paystub.countDocuments({ "params.paymentStatus": "success", createdAt: { $gte: dStart, $lt: dEnd } });
-      dailySignups.push({ label, count: uC });
-      dailyPaystubs.push({ label, count: pC });
+      dailySignups.push({ label, count: inRange(allUsersRaw, dStart, dEnd) });
+      dailyPaystubs.push({ label, count: inRange(paidStubs, dStart, dEnd) });
     }
 
-    console.log("[Admin] Stats fetched — users:", totalUsers, "paystubs:", totalPaystubs);
+    console.log("[Admin] Stats OK — users:", totalUsers, "paystubs:", totalPaystubs);
 
     res.json({
       users: {
@@ -187,7 +198,7 @@ router.get("/stats", auth(), roleCheck("admin"), async (req, res) => {
         createdAt: p.createdAt,
       })),
       recentUsers,
-      allUsers,
+      allUsers: allUsersRaw,
       trends: { monthlyUsers, monthlyPaystubs, monthlyPaid, dailySignups, dailyPaystubs },
       stripeMode: STRIPE_MODE || "unknown",
       serverTime: now.toISOString(),
