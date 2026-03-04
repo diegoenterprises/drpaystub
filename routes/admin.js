@@ -7,10 +7,15 @@ const Paystub = require("../models/Paystub");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const { geolocateIP } = require("../services/geolocate");
 
 const { STRIPE_LIVE_KEY, STRIPE_TEST_KEY, STRIPE_MODE } = process.env;
 const stripeKey = STRIPE_MODE === "dev" ? STRIPE_TEST_KEY : STRIPE_LIVE_KEY;
 const stripe = require("stripe")(stripeKey);
+
+function getClientIp(req) {
+  return (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.socket?.remoteAddress || null;
+}
 
 // ─── Admin Login (standalone — bypasses email verification) ─────────────────
 router.post("/login", async (req, res) => {
@@ -34,6 +39,14 @@ router.post("/login", async (req, res) => {
       { payload: { user: user._id, role: user.role } },
       process.env.JWT_SECRET
     );
+    // Fire-and-forget: update admin geo on login
+    const adminIp = getClientIp(req);
+    if (adminIp) {
+      geolocateIP(adminIp).then((geo) => {
+        if (geo) User.findByIdAndUpdate(user._id, { geo }).catch(() => {});
+      }).catch(() => {});
+    }
+
     return res.status(200).json({
       status: 200,
       message: "Admin login successful",
@@ -43,6 +56,28 @@ router.post("/login", async (req, res) => {
   } catch (err) {
     console.error("[Admin] login error:", err);
     res.status(500).json({ status: 500, message: "Server error" });
+  }
+});
+
+// ─── Backfill geo data for users missing it ──────────────────────────────────
+router.post("/backfill-geo", auth(), roleCheck("admin"), async (req, res) => {
+  try {
+    const users = await User.find({ $or: [{ geo: null }, { "geo.lat": null }] }).select("_id geo").lean();
+    let updated = 0;
+    // For users with an IP stored but no lat/lng, re-geolocate
+    for (const u of users) {
+      if (u.geo?.ip) {
+        const geo = await geolocateIP(u.geo.ip);
+        if (geo) {
+          await User.findByIdAndUpdate(u._id, { geo });
+          updated++;
+        }
+      }
+    }
+    res.json({ ok: true, checked: users.length, updated });
+  } catch (err) {
+    console.error("[Admin] backfill-geo error:", err);
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -66,7 +101,7 @@ router.get("/stats", auth(), roleCheck("admin"), async (req, res) => {
     // ── Fetch ALL users & paystubs in two queries (no .sort / no date filter) ──
     // This avoids Cosmos DB "order-by index excluded" errors entirely.
     const allUsersRaw = await User.find()
-      .select("firstName lastName email role isEmailVerified createdAt").lean();
+      .select("firstName lastName email role isEmailVerified createdAt geo").lean();
     const allStubsRaw = await Paystub.find().lean();
 
     // ── Sort in JS ──

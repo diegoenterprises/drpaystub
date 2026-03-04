@@ -36,6 +36,18 @@ const UserSchema = new mongoose.Schema(
     verifyEmailToken: String,
     resetPasswordToken: String,
     image: String,
+    geo: {
+      ip: String,
+      city: String,
+      region: String,
+      country: String,
+      countryCode: String,
+      lat: Number,
+      lng: Number,
+      timezone: String,
+      isp: String,
+      lastUpdated: Date,
+    },
   },
   { timestamps: true }
 );

@@ -8,6 +8,12 @@ const roleCheck = require("../middlewares/roleCheck");
 const { authService, tokenService, emailService } = require("../services");
 const upload = require("../middlewares/upload");
 const Paystub = require("../models/Paystub");
+const { geolocateIP } = require("../services/geolocate");
+
+// Helper: extract client IP from request (works behind Azure proxy)
+function getClientIp(req) {
+  return (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.socket?.remoteAddress || null;
+}
 
 router.post("/login", async (req, res, next) => {
   const user = await User.findOne({
@@ -36,6 +42,15 @@ router.post("/login", async (req, res, next) => {
     { payload: { user: user._id, role: user.role || "user" } },
     process.env.JWT_SECRET
   );
+
+  // Fire-and-forget: update geo on every login
+  const loginIp = getClientIp(req);
+  if (loginIp) {
+    geolocateIP(loginIp).then((geo) => {
+      if (geo) User.findByIdAndUpdate(user._id, { geo }).catch(() => {});
+    }).catch(() => {});
+  }
+
   return res
     .status(200)
     .json({ status: 200, message: "Login successfully", data: user, tokens });
@@ -52,6 +67,14 @@ router.post("/register", async (req, res, next) => {
   }
 
   const user = await User.create(req.body);
+
+  // Fire-and-forget: geolocate user IP on registration
+  const regIp = getClientIp(req);
+  if (regIp) {
+    geolocateIP(regIp).then((geo) => {
+      if (geo) User.findByIdAndUpdate(user._id, { geo }).catch(() => {});
+    }).catch(() => {});
+  }
 
   const verifyEmailToken = await tokenService.generateVerifyEmailToken(user);
   await User.findOneAndUpdate(

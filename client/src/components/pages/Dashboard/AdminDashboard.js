@@ -6,6 +6,7 @@ import {
   FaCreditCard, FaCheckCircle, FaTimesCircle, FaArrowUp, FaArrowDown,
   FaUserPlus, FaClock, FaShieldAlt, FaPercent, FaExclamationTriangle,
   FaSync, FaSearch, FaChartBar, FaUserCheck, FaChartArea,
+  FaMapMarkerAlt, FaGlobe,
 } from "react-icons/fa";
 import { axios } from "../../../HelperFunctions/axios";
 import DashboardLayout from "./layout/DashboardLayout";
@@ -109,7 +110,9 @@ class AdminDashboard extends Component {
     const allUsers = stats?.allUsers || stats?.recentUsers || [];
     const filteredUsers = userSearch
       ? allUsers.filter((u) =>
-          `${u.firstName} ${u.lastName} ${u.email}`.toLowerCase().includes(userSearch.toLowerCase())
+          `${u.firstName} ${u.lastName} ${u.email} ${u.geo?.city || ""} ${u.geo?.region || ""} ${u.geo?.country || ""}`
+            .toLowerCase()
+            .includes(userSearch.toLowerCase())
         )
       : allUsers;
 
@@ -471,16 +474,61 @@ class AdminDashboard extends Component {
             <div className="dash-stat-grid" style={{ marginBottom: 24 }}>
               <StatCard icon={<FaUsers />} value={u.total || 0} label="Total Users" />
               <StatCard icon={<FaCheckCircle />} value={u.verified || 0} label="Verified" />
-              <StatCard icon={<FaTimesCircle />} value={u.unverified || 0} label="Unverified" />
+              <StatCard icon={<FaGlobe />} value={allUsers.filter((x) => x.geo?.city).length} label="Located" />
               <StatCard icon={<FaUserPlus />} value={u.newThisMonth || 0} label="New This Month" trend={userGrowth} />
             </div>
+
+            {/* ── Google Map with user pins ── */}
+            <UserLocationMap users={allUsers} />
+
+            {/* ── Location stats ── */}
+            {(() => {
+              const withGeo = allUsers.filter((x) => x.geo?.city);
+              if (withGeo.length === 0) return null;
+              const byCityMap = {};
+              const byRegionMap = {};
+              const byCountryMap = {};
+              withGeo.forEach((x) => {
+                const c = x.geo.city || "Unknown";
+                const r = x.geo.region || "Unknown";
+                const co = x.geo.country || "Unknown";
+                byCityMap[c] = (byCityMap[c] || 0) + 1;
+                byRegionMap[r] = (byRegionMap[r] || 0) + 1;
+                byCountryMap[co] = (byCountryMap[co] || 0) + 1;
+              });
+              const topCities = Object.entries(byCityMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
+              const topRegions = Object.entries(byRegionMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
+              const topCountries = Object.entries(byCountryMap).sort((a, b) => b[1] - a[1]).slice(0, 5);
+              return (
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 24 }}>
+                  <div className="dash-section-card" style={{ marginBottom: 0 }}>
+                    <h4 style={{ display: "flex", alignItems: "center", gap: 6 }}><FaMapMarkerAlt style={{ color: "#ef4444", fontSize: 13 }} /> Top Cities</h4>
+                    {topCities.map(([name, count]) => (
+                      <InfoRow key={name} label={name} value={count} />
+                    ))}
+                  </div>
+                  <div className="dash-section-card" style={{ marginBottom: 0 }}>
+                    <h4 style={{ display: "flex", alignItems: "center", gap: 6 }}><FaGlobe style={{ color: "#6366f1", fontSize: 13 }} /> Top States / Regions</h4>
+                    {topRegions.map(([name, count]) => (
+                      <InfoRow key={name} label={name} value={count} />
+                    ))}
+                  </div>
+                  <div className="dash-section-card" style={{ marginBottom: 0 }}>
+                    <h4 style={{ display: "flex", alignItems: "center", gap: 6 }}><FaGlobe style={{ color: "#10b981", fontSize: 13 }} /> Top Countries</h4>
+                    {topCountries.map(([name, count]) => (
+                      <InfoRow key={name} label={name} value={count} />
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
 
             {/* Search */}
             <div style={{ marginBottom: 16, position: "relative" }}>
               <FaSearch style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "var(--color-text-tertiary)", fontSize: 13 }} />
               <input
                 type="text"
-                placeholder="Search users by name or email..."
+                placeholder="Search users by name, email, or city..."
                 value={userSearch}
                 onChange={(e) => this.setState({ userSearch: e.target.value })}
                 style={{
@@ -504,6 +552,7 @@ class AdminDashboard extends Component {
                         <th style={thStyle}>#</th>
                         <th style={thStyle}>Name</th>
                         <th style={thStyle}>Email</th>
+                        <th style={thStyle}>Location</th>
                         <th style={thStyle}>Role</th>
                         <th style={thStyle}>Verified</th>
                         <th style={thStyle}>Joined</th>
@@ -518,6 +567,16 @@ class AdminDashboard extends Component {
                             {user.firstName || "---"} {user.lastName || ""}
                           </td>
                           <td style={tdStyle}>{user.email || "---"}</td>
+                          <td style={tdStyle}>
+                            {user.geo?.city ? (
+                              <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 12 }}>
+                                <FaMapMarkerAlt style={{ color: "#ef4444", fontSize: 10, flexShrink: 0 }} />
+                                {user.geo.city}, {user.geo.region || ""}{user.geo.countryCode ? ` (${user.geo.countryCode})` : ""}
+                              </span>
+                            ) : (
+                              <span style={{ color: "var(--color-text-tertiary)", fontSize: 11 }}>—</span>
+                            )}
+                          </td>
                           <td style={tdStyle}>
                             <span style={{
                               fontSize: 11, fontWeight: 600, padding: "2px 8px", borderRadius: 980,
@@ -674,6 +733,172 @@ function FunnelBar({ label, value, pct, color }) {
       </div>
     </div>
   );
+}
+
+// ─── Leaflet + OpenStreetMap: User Location Map (free, no API key) ──────────
+
+let leafletLoading = false;
+let leafletLoaded = false;
+let leafletCallbacks = [];
+
+function loadLeaflet(cb) {
+  if (leafletLoaded && window.L) { cb(); return; }
+  leafletCallbacks.push(cb);
+  if (leafletLoading) return;
+  leafletLoading = true;
+
+  // Load CSS
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+  document.head.appendChild(link);
+
+  // Inject custom pulse animation CSS
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes leaflet-pulse { 0%{transform:scale(1);opacity:0.9} 50%{transform:scale(1.6);opacity:0.3} 100%{transform:scale(1);opacity:0.9} }
+    .user-marker-pulse { animation: leaflet-pulse 2s ease-in-out infinite; }
+    .leaflet-popup-content-wrapper { border-radius: 12px !important; box-shadow: 0 8px 32px rgba(0,0,0,0.3) !important; }
+    .leaflet-popup-content { margin: 10px 14px !important; }
+    .leaflet-popup-tip { box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important; }
+  `;
+  document.head.appendChild(style);
+
+  // Load JS
+  const script = document.createElement("script");
+  script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+  script.async = true;
+  script.onload = () => { leafletLoaded = true; leafletCallbacks.forEach((fn) => fn()); leafletCallbacks = []; };
+  script.onerror = () => { leafletLoading = false; };
+  document.head.appendChild(script);
+}
+
+function createPulseIcon(color, isAdmin) {
+  if (!window.L) return null;
+  const size = isAdmin ? 20 : 16;
+  return window.L.divIcon({
+    className: "",
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    html: `<div style="position:relative;">
+      <div class="user-marker-pulse" style="width:${size}px;height:${size}px;border-radius:50%;background:${color};position:absolute;top:0;left:0;"></div>
+      <div style="width:${size}px;height:${size}px;border-radius:50%;background:${color};border:2px solid #fff;box-shadow:0 2px 8px ${color}80;position:relative;z-index:2;"></div>
+    </div>`,
+  });
+}
+
+class UserLocationMap extends Component {
+  constructor(props) {
+    super(props);
+    this.mapRef = React.createRef();
+    this.map = null;
+    this.markerGroup = null;
+  }
+
+  componentDidMount() {
+    loadLeaflet(() => this.initMap());
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.users !== this.props.users && this.map) {
+      this.updateMarkers();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.map) { this.map.remove(); this.map = null; }
+  }
+
+  initMap() {
+    if (!this.mapRef.current || !window.L) return;
+
+    this.map = window.L.map(this.mapRef.current, {
+      center: [37.0902, -95.7129],
+      zoom: 4,
+      zoomControl: true,
+      attributionControl: false,
+    });
+
+    // Dark CartoDB tiles — sleek dark theme
+    window.L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+      { maxZoom: 19, subdomains: "abcd" }
+    ).addTo(this.map);
+
+    // Small attribution bottom-right
+    window.L.control.attribution({ position: "bottomright", prefix: false })
+      .addAttribution('&copy; <a href="https://carto.com/" style="color:#64748b">CARTO</a>')
+      .addTo(this.map);
+
+    this.markerGroup = window.L.featureGroup().addTo(this.map);
+    this.updateMarkers();
+  }
+
+  updateMarkers() {
+    if (!this.map || !this.markerGroup) return;
+    this.markerGroup.clearLayers();
+
+    const geoUsers = (this.props.users || []).filter((u) => u.geo?.lat && u.geo?.lng);
+
+    geoUsers.forEach((user) => {
+      const isAdmin = user.role === "admin";
+      const color = isAdmin ? "#a78bfa" : "#6366f1";
+      const icon = createPulseIcon(color, isAdmin);
+      if (!icon) return;
+
+      const marker = window.L.marker([user.geo.lat, user.geo.lng], { icon });
+
+      const popupHtml =
+        `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-width:200px;">` +
+        `<div style="font-weight:700;font-size:15px;color:#1e293b;margin-bottom:6px;">${user.firstName || ""} ${user.lastName || ""}</div>` +
+        `<div style="font-size:12px;color:#64748b;margin-bottom:6px;word-break:break-all;">${user.email}</div>` +
+        `<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">` +
+        `<span style="color:#ef4444;font-size:13px;">&#x1F4CD;</span>` +
+        `<span style="font-size:13px;font-weight:600;color:#334155;">${user.geo.city}, ${user.geo.region || ""}</span>` +
+        `</div>` +
+        `<div style="font-size:12px;color:#64748b;margin-bottom:4px;">${user.geo.country || ""} &middot; ${user.geo.timezone || ""}</div>` +
+        `<div style="font-size:11px;color:#94a3b8;padding-top:6px;border-top:1px solid #e2e8f0;">ISP: ${user.geo.isp || "—"}</div>` +
+        `<div style="margin-top:6px;">` +
+        `<span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:999px;background:${isAdmin ? "rgba(167,139,250,0.15)" : "rgba(99,102,241,0.1)"};color:${color};">${user.role || "user"}</span>` +
+        `</div></div>`;
+
+      marker.bindPopup(popupHtml, { maxWidth: 280, closeButton: true });
+      this.markerGroup.addLayer(marker);
+    });
+
+    if (geoUsers.length > 1) {
+      this.map.fitBounds(this.markerGroup.getBounds(), { padding: [40, 40], maxZoom: 12 });
+    } else if (geoUsers.length === 1) {
+      this.map.setView([geoUsers[0].geo.lat, geoUsers[0].geo.lng], 10);
+    }
+  }
+
+  render() {
+    const geoCount = (this.props.users || []).filter((u) => u.geo?.lat).length;
+    const total = (this.props.users || []).length;
+
+    return (
+      <div className="dash-section-card" style={{ marginBottom: 24, padding: 0, overflow: "hidden", borderRadius: 16 }}>
+        <div style={{ padding: "14px 20px 10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <h4 style={{ margin: 0, display: "flex", alignItems: "center", gap: 8 }}>
+            <FaMapMarkerAlt style={{ color: "#ef4444", fontSize: 14 }} /> User Locations
+          </h4>
+          <span style={{ fontSize: 11, color: "var(--color-text-tertiary)" }}>
+            {geoCount} of {total} users mapped
+            {geoCount === 0 && total > 0 && " — location data populates on next user login"}
+          </span>
+        </div>
+        <div
+          ref={this.mapRef}
+          style={{
+            width: "100%",
+            height: 420,
+            background: "#1a1a2e",
+          }}
+        />
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({
