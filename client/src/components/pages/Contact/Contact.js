@@ -34,7 +34,7 @@ const FAQ_ITEMS = [
   { q: "How quickly will I receive a response?", a: "We typically respond within 2-4 business hours during our operating hours. For urgent matters, please call us directly." },
   { q: "Can I request a custom pay stub format?", a: "Yes. Reach out with your specific requirements and our team will work with you to accommodate your needs." },
   { q: "Is my personal information secure?", a: "Absolutely. All data is encrypted in transit and at rest. We never share your information with third parties." },
-  { q: "Do you offer refunds?", a: "Yes, we offer refunds for any paystub that doesn't meet your expectations. Contact us within 7 days of purchase." },
+  { q: "Do you offer refunds?", a: "All sales are final. We do not offer refunds. Please review your information carefully before completing your purchase." },
 ];
 
 // ─── Contact Info Cards ──────────────────────────────────────────────────────
