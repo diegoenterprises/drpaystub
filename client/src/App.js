@@ -41,6 +41,7 @@ import AdminDashboard from "./components/pages/Dashboard/AdminDashboard";
 import AdminPage from "./components/pages/Admin/AdminPage";
 import SuccessForm from "./components/Success";
 import FailureForm from "./components/Failure";
+import TemplateShowcase from "./components/pages/TemplateShowcase/TemplateShowcase";
 
 const MainLayout = () => {
   const storage = localStorage.getItem("tokens");
@@ -97,6 +98,7 @@ const MainLayout = () => {
           path="/terms-and-conditions"
           component={TermsAndCondition}
         />
+        <Route exact path="/templates" component={TemplateShowcase} />
         <Route exact path="/w2forms" component={W2} />
       </Switch>
       <Footer />

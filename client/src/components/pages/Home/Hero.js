@@ -288,23 +288,10 @@ export class Hero extends Component {
                 </Slide>
               </p>
               <div className="mt-4 pt-2">
-                {localStorage.getItem("tokens") ? (
-                  <Link to="/paystubs" className="btn btn-secondary m-1">
-                    Explore Stub templates{" "}
-                    <i className="fa fa-chevron-right"></i>
-                  </Link>
-                ) : (
-                  <Link
-                    to="/login"
-                    className="btn btn-secondary m-1"
-                    onClick={() =>
-                      localStorage.setItem("clickStartAstrosync", true)
-                    }
-                  >
-                    Explore Stub templates{" "}
-                    <i className="fa fa-chevron-right"></i>
-                  </Link>
-                )}
+                <Link to="/templates" className="btn btn-secondary m-1">
+                  Explore Stub templates{" "}
+                  <i className="fa fa-chevron-right"></i>
+                </Link>
               </div>
             </div>
           </div>
