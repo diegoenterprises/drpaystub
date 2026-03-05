@@ -17,7 +17,11 @@ const toWords = new ToWords({
 });
 
 const capitalizeString = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  return string
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 };
 
 const formatNumber = (number) => {
@@ -45,6 +49,36 @@ const MARITAL_STATUS = {
   "Married Jointly & Surviving Spouses": "Married Jointly & Surviving Spouses",
   "Married Filing Separately": "Married Filing Separately",
   "Head of Household": "Head of Household",
+};
+
+// 2025 Social Security wage base cap
+const SS_WAGE_BASE = 176100;
+
+// Additional Medicare Tax thresholds (0.9% on annualized excess)
+const ADDITIONAL_MEDICARE_THRESHOLDS = {
+  "Single Taxpayers": 200000,
+  "Married Jointly & Surviving Spouses": 250000,
+  "Married Filing Separately": 125000,
+  "Head of Household": 200000,
+};
+
+// Progressive (marginal) tax calculation through brackets
+const calcProgressiveTax = (income, brackets) => {
+  if (!brackets || brackets.length === 0) return 0;
+  let totalTax = 0;
+  let prevMax = 0;
+  for (const bracket of brackets) {
+    if (income <= prevMax) break;
+    const isTopBracket = bracket.min === bracket.max;
+    const taxableAmount = isTopBracket
+      ? income - prevMax
+      : Math.min(income, bracket.max) - prevMax;
+    if (taxableAmount > 0) {
+      totalTax += (taxableAmount * bracket.tax) / 100;
+    }
+    if (!isTopBracket) prevMax = bracket.max;
+  }
+  return totalTax;
 };
 
 const areDatesEqual = (a, b) => {
@@ -77,8 +111,7 @@ const calcSDITax = ({ state, income }) => {
   }
 };
 
-const calcStateIncomeTax = ({ state, income, maritalStatus }) => {
-  // check if state imposes tax
+const calcStateIncomeTax = ({ state, income, maritalStatus, days }) => {
   if (
     STATE_TAX[state].hasTax != undefined &&
     STATE_TAX[state].hasTax == false
@@ -86,27 +119,22 @@ const calcStateIncomeTax = ({ state, income, maritalStatus }) => {
     return 0;
   }
 
-  // check if state imposes flat tax rate
-  else if (
+  if (
     STATE_TAX[state].hasFlatRate != undefined &&
     STATE_TAX[state].hasFlatRate == true
   ) {
     return (income * STATE_TAX[state].tax) / 100;
   }
-  // check if state imposes tax based on marital status
-  else {
-    let filters = STATE_TAX[state][maritalStatus] || [];
-    let rule = filters.find((el) => {
-      if (el.min === el.max && el.max <= income) return true;
-      if (income >= el.min && income <= el.max) return true;
-    });
 
-    return (income * rule.tax) / 100;
-  }
+  // Progressive calculation with annualization
+  const periodsPerYear = days ? 365 / days : 1;
+  const annualIncome = income * periodsPerYear;
+  const brackets = STATE_TAX[state][maritalStatus] || [];
+  const annualTax = calcProgressiveTax(annualIncome, brackets);
+  return annualTax / periodsPerYear;
 };
 
-const calcStateIncomeTaxPercent = ({ state, income, maritalStatus }) => {
-  // check if state imposes tax
+const calcStateIncomeTaxPercent = ({ state, income, maritalStatus, days }) => {
   if (
     STATE_TAX[state].hasTax != undefined &&
     STATE_TAX[state].hasTax == false
@@ -114,43 +142,28 @@ const calcStateIncomeTaxPercent = ({ state, income, maritalStatus }) => {
     return 0;
   }
 
-  // check if state imposes flat tax rate
-  else if (
+  if (
     STATE_TAX[state].hasFlatRate != undefined &&
     STATE_TAX[state].hasFlatRate == true
   ) {
     return STATE_TAX[state].tax;
   }
-  // check if state imposes tax based on marital status
-  else {
-    let filters = STATE_TAX[state][maritalStatus] || [];
-    let rule = filters.find((el) => {
-      if (el.min === el.max && el.max <= income) return true;
-      if (income >= el.min && income <= el.max) return true;
-    });
 
-    return rule.tax;
-  }
+  const tax = calcStateIncomeTax({ state, income, maritalStatus, days });
+  return income > 0 ? (tax / income) * 100 : 0;
 };
 
-const calculateFederalTax = ({ income, maritalStatus }) => {
-  let filters = FEDERAL_TAX[maritalStatus] || [];
-  let rule = filters.find((el) => {
-    if (el.min === el.max && el.max <= income) return true;
-    if (income >= el.min && income <= el.max) return true;
-  });
-
-  return (income * rule.tax) / 100;
+const calculateFederalTax = ({ income, maritalStatus, days }) => {
+  const periodsPerYear = days ? 365 / days : 1;
+  const annualIncome = income * periodsPerYear;
+  const brackets = FEDERAL_TAX[maritalStatus] || [];
+  const annualTax = calcProgressiveTax(annualIncome, brackets);
+  return annualTax / periodsPerYear;
 };
 
-const calculateFederalTaxPercent = ({ income, maritalStatus }) => {
-  let filters = FEDERAL_TAX[maritalStatus] || [];
-  let rule = filters.find((el) => {
-    if (el.min === el.max && el.max <= income) return true;
-    if (income >= el.min && income <= el.max) return true;
-  });
-
-  return rule.tax;
+const calculateFederalTaxPercent = ({ income, maritalStatus, days }) => {
+  const tax = calculateFederalTax({ income, maritalStatus, days });
+  return income > 0 ? (tax / income) * 100 : 0;
 };
 
 const calcYTD = ({ startingDate, endingDate, days, value }) => {
@@ -216,46 +229,7 @@ const generateParams = ({
     endDate: moment(pay_date).format("MM/DD/YYYY"),
   };
 
-  let stateIncomeTax = formatNumber(
-    calcStateIncomeTax({
-      income,
-      state,
-      maritalStatus: maritial_status,
-    })
-  );
-
-  params.stateIncomeTaxPercent = formatNumber(
-    calcStateIncomeTaxPercent({
-      income,
-      state,
-      maritalStatus: maritial_status,
-    })
-  );
-
-  params.medicarePercent = formatNumber(OTHER_TAX.Medicare);
-
-  let sdiTax = formatNumber(
-    calcSDITax({
-      income,
-      state,
-      maritalStatus: maritial_status,
-    })
-  );
-
-  let federalTax = formatNumber(
-    calculateFederalTax({
-      income,
-      maritalStatus: maritial_status,
-    })
-  );
-
-  params.federalTaxPercent = formatNumber(
-    calculateFederalTaxPercent({
-      income,
-      maritalStatus: maritial_status,
-    })
-  );
-
+  // Compute gross income FIRST (base pay + additions)
   params.earnings_labels = [
     "Regular Earnings",
     ...additions.map((el) => el.description),
@@ -268,11 +242,80 @@ const generateParams = ({
     (prev, curr) => parseFloat(prev) + parseFloat(curr),
     0
   );
+
+  const grossIncome = params.gross_income;
+  const periodsPerYear = days ? 365 / days : 1;
+  const annualGross = grossIncome * periodsPerYear;
+
+  // Federal tax (progressive, annualized)
+  let federalTax = formatNumber(
+    calculateFederalTax({
+      income: grossIncome,
+      maritalStatus: maritial_status,
+      days,
+    })
+  );
+
+  params.federalTaxPercent = formatNumber(
+    calculateFederalTaxPercent({
+      income: grossIncome,
+      maritalStatus: maritial_status,
+      days,
+    })
+  );
+
+  // State income tax (progressive, annualized)
+  let stateIncomeTax = formatNumber(
+    calcStateIncomeTax({
+      income: grossIncome,
+      state,
+      maritalStatus: maritial_status,
+      days,
+    })
+  );
+
+  params.stateIncomeTaxPercent = formatNumber(
+    calcStateIncomeTaxPercent({
+      income: grossIncome,
+      state,
+      maritalStatus: maritial_status,
+      days,
+    })
+  );
+
+  // SDI tax on gross
+  let sdiTax = formatNumber(
+    calcSDITax({
+      income: grossIncome,
+      state,
+    })
+  );
+
+  // Medicare on gross (1.45% + 0.9% additional on annualized excess)
+  let medicareTax = (grossIncome * OTHER_TAX.Medicare) / 100;
+  const medicareThreshold = ADDITIONAL_MEDICARE_THRESHOLDS[maritial_status] || 200000;
+  if (annualGross > medicareThreshold) {
+    medicareTax += ((annualGross - medicareThreshold) * 0.9) / 100 / periodsPerYear;
+  }
+  medicareTax = formatNumber(medicareTax);
+
+  // Social Security on gross with wage base cap
+  let ssTax;
+  if (annualGross > SS_WAGE_BASE) {
+    ssTax = formatNumber((SS_WAGE_BASE * OTHER_TAX["Social Security"]) / 100 / periodsPerYear);
+  } else {
+    ssTax = formatNumber((grossIncome * OTHER_TAX["Social Security"]) / 100);
+  }
+
+  params.medicarePercent = formatNumber(OTHER_TAX.Medicare);
+
+  // Build deduction arrays
   params.deduction_labels = [
     "Federal Tax",
     `${capitalizeString(state)}'s Income Tax`,
     "SUI/SDI Tax",
-    ...Object.keys(OTHER_TAX),
+    "Medicare",
+    "Social Security",
     ...deductions.map((el) => el.description),
   ];
 
@@ -280,9 +323,8 @@ const generateParams = ({
     federalTax,
     stateIncomeTax,
     sdiTax,
-    ...Object.keys(OTHER_TAX).map((el) =>
-      formatNumber((parseFloat(income) * OTHER_TAX[el]) / 100)
-    ),
+    medicareTax,
+    ssTax,
     ...deductions.map((el) => formatNumber(el.amount)),
   ];
 

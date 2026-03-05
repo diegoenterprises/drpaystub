@@ -81,94 +81,8 @@
   },
   "ARKANSAS": {
     "stateCode": "AR",
-    "Single Taxpayers": [
-      {
-        "min": 0,
-        "max": 4000,
-        "tax": 2
-      },
-      {
-        "min": 4001,
-        "max": 8000,
-        "tax": 4
-      },
-      {
-        "min": 8001,
-        "max": 79300,
-        "tax": 5.9
-      },
-      {
-        "min": 79301,
-        "max": 79301,
-        "tax": 6.6
-      }
-    ],
-    "Married Jointly & Surviving Spouses": [
-      {
-        "min": 0,
-        "max": 4000,
-        "tax": 2
-      },
-      {
-        "min": 4001,
-        "max": 8000,
-        "tax": 4
-      },
-      {
-        "min": 8001,
-        "max": 79300,
-        "tax": 5.9
-      },
-      {
-        "min": 79301,
-        "max": 79301,
-        "tax": 6.6
-      }
-    ],
-    "Married Filing Separately": [
-      {
-        "min": 0,
-        "max": 4000,
-        "tax": 2
-      },
-      {
-        "min": 4001,
-        "max": 8000,
-        "tax": 4
-      },
-      {
-        "min": 8001,
-        "max": 79300,
-        "tax": 5.9
-      },
-      {
-        "min": 79301,
-        "max": 79301,
-        "tax": 6.6
-      }
-    ],
-    "Head of Household": [
-      {
-        "min": 0,
-        "max": 4000,
-        "tax": 2
-      },
-      {
-        "min": 4001,
-        "max": 8000,
-        "tax": 4
-      },
-      {
-        "min": 8001,
-        "max": 79300,
-        "tax": 5.9
-      },
-      {
-        "min": 79301,
-        "max": 79301,
-        "tax": 6.6
-      }
-    ]
+    "tax": 3.9,
+    "hasFlatRate": true
   },
   "CALIFORNIA": {
     "stateCode": "CA",
@@ -769,7 +683,7 @@
       },
       {
         "min": 38401,
-        "max": 38401,
+        "max": 48000,
         "tax": 7.2
       },
       {
@@ -1656,154 +1570,8 @@
   },
   "MONTANA": {
     "stateCode": "MT",
-    "Single Taxpayers": [
-      {
-        "min": 0,
-        "max": 3100,
-        "tax": 1
-      },
-      {
-        "min": 3101,
-        "max": 5400,
-        "tax": 2
-      },
-      {
-        "min": 5401,
-        "max": 8200,
-        "tax": 3
-      },
-      {
-        "min": 8201,
-        "max": 11100,
-        "tax": 4
-      },
-      {
-        "min": 11101,
-        "max": 14300,
-        "tax": 5
-      },
-      {
-        "min": 14301,
-        "max": 18400,
-        "tax": 6
-      },
-      {
-        "min": 18401,
-        "max": 18401,
-        "tax": 6.9
-      }
-    ],
-    "Married Jointly & Surviving Spouses": [
-      {
-        "min": 0,
-        "max": 3100,
-        "tax": 1
-      },
-      {
-        "min": 3101,
-        "max": 5400,
-        "tax": 2
-      },
-      {
-        "min": 5401,
-        "max": 8200,
-        "tax": 3
-      },
-      {
-        "min": 8201,
-        "max": 11100,
-        "tax": 4
-      },
-      {
-        "min": 11101,
-        "max": 14300,
-        "tax": 5
-      },
-      {
-        "min": 14301,
-        "max": 18400,
-        "tax": 6
-      },
-      {
-        "min": 18401,
-        "max": 18401,
-        "tax": 6.9
-      }
-    ],
-    "Married Filing Separately": [
-      {
-        "min": 0,
-        "max": 3100,
-        "tax": 1
-      },
-      {
-        "min": 3101,
-        "max": 5400,
-        "tax": 2
-      },
-      {
-        "min": 5401,
-        "max": 8200,
-        "tax": 3
-      },
-      {
-        "min": 8201,
-        "max": 11100,
-        "tax": 4
-      },
-      {
-        "min": 11101,
-        "max": 14300,
-        "tax": 5
-      },
-      {
-        "min": 14301,
-        "max": 18400,
-        "tax": 6
-      },
-      {
-        "min": 18401,
-        "max": 18401,
-        "tax": 6.9
-      }
-    ],
-    "Head of Household": [
-      {
-        "min": 0,
-        "max": 3100,
-        "tax": 1
-      },
-      {
-        "min": 3101,
-        "max": 5400,
-        "tax": 2
-      },
-      {
-        "min": 5401,
-        "max": 8200,
-        "tax": 3
-      },
-      {
-        "min": 8201,
-        "max": 11100,
-        "tax": 4
-      },
-      {
-        "min": 11101,
-        "max": 14300,
-        "tax": 5
-      },
-      {
-        "min": 14301,
-        "max": 18400,
-        "tax": 6
-      },
-      {
-        "min": 18401,
-        "max": 18401,
-        "tax": 6.9
-      }
-    ]
+    "tax": 5.9,
+    "hasFlatRate": true
   },
   "NEBRASKA": {
     "stateCode": "NE",
@@ -2412,7 +2180,7 @@
         "tax": 1.1
       },
       {
-        "min": 65901,
+        "min": 52851,
         "max": 136450,
         "tax": 2.04
       },
@@ -3183,7 +2951,7 @@
 
   "WASHINGTON": { "stateCode": "WA", "hasTax": false },
   "WASHINGTON DC": {
-    "stateCode": "WA",
+    "stateCode": "DC",
     "Single Taxpayers": [
       {
         "min": 0,
@@ -3515,5 +3283,10 @@
       }
     ]
   },
-  "WYOMING": { "stateCode": "WY", "hasTax": false }
+  "WYOMING": { "stateCode": "WY", "hasTax": false },
+  "PUERTO RICO": { "stateCode": "PR", "hasTax": false },
+  "GUAM": { "stateCode": "GU", "hasTax": false },
+  "US VIRGIN ISLANDS": { "stateCode": "VI", "hasTax": false },
+  "AMERICAN SAMOA": { "stateCode": "AS", "hasTax": false },
+  "NORTHERN MARIANA ISLANDS": { "stateCode": "MP", "hasTax": false }
 }

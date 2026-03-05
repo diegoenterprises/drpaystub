@@ -17,6 +17,10 @@
   },
   "RHODE ISLAND": {
     "stateCode": "RI",
-    "tax": 1.2
+    "tax": 1.1
+  },
+  "WASHINGTON": {
+    "stateCode": "WA",
+    "tax": 0.58
   }
 }
