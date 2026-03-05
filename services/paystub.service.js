@@ -51,8 +51,8 @@ const MARITAL_STATUS = {
   "Head of Household": "Head of Household",
 };
 
-// 2025 Social Security wage base cap
-const SS_WAGE_BASE = 176100;
+// 2026 Social Security wage base cap
+const SS_WAGE_BASE = 184500;
 
 // Additional Medicare Tax thresholds (0.9% on annualized excess)
 const ADDITIONAL_MEDICARE_THRESHOLDS = {

@@ -1,19 +1,29 @@
+/* ═══════════════════════════════════════════════════
+   Jony Ive-Inspired Paystub Wizard
+   Clean · Fluid · Purposeful
+   ═══════════════════════════════════════════════════ */
+
 .PayStubForm {
     margin-top: 100px;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     padding: 0 16px;
+    animation: ive-page-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 
     .help-icon {
-        background: var(--gradient-brand-subtle);
+        background: rgba(59, 130, 246, 0.08);
         padding: 2px 8px;
         border-radius: 980px;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 600;
         text-align: center;
         margin-left: 6px;
-        color: var(--color-text-secondary);
+        color: #6b7280;
         cursor: help;
         display: inline-block;
+        transition: background 0.3s ease;
+    }
+    .help-icon:hover {
+        background: rgba(59, 130, 246, 0.14);
     }
 
     ol {
@@ -21,40 +31,141 @@
     }
 
     h2 {
-        font-size: 28px !important;
-        letter-spacing: -0.03em;
+        font-size: 30px !important;
+        letter-spacing: -0.04em;
         text-align: center;
+        font-weight: 700;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 4px;
     }
 
+    .badge-soft-primary {
+        background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1)) !important;
+        color: #6366f1 !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.08em !important;
+        text-transform: uppercase !important;
+        padding: 5px 14px !important;
+        border-radius: 980px !important;
+        border: 1px solid rgba(99,102,241,0.15) !important;
+        margin-bottom: 12px !important;
+        display: inline-block !important;
+    }
+
+    /* ── Glass Form Card ── */
     .formStep {
         width: 90%;
         max-width: 960px;
         margin: 0 auto;
-        background: var(--color-bg-card);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-xl);
-        padding: 36px 32px 44px;
-        box-shadow: var(--shadow-card);
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(40px) saturate(180%);
+        -webkit-backdrop-filter: blur(40px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 24px;
+        padding: 40px 36px 48px;
+        box-shadow:
+            0 1px 3px rgba(0,0,0,0.04),
+            0 8px 24px rgba(0,0,0,0.06),
+            0 24px 48px rgba(0,0,0,0.04),
+            inset 0 1px 0 rgba(255,255,255,0.6);
         display: flex;
         justify-content: center;
+        animation: ive-card-rise 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        transition: box-shadow 0.4s ease;
+    }
+    .formStep:hover {
+        box-shadow:
+            0 1px 3px rgba(0,0,0,0.04),
+            0 12px 32px rgba(0,0,0,0.08),
+            0 32px 64px rgba(0,0,0,0.05),
+            inset 0 1px 0 rgba(255,255,255,0.6);
     }
 
+    /* ── Glass Progress Bar Card ── */
     .progressBar {
         width: 60%;
         max-width: 680px;
-        margin: 0 auto 24px;
-        background: var(--color-bg-card);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-xl);
+        margin: 0 auto 28px;
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(30px) saturate(160%);
+        -webkit-backdrop-filter: blur(30px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 20px;
         padding: 24px 32px;
-        box-shadow: var(--shadow-card);
+        box-shadow:
+            0 1px 3px rgba(0,0,0,0.03),
+            0 8px 24px rgba(0,0,0,0.05),
+            inset 0 1px 0 rgba(255,255,255,0.5);
+        animation: ive-card-rise 0.5s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+        p {
+            font-size: 14px;
+            letter-spacing: -0.01em;
+        }
+
+        .progress {
+            height: 6px !important;
+            border-radius: 100px !important;
+            background: rgba(0,0,0,0.04) !important;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #a855f7) !important;
+            border-radius: 100px !important;
+            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            box-shadow: 0 0 12px rgba(99,102,241,0.3);
+        }
     }
 
     .form-group.required .label-input::after {
         content: '*';
-        color: var(--color-error);
+        color: #ef4444;
         margin-left: 4px;
         font-weight: 600;
+    }
+
+    /* ── Elevated Form Inputs ── */
+    .form-control {
+        border: 1.5px solid rgba(0,0,0,0.08) !important;
+        border-radius: 12px !important;
+        padding: 12px 16px !important;
+        font-size: 15px !important;
+        background: rgba(255,255,255,0.7) !important;
+        backdrop-filter: blur(8px);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.04) !important;
+    }
+    .form-control:focus {
+        border-color: rgba(99,102,241,0.5) !important;
+        box-shadow:
+            0 0 0 4px rgba(99,102,241,0.08),
+            0 1px 2px rgba(0,0,0,0.04) !important;
+        background: #fff !important;
+        outline: none !important;
+    }
+    .form-control::placeholder {
+        color: #9ca3af !important;
+        font-weight: 400;
+    }
+
+    select.form-control {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 14px center !important;
+        padding-right: 36px !important;
+    }
+
+    label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #374151;
+        letter-spacing: -0.01em;
+        margin-bottom: 6px;
     }
 
     .image-input {
@@ -64,19 +175,20 @@
 
     .stup-template-img {
         width: 100%;
-        border-radius: var(--radius-md);
-        border: 1px solid var(--color-border);
-        transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        border-radius: 16px;
+        border: 1px solid rgba(0,0,0,0.06);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
     }
     .stup-template-img:hover {
-        transform: scale(1.02);
-        box-shadow: var(--shadow-md);
+        transform: scale(1.015) translateY(-2px);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.1);
     }
 
     .greentick {
-        color: var(--color-success);
+        color: #10b981;
         font-size: 18px;
         margin-left: 8px;
+        animation: ive-check-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     }
 
     .formStep3 {
@@ -85,12 +197,13 @@
         }
     }
 
-    /* ── Wizard Step Indicators ── */
+    /* ── Wizard Step Indicators — Ive Style ── */
     .myProgressBar {
         width: 60%;
         max-width: 680px;
         margin: 0 auto 24px;
         text-align: center;
+        animation: ive-card-rise 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 
         ul {
             margin-left: 0;
@@ -103,12 +216,12 @@
         }
 
         li {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             text-align: center;
-            line-height: 40px;
-            border-radius: var(--radius-md);
-            background: var(--gradient-brand);
+            line-height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
             margin: 0;
             display: inline-flex;
             align-items: center;
@@ -116,23 +229,27 @@
             color: white;
             position: relative;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 15px;
-            box-shadow: var(--shadow-brand);
-            transition: all var(--transition-normal);
+            box-shadow:
+                0 2px 8px rgba(99,102,241,0.3),
+                0 4px 16px rgba(99,102,241,0.15);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1;
         }
 
         li::before {
             content: '';
             position: absolute;
             top: 50%;
-            left: -48px;
-            width: 48px;
+            left: -56px;
+            width: 56px;
             height: 3px;
-            background: var(--gradient-brand);
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
             z-index: -1;
             transform: translateY(-50%);
-            border-radius: 2px;
+            border-radius: 100px;
+            transition: background 0.5s ease;
         }
 
         li:first-child::before {
@@ -144,61 +261,171 @@
         }
 
         li + li {
-            margin-left: 48px;
+            margin-left: 56px;
+        }
+
+        /* Completed steps get a subtle check feel */
+        .completed {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow:
+                0 2px 8px rgba(16,185,129,0.3),
+                0 4px 16px rgba(16,185,129,0.15);
         }
 
         .active {
-            background: var(--gradient-brand);
-            box-shadow: var(--shadow-brand-lg);
-            transform: scale(1.1);
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            box-shadow:
+                0 4px 12px rgba(99,102,241,0.4),
+                0 8px 24px rgba(99,102,241,0.2);
+            transform: scale(1.15);
+            animation: ive-step-pulse 2.5s ease-in-out infinite;
         }
 
         .active ~ li {
-            background: var(--color-bg-secondary);
-            color: var(--color-text-tertiary);
+            background: rgba(0,0,0,0.05);
+            color: #9ca3af;
             box-shadow: none;
-            border: 1.5px solid var(--color-border-strong);
+            border: 2px solid rgba(0,0,0,0.08);
         }
 
         .active ~ li::before {
-            background: var(--color-border-strong);
+            background: rgba(0,0,0,0.08);
+        }
+
+        /* Step labels */
+        .step-label {
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            color: #6b7280;
+            white-space: nowrap;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        li:hover .step-label,
+        .active .step-label {
+            opacity: 1;
         }
     }
 
     .addPayDate {
         cursor: pointer;
-        color: var(--color-accent);
-        font-weight: 500;
+        color: #6366f1;
+        font-weight: 600;
         font-size: 14px;
-        transition: color var(--transition-fast);
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
     }
     .addPayDate:hover {
-        filter: brightness(1.2);
+        color: #4f46e5;
+        transform: translateX(2px);
     }
 
     .cross {
         cursor: pointer;
-        color: var(--color-error);
+        color: #ef4444;
         font-size: 18px;
         vertical-align: bottom;
-        opacity: 0.7;
-        transition: opacity var(--transition-fast);
+        opacity: 0.6;
+        transition: all 0.3s ease;
     }
     .cross:hover {
         opacity: 1;
+        transform: scale(1.1);
     }
 
     .group-border {
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-lg);
-        padding: 16px;
-        background: var(--color-bg-elevated);
+        border: 1.5px solid rgba(0,0,0,0.06);
+        border-radius: 16px;
+        padding: 20px;
+        background: rgba(255,255,255,0.5);
+        backdrop-filter: blur(12px);
+        transition: border-color 0.3s ease;
+    }
+    .group-border:hover {
+        border-color: rgba(99,102,241,0.15);
+    }
+
+    /* ── Buttons ── */
+    .btn-secondary {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+        border: none !important;
+        border-radius: 14px !important;
+        padding: 13px 32px !important;
+        font-weight: 600 !important;
+        font-size: 15px !important;
+        letter-spacing: -0.01em !important;
+        color: #fff !important;
+        box-shadow:
+            0 2px 8px rgba(99,102,241,0.3),
+            0 4px 16px rgba(99,102,241,0.15) !important;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-secondary::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .btn-secondary:hover {
+        transform: translateY(-2px) !important;
+        box-shadow:
+            0 4px 12px rgba(99,102,241,0.4),
+            0 8px 32px rgba(99,102,241,0.2) !important;
+    }
+    .btn-secondary:hover::after {
+        opacity: 1;
+    }
+    .btn-secondary:active {
+        transform: translateY(0) scale(0.98) !important;
     }
 
     .previous-button {
         .btn {
-            border-radius: var(--radius-md) !important;
+            border-radius: 14px !important;
+            font-weight: 600 !important;
+            padding: 10px 24px !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
+        .btn:hover {
+            transform: translateX(-3px);
+        }
+    }
+
+    /* ── Form radio buttons ── */
+    .form-check-input {
+        accent-color: #6366f1;
+    }
+    .form-check-label {
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+    .form-check-label:hover {
+        color: #6366f1;
+    }
+
+    /* ── Step transition animation ── */
+    .step-transition-enter {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    .step-transition-active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     @media only screen and (max-width: 400px) {
@@ -211,53 +438,62 @@
         margin-top: 100px;
         margin-bottom: 40px;
 
+        h2 {
+            font-size: 24px !important;
+        }
+
         .formStep {
             width: 100%;
-            padding: 24px 16px 32px;
+            padding: 28px 20px 36px;
+            border-radius: 20px;
         }
 
         .progressBar {
             width: 100%;
             padding: 20px 16px;
+            border-radius: 16px;
         }
 
         .myProgressBar {
             width: 100%;
 
             li {
-                width: 36px;
-                height: 36px;
-                line-height: 36px;
+                width: 38px;
+                height: 38px;
+                line-height: 38px;
                 font-size: 14px;
             }
             li + li {
-                margin-left: 32px;
+                margin-left: 36px;
             }
             li::before {
-                left: -32px;
-                width: 32px;
+                left: -36px;
+                width: 36px;
             }
         }
     }
 }
 
+/* ── Global Form Overrides ── */
 .form-control.is-invalid {
-    border: 1.5px solid var(--color-error) !important;
+    border: 1.5px solid #ef4444 !important;
     background-image: none !important;
-    box-shadow: none !important;
+    box-shadow: 0 0 0 4px rgba(239,68,68,0.08) !important;
 }
 
 #passwordHelp {
-    color: var(--color-error) !important;
-    font-size: 13px;
+    color: #ef4444 !important;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .sigCanvas {
-    border: 1.5px solid var(--color-border-strong);
-    border-radius: var(--radius-md);
+    border: 2px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
     margin: 24px;
     height: 80vh;
-    background: var(--color-bg-elevated);
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(12px);
 }
 
 .signature-preview {
@@ -265,28 +501,85 @@
     height: 100px;
     margin: 10px;
     object-fit: contain;
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
 }
 
 .btn-outline-new {
-    color: var(--color-accent) !important;
-    border-color: var(--color-accent) !important;
-    border-radius: var(--radius-md) !important;
-    font-weight: 500 !important;
-    transition: all var(--transition-normal) !important;
+    color: #6366f1 !important;
+    border-color: rgba(99,102,241,0.3) !important;
+    border-radius: 14px !important;
+    font-weight: 600 !important;
+    padding: 10px 24px !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    backdrop-filter: blur(8px);
 }
 
 .btn-outline-new:hover {
     color: #fff !important;
-    background: var(--gradient-brand) !important;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
     border-color: transparent !important;
-    box-shadow: var(--shadow-brand);
+    box-shadow: 0 4px 16px rgba(99,102,241,0.3);
+    transform: translateY(-1px);
 }
 
 .paydate-label {
-    font-size: 13px;
-    color: var(--color-text-secondary);
-    font-weight: 500;
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════════════
+   Keyframe Animations — Fluid & Purposeful
+   ═══════════════════════════════════════════════════ */
+@keyframes ive-page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ive-card-rise {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes ive-step-pulse {
+    0%, 100% {
+        box-shadow:
+            0 4px 12px rgba(99,102,241,0.4),
+            0 8px 24px rgba(99,102,241,0.2);
+    }
+    50% {
+        box-shadow:
+            0 4px 12px rgba(99,102,241,0.5),
+            0 8px 32px rgba(99,102,241,0.3),
+            0 0 0 8px rgba(99,102,241,0.06);
+    }
+}
+
+@keyframes ive-check-pop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 /* ═══════════════════════════════════════════════════

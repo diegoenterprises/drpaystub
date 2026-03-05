@@ -377,6 +377,17 @@ export class PayStubForm extends Component {
       );
     }
   };
+  getStepLabel = (i) => {
+    const labels = { 1: "Company", 2: "Employee", 3: "Salary", 4: "Preview" };
+    return labels[i] || "";
+  };
+
+  getStepClass = (i) => {
+    if (this.state.step === i) return "active";
+    if (this.state[`step${i}Done`] && i < this.state.step) return "completed";
+    return "inactive";
+  };
+
   render() {
     return (
       <div className="PayStubForm">
@@ -388,27 +399,32 @@ export class PayStubForm extends Component {
                 {[1, 2, 3, 4].map((i) => (
                   <li
                     key={i}
-                    className={this.state.step === i ? "active" : "inactive"}
+                    className={this.getStepClass(i)}
                     onClick={
                       this.state[`step${i}Done`]
                         ? () => this.changeStep(i)
                         : null
                     }
                   >
-                    {i}
+                    {this.state[`step${i}Done`] && i < this.state.step ? (
+                      <i className="fa fa-check" style={{ fontSize: 16 }}></i>
+                    ) : (
+                      i
+                    )}
+                    <span className="step-label">{this.getStepLabel(i)}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-          <div className="row progressBar" style={{ borderRadius: 10 }}>
+          <div className="row progressBar">
             <div className="col-sm-12">
               {this.state.step !== 4 ? (
-                <p className="text-muted">
-                  Your reliable paystub is just a few details away
+                <p className="text-muted" style={{ marginBottom: 4 }}>
+                  Step {this.state.step} of 4 &mdash; Your reliable paystub is just a few details away
                 </p>
               ) : (
-                <p className="text-muted">
+                <p className="text-muted" style={{ marginBottom: 4 }}>
                   Your reliable paystub is ready
                   <i className="fa fa-check greentick" aria-hidden="true"></i>
                 </p>
@@ -417,7 +433,6 @@ export class PayStubForm extends Component {
               <br />
               <ProgressBar>
                 <ProgressBar
-                  striped
                   variant="primary"
                   now={this.state.progress}
                   key={1}
@@ -438,13 +453,22 @@ export class PayStubForm extends Component {
                     }
                   }}
                 >
+                  <i className="fa fa-chevron-left" style={{ marginRight: 6, fontSize: 12 }}></i>
                   Previous
                 </Button>
               </div>
             </div>
           )}
           <div className="row">
-            <div className="col-sm-12">{this.showForms()}</div>
+            <div
+              className="col-sm-12"
+              key={this.state.step}
+              style={{
+                animation: "ive-card-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both",
+              }}
+            >
+              {this.showForms()}
+            </div>
           </div>
         </div>
       </div>

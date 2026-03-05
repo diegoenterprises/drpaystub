@@ -61,6 +61,27 @@
             font-size: 14px !important;
             font-weight: 500 !important;
         }
+
+        #stubButton {
+            padding: 8px 20px !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.01em;
+            border-radius: 980px !important;
+            box-shadow: none !important;
+            background: var(--gradient-brand) !important;
+            border: none !important;
+            color: #fff !important;
+            transition: all 0.2s ease !important;
+            &::after {
+                display: none;
+            }
+            &:hover, &:focus {
+                box-shadow: var(--shadow-brand) !important;
+                transform: translateY(-1px);
+                filter: brightness(1.08);
+            }
+        }
     }
     .navigation-menu {
         display: flex;

@@ -99,6 +99,14 @@ if (!fs.existsSync(dir)) {
     console.error("[Seed] Admin seed error:", seedErr.message);
   }
 
+  // Initialize monthly tax data auditor
+  try {
+    const { initTaxDataFetcher } = require("./services/tax-data-fetcher");
+    initTaxDataFetcher();
+  } catch (fetcherErr) {
+    console.error("[TaxDataFetcher] Init error:", fetcherErr.message);
+  }
+
   app.listen(port, async () => {
     console.log(`Server Running on port: ${port}`);
   });
