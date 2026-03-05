@@ -30,12 +30,8 @@ function Step4(props) {
   const [amount, setAmount] = useState(null);
   const [paystubId, setPaystubId] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
-  const [templateImages1, setTemplateImages1] = useState([]);
-  const [templateImages2, setTemplateImages2] = useState({ ...intial });
-  const [templateImages3, setTemplateImages3] = useState({ ...intial });
-  const [templateImages4, setTemplateImages4] = useState({ ...intial });
-  const [templateImages5, setTemplateImages5] = useState({ ...intial });
-  const [templateImages6, setTemplateImages6] = useState({ ...intial });
+  const TOTAL_TEMPLATES = 21;
+  const [templateImages, setTemplateImages] = useState({});
   const [currentImages, setCurrentImages] = useState([]);
   const [userData, setUserData] = useState();
 
@@ -69,12 +65,10 @@ function Step4(props) {
 
   const handleTemplateChange = (tem) => {
     setTemplate(tem);
-    if (tem === 1) setCurrentImages(templateImages1);
-    if (tem === 2) setCurrentImages(templateImages2.images);
-    if (tem === 3) setCurrentImages(templateImages3.images);
-    if (tem === 4) setCurrentImages(templateImages4.images);
-    if (tem === 5) setCurrentImages(templateImages5.images);
-    if (tem === 6) setCurrentImages(templateImages6.images);
+    const entry = templateImages[tem];
+    if (entry) {
+      setCurrentImages(Array.isArray(entry) ? entry : entry.images || []);
+    }
   };
 
   useEffect(() => {
@@ -159,36 +153,35 @@ function Step4(props) {
     }
 
     const paystubImagesOne = data.templates;
-    setTemplateImages1(paystubImagesOne);
+    setTemplateImages((prev) => ({ ...prev, 1: paystubImagesOne }));
     setCurrentImages([...paystubImagesOne]);
     setPageStatus("show");
 
-    const loadTemplate = async (num, setter) => {
+    const loadTemplate = async (num) => {
       try {
         const { data } = await axios.post("/api/paystub/templates", {
           paystubId: id,
           template: num,
         });
         if (data.success !== false && data.templates) {
-          setter({ loaded: true, images: data.templates });
+          return { num, loaded: true, images: data.templates };
         } else {
           console.warn(`Template ${num} failed:`, data.message);
-          setter({ loaded: true, images: paystubImagesOne });
+          return { num, loaded: true, images: paystubImagesOne };
         }
       } catch (err) {
         console.error(`Template ${num} error:`, err);
-        setter({ loaded: true, images: paystubImagesOne });
+        return { num, loaded: true, images: paystubImagesOne };
       }
     };
 
-    // Load templates 2-6 in parallel
-    await Promise.all([
-      loadTemplate(2, setTemplateImages2),
-      loadTemplate(3, setTemplateImages3),
-      loadTemplate(4, setTemplateImages4),
-      loadTemplate(5, setTemplateImages5),
-      loadTemplate(6, setTemplateImages6),
-    ]);
+    // Load templates 2-21 in parallel
+    const others = [];
+    for (let i = 2; i <= TOTAL_TEMPLATES; i++) others.push(loadTemplate(i));
+    const results = await Promise.all(others);
+    const newMap = { 1: paystubImagesOne };
+    results.forEach((r) => { newMap[r.num] = { loaded: true, images: r.images }; });
+    setTemplateImages(newMap);
   };
 
   const downloadZip = () => {
@@ -214,65 +207,25 @@ function Step4(props) {
               Note: All watermarks and background images will be removed from
               your final document(s)
             </p>
-            <button
-              type="button"
-              className="mx-3  btn btn-outline-primary"
-              onClick={() => {
-                handleTemplateChange(1);
-              }}
-            >
-              Template 1
-            </button>
-            <button
-              type="button"
-              className="mx-3  btn btn-outline-primary"
-              disabled={!templateImages2.loaded}
-              onClick={() => {
-                handleTemplateChange(2);
-              }}
-            >
-              {templateImages2.loaded ? "Template 2" : "Loading"}
-            </button>
-            <button
-              type="button"
-              className="mx-3  btn btn-outline-primary"
-              disabled={!templateImages3.loaded}
-              onClick={() => {
-                handleTemplateChange(3);
-              }}
-            >
-              {templateImages3.loaded ? "Template 3" : "Loading"}
-            </button>
-            <button
-              type="button"
-              className="mx-3  btn btn-outline-primary"
-              disabled={!templateImages4.loaded}
-              onClick={() => {
-                handleTemplateChange(4);
-              }}
-            >
-              {templateImages4.loaded ? "Template 4" : "Loading"}
-            </button>
-            <button
-              type="button"
-              className="mx-3  btn btn-outline-primary"
-              disabled={!templateImages5.loaded}
-              onClick={() => {
-                handleTemplateChange(5);
-              }}
-            >
-              {templateImages5.loaded ? "Template 5" : "Loading"}
-            </button>
-            <button
-              type="button"
-              className="mx-3  btn btn-outline-primary"
-              disabled={!templateImages6.loaded}
-              onClick={() => {
-                handleTemplateChange(6);
-              }}
-            >
-              {templateImages6.loaded ? "Template 6" : "Loading"}
-            </button>
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8 }}>
+              {Array.from({ length: TOTAL_TEMPLATES }, (_, i) => i + 1).map((num) => {
+                const entry = templateImages[num];
+                const isLoaded = num === 1 ? !!entry : entry?.loaded;
+                const isActive = template === num;
+                return (
+                  <button
+                    key={num}
+                    type="button"
+                    className={`btn ${isActive ? "btn-primary" : "btn-outline-primary"}`}
+                    style={{ minWidth: 100, margin: 2 }}
+                    disabled={!isLoaded}
+                    onClick={() => handleTemplateChange(num)}
+                  >
+                    {isLoaded ? `Template ${num}` : "Loading"}
+                  </button>
+                );
+              })}
+            </div>
             <hr />
             {pageStatus === "show" && (
               <>

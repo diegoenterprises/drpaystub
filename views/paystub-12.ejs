@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>DRPAYSTUB</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<style>
+   :root {
+      --border-color: #8ec8e8;
+      --table-bg: #c4e2f4;
+      --eng-words: #8ec8e8;
+      --total-bg: #8ec8e8;
+   }
+
+   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+   @font-face {
+      font-family: 'MICR Encoding';
+      src: url('http://www.drpaystub.com/MICREncoding.woff2') format('woff2'),
+         url('https://www.drpaystub.com/MICREncoding.woff2') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+   }
+
+
+
+   * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+
+   }
+
+   body {
+      /* height: 1587px; */
+      position: relative;
+      padding: 10px;
+   }
+
+   h4.cheque-btm {
+      font-size: 25px;
+      text-align: center;
+      font-weight: 500;
+      font-family: 'MICR Encoding' !important;
+   }
+
+   table {
+      width: 100%;
+      border-collapse: collapse;
+   }
+
+   span.check-bar-right {
+      color: #fff;
+      position: relative;
+      text-shadow: 1px 1px 2px #0052a5;
+   }
+
+   table span {
+      margin-bottom: 0;
+   }
+
+   th,
+   td {
+      vertical-align: top;
+      padding: 5px;
+      text-align: center;
+   }
+
+   span {
+      display: block;
+      margin-bottom: 10px;
+   }
+
+   .container {
+      position: relative;
+   }
+
+   .app {
+      position: relative;
+   }
+
+   .app .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.2;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      z-index: 999;
+   }
+
+   .topTable {
+      font-size: 13px;
+   }
+
+   .topTable p {
+      margin-bottom: 0px;
+   }
+
+   .topTable th,
+   .topTable td {
+      min-width: 70px;
+   }
+
+   .tl {
+      text-align: left;
+   }
+
+   .check-bar span {
+      margin: 0;
+   }
+
+   span.check-bar-left {
+      color: #0052a1;
+      padding-left: 22px;
+      position: relative;
+   }
+
+   .tu {
+      text-decoration: underline;
+   }
+
+   .text-upper {
+      text-transform: uppercase;
+   }
+
+   .custom-xl-col {
+      width: 86%;
+   }
+
+   .paystub-border {
+      /* 
+    background-size: 100% 100% !important;
+    background-position: center;
+    width: 100%;
+    padding: 14px;
+    height: 302px; */
+      position: relative;
+   }
+
+   p.doc-authent {
+      color: #fff;
+      text-shadow: 1px 1px 2px #0052a5;
+      text-transform: uppercase;
+      font-size: 10px;
+      font-weight: 700;
+      position: absolute;
+      top: -1px;
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+      text-align: center;
+   }
+
+   .inner-sec {
+      /* border-left: 14px solid var(--border-color);
+      border-top: 14px solid var(--border-color);
+      border-right: 14px solid var(--border-color); */
+      /* border-bottom: 2px solid var(--border-color);
+      background: url(/checkbg.png);
+      background-size: cover;
+      background-repeat: no-repeat; */
+   }
+
+   .paystub-border {
+      /* background-size: 100% 100% !important; */
+      /* background-position: center; */
+      /* width: 100%; */
+      padding: 14px 14px 0 14px;
+      height: 336px;
+      /* position: relative; */
+      border-bottom: 2px solid #c4cbe5;
+   }
+
+   img.paystub-brdr {
+      width: 100%;
+      height: 335px;
+      position: absolute;
+      top: 0;
+      left: 0;
+   }
+
+   .inner-sec {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+   }
+
+   .paystub-top {
+      position: relative;
+   }
+
+   .inner-sec-img img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+   }
+
+   .pay-detail {
+      border-bottom: 2px solid #676464;
+      font-size: 15px;
+      line-height: normal;
+   }
+
+   .address p {
+      font-size: 13px;
+      line-height: 20px;
+   }
+
+   .check-bar {
+      background: #c4cbe5;
+      font-size: 11px;
+      font-weight: 600;
+      position: relative;
+   }
+
+   span.check-bar-left::before {
+      content: "";
+      background: #0052a1;
+      height: 100%;
+      width: 18px;
+      position: absolute;
+      left: 0;
+   }
+
+   span.check-bar-left::after {
+      content: "";
+      background: #0052a1;
+      height: 100%;
+      width: 18px;
+      position: absolute;
+      right: 0;
+   }
+
+   span.check-bar-right::after {
+      content: "";
+      background: #0052a1;
+      height: 100%;
+      width: 18px;
+      position: absolute;
+      right: 0;
+   }
+
+   .pay-detail h5 {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0;
+   }
+
+   .amount-words {
+      padding: 10px 0;
+      background-color: var(--eng-words);
+      width: 85%;
+      border-right: 2px solid #676464;
+   }
+
+   .amount-main {
+      border-bottom: 2px solid #676464;
+   }
+
+   .pay-detail p,
+   .amount p {
+      font-weight: 500;
+      font-size: 12px;
+   }
+
+   .outer-sec .sign {
+      border-top: 2px solid #676464;
+   }
+
+   .info.check_infrm div {
+      flex-flow: row wrap;
+   }
+
+   .info.check_infrm div .left {
+      width: 54%;
+   }
+
+   .info.check_infrm div .right {
+      width: 45%;
+   }
+
+   .outer-sec .info p.chq-no {
+      color: #f4836c;
+      font-size: 24px;
+      position: absolute;
+      top: -22px;
+      right: 0px;
+      letter-spacing: 5px;
+   }
+
+   .chq-no {
+      display: inline-block;
+      color: #000080;
+   }
+
+   .earning-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0;
+   }
+
+   .outer-sec .sign p,
+   .outer-sec .bank-name p {
+      font-size: 11px;
+      line-height: 14px;
+      padding-top: 2px;
+   }
+
+   .taxable-mat {
+      font-size: 14px;
+      font-weight: 500;
+   }
+
+   .notes-cnt,
+   .notes-data {
+      text-align: left !important;
+   }
+
+   .earn-table th,
+   .earn-table td {
+      font-size: 13px;
+      padding: 1px;
+      text-align: left;
+      font-weight: 500;
+   }
+
+   .earn-table th:last-child,
+   .earn-table tr td:last-child {
+      text-align: right;
+   }
+
+   .earn-table th {
+      border-bottom: 2px solid #000;
+      font-weight: 600;
+   }
+
+   .c-name {
+      font-weight: 600;
+      margin: 0;
+      font-size: 18px;
+   }
+
+   .gross-pay {
+      background: var(--total-bg);
+      border-top: 2px solid #000;
+      border-bottom: 2px solid #000;
+   }
+
+   .earn-table .earn-table {
+      padding: 10px;
+      height: 100%;
+      background-image: repeating-linear-gradient(0deg, var(--table-bg), var(--table-bg) 5px, white 5px, white 7px);
+   }
+
+   .bank-name {
+      display: flex;
+      align-items: flex-end;
+      height: 100%;
+   }
+
+   .amount-words h6 {
+      font-size: 13px;
+   }
+
+   .sign-outer h6 {
+      font-size: 13px;
+   }
+
+   .bank-name p {
+      margin: 0;
+      font-size: 9px !important;
+      line-height: 11px !important;
+   }
+
+   p.right-bottom-bar {
+      margin: 0;
+      position: absolute;
+      right: -5px;
+      bottom: 0;
+      writing-mode: tb-rl;
+      transform: rotate(180deg);
+      color: #0052a1;
+      font-size: 11px;
+      font-weight: 500;
+   }
+
+   .check_infrm h6,
+   .check_infrm p {
+      font-size: 13px;
+      margin-bottom: 0px;
+      letter-spacing: 0.4px;
+      line-height: 17px;
+   }
+
+   .earnings-tab {
+      position: relative;
+      min-height: 370px;
+   }
+
+   p.right-bar-up {
+      margin: 0;
+      position: absolute;
+      right: -5px;
+      bottom: 100px;
+      writing-mode: tb-rl;
+      transform: rotate(180deg);
+      color: #0052a1;
+      font-size: 9px;
+      font-weight: 500;
+   }
+
+   .custom-large-col {
+      width: 44%;
+   }
+
+   .outer-sec .custom-small-col {
+      width: 14%;
+   }
+
+   .stat-top-img img {
+      position: absolute;
+      top: -11px;
+      left: 15px;
+      height: 26px;
+      width: auto;
+   }
+
+   .sign-image {
+      width: 80px;
+      height: 50px;
+   }
+
+   .sign-image img {
+      margin-left: 35px;
+      width: 80px;
+      height: 50px;
+      object-fit: contain;
+   }
+</style>
+
+<body>
+   <div class="app paystub-main-module">
+      <% if(watermark){ %>
+         <img class="watermark" src="<%= watermark %>" />
+         <% } %>
+            <div class="stat-top-img">
+               <img src="https://drpaystub.com/files/top-icon.png" alt="" />
+            </div>
+            <div class="container-fluid">
+
+               <div class="row statRow mt-3">
+                  <div class="col-5">
+                     <div class="mt-3 ps-5">
+                        <div class="text-upper"><i>
+                              <%= company_name %>
+                           </i>
+                        </div>
+                        <div> <i>
+                              <%= company_address %>
+                           </i>
+                        </div>
+                        <div class="mt-5 taxable-mat">
+                           <div>SSN: <%= ssid %>
+                           </div>
+                           <div>Taxable Marital Status: <%= maritial_status %>
+                           </div>
+                           <div>Exemptions/Allowances:</div>
+                           <div class="ms-4">Federal: <%= federalTaxPercent %>
+                           </div>
+                           <div class="ms-4">State: <%= stateIncomeTaxPercent %>
+                           </div>
+                           <div class="ms-4">Medicare: <%= medicarePercent %>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-1"></div>
+                  <div class="col-6 pe-5">
+                     <div class="d-flex justify-content-between
+                  align-items-center">
+                        <h3 class="earning-title">Earnings Statement</h3>
+                        <img width="70" src="https://i.ibb.co/PTW05Hc/logo-1.png" alt="">
+                     </div> 
+                     <div class="w-75">
+                        <div class="d-flex justify-content-between">
+                           <p class="mb-1">Period Start:</p>
+                           <p class="text-right mb-1">
+                              <%= startDate %>
+                           </p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                           <p class="mb-1">Period Ending:</p>
+                           <p class="text-right mb-1">
+                              <%= pay_date %>
+                           </p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                           <p>Pay date:</p>
+                           <p class="text-right">
+                              <%= actualPayDate %>
+                           </p>
+                        </div>
+                     </div>
+                     <div class="mt-4">
+                        <h5 class="text-upper c-name">
+                           <%= employee_name %>
+                        </h5>
+                        <h5 class="text-upper c-name">
+                           <%= employee_address %>
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="container-fluid earnings-tab">
+               <p class="right-bottom-bar"> ▲ TEAR HERE</p>
+               <p class="right-bar-up">©2024, 2023, 2022, SAURELLIUS</p>
+               <div class="row mt-4 earn-table">
+                  <div class="col-7">
+                     <div class="earn-table">
+                        <table>
+                           <thead class="text-underline">
+                              <th>Earnings</th>
+                              <th>Rate</th>
+                              <th>Hours</th>
+                              <th>This period</th>
+                              <th>Year to date</th>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <% earnings_labels.forEach((el)=> { %>
+                                       <span>
+                                          <%= el %>
+                                       </span>
+                                       <% }); %>
+                                 </td>
+                                 <td>
+                                    <%= hourly_rate %>
+                                 </td>
+                                 <td>
+                                    <%= hours_worked %>
+                                 </td>
+                                 <td>
+                                    <% income.forEach((el)=> { %>
+                                       <span>
+                                          <%= el %>
+                                       </span>
+                                       <% }); %>
+                                 </td>
+                                 <td>
+                                    <%= ytd_gross %>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <th class="tl gross-pay">Gross Pay</th>
+                                 <td class="gross-pay"></td>
+                                 <th class="gross-pay">
+                                    <%= gross_income %>
+                                 </th>
+                                 <td>
+                                    <%= ytd_gross %>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <th>Deductions</th>
+                                 <th colspan="2" class="tl">Statutory</th>
+                                 <th></th>
+                                 <th></th>
+                              </tr>
+                              <% for(var i=0; i<deduction_labels.length; i++) {%>
+                                 <tr>
+                                    <td></td>
+                                    <td colspan="2" class="tl">
+                                       <%= deduction_labels[i] %>
+                                    </td>
+                                    <td>-<%= deductions_current[i] %>
+                                    </td>
+                                    <td>-<%= deduction_ytd[i] %>
+                                    </td>
+                                 </tr>
+                                 <% } %>
+                                    <tr>
+                                       <td></td>
+                                       <th class="gross-pay" colspan="2" class="tl">Net
+                                          Pay
+                                       </th>
+                                       <th class="gross-pay">$ <%= net_pay %>
+                                       </th>
+                                       <td>$ <%= ytd_netPay %>
+                                       </td>
+                                    </tr>
+                        </table>
+                     </div>
+                  </div>
+                  <div class="col-5">
+                     <div class="earn-table">
+                        <table>
+                           <thead class="text-underline">
+                              <th>Other
+                                 Benefits and
+                                 Information
+                              </th>
+                              <th> Amount
+                              </th>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <% benefits_labels.forEach((el)=> { %>
+                                       <span>
+                                          <%= el %>
+                                       </span>
+                                       <% }); %>
+                                 </td>
+                                 <td>
+                                    <% benefits_amount.forEach((el)=> { %>
+                                       <span>
+                                          <%= el %>
+                                       </span>
+                                       <% }); %>
+                                 </td>
+                              </tr>
+
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr class="mt-3">
+                                 <th colspan="3" class="notes-data">Important Notes</th>
+                              </tr>
+                              <tr>
+                                 <td colspan="3" class="notes-cnt">
+                                    <p>
+                                       <%= company_notes %>
+                                    </p>
+                                 </td>
+                              </tr>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="outer-sec my-3">
+               <div class="container-fluid">
+                  <div class="paystub-border">
+                     <img class="paystub-brdr" src="https://drpaystub.com/files/stub1.png">
+                     <p class="doc-authent">
+                        Verify Document Authenticity Color Area Must Change in Tone Gradually and Evenly from dark At
+                        Top to lighter at bottom
+                     </p>
+                     <div class="paystub-top">
+                        <div class="inner-sec-img">
+                           <img src="https://drpaystub.com/files/checkbg.png">
+                        </div>
+                        <div class="inner-sec  p-3 pt-4">
+                           <div class="row iner-check-rw">
+                              <div class="col-1.5 custom-small-col">
+                                 <div class="logo">
+                                    <a href="#">
+                                       <% if(company_image){ %>
+                                          <img src="<%= company_image %>" class="img-fluid
+                                 w-50" alt="logo" />
+                                          <% } %>
+                                    </a>
+                                 </div>
+                              </div>
+                              <div class="col-5.5 custom-large-col">
+                                 <div class="address">
+                                    <p>
+                                       <%= employee_name %><br>
+                                          <%= employee_address %><br>
+                                    </p>
+                                 </div>
+                              </div>
+                              <div class="col-5">
+                                 <div class="info check_infrm
+                              position-relative">
+                                    <p class="chq-no
+                                 mb-0">
+                                       D<%= random_number %>
+                                    </p>
+                                    <div class="d-flex">
+                                       <h6 class="left">Payroll
+                                          check
+                                          number:
+                                       </h6>
+                                       <h6 class="right">
+                                          <%= check_number %>
+                                       </h6>
+                                    </div>
+                                    <div class="d-flex">
+                                       <p class="mb-0 left">Pay
+                                          date:
+                                       </p>
+                                       <p class="mb-0 right">
+                                          <%= pay_date %>
+                                       </p>
+                                    </div>
+                                    <div class="d-flex">
+                                       <p class="mb-0 left">Social Security No</p>
+                                       <p class="mb-0 right">
+                                          <%= ssid %>
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="pay-detail  pt-4">
+                              <div class="row
+                           align-items-end">
+                                 <div class="col-1.5  custom-small-col">
+                                    <p class="mb-0">Pay
+                                       to
+                                       the<br>order
+                                       of:
+                                    </p>
+                                 </div>
+                                 <div class="col-10">
+                                    <h5 class="text-upper">
+                                       <%= employee_name %>
+                                    </h5>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="amount  pb-2">
+                              <div class="row">
+                                 <div class="col-1.5  custom-small-col">
+                                    <p class="mb-0">This
+                                       amount:
+                                    </p>
+                                 </div>
+                                 <div class="col-10.5 custom-xl-col">
+                                    <div class="amount-main
+                                 d-flex
+                                 justify-content-between
+                                 align-items-center">
+                                       <div class="amount-words">
+                                          <h6 class="mb-0
+                                       text-upper">
+                                             <%= net_pay_english %>
+                                          </h6>
+                                       </div>
+                                       <div class="amount-digit">
+                                          <p class="mb-0">$<%= net_pay %>
+                                          </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="sign-outer
+                        mt-3">
+                              <div class="row">
+                                 <div class="col-2">
+                                    <div class="bank-name">
+                                       <p class="text-upper">
+                                          <%= bank_name %><br>
+                                             <%= bank_street_address %><br>
+                                                <%= bank_city %>
+                                                   <%= bank_state %>
+                                                      <%= bank_zip %>
+                                       </p>
+                                    </div>
+                                 </div>
+                                 <div class="col-4">
+                                    <div class="sample   pt-2">
+                                       <h6 class="text-upper">This is not a check<br>
+                                          NON-NEGOTIABLE<br>
+                                          Void after 180 days
+                                       </h6>
+                                    </div>
+                                 </div>
+                                 <div class="col-6">
+                                    <div class="sign-image">
+                                       <% if(sign){ %>
+                                          <img width="80" src="<%= sign %>" />
+                                          <% } %>
+                                    </div>
+
+                                    <div class="sign
+                                 m-4 mt-2 mb-0">
+                                       <p class="mb-0">AUTHORIZED
+                                          SIGNATURE (<%= manager %>)<br>
+                                             VOID
+                                             AFTER
+                                             90
+                                             DAYS
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <h4 class="cheque-btm pt-1">
+                     <%= bankNumber %>
+                        <%= routingNumber %>
+                  </h4>
+                  <div class="check-bar d-flex flex-wrap">
+                     <span class="check-bar-left w-50">
+                        THE ORIGINAL DOCUMENT HAS SAURELLIUS WATERMARK
+                     </span>
+                     <span class="check-bar-right ps-1 w-50">
+                        HOLD AT AN ANGLE TO VIEW WHEN CHECKING THE ENDORSEMENT
+                     </span>
+                  </div>
+               </div>
+            </div>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>
