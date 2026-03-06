@@ -380,7 +380,10 @@ router.get("/ytd-profiles", async (req, res) => {
     const stubs = await Paystub.find({
       "params.userId": userId.toString(),
       "params.paymentStatus": "success",
-    }).sort({ createdAt: -1 }).lean();
+    }).lean();
+
+    // Sort in memory (Cosmos DB may not have sort index on createdAt)
+    stubs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     if (!stubs.length) return res.json({ profiles: [] });
 
