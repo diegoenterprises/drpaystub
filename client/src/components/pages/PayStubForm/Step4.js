@@ -23,7 +23,15 @@ function Step4(props) {
   };
   const [index, setIndex] = useState(0);
   const [paystubCount, setPaystubCount] = useState(0);
-  const [template, setTemplate] = useState(1);
+  const [template, setTemplate] = useState(() => {
+    const preselected = localStorage.getItem("preselectedTemplate");
+    if (preselected) {
+      localStorage.removeItem("preselectedTemplate");
+      const num = parseInt(preselected, 10);
+      if (num >= 1 && num <= 21) return num;
+    }
+    return 1;
+  });
   const [paymentStatus, setPaymentStatus] = useState("pending");
   const [pageStatus, setPageStatus] = useState("pending");
   const [email, setEmail] = useState("");
@@ -142,9 +150,11 @@ function Step4(props) {
   }, []);
 
   const getPaystubs = async (id) => {
+    // Load the user's selected template first (may be preselected from /templates page)
+    const initialTemplate = template;
     const { data } = await axios.post("/api/paystub/templates", {
       paystubId: id,
-      template: 1,
+      template: initialTemplate,
     });
     if (data.status === false) {
       setPageStatus("error");
@@ -152,9 +162,9 @@ function Step4(props) {
       return;
     }
 
-    const paystubImagesOne = data.templates;
-    setTemplateImages((prev) => ({ ...prev, 1: paystubImagesOne }));
-    setCurrentImages([...paystubImagesOne]);
+    const initialImages = data.templates;
+    setTemplateImages((prev) => ({ ...prev, [initialTemplate]: initialTemplate === 1 ? initialImages : { loaded: true, images: initialImages } }));
+    setCurrentImages([...initialImages]);
     setPageStatus("show");
 
     const loadTemplate = async (num) => {
@@ -167,19 +177,21 @@ function Step4(props) {
           return { num, loaded: true, images: data.templates };
         } else {
           console.warn(`Template ${num} failed:`, data.message);
-          return { num, loaded: true, images: paystubImagesOne };
+          return { num, loaded: true, images: initialImages };
         }
       } catch (err) {
         console.error(`Template ${num} error:`, err);
-        return { num, loaded: true, images: paystubImagesOne };
+        return { num, loaded: true, images: initialImages };
       }
     };
 
-    // Load templates 2-21 in parallel
+    // Load remaining templates in parallel
     const others = [];
-    for (let i = 2; i <= TOTAL_TEMPLATES; i++) others.push(loadTemplate(i));
+    for (let i = 1; i <= TOTAL_TEMPLATES; i++) {
+      if (i !== initialTemplate) others.push(loadTemplate(i));
+    }
     const results = await Promise.all(others);
-    const newMap = { 1: paystubImagesOne };
+    const newMap = { [initialTemplate]: initialTemplate === 1 ? initialImages : { loaded: true, images: initialImages } };
     results.forEach((r) => { newMap[r.num] = { loaded: true, images: r.images }; });
     setTemplateImages(newMap);
   };

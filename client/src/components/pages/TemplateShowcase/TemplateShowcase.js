@@ -621,6 +621,7 @@ export class TemplateShowcase extends Component {
                       <Link
                         to={isLoggedIn ? "/paystubs" : "/login"}
                         onClick={() => {
+                          localStorage.setItem("preselectedTemplate", t.id);
                           if (!isLoggedIn) localStorage.setItem("clickStartAstrosync", true);
                         }}
                         style={{
