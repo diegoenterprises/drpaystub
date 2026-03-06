@@ -319,13 +319,13 @@
     .myProgressBar {
         width: 60%;
         max-width: 680px;
-        margin: 0 auto 24px;
+        margin: 0 auto 40px;
         text-align: center;
         animation: ive-card-rise 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 
         ul {
             margin-left: 0;
-            padding: 0;
+            padding: 0 0 32px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -411,7 +411,7 @@
         /* Step labels */
         .step-label {
             position: absolute;
-            bottom: -24px;
+            bottom: -28px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 10px;
@@ -420,12 +420,11 @@
             color: var(--color-text-secondary);
             white-space: nowrap;
             text-transform: uppercase;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        li:hover .step-label,
-        .active .step-label {
             opacity: 1;
+        }
+        .active .step-label {
+            color: var(--color-accent);
+            font-weight: 700;
         }
     }
 
