@@ -289,7 +289,65 @@ export class PayStubForm extends Component {
   };
   componentDidMount() {
     window.scrollTo(0, 0);
+    this.applyYTDPrefill();
   }
+
+  applyYTDPrefill = () => {
+    try {
+      const raw = localStorage.getItem("ytd_prefill");
+      if (!raw) return;
+      const prefill = JSON.parse(raw);
+      localStorage.removeItem("ytd_prefill");
+
+      // Gate: prevent form rendering until Redux is populated
+      this.setState({ ytdPrefilling: true });
+
+      // Prefill keys already match HTML input name attributes (set in YTDContinueModal)
+      // Dispatch directly into Redux so Step component defaultValues pick them up
+      if (prefill.step1) {
+        this.props.dispatch({ type: "STEP_1", payload: prefill.step1 });
+      }
+      if (prefill.step2) {
+        this.props.dispatch({ type: "STEP_2", payload: prefill.step2 });
+      }
+      if (prefill.step3) {
+        // Merge startDate and hire_date into step3 Redux so Step3Salaried/Step3Hourly can read them
+        const step3Redux = { ...prefill.step3 };
+        if (prefill.meta?.pay_frequency) step3Redux.pay_frequency = prefill.meta.pay_frequency;
+        this.props.dispatch({ type: "STEP_3", payload: step3Redux });
+      }
+
+      // Dispatch individual Redux fields Step components read directly
+      const meta = prefill.meta || {};
+      const s2 = prefill.step2 || {};
+      if (s2.employee_state) {
+        this.props.dispatch({ type: "STATE", payload: s2.employee_state });
+      }
+      if (meta.employment_status) {
+        this.props.dispatch({ type: "EMPLOYEMENT", payload: meta.employment_status });
+      }
+      if (meta.pay_frequency) {
+        this.props.dispatch({ type: "PAY_FREQUENCY", payload: meta.pay_frequency });
+      }
+
+      // Also update local state for controlled value= inputs in Step components
+      this.setState({
+        step1Content: { ...this.state.step1Content, ...prefill.step1 },
+        step2Content: { ...this.state.step2Content, ...prefill.step2 },
+        step3Content: { ...this.state.step3Content, ...(prefill.step3 || {}) },
+      });
+
+      // Ungate after a tick so Redux propagates before Step1 mounts
+      setTimeout(() => {
+        this.setState({ ytdPrefilling: false });
+      }, 50);
+
+      console.log("[YTD] Prefill applied from profile:", meta.profileKey);
+    } catch (e) {
+      console.error("[YTD] Failed to apply prefill:", e);
+      this.setState({ ytdPrefilling: false });
+    }
+  };
   onImageUpload = (e, stepNo) => {
     if (stepNo == 1) {
       let obj = { ...this.state.step1Content };
@@ -392,6 +450,18 @@ export class PayStubForm extends Component {
   };
 
   render() {
+    // YTD prefill gate: wait for Redux to be populated before rendering form
+    if (this.state.ytdPrefilling) {
+      return (
+        <div className="PayStubForm">
+          <div className="container" style={{ textAlign: "center", padding: "80px 20px" }}>
+            <div className="spinner-border text-primary" role="status" />
+            <p style={{ marginTop: 16, color: "#888", fontSize: 14 }}>Loading your paystub data...</p>
+          </div>
+        </div>
+      );
+    }
+
     const isLoggedIn = !!localStorage.getItem("tokens");
 
     if (!isLoggedIn && !this.state.gateCleared) {

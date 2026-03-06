@@ -369,6 +369,126 @@ router.get("/test-email", async (req, res) => {
   }
 });
 
+// ─── YTD Continuity Engine ───────────────────────────────────────────────
+// Returns the user's paystub history grouped by employee+company so the
+// frontend can offer "Continue from where you left off" with full pre-fill.
+router.get("/ytd-profiles", async (req, res) => {
+  try {
+    const userId = optionalUserId(req);
+    if (!userId) return res.status(401).json({ error: "Auth required" });
+
+    const stubs = await Paystub.find({
+      "params.userId": userId.toString(),
+      "params.paymentStatus": "success",
+    }).sort({ createdAt: -1 }).lean();
+
+    if (!stubs.length) return res.json({ profiles: [] });
+
+    // Group by normalized (employee_name + company_name) key
+    const groups = {};
+    for (const stub of stubs) {
+      const p = stub.params || {};
+      const empName = (p.employee_name || "").trim().toLowerCase();
+      const compName = (p.company_name || "").trim().toLowerCase();
+      const key = `${empName}|||${compName}`;
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(stub);
+    }
+
+    const profiles = Object.entries(groups).map(([key, groupStubs]) => {
+      // Sort by latest pay_date descending within group
+      groupStubs.sort((a, b) => {
+        const aLast = (a.params.pay_dates || []).slice(-1)[0] || "";
+        const bLast = (b.params.pay_dates || []).slice(-1)[0] || "";
+        const aDate = moment(aLast, "DD/MM/YYYY");
+        const bDate = moment(bLast, "DD/MM/YYYY");
+        return bDate.valueOf() - aDate.valueOf();
+      });
+
+      const latest = groupStubs[0];
+      const p = latest.params;
+      const allPayDates = [];
+      for (const s of groupStubs) {
+        for (const pd of (s.params.pay_dates || [])) {
+          allPayDates.push({ date: pd, paystubId: s._id.toString() });
+        }
+      }
+      // Sort all dates chronologically
+      allPayDates.sort((a, b) =>
+        moment(a.date, "DD/MM/YYYY").valueOf() - moment(b.date, "DD/MM/YYYY").valueOf()
+      );
+
+      const lastPayDate = allPayDates.length
+        ? allPayDates[allPayDates.length - 1].date
+        : null;
+      const totalPeriods = allPayDates.length;
+
+      // Compute next logical start date
+      let nextStartDate = null;
+      if (lastPayDate) {
+        const lastMoment = moment(lastPayDate, "DD/MM/YYYY");
+        nextStartDate = lastMoment.add(1, "day").format("MM/DD/YYYY");
+      }
+
+      return {
+        profileKey: key,
+        paystubId: latest._id.toString(),
+        company_name: p.company_name || "",
+        company_address: p.company_address || "",
+        company_address_2: p.company_address_2 || "",
+        company_city: p.company_city || "",
+        company_state: p.company_state || "",
+        companyZipCode: p.companyZipCode || "",
+        company_phone: p.company_phone || "",
+        company_ein: p.company_ein || "",
+        company_website: p.company_website || "",
+        emailAddress: p.emailAddress || "",
+        bankNumber: p.bankNumber || "",
+        routingNumber: p.routingNumber || "",
+        bank_name: p.bank_name || "",
+        bank_street_address: p.bank_street_address || "",
+        bank_city: p.bank_city || "",
+        bank_state: p.bank_state || "",
+        bank_zip: p.bank_zip || "",
+        manager: p.manager || "",
+        employee_name: p.employee_name || "",
+        ssid: p.ssid || "",
+        employee_address: p.employee_address || "",
+        employee_address_2: p.employee_address_2 || "",
+        employee_city: p.employee_city || "",
+        employee_state: p.employee_state || "",
+        employeeZipCode: p.employeeZipCode || "",
+        employee_Id: p.employee_Id || "",
+        maritial_status: p.maritial_status || "",
+        noOfDependants: p.noOfDependants || "",
+        blindExemptions: p.blindExemptions || "",
+        employment_status: p.employment_status || "",
+        annual_salary: p.annual_salary || "",
+        hourly_rate: p.hourly_rate || "",
+        pay_frequency: p.pay_frequency || "",
+        hire_date: p.hire_date || "",
+        totalPeriods,
+        lastPayDate,
+        nextStartDate,
+        payDates: allPayDates.map((d) => ({
+          date: moment(d.date, "DD/MM/YYYY").format("MM/DD/YYYY"),
+          paystubId: d.paystubId,
+        })),
+        batchCount: groupStubs.length,
+        createdAt: latest.createdAt,
+      };
+    });
+
+    // Sort profiles: most recently used first
+    profiles.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    return res.json({ profiles });
+  } catch (err) {
+    console.error("[YTD] ytd-profiles error:", err);
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 router.post("/save-stub", upload.single("company_image"), async (req, res) => {
   const parsedRequestBody = JSON.parse(req.body.params);
 

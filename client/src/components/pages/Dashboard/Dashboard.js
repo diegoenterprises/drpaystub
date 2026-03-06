@@ -7,6 +7,8 @@ import "./dashboard.css";
 import actionCreater from "../../../redux/actions/actionCreater";
 import DashboardLayout from "./layout/DashboardLayout";
 import WeatherWidget from "./WeatherWidget";
+import YTDContinueModal from "./YTDContinueModal";
+import "./ytd-modal.css";
 import moment from "moment";
 
 class Dashboard extends Component {
@@ -17,6 +19,7 @@ class Dashboard extends Component {
       totalPeriods: 0,
       recentStubs: [],
       loading: true,
+      showYTDModal: false,
     };
   }
 
@@ -160,7 +163,7 @@ class Dashboard extends Component {
         <div className="dash-section-card" style={{ marginBottom: 24 }}>
           <h4>Quick Actions</h4>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12 }}>
-            <Link to="/paystubs" style={{ textDecoration: "none" }}>
+            <div style={{ textDecoration: "none", cursor: "pointer" }} onClick={() => this.setState({ showYTDModal: true })}>
               <div style={{
                 padding: "20px 18px", borderRadius: "var(--radius-lg)",
                 background: "var(--color-bg)", border: "1px solid var(--color-border)",
@@ -182,7 +185,7 @@ class Dashboard extends Component {
                   <div style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>Generate new pay documents</div>
                 </div>
               </div>
-            </Link>
+            </div>
             <Link to="/dashboard/paystub" style={{ textDecoration: "none" }}>
               <div style={{
                 padding: "20px 18px", borderRadius: "var(--radius-lg)",
@@ -286,6 +289,14 @@ class Dashboard extends Component {
             All your paystub PDFs are password-protected. View passwords anytime from <Link to="/dashboard/paystub" style={{ color: "#a78bfa", fontWeight: 600, textDecoration: "none" }}>My Paystubs</Link>.
           </div>
         </div>
+
+        {this.state.showYTDModal && (
+          <YTDContinueModal
+            onClose={() => this.setState({ showYTDModal: false })}
+            onContinue={() => { this.setState({ showYTDModal: false }); window.location.href = "/paystubs"; }}
+            onStartFresh={() => { this.setState({ showYTDModal: false }); localStorage.removeItem("ytd_prefill"); window.location.href = "/paystubs"; }}
+          />
+        )}
       </DashboardLayout>
     );
   }

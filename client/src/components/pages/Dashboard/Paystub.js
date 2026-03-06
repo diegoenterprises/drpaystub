@@ -6,8 +6,10 @@ import DashboardLayout from "./layout/DashboardLayout";
 import actionCreater from "../../../redux/actions/actionCreater";
 import { connect } from "react-redux";
 import "../Dashboard/layout/styles.css";
+import "./ytd-modal.css";
 import { Spinner } from "react-bootstrap";
 import moment from "moment";
+import YTDContinueModal from "./YTDContinueModal";
 
 // Compute per-stub password: LASTNAME + LAST4SSN + MMDDYYYY (pay period start)
 function computeStubPassword(employeeName, ssid, startDateStr) {
@@ -239,6 +241,7 @@ class Paystub extends Component {
     super(props);
     this.state = {
       loading: true,
+      showYTDModal: false,
     };
   }
 
@@ -277,9 +280,13 @@ class Paystub extends Component {
               {stubs.length} paystub group{stubs.length !== 1 ? "s" : ""} &middot; {totalPeriods} total pay period{totalPeriods !== 1 ? "s" : ""}
             </p>
           </div>
-          <Link to="/paystubs" className="btn btn-secondary" style={{ flexShrink: 0 }}>
+          <button
+            className="btn btn-secondary"
+            style={{ flexShrink: 0 }}
+            onClick={() => this.setState({ showYTDModal: true })}
+          >
             + New Paystub
-          </Link>
+          </button>
         </div>
 
         {this.state.loading ? (
@@ -293,9 +300,9 @@ class Paystub extends Component {
             <p style={{ color: "var(--color-text-tertiary)", marginBottom: 20 }}>
               Create your first paystub to see it here
             </p>
-            <Link to="/paystubs" className="btn btn-secondary">
+            <button className="btn btn-secondary" onClick={() => this.setState({ showYTDModal: true })}>
               Create Paystub
-            </Link>
+            </button>
           </div>
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 12 }}>
@@ -303,6 +310,14 @@ class Paystub extends Component {
               <PaystubGroup key={stub._id || index} stub={stub} />
             ))}
           </div>
+        )}
+
+        {this.state.showYTDModal && (
+          <YTDContinueModal
+            onClose={() => this.setState({ showYTDModal: false })}
+            onContinue={() => { this.setState({ showYTDModal: false }); window.location.href = "/paystubs"; }}
+            onStartFresh={() => { this.setState({ showYTDModal: false }); localStorage.removeItem("ytd_prefill"); window.location.href = "/paystubs"; }}
+          />
         )}
       </DashboardLayout>
     );

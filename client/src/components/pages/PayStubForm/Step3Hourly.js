@@ -188,6 +188,18 @@ function Step3(props) {
     setBenefits(arr);
   };
 
+  // YTD Prefill: initialize local state from Redux step3 if present
+  useEffect(() => {
+    if (props.step3?.startDate) {
+      const parsed = moment(props.step3.startDate, "MM/DD/YYYY");
+      if (parsed.isValid()) setStartDate(parsed.toDate());
+    }
+    if (props.step3?.hire_date) {
+      const parsed = moment(props.step3.hire_date, "MM/DD/YYYY");
+      if (parsed.isValid()) setHireDate(parsed.toDate());
+    }
+  }, []);
+
   useEffect(() => {
     setPayDate(handlePayDates(payDate));
   }, [props.payFrequency, startDate]);
