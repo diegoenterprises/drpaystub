@@ -35,6 +35,7 @@ const UserSchema = new mongoose.Schema(
     },
     verifyEmailToken: String,
     resetPasswordToken: String,
+    stripeCustomerId: String,
     image: String,
     geo: {
       ip: String,

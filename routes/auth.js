@@ -10,6 +10,11 @@ const upload = require("../middlewares/upload");
 const Paystub = require("../models/Paystub");
 const { geolocateIP } = require("../services/geolocate");
 
+require("dotenv").config();
+const { STRIPE_LIVE_KEY, STRIPE_TEST_KEY, STRIPE_MODE } = process.env;
+const stripeKey = STRIPE_MODE === "dev" ? STRIPE_TEST_KEY : STRIPE_LIVE_KEY;
+const stripe = require("stripe")(stripeKey);
+
 // Helper: extract client IP from request (works behind Azure proxy)
 function getClientIp(req) {
   return (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.socket?.remoteAddress || null;
@@ -67,6 +72,19 @@ router.post("/register", async (req, res, next) => {
   }
 
   const user = await User.create(req.body);
+
+  // Create Stripe customer so user appears in Stripe Dashboard
+  try {
+    const stripeCustomer = await stripe.customers.create({
+      email: req.body.email,
+      name: [req.body.firstName, req.body.lastName].filter(Boolean).join(" ") || undefined,
+      metadata: { userId: user._id.toString() },
+    });
+    await User.findByIdAndUpdate(user._id, { stripeCustomerId: stripeCustomer.id });
+    console.log(`[Stripe] Customer ${stripeCustomer.id} created for ${req.body.email}`);
+  } catch (stripeErr) {
+    console.error("[Stripe] Customer creation failed:", stripeErr.message);
+  }
 
   // Fire-and-forget: geolocate user IP on registration
   const regIp = getClientIp(req);

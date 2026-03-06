@@ -615,13 +615,42 @@ router.get("/payment-intent", async (req, res, next) => {
       return res.json({ secret: "free_owner_access", free: true });
     }
 
-    console.log("[Stripe] Creating payment intent for $" + (finalAmount / 100).toFixed(2));
-    const paymentIntent = await stripe.paymentIntents.create({
+    // Look up Stripe customer for logged-in user
+    let stripeCustomerId = null;
+    const userId = optionalUserId(req);
+    if (userId) {
+      try {
+        const { User } = require("../models/user");
+        const dbUser = await User.findById(userId).select("stripeCustomerId email firstName lastName").lean();
+        if (dbUser?.stripeCustomerId) {
+          stripeCustomerId = dbUser.stripeCustomerId;
+        } else if (dbUser?.email) {
+          // User exists but has no Stripe customer yet — create one now
+          const newCust = await stripe.customers.create({
+            email: dbUser.email,
+            name: [dbUser.firstName, dbUser.lastName].filter(Boolean).join(" ") || undefined,
+            metadata: { userId: userId.toString() },
+          });
+          stripeCustomerId = newCust.id;
+          await User.findByIdAndUpdate(userId, { stripeCustomerId: newCust.id });
+          console.log(`[Stripe] Backfilled customer ${newCust.id} for ${dbUser.email}`);
+        }
+      } catch (lookupErr) {
+        console.error("[Stripe] Customer lookup error:", lookupErr.message);
+      }
+    }
+
+    console.log("[Stripe] Creating payment intent for $" + (finalAmount / 100).toFixed(2) + (stripeCustomerId ? ` (customer: ${stripeCustomerId})` : " (guest)"));
+    const intentParams = {
       amount: finalAmount,
       currency: "usd",
       payment_method_types: ["card"],
       statement_descriptor_suffix: "Saurellius",
-    });
+    };
+    if (stripeCustomerId) {
+      intentParams.customer = stripeCustomerId;
+    }
+    const paymentIntent = await stripe.paymentIntents.create(intentParams);
     console.log("[Stripe] Payment intent created:", paymentIntent.id);
     return res.json({ secret: paymentIntent.client_secret, free: false });
   } catch (err) {
