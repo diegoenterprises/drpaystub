@@ -81,6 +81,51 @@ router.post("/backfill-geo", auth(), roleCheck("admin"), async (req, res) => {
   }
 });
 
+// ─── Backfill Stripe customers for existing users ────────────────────────
+router.post("/backfill-stripe", auth(), roleCheck("admin"), async (req, res) => {
+  try {
+    const users = await User.find({
+      $or: [{ stripeCustomerId: null }, { stripeCustomerId: { $exists: false } }, { stripeCustomerId: "" }],
+    }).select("_id email firstName lastName").lean();
+
+    let created = 0;
+    let failed = 0;
+    const errors = [];
+
+    for (const u of users) {
+      if (!u.email) { failed++; continue; }
+      try {
+        // Check if Stripe customer already exists for this email (avoid duplicates)
+        const existing = await stripe.customers.list({ email: u.email, limit: 1 });
+        let customerId;
+        if (existing.data.length > 0) {
+          customerId = existing.data[0].id;
+          // Update metadata to link back to our DB
+          await stripe.customers.update(customerId, { metadata: { userId: u._id.toString() } });
+        } else {
+          const cust = await stripe.customers.create({
+            email: u.email,
+            name: [u.firstName, u.lastName].filter(Boolean).join(" ") || undefined,
+            metadata: { userId: u._id.toString() },
+          });
+          customerId = cust.id;
+        }
+        await User.findByIdAndUpdate(u._id, { stripeCustomerId: customerId });
+        created++;
+      } catch (err) {
+        failed++;
+        errors.push({ email: u.email, error: err.message });
+      }
+    }
+
+    console.log(`[Admin] Stripe backfill complete: ${created} created, ${failed} failed out of ${users.length}`);
+    res.json({ ok: true, total: users.length, created, failed, errors: errors.slice(0, 10) });
+  } catch (err) {
+    console.error("[Admin] backfill-stripe error:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // ─── Quick DB health check (no auth — for debugging) ────────────────────────
 router.get("/health", async (req, res) => {
   try {
