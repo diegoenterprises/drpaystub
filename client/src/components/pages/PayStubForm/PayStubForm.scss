@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════
    Jony Ive-Inspired Paystub Wizard
-   Clean · Fluid · Purposeful
+   Clean · Fluid · Purposeful · Dark-mode aware
    ═══════════════════════════════════════════════════ */
 
 .PayStubForm {
@@ -10,20 +10,20 @@
     animation: ive-page-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 
     .help-icon {
-        background: rgba(59, 130, 246, 0.08);
+        background: var(--gradient-brand-subtle);
         padding: 2px 8px;
         border-radius: 980px;
         font-size: 11px;
         font-weight: 600;
         text-align: center;
         margin-left: 6px;
-        color: #6b7280;
+        color: var(--color-text-secondary);
         cursor: help;
         display: inline-block;
         transition: background 0.3s ease;
     }
     .help-icon:hover {
-        background: rgba(59, 130, 246, 0.14);
+        background: var(--gradient-brand-subtle);
     }
 
     ol {
@@ -35,7 +35,7 @@
         letter-spacing: -0.04em;
         text-align: center;
         font-weight: 700;
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        background: var(--gradient-brand);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -43,15 +43,15 @@
     }
 
     .badge-soft-primary {
-        background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1)) !important;
-        color: #6366f1 !important;
+        background: var(--gradient-brand-subtle) !important;
+        color: var(--color-accent) !important;
         font-size: 11px !important;
         font-weight: 700 !important;
         letter-spacing: 0.08em !important;
         text-transform: uppercase !important;
         padding: 5px 14px !important;
         border-radius: 980px !important;
-        border: 1px solid rgba(99,102,241,0.15) !important;
+        border: 1px solid var(--color-border) !important;
         margin-bottom: 12px !important;
         display: inline-block !important;
     }
@@ -61,28 +61,18 @@
         width: 90%;
         max-width: 960px;
         margin: 0 auto;
-        background: rgba(255, 255, 255, 0.72);
-        backdrop-filter: blur(40px) saturate(180%);
-        -webkit-backdrop-filter: blur(40px) saturate(180%);
-        border: 1px solid rgba(255, 255, 255, 0.5);
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
         border-radius: 24px;
         padding: 40px 36px 48px;
-        box-shadow:
-            0 1px 3px rgba(0,0,0,0.04),
-            0 8px 24px rgba(0,0,0,0.06),
-            0 24px 48px rgba(0,0,0,0.04),
-            inset 0 1px 0 rgba(255,255,255,0.6);
+        box-shadow: var(--shadow-card);
         display: flex;
         justify-content: center;
         animation: ive-card-rise 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
         transition: box-shadow 0.4s ease;
     }
     .formStep:hover {
-        box-shadow:
-            0 1px 3px rgba(0,0,0,0.04),
-            0 12px 32px rgba(0,0,0,0.08),
-            0 32px 64px rgba(0,0,0,0.05),
-            inset 0 1px 0 rgba(255,255,255,0.6);
+        box-shadow: var(--shadow-card-hover);
     }
 
     /* ── Glass Progress Bar Card ── */
@@ -90,65 +80,61 @@
         width: 60%;
         max-width: 680px;
         margin: 0 auto 28px;
-        background: rgba(255, 255, 255, 0.65);
-        backdrop-filter: blur(30px) saturate(160%);
-        -webkit-backdrop-filter: blur(30px) saturate(160%);
-        border: 1px solid rgba(255, 255, 255, 0.45);
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
         border-radius: 20px;
         padding: 24px 32px;
-        box-shadow:
-            0 1px 3px rgba(0,0,0,0.03),
-            0 8px 24px rgba(0,0,0,0.05),
-            inset 0 1px 0 rgba(255,255,255,0.5);
+        box-shadow: var(--shadow-sm);
         animation: ive-card-rise 0.5s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 
         p {
             font-size: 14px;
             letter-spacing: -0.01em;
+            color: var(--color-text-secondary);
         }
 
         .progress {
             height: 6px !important;
             border-radius: 100px !important;
-            background: rgba(0,0,0,0.04) !important;
+            background: var(--color-bg-secondary) !important;
             overflow: hidden;
         }
         .progress-bar {
-            background: linear-gradient(90deg, #6366f1, #8b5cf6, #a855f7) !important;
+            background: var(--gradient-brand) !important;
             border-radius: 100px !important;
             transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
-            box-shadow: 0 0 12px rgba(99,102,241,0.3);
+            box-shadow: var(--shadow-brand);
         }
     }
 
     .form-group.required .label-input::after {
         content: '*';
-        color: #ef4444;
+        color: var(--color-error);
         margin-left: 4px;
         font-weight: 600;
     }
 
     /* ── Elevated Form Inputs ── */
     .form-control {
-        border: 1.5px solid rgba(0,0,0,0.08) !important;
+        border: 1.5px solid var(--color-border-strong) !important;
         border-radius: 12px !important;
         padding: 12px 16px !important;
         font-size: 15px !important;
-        background: rgba(255,255,255,0.7) !important;
-        backdrop-filter: blur(8px);
+        background: var(--color-bg-input) !important;
+        color: var(--color-text-primary) !important;
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.04) !important;
+        box-shadow: var(--shadow-xs) !important;
     }
     .form-control:focus {
-        border-color: rgba(99,102,241,0.5) !important;
+        border-color: var(--color-accent) !important;
         box-shadow:
             0 0 0 4px rgba(99,102,241,0.08),
-            0 1px 2px rgba(0,0,0,0.04) !important;
-        background: #fff !important;
+            var(--shadow-xs) !important;
+        background: var(--color-bg-elevated) !important;
         outline: none !important;
     }
     .form-control::placeholder {
-        color: #9ca3af !important;
+        color: var(--color-text-tertiary) !important;
         font-weight: 400;
     }
 
@@ -163,7 +149,7 @@
     label {
         font-size: 13px;
         font-weight: 600;
-        color: #374151;
+        color: var(--color-text-primary);
         letter-spacing: -0.01em;
         margin-bottom: 6px;
     }
@@ -176,16 +162,16 @@
     .stup-template-img {
         width: 100%;
         border-radius: 16px;
-        border: 1px solid rgba(0,0,0,0.06);
+        border: 1px solid var(--color-border);
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
     }
     .stup-template-img:hover {
         transform: scale(1.015) translateY(-2px);
-        box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+        box-shadow: var(--shadow-lg);
     }
 
     .greentick {
-        color: #10b981;
+        color: var(--color-success);
         font-size: 18px;
         margin-left: 8px;
         animation: ive-check-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
@@ -194,6 +180,138 @@
     .formStep3 {
         .react-datepicker-wrapper {
             display: block;
+        }
+    }
+
+    /* ── Auth Gate ── */
+    .auth-gate {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 60vh;
+        padding: 40px 16px;
+    }
+    .auth-gate-card {
+        width: 100%;
+        max-width: 480px;
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: 48px 36px;
+        box-shadow: var(--shadow-card);
+        text-align: center;
+    }
+    .auth-gate-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: var(--radius-lg);
+        background: var(--gradient-brand-subtle);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+        i {
+            font-size: 28px;
+            color: var(--color-accent);
+        }
+    }
+    .auth-gate-title {
+        font-size: 26px !important;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        margin-bottom: 12px;
+    }
+    .auth-gate-subtitle {
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--color-text-secondary);
+        margin-bottom: 28px;
+    }
+    .auth-gate .terms-checkbox-label {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 14px 16px !important;
+        border-radius: var(--radius-md);
+        border: 1.5px solid var(--color-border-strong);
+        background: var(--color-bg-input);
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease;
+        margin: 0 0 20px;
+        width: 100%;
+        text-align: left;
+
+        input[type="checkbox"] {
+            width: 18px !important;
+            height: 18px !important;
+            accent-color: var(--color-accent);
+            cursor: pointer;
+            flex-shrink: 0;
+            margin: 0 !important;
+        }
+
+        span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            line-height: 1.4;
+
+            a {
+                font-weight: 600;
+                color: var(--color-accent);
+            }
+        }
+    }
+    .auth-gate .terms-checkbox-label:has(input:checked) {
+        border-color: var(--color-accent);
+        background: var(--gradient-brand-subtle);
+    }
+    .auth-gate-cta {
+        width: 100%;
+        margin-bottom: 0;
+    }
+    .auth-gate-divider {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 24px 0;
+
+        &::before, &::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--color-border-strong);
+        }
+        span {
+            font-size: 13px;
+            color: var(--color-text-tertiary);
+            font-weight: 500;
+        }
+    }
+    .auth-gate-register {
+        width: 100%;
+        padding: 13px 28px !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        border-radius: var(--radius-md) !important;
+        color: var(--color-text-primary) !important;
+        background: var(--color-bg-elevated) !important;
+        border: 1.5px solid var(--color-border-strong) !important;
+        transition: all 0.3s ease;
+    }
+    .auth-gate-register:hover {
+        border-color: var(--color-accent) !important;
+        color: var(--color-accent) !important;
+        transform: translateY(-1px);
+    }
+    .auth-gate-login-text {
+        font-size: 14px;
+        color: var(--color-text-tertiary);
+        margin-top: 16px;
+        margin-bottom: 0;
+        a {
+            color: var(--color-accent);
+            font-weight: 600;
         }
     }
 
@@ -221,7 +339,7 @@
             text-align: center;
             line-height: 44px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: var(--gradient-brand);
             margin: 0;
             display: inline-flex;
             align-items: center;
@@ -231,9 +349,7 @@
             cursor: pointer;
             font-weight: 700;
             font-size: 15px;
-            box-shadow:
-                0 2px 8px rgba(99,102,241,0.3),
-                0 4px 16px rgba(99,102,241,0.15);
+            box-shadow: var(--shadow-brand);
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 1;
         }
@@ -245,7 +361,7 @@
             left: -56px;
             width: 56px;
             height: 3px;
-            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            background: var(--gradient-brand);
             z-index: -1;
             transform: translateY(-50%);
             border-radius: 100px;
@@ -264,7 +380,7 @@
             margin-left: 56px;
         }
 
-        /* Completed steps get a subtle check feel */
+        /* Completed steps */
         .completed {
             background: linear-gradient(135deg, #10b981, #059669);
             box-shadow:
@@ -273,23 +389,23 @@
         }
 
         .active {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            box-shadow:
-                0 4px 12px rgba(99,102,241,0.4),
-                0 8px 24px rgba(99,102,241,0.2);
+            background: var(--gradient-brand);
+            box-shadow: var(--shadow-brand-lg);
             transform: scale(1.15);
             animation: ive-step-pulse 2.5s ease-in-out infinite;
         }
 
+        .inactive,
         .active ~ li {
-            background: rgba(0,0,0,0.05);
-            color: #9ca3af;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-tertiary);
             box-shadow: none;
-            border: 2px solid rgba(0,0,0,0.08);
+            border: 2px solid var(--color-border-strong);
         }
 
+        .inactive::before,
         .active ~ li::before {
-            background: rgba(0,0,0,0.08);
+            background: var(--color-border-strong);
         }
 
         /* Step labels */
@@ -301,7 +417,7 @@
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 0.04em;
-            color: #6b7280;
+            color: var(--color-text-secondary);
             white-space: nowrap;
             text-transform: uppercase;
             opacity: 0;
@@ -315,7 +431,7 @@
 
     .addPayDate {
         cursor: pointer;
-        color: #6366f1;
+        color: var(--color-accent);
         font-weight: 600;
         font-size: 14px;
         transition: all 0.3s ease;
@@ -324,13 +440,13 @@
         gap: 4px;
     }
     .addPayDate:hover {
-        color: #4f46e5;
+        color: var(--color-accent-hover);
         transform: translateX(2px);
     }
 
     .cross {
         cursor: pointer;
-        color: #ef4444;
+        color: var(--color-error);
         font-size: 18px;
         vertical-align: bottom;
         opacity: 0.6;
@@ -342,20 +458,19 @@
     }
 
     .group-border {
-        border: 1.5px solid rgba(0,0,0,0.06);
+        border: 1.5px solid var(--color-border);
         border-radius: 16px;
         padding: 20px;
-        background: rgba(255,255,255,0.5);
-        backdrop-filter: blur(12px);
+        background: var(--color-bg-elevated);
         transition: border-color 0.3s ease;
     }
     .group-border:hover {
-        border-color: rgba(99,102,241,0.15);
+        border-color: var(--color-accent);
     }
 
     /* ── Buttons ── */
     .btn-secondary {
-        background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+        background: var(--gradient-brand) !important;
         border: none !important;
         border-radius: 14px !important;
         padding: 13px 32px !important;
@@ -363,9 +478,7 @@
         font-size: 15px !important;
         letter-spacing: -0.01em !important;
         color: #fff !important;
-        box-shadow:
-            0 2px 8px rgba(99,102,241,0.3),
-            0 4px 16px rgba(99,102,241,0.15) !important;
+        box-shadow: var(--shadow-brand) !important;
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
         position: relative;
         overflow: hidden;
@@ -380,9 +493,7 @@
     }
     .btn-secondary:hover {
         transform: translateY(-2px) !important;
-        box-shadow:
-            0 4px 12px rgba(99,102,241,0.4),
-            0 8px 32px rgba(99,102,241,0.2) !important;
+        box-shadow: var(--shadow-brand-lg) !important;
     }
     .btn-secondary:hover::after {
         opacity: 1;
@@ -397,24 +508,29 @@
             font-weight: 600 !important;
             padding: 10px 24px !important;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            color: var(--color-text-primary) !important;
+            border-color: var(--color-border-strong) !important;
         }
         .btn:hover {
             transform: translateX(-3px);
+            border-color: var(--color-accent) !important;
+            color: var(--color-accent) !important;
         }
     }
 
     /* ── Form radio buttons ── */
     .form-check-input {
-        accent-color: #6366f1;
+        accent-color: var(--color-accent);
     }
     .form-check-label {
         font-weight: 500;
         font-size: 14px;
         cursor: pointer;
+        color: var(--color-text-primary);
         transition: color 0.2s ease;
     }
     .form-check-label:hover {
-        color: #6366f1;
+        color: var(--color-accent);
     }
 
     /* ── Step transition animation ── */
@@ -471,29 +587,32 @@
                 width: 36px;
             }
         }
+
+        .auth-gate-card {
+            padding: 32px 20px;
+        }
     }
 }
 
 /* ── Global Form Overrides ── */
 .form-control.is-invalid {
-    border: 1.5px solid #ef4444 !important;
+    border: 1.5px solid var(--color-error) !important;
     background-image: none !important;
     box-shadow: 0 0 0 4px rgba(239,68,68,0.08) !important;
 }
 
 #passwordHelp {
-    color: #ef4444 !important;
+    color: var(--color-error) !important;
     font-size: 12px;
     font-weight: 500;
 }
 
 .sigCanvas {
-    border: 2px solid rgba(0,0,0,0.08);
+    border: 2px solid var(--color-border-strong);
     border-radius: 16px;
     margin: 24px;
     height: 80vh;
-    background: rgba(255,255,255,0.5);
-    backdrop-filter: blur(12px);
+    background: var(--color-bg-elevated);
 }
 
 .signature-preview {
@@ -505,26 +624,25 @@
 }
 
 .btn-outline-new {
-    color: #6366f1 !important;
-    border-color: rgba(99,102,241,0.3) !important;
+    color: var(--color-accent) !important;
+    border-color: var(--color-border-strong) !important;
     border-radius: 14px !important;
     font-weight: 600 !important;
     padding: 10px 24px !important;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    backdrop-filter: blur(8px);
 }
 
 .btn-outline-new:hover {
     color: #fff !important;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+    background: var(--gradient-brand) !important;
     border-color: transparent !important;
-    box-shadow: 0 4px 16px rgba(99,102,241,0.3);
+    box-shadow: var(--shadow-brand);
     transform: translateY(-1px);
 }
 
 .paydate-label {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--color-text-secondary);
     font-weight: 600;
     letter-spacing: 0.02em;
 }

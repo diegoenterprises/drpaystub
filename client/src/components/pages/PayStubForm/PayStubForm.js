@@ -9,6 +9,7 @@ import Step4Form from "./Step4";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import moment from "moment";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export class PayStubForm extends Component {
   // optional configuration
@@ -20,6 +21,8 @@ export class PayStubForm extends Component {
     step3Done: false,
     step4Done: false,
     progress: 25,
+    termsAccepted: false,
+    gateCleared: !!localStorage.getItem("tokens"),
     step1Content: {
       companyName: "",
       companyLogo: "",
@@ -389,6 +392,67 @@ export class PayStubForm extends Component {
   };
 
   render() {
+    const isLoggedIn = !!localStorage.getItem("tokens");
+
+    if (!isLoggedIn && !this.state.gateCleared) {
+      return (
+        <div className="PayStubForm">
+          <div className="container">
+            <div className="auth-gate">
+              <div className="auth-gate-card">
+                <div className="auth-gate-icon">
+                  <i className="fa fa-file-text-o"></i>
+                </div>
+                <h2 className="auth-gate-title">Before we begin</h2>
+                <p className="auth-gate-subtitle">
+                  To generate your pay stub, please accept our terms of service.
+                  Creating an account lets you save and manage your stubs.
+                </p>
+
+                <label className="terms-checkbox-label">
+                  <input
+                    type="checkbox"
+                    checked={this.state.termsAccepted}
+                    onChange={(e) => this.setState({ termsAccepted: e.target.checked })}
+                  />
+                  <span>
+                    I accept the{" "}
+                    <Link to="/terms-and-conditions">Terms &amp; Conditions</Link>
+                  </span>
+                </label>
+
+                <button
+                  className="btn btn-secondary auth-gate-cta"
+                  disabled={!this.state.termsAccepted}
+                  onClick={() => this.setState({ gateCleared: true })}
+                  style={{
+                    opacity: this.state.termsAccepted ? 1 : 0.5,
+                    cursor: this.state.termsAccepted ? "pointer" : "not-allowed",
+                  }}
+                >
+                  Continue to Pay Stub Generator <i className="fa fa-arrow-right"></i>
+                </button>
+
+                <div className="auth-gate-divider">
+                  <span>or</span>
+                </div>
+
+                <div className="auth-gate-auth-links">
+                  <Link to="/register" className="btn auth-gate-register">
+                    Create a Free Account <i className="fa fa-user-plus"></i>
+                  </Link>
+                  <p className="auth-gate-login-text">
+                    Already have an account?{" "}
+                    <Link to="/login" onClick={() => localStorage.setItem("clickStartAstrosync", true)}>Sign in</Link>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="PayStubForm">
         <div className="container">
