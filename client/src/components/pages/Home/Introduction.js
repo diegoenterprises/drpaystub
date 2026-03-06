@@ -45,10 +45,10 @@ export class Introduction extends Component {
               <div className="intro-card-icon">
                 <i className="fa fa-cube"></i>
               </div>
-              <h3 className="intro-card-title">Zero complexity</h3>
+              <h3 className="intro-card-title">Effortless simplicity</h3>
               <p className="intro-card-text">
-                No accounts to manage, no software to install. Just a clean
-                interface that gets out of your way and lets you work.
+                Generate professional paystubs in minutes. Our streamlined
+                workflow handles the math so you can focus on your business.
               </p>
             </div>
           </div>
