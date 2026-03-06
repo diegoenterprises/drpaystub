@@ -13,6 +13,9 @@ class Footer extends Component {
     this.state = {
       show: false,
       email: "",
+      newsletterSending: false,
+      newsletterSent: false,
+      newsletterError: false,
     };
   }
   scrollToTop = () => {
@@ -24,13 +27,22 @@ class Footer extends Component {
     });
   }
   handleSubmit() {
-    // e.preventDefault()
-    axios.post("/footersend", this.state).then((res) => {
+    const { email } = this.state;
+    if (!email || !email.includes("@")) return;
+    this.setState({ newsletterSending: true, newsletterError: false });
+    axios.post("/api/sendmails/newsletter", { email }).then((res) => {
       if (res.data.mailSent) {
         this.setState({
-          show: !this.state.show,
+          show: true,
+          email: "",
+          newsletterSending: false,
+          newsletterSent: true,
         });
+      } else {
+        this.setState({ newsletterSending: false, newsletterError: true });
       }
+    }).catch(() => {
+      this.setState({ newsletterSending: false, newsletterError: true });
     });
   }
   render() {
@@ -92,21 +104,33 @@ class Footer extends Component {
                   </Link>
                 </li>
                 <li className="list-group-item">
-                  <div className="newletter">
-                    <input
-                      type="text"
-                      className="form-control"
-                      onChange={(e) => this.setState({ email: e.target.value })}
-                      placeholder="Your Email Address"
-                    />
-                    <Link to="">
-                      {" "}
-                      <i
+                  {this.state.newsletterSent ? (
+                    <p style={{ color: "#10b981", fontSize: 13, fontWeight: 600, margin: "8px 0" }}>
+                      <i className="fa fa-check-circle" style={{ marginRight: 6 }}></i>
+                      You're subscribed!
+                    </p>
+                  ) : (
+                    <div className="newletter">
+                      <input
+                        type="email"
+                        className="form-control"
+                        value={this.state.email}
+                        onChange={(e) => this.setState({ email: e.target.value, newsletterError: false })}
+                        onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); this.handleSubmit(); } }}
+                        placeholder="Your Email Address"
+                        disabled={this.state.newsletterSending}
+                      />
+                      <span
+                        style={{ cursor: this.state.newsletterSending ? "not-allowed" : "pointer" }}
                         onClick={() => this.handleSubmit()}
-                        className="fa fa-long-arrow-right"
-                      ></i>
-                    </Link>
-                  </div>
+                      >
+                        <i className={this.state.newsletterSending ? "fa fa-spinner fa-spin" : "fa fa-long-arrow-right"}></i>
+                      </span>
+                    </div>
+                  )}
+                  {this.state.newsletterError && (
+                    <p style={{ color: "#ef4444", fontSize: 12, margin: "4px 0 0" }}>Something went wrong. Try again.</p>
+                  )}
                 </li>
                 <li className="list-group-item border-0 menu-value">
                   <img src={PaymentMethods} className="img img-responsive" />
