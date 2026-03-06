@@ -384,6 +384,21 @@ router.get("/ytd-profiles", async (req, res) => {
 
     if (!stubs.length) return res.json({ profiles: [] });
 
+    // Helper: safely parse a date string trying multiple formats
+    const safeParse = (d) => {
+      if (!d || typeof d !== "string") return moment.invalid();
+      return moment(d, ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD"], true);
+    };
+
+    // Helper: safely extract pay_dates array from params
+    const getPayDates = (p) => {
+      if (!p) return [];
+      const pd = p.pay_dates;
+      if (Array.isArray(pd)) return pd.filter((d) => typeof d === "string" && d.length > 0);
+      if (typeof pd === "string" && pd.length > 0) return [pd];
+      return [];
+    };
+
     // Group by normalized (employee_name + company_name) key
     const groups = {};
     for (const stub of stubs) {
@@ -395,89 +410,97 @@ router.get("/ytd-profiles", async (req, res) => {
       groups[key].push(stub);
     }
 
-    const profiles = Object.entries(groups).map(([key, groupStubs]) => {
-      // Sort by latest pay_date descending within group
-      groupStubs.sort((a, b) => {
-        const aLast = (a.params.pay_dates || []).slice(-1)[0] || "";
-        const bLast = (b.params.pay_dates || []).slice(-1)[0] || "";
-        const aDate = moment(aLast, "DD/MM/YYYY");
-        const bDate = moment(bLast, "DD/MM/YYYY");
-        return bDate.valueOf() - aDate.valueOf();
-      });
+    const profiles = [];
+    for (const [key, groupStubs] of Object.entries(groups)) {
+      try {
+        // Sort by latest pay_date descending within group
+        groupStubs.sort((a, b) => {
+          const aDates = getPayDates(a.params);
+          const bDates = getPayDates(b.params);
+          const aLast = aDates.length ? aDates[aDates.length - 1] : "";
+          const bLast = bDates.length ? bDates[bDates.length - 1] : "";
+          return safeParse(bLast).valueOf() - safeParse(aLast).valueOf();
+        });
 
-      const latest = groupStubs[0];
-      const p = latest.params;
-      const allPayDates = [];
-      for (const s of groupStubs) {
-        for (const pd of (s.params.pay_dates || [])) {
-          allPayDates.push({ date: pd, paystubId: s._id.toString() });
+        const latest = groupStubs[0];
+        const p = latest.params || {};
+        const allPayDates = [];
+        for (const s of groupStubs) {
+          for (const pd of getPayDates(s.params)) {
+            allPayDates.push({ date: pd, paystubId: s._id.toString() });
+          }
         }
+        // Sort all dates chronologically
+        allPayDates.sort((a, b) => safeParse(a.date).valueOf() - safeParse(b.date).valueOf());
+
+        const lastPayDate = allPayDates.length
+          ? allPayDates[allPayDates.length - 1].date
+          : null;
+        const totalPeriods = allPayDates.length;
+
+        // Compute next logical start date
+        let nextStartDate = null;
+        if (lastPayDate) {
+          const lastMoment = safeParse(lastPayDate);
+          if (lastMoment.isValid()) {
+            nextStartDate = lastMoment.clone().add(1, "day").format("MM/DD/YYYY");
+          }
+        }
+
+        profiles.push({
+          profileKey: key,
+          paystubId: latest._id.toString(),
+          company_name: p.company_name || "",
+          company_address: p.company_address || "",
+          company_address_2: p.company_address_2 || "",
+          company_city: p.company_city || "",
+          company_state: p.company_state || "",
+          companyZipCode: p.companyZipCode || "",
+          company_phone: p.company_phone || "",
+          company_ein: p.company_ein || "",
+          company_website: p.company_website || "",
+          emailAddress: p.emailAddress || "",
+          bankNumber: p.bankNumber || "",
+          routingNumber: p.routingNumber || "",
+          bank_name: p.bank_name || "",
+          bank_street_address: p.bank_street_address || "",
+          bank_city: p.bank_city || "",
+          bank_state: p.bank_state || "",
+          bank_zip: p.bank_zip || "",
+          manager: p.manager || "",
+          employee_name: p.employee_name || "",
+          ssid: p.ssid || "",
+          employee_address: p.employee_address || "",
+          employee_address_2: p.employee_address_2 || "",
+          employee_city: p.employee_city || "",
+          employee_state: p.employee_state || "",
+          employeeZipCode: p.employeeZipCode || "",
+          employee_Id: p.employee_Id || "",
+          maritial_status: p.maritial_status || "",
+          noOfDependants: p.noOfDependants || "",
+          blindExemptions: p.blindExemptions || "",
+          employment_status: p.employment_status || "",
+          annual_salary: p.annual_salary || "",
+          hourly_rate: p.hourly_rate || "",
+          pay_frequency: p.pay_frequency || "",
+          hire_date: p.hire_date || "",
+          totalPeriods,
+          lastPayDate,
+          nextStartDate,
+          payDates: allPayDates.map((d) => {
+            const parsed = safeParse(d.date);
+            return {
+              date: parsed.isValid() ? parsed.format("MM/DD/YYYY") : d.date,
+              paystubId: d.paystubId,
+            };
+          }),
+          batchCount: groupStubs.length,
+          createdAt: latest.createdAt,
+        });
+      } catch (groupErr) {
+        console.error("[YTD] Error processing group:", key, groupErr.message);
       }
-      // Sort all dates chronologically
-      allPayDates.sort((a, b) =>
-        moment(a.date, "DD/MM/YYYY").valueOf() - moment(b.date, "DD/MM/YYYY").valueOf()
-      );
-
-      const lastPayDate = allPayDates.length
-        ? allPayDates[allPayDates.length - 1].date
-        : null;
-      const totalPeriods = allPayDates.length;
-
-      // Compute next logical start date
-      let nextStartDate = null;
-      if (lastPayDate) {
-        const lastMoment = moment(lastPayDate, "DD/MM/YYYY");
-        nextStartDate = lastMoment.add(1, "day").format("MM/DD/YYYY");
-      }
-
-      return {
-        profileKey: key,
-        paystubId: latest._id.toString(),
-        company_name: p.company_name || "",
-        company_address: p.company_address || "",
-        company_address_2: p.company_address_2 || "",
-        company_city: p.company_city || "",
-        company_state: p.company_state || "",
-        companyZipCode: p.companyZipCode || "",
-        company_phone: p.company_phone || "",
-        company_ein: p.company_ein || "",
-        company_website: p.company_website || "",
-        emailAddress: p.emailAddress || "",
-        bankNumber: p.bankNumber || "",
-        routingNumber: p.routingNumber || "",
-        bank_name: p.bank_name || "",
-        bank_street_address: p.bank_street_address || "",
-        bank_city: p.bank_city || "",
-        bank_state: p.bank_state || "",
-        bank_zip: p.bank_zip || "",
-        manager: p.manager || "",
-        employee_name: p.employee_name || "",
-        ssid: p.ssid || "",
-        employee_address: p.employee_address || "",
-        employee_address_2: p.employee_address_2 || "",
-        employee_city: p.employee_city || "",
-        employee_state: p.employee_state || "",
-        employeeZipCode: p.employeeZipCode || "",
-        employee_Id: p.employee_Id || "",
-        maritial_status: p.maritial_status || "",
-        noOfDependants: p.noOfDependants || "",
-        blindExemptions: p.blindExemptions || "",
-        employment_status: p.employment_status || "",
-        annual_salary: p.annual_salary || "",
-        hourly_rate: p.hourly_rate || "",
-        pay_frequency: p.pay_frequency || "",
-        hire_date: p.hire_date || "",
-        totalPeriods,
-        lastPayDate,
-        nextStartDate,
-        payDates: allPayDates.map((d) => ({
-          date: moment(d.date, "DD/MM/YYYY").format("MM/DD/YYYY"),
-          paystubId: d.paystubId,
-        })),
-        batchCount: groupStubs.length,
-        createdAt: latest.createdAt,
-      };
-    });
+    }
 
     // Sort profiles: most recently used first
     profiles.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
