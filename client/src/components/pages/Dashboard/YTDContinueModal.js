@@ -51,7 +51,10 @@ class YTDContinueModal extends Component {
       });
     } catch (e) {
       console.error("[YTD Modal] fetch error:", e);
-      this.setState({ error: "Failed to load profiles", loading: false });
+      const msg = e.response
+        ? `Server error ${e.response.status}: ${e.response.data?.error || e.response.statusText}`
+        : e.message || "Network error";
+      this.setState({ error: msg, loading: false });
     }
   };
 
