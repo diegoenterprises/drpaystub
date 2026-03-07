@@ -9,12 +9,12 @@ export class Introduction extends Component {
           <div className="intro-header">
             <span className="intro-badge">The platform</span>
             <h2 className="intro-title">
-              Payroll documentation,<br />simplified.
+              Payroll &amp; tax documents,<br />simplified.
             </h2>
             <p className="intro-subtitle">
-              Saurellius replaces manual calculations and spreadsheets with
-              a precise, professional pay stub generator — no subscriptions,
-              no software downloads, no hidden fees.
+              Saurellius generates professional pay stubs and official IRS W-2
+              forms in minutes — accurate tax calculations, instant PDF
+              downloads, and flexible plans that fit any business.
             </p>
           </div>
 

@@ -9,8 +9,14 @@ const PLAN_COLORS = {
   unlimited: { bg: "rgba(16,185,129,0.08)", border: "rgba(16,185,129,0.25)", accent: "#10b981" },
 };
 
+const UPGRADE_PLANS = [
+  { key: "starter", name: "Starter", price: 50, desc: "5 paystub groups/mo, 6 pay periods each" },
+  { key: "professional", name: "Professional", price: 75, desc: "15 groups/mo, 12 periods, 2 W-2s/mo", popular: true },
+  { key: "unlimited", name: "Unlimited", price: 150, desc: "Unlimited paystubs, W-2s, everything" },
+];
+
 class SubscriptionWidget extends Component {
-  state = { sub: null, loading: true, portalLoading: false };
+  state = { sub: null, loading: true, portalLoading: false, showUpgrade: false, checkoutLoading: null };
 
   componentDidMount() {
     this.fetchStatus();
@@ -29,6 +35,28 @@ class SubscriptionWidget extends Component {
       this.setState({ sub: res.data, loading: false });
     } catch {
       this.setState({ loading: false });
+    }
+  };
+
+  handleUpgrade = async (planKey) => {
+    this.setState({ checkoutLoading: planKey });
+    try {
+      let url = process.env.REACT_APP_BACKEND_URL_LOCAL;
+      if (process.env.REACT_APP_MODE === "live") {
+        url = process.env.REACT_APP_FRONTEND_URL_LIVE;
+      }
+      const token = localStorage.getItem("tokens");
+      const res = await axios.post(
+        `${url}api/subscription/checkout`,
+        { plan: planKey },
+        { headers: { Authorization: `bearer ${token}` } }
+      );
+      if (res.data?.url) {
+        window.location.href = res.data.url;
+      }
+    } catch (err) {
+      console.error("Upgrade checkout error:", err);
+      this.setState({ checkoutLoading: null });
     }
   };
 
@@ -101,12 +129,15 @@ class SubscriptionWidget extends Component {
           </div>
 
           {isFree ? (
-            <Link to="/#pricing" style={{
-              fontSize: 12, fontWeight: 600, color: "#a78bfa",
-              textDecoration: "none",
-            }}>
-              Upgrade →
-            </Link>
+            <button
+              onClick={() => this.setState((s) => ({ showUpgrade: !s.showUpgrade }))}
+              style={{
+                fontSize: 12, fontWeight: 600, color: "#a78bfa",
+                background: "none", border: "none", cursor: "pointer", padding: 0,
+              }}
+            >
+              {this.state.showUpgrade ? "Close ✕" : "Upgrade →"}
+            </button>
           ) : (
             <button
               onClick={this.openPortal}
@@ -164,9 +195,75 @@ class SubscriptionWidget extends Component {
           </>
         )}
 
-        {isFree && (
+        {isFree && !this.state.showUpgrade && (
           <div style={{ marginTop: 8, fontSize: 12, color: "var(--color-text-tertiary, #475569)" }}>
             Pay-per-stub at $20 each, or subscribe for volume savings.
+          </div>
+        )}
+
+        {isFree && this.state.showUpgrade && (
+          <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(100,116,139,0.2)" }}>
+            <div style={{ fontSize: 13, fontWeight: 600, color: "var(--color-text-primary, #f1f5f9)", marginBottom: 12 }}>
+              Choose a plan
+            </div>
+            <div style={{ display: "grid", gap: 10 }}>
+              {UPGRADE_PLANS.map((plan) => {
+                const isLoading = this.state.checkoutLoading === plan.key;
+                return (
+                  <div
+                    key={plan.key}
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "space-between",
+                      padding: "14px 16px", borderRadius: 12,
+                      background: plan.popular ? "rgba(124,92,252,0.08)" : "rgba(255,255,255,0.03)",
+                      border: plan.popular ? "1.5px solid rgba(124,92,252,0.3)" : "1px solid rgba(100,116,139,0.15)",
+                      transition: "all 0.15s ease",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => !isLoading && this.handleUpgrade(plan.key)}
+                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#a78bfa"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = plan.popular ? "rgba(124,92,252,0.3)" : "rgba(100,116,139,0.15)"; e.currentTarget.style.transform = "translateY(0)"; }}
+                  >
+                    <div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <span style={{ fontWeight: 700, fontSize: 14, color: "var(--color-text-primary, #f1f5f9)" }}>
+                          {plan.name}
+                        </span>
+                        {plan.popular && (
+                          <span style={{
+                            fontSize: 9, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase",
+                            padding: "2px 7px", borderRadius: 5,
+                            background: "rgba(124,92,252,0.2)", color: "#a78bfa",
+                          }}>Popular</span>
+                        )}
+                      </div>
+                      <div style={{ fontSize: 12, color: "var(--color-text-tertiary, #64748b)", marginTop: 2 }}>
+                        {plan.desc}
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+                      <span style={{ fontWeight: 700, fontSize: 15, color: "var(--color-text-primary, #f1f5f9)" }}>
+                        ${plan.price}<span style={{ fontSize: 11, fontWeight: 500, color: "var(--color-text-tertiary, #64748b)" }}>/mo</span>
+                      </span>
+                      <button
+                        disabled={isLoading}
+                        style={{
+                          padding: "6px 14px", borderRadius: 8, border: "none",
+                          background: plan.popular ? "linear-gradient(135deg, #7c5cfc, #6366f1)" : "rgba(255,255,255,0.08)",
+                          color: "#fff", fontSize: 12, fontWeight: 600, cursor: isLoading ? "wait" : "pointer",
+                          transition: "all 0.15s ease", opacity: isLoading ? 0.6 : 1,
+                        }}
+                      >
+                        {isLoading ? "..." : "Select"}
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div style={{ marginTop: 10, fontSize: 11, color: "var(--color-text-tertiary, #475569)", textAlign: "center" }}>
+              You'll be redirected to Stripe for secure checkout. Cancel anytime.
+            </div>
           </div>
         )}
       </div>
