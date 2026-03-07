@@ -4,7 +4,7 @@ const { PDFDocument } = require("pdf-lib");
 const fs = require("fs");
 const path = require("path");
 const jwt = require("jsonwebtoken");
-const archiver = require("archiver");
+const AdmZip = require("adm-zip");
 
 const W2Record = require("../models/W2Record");
 const TEMPLATE_PATH = path.join(__dirname, "..", "templates", "fw2.pdf");
@@ -313,15 +313,9 @@ router.post("/generate", async (req, res) => {
     const zipFilename = `W2_${safeName}_${timestamp}.zip`;
     const zipPath = path.join(outputDir, zipFilename);
 
-    await new Promise((resolve, reject) => {
-      const output = fs.createWriteStream(zipPath);
-      const archive = archiver("zip", { zlib: { level: 9 } });
-      output.on("close", resolve);
-      archive.on("error", reject);
-      archive.pipe(output);
-      archive.file(pdfPath, { name: filename });
-      archive.finalize();
-    });
+    const zip = new AdmZip();
+    zip.addFile(filename, pdfBytes);
+    zip.writeZip(zipPath);
 
     // Save record to DB if user is logged in
     const userId = optionalUserId(req);
