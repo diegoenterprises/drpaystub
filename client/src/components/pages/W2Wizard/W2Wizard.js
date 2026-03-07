@@ -70,6 +70,34 @@ class W2Wizard extends Component {
     this.setState((prev) => ({ [name]: !prev[name] }));
   };
 
+  applyPrefill = (profile) => {
+    this.setState({
+      employerEIN: profile.employerEIN || "",
+      employerName: profile.employerName || "",
+      employerAddress1: profile.employerAddress1 || "",
+      employerCity: profile.employerCity || "",
+      employerState: profile.employerState || "",
+      employerZip: profile.employerZip || "",
+      employeeSSN: profile.employeeSSN || "",
+      employeeFirstName: profile.employeeFirstName || "",
+      employeeLastName: profile.employeeLastName || "",
+      employeeAddress1: profile.employeeAddress1 || "",
+      employeeCity: profile.employeeCity || "",
+      employeeState: profile.employeeState || "",
+      employeeZip: profile.employeeZip || "",
+      box1: profile.box1 || "",
+      box2: profile.box2 || "",
+      box3: profile.box3 || "",
+      box4: profile.box4 || "",
+      box5: profile.box5 || "",
+      box6: profile.box6 || "",
+      state1: profile.state1 || "",
+      stateWages1: profile.stateWages1 || "",
+      stateTax1: profile.stateTax1 || "",
+      taxYear: profile.taxYear || new Date().getFullYear().toString(),
+    });
+  };
+
   goToStep = (step) => {
     const completed = { ...this.state.stepsCompleted };
     // Mark current step as completed when moving forward
@@ -147,7 +175,7 @@ class W2Wizard extends Component {
 
     switch (this.state.step) {
       case 1:
-        return <Step1Employer {...common} />;
+        return <Step1Employer {...common} onPrefill={this.applyPrefill} />;
       case 2:
         return <Step2Employee {...common} />;
       case 3:

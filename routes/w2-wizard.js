@@ -354,6 +354,200 @@ router.post("/generate", async (req, res) => {
   }
 });
 
+// ─── Pre-fill W-2 from Paystub History ───────────────────────────────────────
+// Aggregates all paid paystubs for a user, groups by employer+employee,
+// re-computes per-period taxes, and returns W-2-ready totals.
+router.get("/prefill-from-paystubs", async (req, res) => {
+  try {
+    const userId = optionalUserId(req);
+    if (!userId) return res.status(401).json({ error: "Not authenticated" });
+
+    const Paystub = require("../models/Paystub");
+    const {
+      generateParams, convertDate, areDatesEqual, PAY_FREQUENCY,
+      EMPLOYMENT_STATUS, formatNumber,
+    } = require("../services/paystub.service");
+    const STATE_TAX = require("../config/state-tax.json");
+    const moment = require("moment");
+
+    const SS_WAGE_BASE = 184500;
+
+    const stubs = await Paystub.find({
+      "params.userId": userId.toString(),
+      "params.paymentStatus": "success",
+    }).lean();
+
+    if (!stubs.length) return res.json({ profiles: [] });
+
+    // Group by normalized employer+employee key
+    const groups = {};
+    for (const stub of stubs) {
+      const p = stub.params || {};
+      const empName = (p.employee_name || "").trim().toLowerCase();
+      const compName = (p.company_name || "").trim().toLowerCase();
+      const key = `${compName}|||${empName}`;
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(stub);
+    }
+
+    const taxYear = (req.query.year || new Date().getFullYear()).toString();
+
+    const profiles = [];
+    for (const [key, groupStubs] of Object.entries(groups)) {
+      try {
+        const latest = groupStubs[0];
+        const p = latest.params || {};
+        const days = PAY_FREQUENCY[p.pay_frequency] || 14;
+        const empStatus = p.employment_status;
+        const state = p.employee_state || "";
+        const maritalStatus = p.maritial_status || "Single Taxpayers";
+
+        // Accumulators for W-2 boxes
+        let totalGross = 0;       // Box 1
+        let totalFedTax = 0;      // Box 2
+        let totalSSWages = 0;     // Box 3
+        let totalSSTax = 0;       // Box 4
+        let totalMedWages = 0;    // Box 5
+        let totalMedTax = 0;      // Box 6
+        let totalStateWages = 0;  // Box 16
+        let totalStateTax = 0;    // Box 17
+        let periodCount = 0;
+
+        for (const stub of groupStubs) {
+          const sp = stub.params || {};
+          const payDates = Array.isArray(sp.pay_dates) ? sp.pay_dates : [];
+
+          for (let idx = 0; idx < payDates.length; idx++) {
+            const payDate = payDates[idx];
+            // Filter by tax year
+            const pd = moment(payDate, ["DD/MM/YYYY", "MM/DD/YYYY"]);
+            if (!pd.isValid() || pd.year().toString() !== taxYear) continue;
+
+            // Compute gross income for this period
+            let income;
+            if (empStatus === EMPLOYMENT_STATUS.Salary) {
+              income = parseFloat(
+                formatNumber((parseFloat(sp.annual_salary) / 365) * parseInt(days))
+              );
+            } else if (empStatus === EMPLOYMENT_STATUS.Hourly) {
+              const hw = Array.isArray(sp.hours_worked) ? sp.hours_worked[idx] : sp.hours_worked;
+              income = parseFloat(
+                formatNumber(parseFloat(sp.hourly_rate || 0) * parseFloat(hw || 0))
+              );
+            } else {
+              continue;
+            }
+
+            // Add additions for this period
+            const additions = (sp.additions || []).filter((el) => {
+              const ad = convertDate(el.payDate);
+              const pdd = convertDate(payDate);
+              return ad && pdd && areDatesEqual(ad, pdd);
+            });
+            const additionsTotal = additions.reduce((s, a) => s + parseFloat(a.amount || 0), 0);
+            const grossIncome = income + additionsTotal;
+
+            // Re-run tax calculations using same logic as paystub engine
+            const computed = generateParams({
+              income: formatNumber(income),
+              state,
+              maritial_status: maritalStatus,
+              employee_hiring_date: sp.hire_date ? convertDate(sp.hire_date) : null,
+              pay_date: convertDate(payDate),
+              days,
+              additions,
+              deductions: (sp.deductions || []).filter((el) => {
+                const dd = convertDate(el.payDate);
+                const pdd = convertDate(payDate);
+                return dd && pdd && areDatesEqual(dd, pdd);
+              }),
+              otherBenefits: (sp.otherBenefits || []).filter((el) => {
+                const bd = convertDate(el.payDate);
+                const pdd = convertDate(payDate);
+                return bd && pdd && areDatesEqual(bd, pdd);
+              }),
+              check_number: "",
+            });
+
+            const periodGross = parseFloat(computed.gross_income || 0);
+            // deductions_current = [federalTax, stateIncomeTax, sdiTax, medicareTax, ssTax, ...custom]
+            const dc = computed.deductions_current || [];
+            const fedTax = parseFloat(dc[0] || 0);
+            const stateTax = parseFloat(dc[1] || 0);
+            const medTax = parseFloat(dc[3] || 0);
+            const ssTax = parseFloat(dc[4] || 0);
+
+            totalGross += periodGross;
+            totalFedTax += fedTax;
+            totalMedWages += periodGross;
+            totalMedTax += medTax;
+            totalSSTax += ssTax;
+            totalStateWages += periodGross;
+            totalStateTax += stateTax;
+            periodCount++;
+          }
+        }
+
+        // Cap SS wages at wage base
+        totalSSWages = Math.min(totalGross, SS_WAGE_BASE);
+
+        if (periodCount === 0) continue;
+
+        const stateCode = STATE_TAX[state]?.stateCode || "";
+
+        // Parse employee name into first/last
+        const nameParts = (p.employee_name || "").trim().split(/\s+/);
+        const firstName = nameParts.slice(0, -1).join(" ") || nameParts[0] || "";
+        const lastName = nameParts.length > 1 ? nameParts[nameParts.length - 1] : "";
+
+        profiles.push({
+          profileKey: key,
+          // Employer info (W-2 Boxes b, c)
+          employerEIN: (p.company_ein || "").replace(/-/g, ""),
+          employerName: p.company_name || "",
+          employerAddress1: [p.company_address, p.company_address_2].filter(Boolean).join(" "),
+          employerCity: p.company_city || "",
+          employerState: stateCode,
+          employerZip: p.companyZipCode || "",
+          // Employee info (W-2 Boxes a, e, f)
+          employeeSSN: (p.ssid || "").replace(/X/g, "").replace(/-/g, ""),
+          employeeFirstName: firstName,
+          employeeLastName: lastName,
+          employeeAddress1: [p.employee_address, p.employee_address_2].filter(Boolean).join(" "),
+          employeeCity: p.employee_city || "",
+          employeeState: stateCode,
+          employeeZip: p.employeeZipCode || "",
+          // Aggregated W-2 boxes
+          box1: formatNumber(totalGross),
+          box2: formatNumber(totalFedTax),
+          box3: formatNumber(totalSSWages),
+          box4: formatNumber(totalSSTax),
+          box5: formatNumber(totalMedWages),
+          box6: formatNumber(totalMedTax),
+          state1: stateCode,
+          stateWages1: formatNumber(totalStateWages),
+          stateTax1: formatNumber(totalStateTax),
+          // Meta
+          taxYear,
+          periodCount,
+          payFrequency: p.pay_frequency || "",
+          employmentStatus: empStatus || "",
+          totalGross: formatNumber(totalGross),
+        });
+      } catch (groupErr) {
+        console.error("[W2 Prefill] Error processing group:", key, groupErr.message);
+      }
+    }
+
+    // Sort: most pay periods first
+    profiles.sort((a, b) => b.periodCount - a.periodCount);
+    return res.json({ profiles });
+  } catch (err) {
+    console.error("[W2 Prefill] Error:", err);
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 // ─── Get user's W-2 records ──────────────────────────────────────────────────
 router.get("/my-w2s", async (req, res) => {
   try {
