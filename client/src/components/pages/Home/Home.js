@@ -37,13 +37,13 @@ class Home extends React.Component {
                   keywords="paystub generator online, create pay stub, paycheck stub maker, professional paystub, instant paystub"
                 />
                 <Hero />
+                <Pricing />
                 <Introduction />
                 <HowItWorks />
                 <Testimonials />
                 {/* <FeaturedIn /> */}
                 <Blogs />
                 <Features />
-                <Pricing />
             </section>
         );
     }
