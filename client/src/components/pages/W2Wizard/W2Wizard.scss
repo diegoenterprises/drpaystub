@@ -1,0 +1,477 @@
+/* ═══════════════════════════════════════════════════
+   W2 Wizard — Jony Ive Design Language
+   Clean · Fluid · Purposeful · Dark-mode aware
+   ═══════════════════════════════════════════════════ */
+
+.W2Wizard {
+  margin-top: 100px;
+  margin-bottom: 80px;
+  padding: 0 16px;
+  animation: w2-page-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  h2 {
+    font-size: 30px !important;
+    letter-spacing: -0.04em;
+    text-align: center;
+    font-weight: 700;
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+  }
+
+  .w2-subtitle {
+    text-align: center;
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    margin-bottom: 8px;
+  }
+
+  /* ── Glass Form Card ── */
+  .w2-form-card {
+    width: 90%;
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    padding: 40px 36px 48px;
+    box-shadow: var(--shadow-card);
+    animation: w2-card-rise 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    transition: box-shadow 0.4s ease;
+  }
+  .w2-form-card:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* ── Section Headers ── */
+  .w2-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .w2-section-title:first-child {
+    margin-top: 0;
+  }
+  .w2-section-title i {
+    color: var(--color-accent);
+    font-size: 16px;
+  }
+
+  /* ── Form Inputs ── */
+  .form-control {
+    border: 1.5px solid var(--color-border-strong) !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    background: var(--color-bg-input) !important;
+    color: var(--color-text-primary) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: var(--shadow-xs) !important;
+  }
+  .form-control:focus {
+    border-color: var(--color-accent) !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08), var(--shadow-xs) !important;
+    background: var(--color-bg-elevated) !important;
+    outline: none !important;
+  }
+  .form-control::placeholder {
+    color: var(--color-text-tertiary) !important;
+    font-weight: 400;
+  }
+
+  select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    padding-right: 36px !important;
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .form-group.required label::after {
+    content: "*";
+    color: var(--color-error);
+    margin-left: 4px;
+    font-weight: 600;
+  }
+
+  .w2-box-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-accent);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .w2-box-hint {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-top: 2px;
+  }
+
+  /* ── Checkbox row ── */
+  .w2-checkbox-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+  }
+  .w2-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1.5px solid var(--color-border-strong);
+    border-radius: 12px;
+    background: var(--color-bg-input);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+  .w2-checkbox-item:hover {
+    border-color: var(--color-accent);
+  }
+  .w2-checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-accent);
+    cursor: pointer;
+  }
+  .w2-checkbox-item.checked {
+    border-color: var(--color-accent);
+    background: var(--gradient-brand-subtle);
+  }
+
+  /* ── Progress Bar Card ── */
+  .w2-progress-card {
+    width: 60%;
+    max-width: 680px;
+    margin: 0 auto 28px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 24px 32px;
+    box-shadow: var(--shadow-sm);
+    animation: w2-card-rise 0.5s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+    p {
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      color: var(--color-text-secondary);
+    }
+
+    .progress {
+      height: 6px !important;
+      border-radius: 100px !important;
+      background: var(--color-bg-secondary) !important;
+      overflow: hidden;
+    }
+    .progress-bar {
+      background: var(--gradient-brand) !important;
+      border-radius: 100px !important;
+      transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      box-shadow: var(--shadow-brand);
+    }
+  }
+
+  /* ── Step Indicators ── */
+  .w2-step-bar {
+    width: 60%;
+    max-width: 680px;
+    margin: 0 auto 40px;
+    text-align: center;
+    animation: w2-card-rise 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+    ul {
+      margin-left: 0;
+      padding: 0 0 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      list-style: none;
+    }
+
+    li {
+      width: 44px;
+      height: 44px;
+      text-align: center;
+      line-height: 44px;
+      border-radius: 50%;
+      background: var(--gradient-brand);
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 15px;
+      box-shadow: var(--shadow-brand);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1;
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -56px;
+      width: 56px;
+      height: 3px;
+      background: var(--gradient-brand);
+      z-index: -1;
+      transform: translateY(-50%);
+      border-radius: 100px;
+      transition: background 0.5s ease;
+    }
+
+    li:first-child::before {
+      display: none;
+    }
+    li:first-child {
+      margin-left: 0;
+    }
+    li + li {
+      margin-left: 56px;
+    }
+
+    .completed {
+      background: linear-gradient(135deg, #10b981, #059669);
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3),
+        0 4px 16px rgba(16, 185, 129, 0.15);
+    }
+
+    .active {
+      background: var(--gradient-brand);
+      box-shadow: var(--shadow-brand-lg);
+      transform: scale(1.15);
+      animation: w2-step-pulse 2.5s ease-in-out infinite;
+    }
+
+    .inactive,
+    .active ~ li {
+      background: var(--color-bg-secondary);
+      color: var(--color-text-tertiary);
+      box-shadow: none;
+      border: 2px solid var(--color-border-strong);
+    }
+
+    .inactive::before,
+    .active ~ li::before {
+      background: var(--color-border-strong);
+    }
+
+    .step-label {
+      position: absolute;
+      bottom: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+      text-transform: uppercase;
+      opacity: 1;
+    }
+    .active .step-label {
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+  }
+
+  /* ── Buttons ── */
+  .btn-secondary {
+    background: var(--gradient-brand) !important;
+    border: none !important;
+    border-radius: 14px !important;
+    padding: 13px 32px !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    letter-spacing: -0.01em !important;
+    color: #fff !important;
+    box-shadow: var(--shadow-brand) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-secondary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-brand-lg) !important;
+  }
+  .btn-secondary:active {
+    transform: translateY(0) scale(0.98) !important;
+  }
+
+  .w2-nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    gap: 16px;
+  }
+
+  .btn-outline-back {
+    border-radius: 14px !important;
+    font-weight: 600 !important;
+    padding: 10px 24px !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    color: var(--color-text-primary) !important;
+    border: 1.5px solid var(--color-border-strong) !important;
+    background: transparent !important;
+    cursor: pointer;
+  }
+  .btn-outline-back:hover {
+    transform: translateX(-3px);
+    border-color: var(--color-accent) !important;
+    color: var(--color-accent) !important;
+  }
+
+  /* ── Review Table ── */
+  .w2-review-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .w2-review-table th {
+    background: var(--color-bg-elevated);
+    color: var(--color-text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .w2-review-table td {
+    padding: 10px 16px;
+    font-size: 14px;
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .w2-review-table tr:last-child td {
+    border-bottom: none;
+  }
+  .w2-review-table .review-label {
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    width: 200px;
+    font-size: 13px;
+  }
+
+  /* ── Auth Gate (reusing pattern from paystub) ── */
+  .w2-auth-gate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 40px 16px;
+  }
+  .w2-auth-gate-card {
+    width: 100%;
+    max-width: 480px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 48px 36px;
+    box-shadow: var(--shadow-card);
+    text-align: center;
+  }
+  .w2-auth-gate-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-lg);
+    background: var(--gradient-brand-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    i {
+      font-size: 28px;
+      color: var(--color-accent);
+    }
+  }
+
+  /* ── Responsive ── */
+  @media only screen and (max-width: 767px) {
+    margin-top: 100px;
+    margin-bottom: 40px;
+
+    h2 {
+      font-size: 24px !important;
+    }
+
+    .w2-form-card {
+      width: 100%;
+      padding: 28px 20px 36px;
+      border-radius: 20px;
+    }
+
+    .w2-progress-card {
+      width: 100%;
+      padding: 20px 16px;
+      border-radius: 16px;
+    }
+
+    .w2-step-bar {
+      width: 100%;
+      li {
+        width: 38px;
+        height: 38px;
+        line-height: 38px;
+        font-size: 14px;
+      }
+      li + li {
+        margin-left: 36px;
+      }
+      li::before {
+        left: -36px;
+        width: 36px;
+      }
+    }
+
+    .w2-auth-gate-card {
+      padding: 32px 20px;
+    }
+  }
+}
+
+/* ── Animations ── */
+@keyframes w2-page-enter {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes w2-card-rise {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes w2-step-pulse {
+  0%, 100% { box-shadow: 0 4px 12px rgba(99,102,241,0.4), 0 8px 24px rgba(99,102,241,0.2); }
+  50% { box-shadow: 0 4px 12px rgba(99,102,241,0.5), 0 8px 32px rgba(99,102,241,0.3), 0 0 0 8px rgba(99,102,241,0.06); }
+}

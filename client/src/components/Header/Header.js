@@ -140,14 +140,14 @@ class Header extends Component {
                 data-toggle="collapse"
                 data-target="#navigation"
               >
-                { /* <NavLink
+                <NavLink
                   exact
                   activeClassName="nav-active"
-                  to="/w2forms"
+                  to="/w2-wizard"
                   className="nav-link"
                 >
-                  W2 Forms
-                </NavLink> */}
+                  W-2 Wizard
+                </NavLink>
               </li>
               <li
                 className="nav-item"

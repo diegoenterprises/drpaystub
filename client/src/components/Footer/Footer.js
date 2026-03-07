@@ -97,11 +97,11 @@ class Footer extends Component {
                   <b>SUBSCRIBE TO OUR NEWSLETTER</b>
                 </li>
                 <li className="list-group-item border-0 menu-value">
-                  <Link to="">
+                  <span style={{ color: "var(--color-text-secondary, #888)", fontSize: 14 }}>
                     Receive our latest news and
                     <br />
                     promotions in your inbox!
-                  </Link>
+                  </span>
                 </li>
                 <li className="list-group-item">
                   {this.state.newsletterSent ? (

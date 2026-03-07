@@ -4,6 +4,7 @@ import {
   FaFileAlt, FaCalculator, FaMapMarkedAlt, FaMobileAlt, FaShieldAlt, FaHeadset,
   FaLandmark,
 } from "react-icons/fa";
+import SEO from "../../SEO";
 
 const FeatureCard = ({ icon, title, desc }) => (
   <div className="col-md-6 col-lg-4">
@@ -31,6 +32,12 @@ export default function About() {
 
   return (
     <div style={{ minHeight: "80vh", padding: "100px 0 60px" }}>
+      <SEO
+        title="About Us"
+        description="Learn about Saurellius by Dr. Paystub Corp — the trusted platform for creating professional, FICA-compliant payroll check stubs with bank-grade accuracy and premium templates."
+        path="/about"
+        keywords="about saurellius, about dr paystub, paystub company, payroll company"
+      />
       {/* Hero */}
       <div style={{ textAlign: "center", marginBottom: 56, padding: "0 20px" }}>
         <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--color-accent)", marginBottom: 8 }}>

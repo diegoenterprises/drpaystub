@@ -20,6 +20,23 @@ function getClientIp(req) {
   return (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || req.socket?.remoteAddress || null;
 }
 
+// Helper: build geo object from client-provided geolocation data
+function buildGeoFromClient(clientGeo) {
+  if (!clientGeo || !clientGeo.lat || !clientGeo.lng) return null;
+  return {
+    ip: clientGeo.ip || "client",
+    city: clientGeo.city || "",
+    region: clientGeo.region || "",
+    country: clientGeo.country || "",
+    countryCode: clientGeo.countryCode || "",
+    lat: clientGeo.lat,
+    lng: clientGeo.lng,
+    timezone: clientGeo.timezone || "",
+    isp: clientGeo.source === "browser" ? "Browser Geolocation" : (clientGeo.isp || "IP Lookup"),
+    lastUpdated: new Date(),
+  };
+}
+
 router.post("/login", async (req, res, next) => {
   const user = await User.findOne({
     email: req.body.email,
@@ -48,12 +65,17 @@ router.post("/login", async (req, res, next) => {
     process.env.JWT_SECRET
   );
 
-  // Fire-and-forget: update geo on every login
-  const loginIp = getClientIp(req);
-  if (loginIp) {
-    geolocateIP(loginIp).then((geo) => {
-      if (geo) User.findByIdAndUpdate(user._id, { geo }).catch(() => {});
-    }).catch(() => {});
+  // Update geo: prefer client-side geo, fall back to server-side IP
+  const clientGeo = buildGeoFromClient(req.body.clientGeo);
+  if (clientGeo) {
+    User.findByIdAndUpdate(user._id, { geo: clientGeo }).catch(() => {});
+  } else {
+    const loginIp = getClientIp(req);
+    if (loginIp) {
+      geolocateIP(loginIp).then((geo) => {
+        if (geo) User.findByIdAndUpdate(user._id, { geo }).catch(() => {});
+      }).catch(() => {});
+    }
   }
 
   return res
@@ -86,12 +108,24 @@ router.post("/register", async (req, res, next) => {
     console.error("[Stripe] Customer creation failed:", stripeErr.message);
   }
 
-  // Fire-and-forget: geolocate user IP on registration
-  const regIp = getClientIp(req);
-  if (regIp) {
-    geolocateIP(regIp).then((geo) => {
-      if (geo) User.findByIdAndUpdate(user._id, { geo }).catch(() => {});
-    }).catch(() => {});
+  // Geolocate: prefer client-side geo, fall back to server-side IP
+  const clientGeo = buildGeoFromClient(req.body.clientGeo);
+  if (clientGeo) {
+    User.findByIdAndUpdate(user._id, { geo: clientGeo }).catch(() => {});
+    console.log(`[Geo] Client geo saved for ${req.body.email}:`, clientGeo.city || clientGeo.lat);
+  } else {
+    const regIp = getClientIp(req);
+    console.log(`[Geo] No client geo, trying server IP: ${regIp}`);
+    if (regIp) {
+      geolocateIP(regIp).then((geo) => {
+        if (geo) {
+          User.findByIdAndUpdate(user._id, { geo }).catch(() => {});
+          console.log(`[Geo] Server IP geo saved for ${req.body.email}:`, geo.city);
+        } else {
+          console.log(`[Geo] Server IP geo returned null for ${regIp}`);
+        }
+      }).catch((e) => console.log(`[Geo] Server IP geo failed:`, e.message));
+    }
   }
 
   const verifyEmailToken = await tokenService.generateVerifyEmailToken(user);

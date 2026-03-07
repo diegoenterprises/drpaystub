@@ -1,8 +1,5 @@
 {
     "mongoDevURI": "mongodb://127.0.0.1:27017/paystubs",
     "mongoProdURI": "mongodb+srv://developer:pCePyDo5pWn0XRHn@cluster0.hegc9ho.mongodb.net/paystub?authSource=admin&replicaSet=atlas-2k1x7k-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true",
-    "sendgridAPI": "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",
-    "sendgridSender": "diego@drpaystub.net",
-    "shopifyAdminURI": "https://d604f8a8f20e421d2591e4ab70a4da25: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@dr-paystub.myshopify.com",
     "numverifyAPI": "3b6ae646d9012df2bc6b5de8fcea6644"
 }

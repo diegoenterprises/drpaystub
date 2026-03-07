@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axios } from "../../../HelperFunctions/axios";
+import SEO from "../../SEO";
 
 const StarIcon = ({ filled, half, onClick, onMouseEnter, onMouseLeave, size = 24 }) => (
   <svg
@@ -151,6 +152,12 @@ export default function Reviews() {
 
   return (
     <div style={{ minHeight: "80vh", padding: "100px 0 60px" }}>
+      <SEO
+        title="Reviews & Testimonials"
+        description="See what thousands of satisfied customers say about Saurellius. Real reviews from business owners, contractors, and freelancers who trust our paystub generator."
+        path="/reviews"
+        keywords="saurellius reviews, paystub generator reviews, dr paystub testimonials, pay stub maker ratings"
+      />
       {/* Hero */}
       <div style={{ textAlign: "center", marginBottom: 48, padding: "0 20px" }}>
         <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--color-accent)", marginBottom: 8 }}>

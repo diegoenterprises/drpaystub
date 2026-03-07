@@ -365,15 +365,36 @@ function WeatherIcon({ group, isDay, color, size = 48 }) {
 
 // ─── Main Widget ─────────────────────────────────────────────────────────────
 
+const CACHE_KEY = "wx_cache";
+const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+
 class WeatherWidget extends Component {
   constructor(props) {
     super(props);
+    // Immediately load cached data so there's zero flash of "Loading..."
+    const cached = WeatherWidget.readCache();
     this.state = {
-      weather: null,
-      location: null,
-      loading: true,
+      weather: cached?.weather || null,
+      location: cached?.location || null,
+      loading: !cached,
       error: null,
     };
+  }
+
+  static readCache() {
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (Date.now() - parsed.ts < CACHE_TTL) return parsed;
+    } catch (_) {}
+    return null;
+  }
+
+  static writeCache(weather, location) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ weather, location, ts: Date.now() }));
+    } catch (_) {}
   }
 
   componentDidMount() {
@@ -381,38 +402,39 @@ class WeatherWidget extends Component {
     this.fetchWeather();
   }
 
+  getLocation = () => {
+    // Race browser geolocation vs IP lookup — whoever resolves first wins
+    const geoPromise = new Promise((resolve, reject) => {
+      if (!navigator.geolocation) return reject(new Error("No geolocation"));
+      navigator.geolocation.getCurrentPosition(
+        (pos) => resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
+        reject,
+        { timeout: 3000, maximumAge: 600000, enableHighAccuracy: false }
+      );
+    });
+
+    const ipPromise = new Promise((resolve, reject) => {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => { ctrl.abort(); reject(new Error("IP timeout")); }, 3000);
+      fetch("https://ipapi.co/json/", { signal: ctrl.signal })
+        .then((r) => r.json())
+        .then((d) => {
+          clearTimeout(timer);
+          if (d?.latitude && d?.longitude) resolve({ lat: d.latitude, lon: d.longitude });
+          else reject(new Error("No coords"));
+        })
+        .catch((e) => { clearTimeout(timer); reject(e); });
+    });
+
+    return Promise.any([geoPromise, ipPromise]).catch(() => ({ lat: 40.7128, lon: -74.006 }));
+  };
+
   fetchWeather = async () => {
     try {
-      // Get user location — try browser geolocation first, then IP fallback
-      let lat, lon;
-      try {
-        const pos = await new Promise((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject, {
-            timeout: 15000,
-            maximumAge: 600000, // accept cached position up to 10 min old
-            enableHighAccuracy: false,
-          });
-        });
-        lat = pos.coords.latitude;
-        lon = pos.coords.longitude;
-      } catch (geoErr) {
-        console.log("[Weather] Browser geolocation failed, trying IP fallback:", geoErr?.message || geoErr);
-        // IP-based fallback (free, no key)
-        try {
-          const ipRes = await fetch("https://ipapi.co/json/", { timeout: 6000 }).then((r) => r.json());
-          if (ipRes?.latitude && ipRes?.longitude) {
-            lat = ipRes.latitude;
-            lon = ipRes.longitude;
-          }
-        } catch (ipErr) {
-          console.log("[Weather] IP geolocation also failed:", ipErr?.message);
-        }
-        // Last resort default
-        if (!lat || !lon) {
-          lat = 40.7128;
-          lon = -74.006;
-        }
-      }
+      // If we already have cached data showing, fetch fresh in background (no loading state)
+      const hasCached = !!this.state.weather;
+
+      const { lat, lon } = await this.getLocation();
 
       // Fetch weather + reverse geocode in parallel
       const [weatherRes, geoRes] = await Promise.all([
@@ -431,27 +453,30 @@ class WeatherWidget extends Component {
       const city = geoRes?.address?.city || geoRes?.address?.town || geoRes?.address?.county || "Your Area";
       const state = geoRes?.address?.state || "";
 
-      this.setState({
-        weather: {
-          temp: Math.round(weatherRes.current.temperature_2m),
-          feelsLike: Math.round(weatherRes.current.apparent_temperature),
-          humidity: weatherRes.current.relative_humidity_2m,
-          windSpeed: Math.round(weatherRes.current.wind_speed_10m),
-          windDir: weatherRes.current.wind_direction_10m,
-          uvIndex: weatherRes.current.uv_index,
-          weatherCode: weatherRes.current.weather_code,
-          isDay: weatherRes.current.is_day === 1,
-          high: Math.round(weatherRes.daily.temperature_2m_max[0]),
-          low: Math.round(weatherRes.daily.temperature_2m_min[0]),
-          sunrise: weatherRes.daily.sunrise?.[0],
-          sunset: weatherRes.daily.sunset?.[0],
-        },
-        location: { city, state, lat, lon },
-        loading: false,
-      });
+      const weather = {
+        temp: Math.round(weatherRes.current.temperature_2m),
+        feelsLike: Math.round(weatherRes.current.apparent_temperature),
+        humidity: weatherRes.current.relative_humidity_2m,
+        windSpeed: Math.round(weatherRes.current.wind_speed_10m),
+        windDir: weatherRes.current.wind_direction_10m,
+        uvIndex: weatherRes.current.uv_index,
+        weatherCode: weatherRes.current.weather_code,
+        isDay: weatherRes.current.is_day === 1,
+        high: Math.round(weatherRes.daily.temperature_2m_max[0]),
+        low: Math.round(weatherRes.daily.temperature_2m_min[0]),
+        sunrise: weatherRes.daily.sunrise?.[0],
+        sunset: weatherRes.daily.sunset?.[0],
+      };
+      const location = { city, state, lat, lon };
+
+      WeatherWidget.writeCache(weather, location);
+      this.setState({ weather, location, loading: false });
     } catch (err) {
       console.error("[Weather] Fetch error:", err);
-      this.setState({ error: err.message, loading: false });
+      // If we have cache, keep showing it; otherwise show error
+      if (!this.state.weather) {
+        this.setState({ error: err.message, loading: false });
+      }
     }
   };
 

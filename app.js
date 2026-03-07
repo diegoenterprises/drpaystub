@@ -44,9 +44,10 @@ app.use("/api/paystub", require("./routes/paystub"));
 app.use("/api/states", require("./routes/states"));
 app.use("/api/w2", require("./routes/w2"));
 app.use("/api/w2/cache", require("./routes/cache"));
-app.use("/api/shopify/webhook", require("./routes/webhooks"));
+app.use("/api/w2-wizard", require("./routes/w2-wizard"));
 app.use("/api/stripe/webhook", require("./routes/stripe-webhook"));
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/subscription", require("./routes/subscription"));
 app.use("/api/admin", require("./routes/admin"));
 
 app.use(express.static("client/build"));

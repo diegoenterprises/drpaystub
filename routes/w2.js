@@ -303,6 +303,63 @@ router.post('/', async (req, res, next) => {
     });
 });
 
+// ─── W2 Stripe Payment Intent ────────────────────────────────────────────────
+const jwt = require("jsonwebtoken");
+const { STRIPE_LIVE_KEY, STRIPE_TEST_KEY, STRIPE_MODE } = process.env;
+const stripeKeyW2 = STRIPE_MODE === "dev" ? STRIPE_TEST_KEY : STRIPE_LIVE_KEY;
+const stripeW2 = require("stripe")(stripeKeyW2);
+
+function optionalUserId(req) {
+  try {
+    const token = (req.headers.authorization || "").split(" ")[1];
+    if (!token) return null;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    return decoded?.payload?.user || null;
+  } catch { return null; }
+}
+
+router.get('/payment-intent', async (req, res) => {
+  try {
+    const amount = 2000; // $20 for W2
+
+    let stripeCustomerId = null;
+    const userId = optionalUserId(req);
+    if (userId) {
+      try {
+        const { User } = require("../models/user");
+        const dbUser = await User.findById(userId).select("stripeCustomerId email firstName lastName").lean();
+        if (dbUser?.stripeCustomerId) {
+          stripeCustomerId = dbUser.stripeCustomerId;
+        } else if (dbUser?.email) {
+          const newCust = await stripeW2.customers.create({
+            email: dbUser.email,
+            name: [dbUser.firstName, dbUser.lastName].filter(Boolean).join(" ") || undefined,
+            metadata: { userId: userId.toString() },
+          });
+          stripeCustomerId = newCust.id;
+          await User.findByIdAndUpdate(userId, { stripeCustomerId: newCust.id });
+        }
+      } catch (e) {
+        console.error("[Stripe W2] Customer lookup error:", e.message);
+      }
+    }
+
+    const intentParams = {
+      amount,
+      currency: "usd",
+      payment_method_types: ["card"],
+      statement_descriptor_suffix: "Saurellius W2",
+    };
+    if (stripeCustomerId) intentParams.customer = stripeCustomerId;
+
+    const paymentIntent = await stripeW2.paymentIntents.create(intentParams);
+    return res.json({ secret: paymentIntent.client_secret });
+  } catch (err) {
+    console.error("[Stripe W2] Payment intent error:", err.message);
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
 
 let taxes = {

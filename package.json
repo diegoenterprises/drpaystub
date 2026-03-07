@@ -15,7 +15,6 @@
     "author": "Priyanshu Tiwari | tpriyanshu",
     "dependencies": {
         "@azure/communication-email": "^1.0.0",
-        "@sendgrid/mail": "^7.4.2",
         "adm-zip": "^0.5.5",
         "axios": "^0.21.1",
         "bcryptjs": "^2.4.3",
@@ -44,13 +43,12 @@
         "nodemon": "^2.0.4",
         "num-words": "^1.2.2",
         "path": "^0.12.7",
+        "pdf-lib": "^1.17.1",
         "pdfkit": "^0.11.0",
         "qrcode": "^1.5.4",
         "raw-body": "^2.4.1",
         "react-signature-canvas": "^1.0.6",
         "sharp": "^0.33.2",
-        "shopify-api-node": "^3.6.5",
-        "shopify-buy": "^2.11.0",
         "stripe": "^11.14.0",
         "to-words": "^4.1.0",
         "winston": "^3.11.0"

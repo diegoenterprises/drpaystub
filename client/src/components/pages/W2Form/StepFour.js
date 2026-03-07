@@ -2,7 +2,6 @@ import React, {
   createRef,
   useEffect,
   useLayoutEffect,
-  useMemo,
   useState,
 } from "react";
 import W2Stub from "./W2Stub";
@@ -10,20 +9,86 @@ import "./wstub.css";
 import Modal from "./ModalW2";
 import AC from "../../../redux/actions/actionCreater";
 import { connect } from "react-redux";
-import {
-  checkoutAddLineItems,
-  checkoutUpdateAttributes,
-} from "../../../graphql";
-import { checkoutPaymentDone } from "../../../graphql";
-import { graphQLClient } from "../../../HelperFunctions/apollo";
+import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { Button } from "react-bootstrap";
 import { useReactToPrint } from "react-to-print";
 import * as htmlToImage from "html-to-image";
 import { Fragment } from "react";
 import { axios } from "../../../HelperFunctions/axios";
 
-const variantID =
-  "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zOTQwMTEwMjIxMzI4OQ==";
+const {
+  REACT_APP_STRIPE_LIVE_KEY,
+  REACT_APP_STRIPE_TEST_KEY,
+  REACT_APP_STRIPE_MODE,
+  REACT_APP_MODE,
+} = process.env;
+const stripeKey =
+  REACT_APP_STRIPE_MODE === "dev"
+    ? REACT_APP_STRIPE_TEST_KEY
+    : REACT_APP_STRIPE_LIVE_KEY;
+const stripePromise = loadStripe(stripeKey);
+
+const isDark = () =>
+  document.documentElement.getAttribute("data-theme") === "dark" ||
+  window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+const stripeAppearance = () => {
+  const dark = isDark();
+  return {
+    theme: dark ? "night" : "stripe",
+    variables: {
+      colorPrimary: "#7c5cfc",
+      colorBackground: dark ? "#1a1a2e" : "#ffffff",
+      colorText: dark ? "#e0e0e0" : "#1a1a2e",
+      colorDanger: "#ff5252",
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      borderRadius: "10px",
+    },
+  };
+};
+
+// ─── Inline W2 Payment Form ────────────────────────────────────────────────
+function W2PaymentForm({ secret, onSuccess }) {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!stripe || !elements) return;
+    setLoading(true);
+    setError(null);
+
+    const result = await stripe.confirmPayment({
+      elements,
+      redirect: "if_required",
+    });
+
+    if (result.error) {
+      setError(result.error.message);
+      setLoading(false);
+    } else if (result.paymentIntent?.status === "succeeded") {
+      onSuccess();
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <PaymentElement options={{ layout: "tabs" }} />
+      {error && <p style={{ color: "#ff5252", marginTop: 10, fontSize: 14 }}>{error}</p>}
+      <button
+        type="submit"
+        disabled={!stripe || loading}
+        className="btn btn-primary mt-3"
+        style={{ width: "100%", padding: "12px", fontWeight: 600 }}
+      >
+        {loading ? "Processing..." : "Pay $20.00"}
+      </button>
+    </form>
+  );
+}
 
 const changeCanvasDimensions = (canvasSource, { width }) => {
   const canvas = cropCanvas(canvasSource, 0, 0, 845, 600);
@@ -50,19 +115,18 @@ const cropCanvas = (sourceCanvas, left, top, width, height) => {
     left,
     top,
     width,
-    height, // source rect with content to crop
+    height,
     0,
     0,
     width,
     height
-  ); // newCanvas, same size as source rect
+  );
   return _canvas;
 };
 
 function StepFour(props) {
-  const [webUrl, setWebUrl] = useState();
-  const [checkoutId, setCheckoutId] = useState();
-  const [checkoutState, setCheckoutState] = useState();
+  const [clientSecret, setClientSecret] = useState(null);
+  const [paymentComplete, setPaymentComplete] = useState(false);
   const [medicare, setMedicare] = useState();
   const [federal_income_tax, setFederal_income_tax] = useState();
   const [other_compensation, setOther_compensation] = useState();
@@ -90,48 +154,21 @@ function StepFour(props) {
     });
   }, [medicare]);
 
-  const checkForOrderCompletion = useMemo(
-    () => () => {
-      if (!checkoutState?.orderStatusUrl && checkoutId) {
-        graphQLClient
-          .request(checkoutPaymentDone, {
-            id: checkoutId,
-          })
-
-          .then((data) => {
-            setCheckoutState(data.node);
-          });
+  // Fetch Stripe payment intent on mount
+  useEffect(() => {
+    (async () => {
+      try {
+        const token = localStorage.getItem("tokens");
+        const headers = token ? { Authorization: `bearer ${token}` } : {};
+        const { data } = await axios.get("/api/w2/payment-intent", { headers });
+        if (data.secret) {
+          setClientSecret(data.secret);
+        }
+      } catch (err) {
+        console.error("[W2] Payment intent error:", err);
       }
-    },
-    [checkoutId, checkoutState]
-  );
-
-  useEffect(() => {
-    graphQLClient
-      .request(checkoutAddLineItems, {
-        data: {
-          lineItems: [
-            {
-              variantId: variantID,
-              quantity: 1,
-            },
-          ],
-        },
-      })
-      .then((data) => {
-        const { webUrl, id } = data.checkoutCreate.checkout;
-        setWebUrl(webUrl);
-        setCheckoutId(id);
-      });
+    })();
   }, []);
-
-  useEffect(() => {
-    document.addEventListener("visibilitychange", checkForOrderCompletion);
-
-    return () => {
-      document.removeEventListener("visibilitychange", checkForOrderCompletion);
-    };
-  }, [checkForOrderCompletion]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -180,48 +217,23 @@ function StepFour(props) {
     response && takeScreenshot();
   }, [response]);
 
-  const [clicked, setClicked] = useState(false);
-
-  useEffect(() => {
-    if (clicked) {
-      axios
-        .post("/api/w2/cache", {
+  // After payment succeeds, save the W2 image and get the zip file
+  const handlePaymentSuccess = async () => {
+    setPaymentComplete(true);
+    if (screenshot) {
+      try {
+        const res = await axios.post("/api/w2/cache", {
           image: screenshot,
-          checkoutId,
-        })
-        .then((res) => {
-          console.log(res.data);
-          setZipFile(res.data.zipFile);
-          !zipFile &&
-            graphQLClient
-              .request(checkoutUpdateAttributes, {
-                checkoutId,
-                input: {
-                  customAttributes: [
-                    {
-                      key: "file",
-                      value: res.data.zipFile,
-                    },
-                    {
-                      key: "checkoutId",
-                      value: checkoutId,
-                    },
-                  ],
-                },
-              })
-              .then((data) => {
-                console.log(data);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-        })
-        .catch((err) => {
-          console.log(err);
+          checkoutId: "stripe_" + Date.now(),
         });
-      setClicked(false);
+        if (res.data?.zipFile) {
+          setZipFile(res.data.zipFile);
+        }
+      } catch (err) {
+        console.error("[W2] Cache save error:", err);
+      }
     }
-  }, [clicked, zipFile]);
+  };
 
   return (
     <div className="PayStubForm  mt-5 stepTwo">
@@ -268,11 +280,11 @@ function StepFour(props) {
           )}
         </div>
         <div className="text-center mt-4">
-          {checkoutState?.orderStatusUrl ? (
+          {paymentComplete && zipFile ? (
             <Button
               onClick={(e) => {
                 let link =
-                  process.env.REACT_APP_MODE === "development"
+                  REACT_APP_MODE === "development"
                     ? `http://localhost:5000/`
                     : "https://www.drpaystub.net/";
                 window.open(link + zipFile);
@@ -282,16 +294,33 @@ function StepFour(props) {
             >
               Click here to Download
             </Button>
+          ) : paymentComplete && !zipFile ? (
+            <div>
+              <p>Processing your W2 file...</p>
+            </div>
+          ) : clientSecret ? (
+            <div style={{ maxWidth: 420, margin: "0 auto", textAlign: "left" }}>
+              <Elements
+                stripe={stripePromise}
+                options={{
+                  clientSecret,
+                  appearance: stripeAppearance(),
+                }}
+              >
+                <W2PaymentForm
+                  secret={clientSecret}
+                  onSuccess={handlePaymentSuccess}
+                />
+              </Elements>
+              <p className="text-muted mt-3 text-center">
+                <small>
+                  <i className="fa fa-lock" style={{ marginRight: 4 }}></i>
+                  Secured by Stripe &middot; $20.00
+                </small>
+              </p>
+            </div>
           ) : (
-            <Button
-              onClick={(e) => {
-                window.open(webUrl, "_blank");
-                setClicked(true);
-              }}
-              className="btn btn-secondary"
-            >
-              Check out
-            </Button>
+            <p className="text-muted">Loading payment form...</p>
           )}
 
           <p className="text-muted mt-3">
@@ -309,8 +338,3 @@ export default connect((state) => state, {
   loadingFn: AC.loading,
   responseFn: AC.response,
 })(StepFour);
-
-const options = {
-  orientation: "landscape",
-  precision: 20,
-};

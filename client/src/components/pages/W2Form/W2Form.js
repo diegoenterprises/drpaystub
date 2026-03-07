@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import SEO from '../../SEO';
 import StepOneForm from './StepOne';
 import StepTwoForm from './StepTwo';
 import StepThreeForm from './StepThree';
@@ -43,6 +44,12 @@ export default function W2Form() {
 
     return (
         <div className="PayStubForm">
+            <SEO
+              title="W2 Form Generator — Create W2 Online"
+              description="Generate accurate W2 forms online. Enter employer and employee information, wages, and tax withholdings. Download print-ready W2 forms instantly."
+              path="/w2form"
+              keywords="W2 form generator, create W2 online, W2 maker, wage and tax statement, W2 form creator, employer W2 form"
+            />
             <div className="container">
                 <div className="row myProgressBar">
                     <div className="col-sm-12">

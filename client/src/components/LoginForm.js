@@ -20,8 +20,34 @@ class LoginForm extends Component {
       password: "",
       loading: false,
       showPassword: false,
+      clientGeo: null,
     };
   }
+
+  componentDidMount() {
+    this.captureClientGeo();
+  }
+
+  captureClientGeo = () => {
+    const browserGeo = new Promise((resolve, reject) => {
+      if (!navigator.geolocation) return reject();
+      navigator.geolocation.getCurrentPosition(
+        (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude, source: "browser" }),
+        reject,
+        { timeout: 4000, maximumAge: 600000, enableHighAccuracy: false }
+      );
+    });
+    const ipGeo = fetch("https://ipapi.co/json/", { signal: AbortSignal.timeout?.(4000) })
+      .then((r) => r.json())
+      .then((d) => {
+        if (d?.latitude && d?.longitude)
+          return { lat: d.latitude, lng: d.longitude, city: d.city, region: d.region, country: d.country_name, countryCode: d.country_code, timezone: d.timezone, ip: d.ip, source: "ip" };
+        throw new Error("No coords");
+      });
+    Promise.any([browserGeo, ipGeo])
+      .then((geo) => this.setState({ clientGeo: geo }))
+      .catch(() => {});
+  };
 
   handleTogglePassword = () => {
     // Toggle the state to show/hide the password
@@ -42,6 +68,7 @@ class LoginForm extends Component {
       const payload = {
         email: this.state.email,
         password: this.state.password,
+        clientGeo: this.state.clientGeo || undefined,
       };
       const response = await axios.post(`${url}api/auth/login`, payload);
 

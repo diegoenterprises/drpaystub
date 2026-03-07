@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from '../../SEO';
 import '../LegalPages.css';
 
 export default function PrivacyPolicy() {
@@ -7,6 +8,12 @@ export default function PrivacyPolicy() {
 
     return (
         <div className="legal-page">
+            <SEO
+              title="Privacy Policy"
+              description="Read the Saurellius privacy policy. Learn how we protect your personal information, payment data, and payroll details with bank-grade security."
+              path="/privacyPolicy"
+              keywords="saurellius privacy policy, paystub data protection, payroll privacy"
+            />
             <div className="legal-hero">
                 <span className="legal-hero-badge">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>

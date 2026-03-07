@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { ARTICLES, CATEGORIES } from "../../../data/blogArticles";
 import STATE_TAX_DATA from "../../../data/stateTaxData";
 import parse from "html-react-parser";
+import SEO from "../../SEO";
 
 /* ─── Icons (inline SVG to avoid dependency) ─────────────────────────────── */
 const SearchIcon = () => (
@@ -142,6 +143,12 @@ export default function Blogs() {
 
   return (
     <div style={{ minHeight: "80vh", padding: "100px 0 60px" }}>
+      <SEO
+        title="Payroll Blog & Tax Guides"
+        description="Expert payroll guides, tax tips for all 50 states, W2 information, and compliance resources. Your complete knowledge base for payroll and pay stubs."
+        path="/blogs"
+        keywords="payroll blog, tax guide by state, payroll tips, W2 guide, paystub FAQ, state tax rates, federal tax brackets, payroll compliance"
+      />
       {/* Hero */}
       <div style={{ textAlign: "center", marginBottom: 40, padding: "0 20px" }}>
         <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--color-accent)", marginBottom: 8 }}>

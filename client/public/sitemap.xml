@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.drpaystub.net/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.drpaystub.net/logo512.png</image:loc>
+      <image:title>Saurellius — Professional Paystub Generator</image:title>
+    </image:image>
+  </url>
+
+  <!-- Create Pay Stub (main conversion page) -->
+  <url>
+    <loc>https://www.drpaystub.net/paystubs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Templates Showcase -->
+  <url>
+    <loc>https://www.drpaystub.net/templates</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://www.drpaystub.net/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- Blogs (content hub) -->
+  <url>
+    <loc>https://www.drpaystub.net/blogs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Reviews / Testimonials -->
+  <url>
+    <loc>https://www.drpaystub.net/reviews</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://www.drpaystub.net/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://www.drpaystub.net/privacyPolicy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+
+  <!-- Terms and Conditions -->
+  <url>
+    <loc>https://www.drpaystub.net/terms-and-conditions</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+
+  <!-- W2 Form -->
+  <url>
+    <loc>https://www.drpaystub.net/w2form</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Auth pages (lower priority but still indexed) -->
+  <url>
+    <loc>https://www.drpaystub.net/login</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.40</priority>
+  </url>
+
+  <url>
+    <loc>https://www.drpaystub.net/register</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+
+</urlset>

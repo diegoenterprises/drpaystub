@@ -36,6 +36,20 @@ const UserSchema = new mongoose.Schema(
     verifyEmailToken: String,
     resetPasswordToken: String,
     stripeCustomerId: String,
+    subscription: {
+      plan: { type: String, enum: ["free", "starter", "professional", "unlimited"], default: "free" },
+      stripeSubscriptionId: String,
+      stripePriceId: String,
+      status: { type: String, enum: ["active", "past_due", "canceled", "trialing", null], default: null },
+      currentPeriodStart: Date,
+      currentPeriodEnd: Date,
+      cancelAtPeriodEnd: { type: Boolean, default: false },
+    },
+    monthlyUsage: {
+      paystubsCreated: { type: Number, default: 0 },
+      w2sCreated: { type: Number, default: 0 },
+      periodStart: Date,
+    },
     image: String,
     geo: {
       ip: String,

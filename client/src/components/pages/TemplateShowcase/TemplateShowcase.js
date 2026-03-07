@@ -5,6 +5,7 @@ import {
   FaArrowRight, FaCheck, FaStar, FaDownload,
   FaPrint, FaEnvelope, FaEye,
 } from "react-icons/fa";
+import SEO from "../../SEO";
 
 // ─── Inject keyframes ────────────────────────────────────────────────────────
 let _injected = false;
@@ -432,6 +433,12 @@ export class TemplateShowcase extends Component {
 
     return (
       <div style={{ minHeight: "100vh", paddingBottom: 80 }}>
+        <SEO
+          title="Paystub Templates — 6 Premium Designs"
+          description="Browse 6 professionally designed paystub templates. Classic, modern, executive, and more. Each template includes full tax breakdowns, digital signatures, and bank-grade PDF security."
+          path="/templates"
+          keywords="paystub template, pay stub design, professional paystub layout, paystub PDF template, check stub template, payroll template"
+        />
 
         {/* ── Hero ── */}
         <div style={{

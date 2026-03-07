@@ -7,6 +7,7 @@ import "./dashboard.css";
 import actionCreater from "../../../redux/actions/actionCreater";
 import DashboardLayout from "./layout/DashboardLayout";
 import WeatherWidget from "./WeatherWidget";
+import SubscriptionWidget from "./SubscriptionWidget";
 import YTDContinueModal from "./YTDContinueModal";
 import "./ytd-modal.css";
 import moment from "moment";
@@ -85,6 +86,7 @@ class Dashboard extends Component {
         <p className="dash-page-subtitle">Here's a snapshot of your account</p>
 
         <WeatherWidget />
+        <SubscriptionWidget />
 
         {/* Stat Cards */}
         <div className="dash-stat-grid">

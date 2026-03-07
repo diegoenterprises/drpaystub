@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import SEO from "../../SEO";
 import "./PayStubForm.scss";
 import Step1Form from "./Step1";
 import Step2Form from "./Step2";
@@ -467,6 +468,12 @@ export class PayStubForm extends Component {
     if (!isLoggedIn && !this.state.gateCleared) {
       return (
         <div className="PayStubForm">
+          <SEO
+            title="Create Pay Stub — Accurate Tax Calculations"
+            description="Generate professional pay stubs with accurate federal and state tax withholdings, Social Security, Medicare, and custom deductions. Choose from 6 premium templates. Instant PDF download."
+            path="/paystubs"
+            keywords="create pay stub, generate paystub online, pay stub maker, paycheck generator, salary calculator, hourly pay stub, payroll stub creator"
+          />
           <div className="container">
             <div className="auth-gate">
               <div className="auth-gate-card">

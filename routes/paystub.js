@@ -34,6 +34,7 @@ const { sendEmail, sendPaystubPDFs } = require("../services/email.service");
 const jwt = require("jsonwebtoken");
 
 const Paystub = require("../models/Paystub");
+const { User } = require("../models/user");
 
 // Helper: extract userId from JWT if present (no auth required)
 function optionalUserId(req) {
@@ -540,6 +541,18 @@ router.post("/save-stub", upload.single("company_image"), async (req, res) => {
   const paystub = await Paystub.create({
     params: parsedRequestBody
   });
+
+  // Track subscription usage (fire-and-forget)
+  if (jwtUserId) {
+    User.findById(jwtUserId).then((u) => {
+      if (u?.subscription?.status === "active" && u.subscription.plan !== "free") {
+        User.findByIdAndUpdate(jwtUserId, {
+          $inc: { "monthlyUsage.paystubsCreated": 1 },
+        }).catch(() => {});
+      }
+    }).catch(() => {});
+  }
+
   return res.json({ status: true, paystub });
 });
 

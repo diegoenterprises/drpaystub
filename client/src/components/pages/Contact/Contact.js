@@ -6,6 +6,7 @@ import {
   FaChevronDown, FaShieldAlt, FaHeadset, FaBolt,
 } from "react-icons/fa";
 import { axios } from "../../../HelperFunctions/axios";
+import SEO from "../../SEO";
 import "./Contact.scss";
 
 // ─── Inject keyframes once ───────────────────────────────────────────────────
@@ -130,6 +131,12 @@ export class Contact extends Component {
 
     return (
       <div style={{ minHeight: "100vh", paddingBottom: 80 }}>
+        <SEO
+          title="Contact Us"
+          description="Get in touch with the Saurellius team. Have questions about creating pay stubs, tax calculations, or your account? We're here to help with fast, friendly support."
+          path="/contact"
+          keywords="contact saurellius, paystub support, paystub help, dr paystub contact"
+        />
 
         {/* ── Hero Section ── */}
         <div style={{

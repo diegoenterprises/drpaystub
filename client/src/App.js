@@ -42,6 +42,7 @@ import AdminPage from "./components/pages/Admin/AdminPage";
 import SuccessForm from "./components/Success";
 import FailureForm from "./components/Failure";
 import TemplateShowcase from "./components/pages/TemplateShowcase/TemplateShowcase";
+import W2Wizard from "./components/pages/W2Wizard/W2Wizard";
 
 const MainLayout = () => {
   const storage = localStorage.getItem("tokens");
@@ -92,6 +93,7 @@ const MainLayout = () => {
         <Route exact path="/about" component={AboutUs} />
         <Route exact path="/privacyPolicy" component={Privacy} />
         <Route exact path="/w2form" component={W2} />
+        <Route exact path="/w2-wizard" component={W2Wizard} />
 
         <Route
           exact
