@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { FaUser, FaLock, FaFileAlt, FaTachometerAlt, FaSignOutAlt, FaChartBar } from "react-icons/fa";
+import { FaUser, FaLock, FaFileAlt, FaTachometerAlt, FaSignOutAlt, FaChartBar, FaWpforms } from "react-icons/fa";
 import { connect } from "react-redux";
 import "./styles.css";
 
@@ -8,6 +8,7 @@ const navItems = [
   { path: "/dashboard", icon: FaTachometerAlt, label: "Overview", exact: true },
   { path: "/dashboard/profile", icon: FaUser, label: "My Profile" },
   { path: "/dashboard/paystub", icon: FaFileAlt, label: "My Paystubs" },
+  { path: "/dashboard/w2s", icon: FaWpforms, label: "My W-2s" },
   { path: "/dashboard/change-password", icon: FaLock, label: "Security" },
   { path: "/dashboard/admin", icon: FaChartBar, label: "Admin Panel", adminOnly: true },
 ];

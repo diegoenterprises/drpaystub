@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { FaFileAlt, FaUser, FaClock, FaShieldAlt, FaCalendarAlt, FaLock, FaPlus, FaPen, FaEye, FaCheckCircle } from "react-icons/fa";
+import { FaFileAlt, FaUser, FaClock, FaShieldAlt, FaCalendarAlt, FaLock, FaPlus, FaPen, FaEye, FaCheckCircle, FaWpforms } from "react-icons/fa";
 import { axios } from "../../../HelperFunctions/axios";
 import "./dashboard.css";
 import actionCreater from "../../../redux/actions/actionCreater";
@@ -19,6 +19,8 @@ class Dashboard extends Component {
       paystubCount: 0,
       totalPeriods: 0,
       recentStubs: [],
+      w2Count: 0,
+      recentW2s: [],
       loading: true,
       showYTDModal: false,
     };
@@ -26,6 +28,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     this.fetchStats();
+    this.fetchW2Stats();
   }
 
   fetchStats = async () => {
@@ -52,9 +55,27 @@ class Dashboard extends Component {
     }
   };
 
+  fetchW2Stats = async () => {
+    try {
+      let url = process.env.REACT_APP_BACKEND_URL_LOCAL;
+      if (process.env.REACT_APP_MODE === "live") {
+        url = process.env.REACT_APP_FRONTEND_URL_LIVE;
+      }
+      const token = localStorage.getItem("tokens");
+      if (!token) return;
+      const { data } = await axios.get(`${url}api/w2-wizard/my-w2s`, {
+        headers: { Authorization: `bearer ${token}` },
+      });
+      const records = Array.isArray(data) ? data : [];
+      this.setState({ w2Count: records.length, recentW2s: records.slice(0, 3) });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   render() {
     const { userData } = this.props;
-    const { paystubCount, totalPeriods, recentStubs } = this.state;
+    const { paystubCount, totalPeriods, recentStubs, w2Count, recentW2s } = this.state;
     const userName = userData?.firstName || "there";
     const memberSince = userData?.createdAt
       ? new Date(userData.createdAt).toLocaleDateString("en-US", {
@@ -107,6 +128,16 @@ class Dashboard extends Component {
             <div className="dash-stat-info">
               <h3>{totalPeriods}</h3>
               <p>Total Pay Periods</p>
+            </div>
+          </div>
+
+          <div className="dash-stat-card">
+            <div className="dash-stat-icon">
+              <FaWpforms />
+            </div>
+            <div className="dash-stat-info">
+              <h3>{w2Count}</h3>
+              <p>W-2 Forms</p>
             </div>
           </div>
 
@@ -211,6 +242,52 @@ class Dashboard extends Component {
                 </div>
               </div>
             </Link>
+            <Link to="/w2-wizard" style={{ textDecoration: "none" }}>
+              <div style={{
+                padding: "20px 18px", borderRadius: "var(--radius-lg)",
+                background: "var(--color-bg)", border: "1px solid var(--color-border)",
+                display: "flex", alignItems: "center", gap: 14,
+                transition: "all 0.15s ease", cursor: "pointer",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--color-accent)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--color-border)"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                <div style={{
+                  width: 40, height: 40, borderRadius: "var(--radius-md)",
+                  background: "var(--gradient-brand)", display: "flex",
+                  alignItems: "center", justifyContent: "center", flexShrink: 0,
+                }}>
+                  <FaWpforms style={{ color: "#fff", fontSize: 16 }} />
+                </div>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: 14, color: "var(--color-text-primary)" }}>Create W-2</div>
+                  <div style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>Generate official IRS W-2 form</div>
+                </div>
+              </div>
+            </Link>
+            <Link to="/dashboard/w2s" style={{ textDecoration: "none" }}>
+              <div style={{
+                padding: "20px 18px", borderRadius: "var(--radius-lg)",
+                background: "var(--color-bg)", border: "1px solid var(--color-border)",
+                display: "flex", alignItems: "center", gap: 14,
+                transition: "all 0.15s ease", cursor: "pointer",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--color-accent)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--color-border)"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                <div style={{
+                  width: 40, height: 40, borderRadius: "var(--radius-md)",
+                  background: "var(--gradient-brand-subtle)", display: "flex",
+                  alignItems: "center", justifyContent: "center", flexShrink: 0,
+                }}>
+                  <FaEye style={{ color: "var(--color-accent)", fontSize: 16 }} />
+                </div>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: 14, color: "var(--color-text-primary)" }}>My W-2s</div>
+                  <div style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>View &amp; download W-2 forms</div>
+                </div>
+              </div>
+            </Link>
             <Link to="/dashboard/change-password" style={{ textDecoration: "none" }}>
               <div style={{
                 padding: "20px 18px", borderRadius: "var(--radius-lg)",
@@ -277,6 +354,46 @@ class Dashboard extends Component {
                 </div>
               );
             })}
+          </div>
+        )}
+
+        {/* Recent W-2s */}
+        {recentW2s.length > 0 && (
+          <div className="dash-section-card" style={{ marginTop: 24 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, paddingBottom: 12, borderBottom: "1px solid var(--color-border)" }}>
+              <h4 style={{ margin: 0, border: "none", paddingBottom: 0 }}>Recent W-2 Forms</h4>
+              <Link to="/dashboard/w2s" style={{ fontSize: 13, fontWeight: 500, color: "var(--color-accent)", textDecoration: "none" }}>
+                View All
+              </Link>
+            </div>
+            {recentW2s.map((rec, idx) => (
+              <div key={rec._id || idx} style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                padding: "12px 0",
+                borderBottom: idx < recentW2s.length - 1 ? "1px solid var(--color-border)" : "none",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <div style={{
+                    width: 36, height: 36, borderRadius: "var(--radius-md)",
+                    background: "var(--gradient-brand-subtle)", display: "flex",
+                    alignItems: "center", justifyContent: "center", flexShrink: 0,
+                  }}>
+                    <FaWpforms style={{ color: "var(--color-accent)", fontSize: 14 }} />
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: 14, color: "var(--color-text-primary)" }}>
+                      {rec.employerName || "—"}
+                    </div>
+                    <div style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>
+                      {rec.employeeFirstName} {rec.employeeLastName} &middot; {rec.taxYear || "—"}
+                    </div>
+                  </div>
+                </div>
+                <span style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>
+                  {rec.createdAt ? moment(rec.createdAt).fromNow() : "—"}
+                </span>
+              </div>
+            ))}
           </div>
         )}
 

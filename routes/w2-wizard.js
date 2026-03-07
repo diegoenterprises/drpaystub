@@ -6,6 +6,7 @@ const path = require("path");
 const jwt = require("jsonwebtoken");
 const archiver = require("archiver");
 
+const W2Record = require("../models/W2Record");
 const TEMPLATE_PATH = path.join(__dirname, "..", "templates", "fw2.pdf");
 
 // ─── Stripe Setup ────────────────────────────────────────────────────────────
@@ -322,6 +323,31 @@ router.post("/generate", async (req, res) => {
       archive.finalize();
     });
 
+    // Save record to DB if user is logged in
+    const userId = optionalUserId(req);
+    if (userId) {
+      try {
+        await W2Record.create({
+          userId,
+          employerName: data.employerName,
+          employerEIN: data.employerEIN,
+          employeeFirstName: data.employeeFirstName,
+          employeeLastName: data.employeeLastName,
+          employeeSSN: data.employeeSSN,
+          taxYear: data.taxYear || new Date().getFullYear().toString(),
+          box1: data.box1,
+          box2: data.box2,
+          state1: data.state1,
+          pdfFile: `public/${filename}`,
+          zipFile: `public/${zipFilename}`,
+          filename,
+          paymentStatus: "success",
+        });
+      } catch (dbErr) {
+        console.error("[W2 Wizard] DB save error:", dbErr.message);
+      }
+    }
+
     return res.json({
       success: true,
       pdfFile: `public/${filename}`,
@@ -331,6 +357,19 @@ router.post("/generate", async (req, res) => {
   } catch (err) {
     console.error("[W2 Wizard] Generate error:", err);
     return res.status(500).json({ error: err.message, success: false });
+  }
+});
+
+// ─── Get user's W-2 records ──────────────────────────────────────────────────
+router.get("/my-w2s", async (req, res) => {
+  try {
+    const userId = optionalUserId(req);
+    if (!userId) return res.status(401).json({ error: "Not authenticated" });
+    const records = await W2Record.find({ userId }).sort({ createdAt: -1 }).lean();
+    return res.json(records);
+  } catch (err) {
+    console.error("[W2 Wizard] my-w2s error:", err.message);
+    return res.status(500).json({ error: err.message });
   }
 });
 

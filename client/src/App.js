@@ -43,6 +43,7 @@ import SuccessForm from "./components/Success";
 import FailureForm from "./components/Failure";
 import TemplateShowcase from "./components/pages/TemplateShowcase/TemplateShowcase";
 import W2Wizard from "./components/pages/W2Wizard/W2Wizard";
+import MyW2s from "./components/pages/Dashboard/MyW2s";
 
 const MainLayout = () => {
   const storage = localStorage.getItem("tokens");
@@ -81,6 +82,7 @@ const MainLayout = () => {
         <Route exact path="/dashboard/profile" component={UserProfile} />
         <Route exact path="/dashboard/paystub" component={Paystub} />
         <Route exact path="/dashboard/paystub/:id" component={ViewPaystub} />
+        <Route exact path="/dashboard/w2s" component={MyW2s} />
         <Route exact path="/dashboard/change-password" component={ChangePassword} />
         <Route exact path="/dashboard/admin" component={AdminDashboard} />
 
