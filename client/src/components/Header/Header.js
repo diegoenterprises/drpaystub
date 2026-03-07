@@ -112,8 +112,7 @@ class Header extends Component {
                 data-toggle="collapse"
                 data-target="#navigation"
               >
-                {userData ? (
-                  <NavLink
+                <NavLink
                     exact
                     activeClassName="nav-active"
                     to="/paystubs"
@@ -121,19 +120,6 @@ class Header extends Component {
                   >
                     Saurellius
                   </NavLink>
-                ) : (
-                  <NavLink
-                    exact
-                    activeClassName="nav-active"
-                    onClick={() =>
-                      localStorage.setItem("clickStartAstrosync", true)
-                    }
-                    to="/login"
-                    className="nav-link"
-                  >
-                    Saurellius
-                  </NavLink>
-                )}
               </li>
               <li
                 className="nav-item"
