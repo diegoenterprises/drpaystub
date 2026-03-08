@@ -400,6 +400,11 @@ class WeatherWidget extends Component {
   componentDidMount() {
     injectStyles();
     this.fetchWeather();
+    this.clockInterval = setInterval(() => this.forceUpdate(), 30000);
+  }
+
+  componentWillUnmount() {
+    if (this.clockInterval) clearInterval(this.clockInterval);
   }
 
   getLocation = () => {
@@ -588,7 +593,7 @@ class WeatherWidget extends Component {
               )}
             </div>
 
-            {/* Right: Location + Season */}
+            {/* Right: Location + Time + Season */}
             <div style={{ textAlign: "right", minWidth: 120 }}>
               <div style={{ fontSize: 15, fontWeight: 600, color: textColor, marginBottom: 2 }}>
                 {location?.city || "---"}
@@ -596,6 +601,9 @@ class WeatherWidget extends Component {
               {location?.state && (
                 <div style={{ fontSize: 12, color: subColor, marginBottom: 4 }}>{location.state}</div>
               )}
+              <div style={{ fontSize: 20, fontWeight: 300, color: textColor, letterSpacing: "0.02em", marginBottom: 4, fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
+                {new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}
+              </div>
               <div style={{
                 fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
                 color: subColor,

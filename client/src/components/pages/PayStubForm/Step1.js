@@ -7,6 +7,7 @@ import { Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import AC from "../../../redux/actions/actionCreater";
 import { states } from "./states";
+import AddressAutocomplete from "../../AddressAutocomplete";
 
 function Step1(props) {
   useEffect(() => {
@@ -38,11 +39,46 @@ function Step1(props) {
     []
   );
   const resolver = useYupValidationResolver(validationSchema);
-  const { handleSubmit, register, errors } = useForm({ resolver });
+  const { handleSubmit, register, errors, setValue } = useForm({ resolver });
   const onSubmit = (data) => {
     props.changeStep(2);
     props.step1Fn(data);
   };
+
+  const handleCompanyAddressSelect = (place) => {
+    // Auto-fill city, state, zip from Google Places selection
+    if (place.city) {
+      setValue("company_city", place.city);
+      props.handleChange({ target: { name: "company_city", value: place.city } }, 1);
+    }
+    if (place.state) {
+      const matchedState = states.find(
+        (s) => s.name.toUpperCase() === place.state.toUpperCase()
+      );
+      if (matchedState) {
+        setValue("company_state", matchedState.name);
+      }
+    }
+    if (place.zip) {
+      setValue("companyZipCode", place.zip);
+      props.handleChange({ target: { name: "companyZipCode", value: place.zip } }, 1);
+    }
+    // Store the full Google-verified address data for security embedding
+    props.handleChange({
+      target: { name: "company_address_verified", value: JSON.stringify({
+        formatted: place.formatted,
+        lat: place.lat,
+        lng: place.lng,
+        placeId: place.placeId,
+        city: place.city,
+        state: place.state,
+        stateCode: place.stateCode,
+        zip: place.zip,
+        county: place.county,
+      }) }
+    }, 1);
+  };
+
   return (
     <div className="PayStubForm formStep mt-5">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -79,16 +115,19 @@ function Step1(props) {
           <label htmlFor="company_address">
             Address <span className="text-muted">(Optional)</span>
           </label>
-          <input
-            type="text"
-            ref={register}
+          <input type="hidden" ref={register} name="company_address" value={props.content.company_address || ""} />
+          <AddressAutocomplete
             className="form-control"
             placeholder="Ex. 10000 Spice Ln"
             id="company_address"
-            defaultValue={props.step1.company_address}
-            name="company_address"
-            onChange={(e) => props.handleChange(e, 1)}
-            value={props.content.company_address}
+            name="company_address_display"
+            value={props.content.company_address || ""}
+            onChange={(val) => props.handleChange({ target: { name: "company_address", value: val } }, 1)}
+            onSelect={(place) => {
+              props.handleChange({ target: { name: "company_address", value: place.address } }, 1);
+              setValue("company_address", place.address);
+              handleCompanyAddressSelect(place);
+            }}
             style={{ width: "100%" }}
           />
         </div>

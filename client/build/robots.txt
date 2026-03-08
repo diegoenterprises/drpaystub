@@ -1,8 +1,30 @@
 # robots.txt — Saurellius by Dr. Paystub Corp
 # https://www.drpaystub.net
 
+# ═══════════════════════════════════════════════════════════════
+# DEFAULT: Allow all crawlers full access to public content
+# ═══════════════════════════════════════════════════════════════
 User-agent: *
 Allow: /
+Allow: /paystubs
+Allow: /w2form
+Allow: /w2-wizard
+Allow: /w2forms
+Allow: /templates
+Allow: /blogs
+Allow: /about
+Allow: /contact
+Allow: /reviews
+Allow: /login
+Allow: /register
+Allow: /glossary
+Allow: /paystub-laws/
+Allow: /calculators/
+Allow: /compare/
+Allow: /llms.txt
+Allow: /sitemap.xml
+Allow: /manifest.json
+Allow: /saurellius-indexnow-key.txt
 Disallow: /dashboard/
 Disallow: /admin
 Disallow: /success
@@ -10,19 +32,238 @@ Disallow: /failure
 Disallow: /error
 Disallow: /reset-password/
 Disallow: /verify-email
+Disallow: /api/
 
-# Sitemap
-Sitemap: https://www.drpaystub.net/sitemap.xml
-
-# Crawl-delay (be polite)
-Crawl-delay: 2
-
-# Google
+# ═══════════════════════════════════════════════════════════════
+# GOOGLE — Fastest crawl, highest priority
+# ═══════════════════════════════════════════════════════════════
 User-agent: Googlebot
 Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
 Crawl-delay: 1
 
-# Bing
+User-agent: Googlebot-Image
+Allow: /
+Allow: /logo512.png
+Allow: /logo192.png
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: Storebot-Google
+Allow: /
+
+# ═══════════════════════════════════════════════════════════════
+# BING / MICROSOFT
+# ═══════════════════════════════════════════════════════════════
 User-agent: Bingbot
 Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
 Crawl-delay: 2
+
+User-agent: MSNBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: BingPreview
+Allow: /
+
+# ═══════════════════════════════════════════════════════════════
+# YAHOO
+# ═══════════════════════════════════════════════════════════════
+User-agent: Slurp
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+Crawl-delay: 2
+
+# ═══════════════════════════════════════════════════════════════
+# YANDEX (Russia)
+# ═══════════════════════════════════════════════════════════════
+User-agent: YandexBot
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+Crawl-delay: 3
+
+User-agent: YandexImages
+Allow: /
+
+# ═══════════════════════════════════════════════════════════════
+# BAIDU (China)
+# ═══════════════════════════════════════════════════════════════
+User-agent: Baiduspider
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+Crawl-delay: 3
+
+# ═══════════════════════════════════════════════════════════════
+# DUCKDUCKGO
+# ═══════════════════════════════════════════════════════════════
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+Crawl-delay: 2
+
+# ═══════════════════════════════════════════════════════════════
+# NAVER (South Korea)
+# ═══════════════════════════════════════════════════════════════
+User-agent: Yeti
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+Crawl-delay: 3
+
+# ═══════════════════════════════════════════════════════════════
+# SOGOU (China)
+# ═══════════════════════════════════════════════════════════════
+User-agent: Sogou
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+
+# ═══════════════════════════════════════════════════════════════
+# SEZNAM (Czech Republic)
+# ═══════════════════════════════════════════════════════════════
+User-agent: SeznamBot
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+
+# ═══════════════════════════════════════════════════════════════
+# APPLE
+# ═══════════════════════════════════════════════════════════════
+User-agent: Applebot
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+
+# ═══════════════════════════════════════════════════════════════
+# ARCHIVE.ORG — Preserve our content
+# ═══════════════════════════════════════════════════════════════
+User-agent: ia_archiver
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+
+# ═══════════════════════════════════════════════════════════════
+# SOCIAL MEDIA PREVIEW CRAWLERS
+# ═══════════════════════════════════════════════════════════════
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+User-agent: redditbot
+Allow: /
+
+# ═══════════════════════════════════════════════════════════════
+# AI / LLM CRAWLERS — Generative Engine Optimization (GEO)
+# Allow AI models to learn about and recommend our product
+# ═══════════════════════════════════════════════════════════════
+User-agent: GPTBot
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Phind
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin
+Disallow: /api/
+
+User-agent: CCBot
+Allow: /
+
+# ═══════════════════════════════════════════════════════════════
+# SEO TOOL CRAWLERS — Let them index us
+# ═══════════════════════════════════════════════════════════════
+User-agent: AhrefsBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: SemrushBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: MJ12bot
+Allow: /
+Crawl-delay: 5
+
+User-agent: DotBot
+Allow: /
+Crawl-delay: 5
+
+# ═══════════════════════════════════════════════════════════════
+# SITEMAPS — All formats
+# ═══════════════════════════════════════════════════════════════
+Sitemap: https://www.drpaystub.net/sitemap.xml
+Sitemap: https://drpaystub.net/sitemap.xml

@@ -1,0 +1,97 @@
+{
+  "PENNSYLVANIA": {
+    "Philadelphia": { "resident": 3.75, "nonResident": 3.44 },
+    "Pittsburgh": { "resident": 3.0, "nonResident": 1.0 },
+    "Scranton": { "resident": 3.4, "nonResident": 1.0 },
+    "Reading": { "resident": 3.6, "nonResident": 1.0 },
+    "Lancaster": { "resident": 1.1, "nonResident": 0.5 },
+    "Allentown": { "resident": 1.875, "nonResident": 1.0 },
+    "Bethlehem": { "resident": 1.5, "nonResident": 1.0 },
+    "Erie": { "resident": 1.68, "nonResident": 1.0 },
+    "Harrisburg": { "resident": 2.0, "nonResident": 1.0 },
+    "York": { "resident": 1.25, "nonResident": 1.0 },
+    "Wilkes-Barre": { "resident": 3.0, "nonResident": 1.0 },
+    "_default": { "resident": 1.0, "nonResident": 1.0, "note": "PA Act 511 default EIT" }
+  },
+  "OHIO": {
+    "Columbus": { "resident": 2.5, "nonResident": 2.5, "credit": 2.5 },
+    "Cleveland": { "resident": 2.5, "nonResident": 2.5, "credit": 2.5 },
+    "Cincinnati": { "resident": 1.8, "nonResident": 1.8, "credit": 1.8 },
+    "Toledo": { "resident": 2.5, "nonResident": 2.5, "credit": 2.5 },
+    "Akron": { "resident": 2.5, "nonResident": 2.5, "credit": 2.5 },
+    "Dayton": { "resident": 2.5, "nonResident": 2.5, "credit": 2.5 },
+    "Canton": { "resident": 2.5, "nonResident": 2.5, "credit": 2.5 },
+    "Youngstown": { "resident": 2.75, "nonResident": 2.75, "credit": 2.75 },
+    "Parma": { "resident": 3.0, "nonResident": 3.0, "credit": 3.0 },
+    "_default": { "resident": 2.0, "nonResident": 2.0, "credit": 2.0, "note": "OH RITA default" }
+  },
+  "NEW YORK": {
+    "New York City": { "resident": 3.876, "nonResident": 0, "note": "NYC only taxes residents" },
+    "New York": { "resident": 3.876, "nonResident": 0 },
+    "Manhattan": { "resident": 3.876, "nonResident": 0 },
+    "Brooklyn": { "resident": 3.876, "nonResident": 0 },
+    "Queens": { "resident": 3.876, "nonResident": 0 },
+    "Bronx": { "resident": 3.876, "nonResident": 0 },
+    "Staten Island": { "resident": 3.876, "nonResident": 0 },
+    "Yonkers": { "resident": 1.9565, "nonResident": 0.5 }
+  },
+  "MARYLAND": {
+    "_countyRates": true,
+    "Baltimore City": { "resident": 3.2, "nonResident": 0 },
+    "Baltimore County": { "resident": 3.2, "nonResident": 0 },
+    "Montgomery County": { "resident": 3.2, "nonResident": 0 },
+    "Prince George's County": { "resident": 3.2, "nonResident": 0 },
+    "Howard County": { "resident": 3.2, "nonResident": 0 },
+    "Anne Arundel County": { "resident": 2.81, "nonResident": 0 },
+    "Frederick County": { "resident": 2.96, "nonResident": 0 },
+    "Harford County": { "resident": 3.06, "nonResident": 0 },
+    "_default": { "resident": 2.75, "nonResident": 0, "note": "MD county tax default" }
+  },
+  "INDIANA": {
+    "Marion County": { "resident": 2.02, "nonResident": 0 },
+    "Lake County": { "resident": 1.5, "nonResident": 0 },
+    "Allen County": { "resident": 1.48, "nonResident": 0 },
+    "Hamilton County": { "resident": 1.0, "nonResident": 0 },
+    "St. Joseph County": { "resident": 1.75, "nonResident": 0 },
+    "Vanderburgh County": { "resident": 1.35, "nonResident": 0 },
+    "_default": { "resident": 1.0, "nonResident": 0, "note": "IN county default" }
+  },
+  "KENTUCKY": {
+    "Louisville": { "resident": 2.2, "nonResident": 2.2 },
+    "Lexington": { "resident": 2.25, "nonResident": 2.25 },
+    "Covington": { "resident": 2.5, "nonResident": 2.5 },
+    "Bowling Green": { "resident": 1.85, "nonResident": 1.85 },
+    "Owensboro": { "resident": 1.99, "nonResident": 1.99 },
+    "Florence": { "resident": 2.0, "nonResident": 2.0 }
+  },
+  "MICHIGAN": {
+    "Detroit": { "resident": 2.4, "nonResident": 1.2 },
+    "Grand Rapids": { "resident": 1.5, "nonResident": 0.75 },
+    "Saginaw": { "resident": 1.5, "nonResident": 0.75 },
+    "Flint": { "resident": 1.0, "nonResident": 0.5 },
+    "Lansing": { "resident": 1.0, "nonResident": 0.5 },
+    "Pontiac": { "resident": 1.0, "nonResident": 0.5 },
+    "Highland Park": { "resident": 2.0, "nonResident": 1.0 }
+  },
+  "MISSOURI": {
+    "Kansas City": { "resident": 1.0, "nonResident": 1.0 },
+    "St. Louis": { "resident": 1.0, "nonResident": 1.0 }
+  },
+  "ALABAMA": {
+    "Birmingham": { "resident": 1.0, "nonResident": 1.0 },
+    "Gadsden": { "resident": 2.0, "nonResident": 2.0 },
+    "Bessemer": { "resident": 1.0, "nonResident": 1.0 }
+  },
+  "COLORADO": {
+    "Denver": { "resident": 5.75, "nonResident": 5.75, "flat": true, "flatAmount": 5.75, "note": "Flat $5.75/month OPT" },
+    "Aurora": { "resident": 2.0, "nonResident": 2.0, "flat": true, "flatAmount": 2.0 },
+    "Greenwood Village": { "resident": 4.0, "nonResident": 4.0, "flat": true, "flatAmount": 4.0 }
+  },
+  "WEST VIRGINIA": {
+    "Charleston": { "resident": 1.0, "nonResident": 1.0 },
+    "Huntington": { "resident": 0.5, "nonResident": 0.5 }
+  },
+  "DELAWARE": {
+    "Wilmington": { "resident": 1.25, "nonResident": 1.25 }
+  }
+}

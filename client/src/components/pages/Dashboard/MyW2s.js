@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { FaFileAlt, FaDownload, FaBuilding, FaCalendarAlt } from "react-icons/fa";
+import { FaFileAlt, FaDownload, FaBuilding, FaCalendarAlt, FaBolt, FaExternalLinkAlt } from "react-icons/fa";
 import { axios } from "../../../HelperFunctions/axios";
 import DashboardLayout from "./layout/DashboardLayout";
 import { Spinner } from "react-bootstrap";
@@ -30,13 +30,25 @@ class MyW2s extends Component {
     }
   };
 
+  getBaseUrl = () => {
+    if (process.env.REACT_APP_MODE === "live") return process.env.REACT_APP_FRONTEND_URL_LIVE;
+    return process.env.REACT_APP_BACKEND_URL_LOCAL;
+  };
+
   handleDownload = (zipFile) => {
-    const base =
-      process.env.REACT_APP_MODE === "development" || process.env.REACT_APP_MODE === "developement"
-        ? "http://localhost:5000/"
-        : "https://www.drpaystub.net/";
+    const base = this.getBaseUrl();
     const cleanPath = (zipFile || "").replace(/^public\//, "");
     window.open(base + cleanPath);
+  };
+
+  handleEFileDownload = async (recordId) => {
+    try {
+      const base = this.getBaseUrl();
+      const token = localStorage.getItem("tokens");
+      window.open(`${base}api/w2-wizard/efile/${recordId}?token=${token}`, "_blank");
+    } catch (e) {
+      console.error("[MyW2s] E-file download error:", e);
+    }
   };
 
   maskSSN = (ssn) => {
@@ -137,7 +149,49 @@ class MyW2s extends Component {
                     >
                       <FaDownload style={{ fontSize: 12 }} /> Download
                     </button>
+                    <button
+                      onClick={() => this.handleEFileDownload(rec._id)}
+                      title="Download SSA E-File (EFW2 format)"
+                      style={{
+                        background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+                        border: "none", borderRadius: "var(--radius-md)",
+                        color: "#fff", fontSize: 13, fontWeight: 600, padding: "8px 16px",
+                        cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6,
+                        transition: "transform 0.15s ease",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-1px)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+                    >
+                      <FaBolt style={{ fontSize: 12 }} /> E-File
+                    </button>
                   </div>
+                </div>
+
+                {/* E-File SSA Banner */}
+                <div style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  marginTop: 14, paddingTop: 14,
+                  borderTop: "1px solid var(--color-border)",
+                  flexWrap: "wrap", gap: 8,
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <FaBolt style={{ color: "#f59e0b", fontSize: 14 }} />
+                    <span style={{ fontSize: 13, color: "var(--color-text-secondary)" }}>
+                      E-file this W-2 with the SSA — <strong>free &amp; instant</strong>
+                    </span>
+                  </div>
+                  <a
+                    href="https://www.ssa.gov/bso/bsowelcome.htm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      fontSize: 13, fontWeight: 600, color: "#6366f1",
+                      display: "inline-flex", alignItems: "center", gap: 5,
+                      textDecoration: "none",
+                    }}
+                  >
+                    Open SSA BSO Portal <FaExternalLinkAlt style={{ fontSize: 10 }} />
+                  </a>
                 </div>
 
                 {/* Detail row */}

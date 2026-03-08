@@ -16,6 +16,8 @@ const W2RecordSchema = new mongoose.Schema(
     zipFile: String,
     filename: String,
     paymentStatus: { type: String, enum: ["success", "pending"], default: "success" },
+    // Full form data for EFW2 e-file generation
+    formData: { type: mongoose.Schema.Types.Mixed, default: null },
   },
   { timestamps: true }
 );

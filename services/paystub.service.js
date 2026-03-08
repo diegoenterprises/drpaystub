@@ -3,6 +3,7 @@ const STATE_TAX = require("../config/state-tax.json");
 const SDI_TAX = require("../config/sdi-tax.json");
 const FEDERAL_TAX = require("../config/federal-tax.json");
 const OTHER_TAX = require("../config/other-taxes.json");
+const LOCAL_TAX = require("../config/local-tax.json");
 const moment = require("moment");
 const { ToWords } = require('to-words');
 
@@ -96,6 +97,62 @@ const convertDate = (date) => {
     .month(parseInt(month) - 1)
     .date(parseInt(day))
     .toDate();
+};
+
+// ─── Local / Municipality Tax ────────────────────────────────────────────────
+// Calculates local income tax based on work city (employer) and residence city (employee).
+// Rules: work-city tax applies if nonResident > 0, residence-city tax applies minus credit.
+const calcLocalTax = ({ state, workCity, residentCity, income, days }) => {
+  const stateEntry = LOCAL_TAX[state];
+  if (!stateEntry) return { workCityTax: 0, residentCityTax: 0, totalLocalTax: 0, workCityName: "", residentCityName: "", workCityRate: 0, residentCityRate: 0 };
+
+  const normalize = (c) => (c || "").trim();
+  const workNorm = normalize(workCity);
+  const resNorm = normalize(residentCity);
+
+  // Look up work city rate
+  let workEntry = stateEntry[workNorm] || stateEntry._default || null;
+  let resEntry = stateEntry[resNorm] || stateEntry._default || null;
+
+  // Colorado flat amounts (per-month, not percentage)
+  if (workEntry && workEntry.flat) {
+    const periodsPerYear = days ? 365 / days : 1;
+    const monthlyFlat = workEntry.flatAmount || 0;
+    const perPeriod = (monthlyFlat * 12) / periodsPerYear;
+    return { workCityTax: perPeriod, residentCityTax: 0, totalLocalTax: perPeriod, workCityName: workNorm, residentCityName: resNorm, workCityRate: 0, residentCityRate: 0 };
+  }
+
+  let workCityTax = 0;
+  let residentCityTax = 0;
+  let workRate = 0;
+  let resRate = 0;
+
+  // Work city: if employee is non-resident, use nonResident rate; if same city, use resident rate
+  if (workEntry) {
+    const sameCity = workNorm && resNorm && workNorm.toLowerCase() === resNorm.toLowerCase();
+    workRate = sameCity ? (workEntry.resident || 0) : (workEntry.nonResident || 0);
+    workCityTax = (income * workRate) / 100;
+  }
+
+  // Resident city: tax on residents, minus credit for work-city tax paid
+  if (resEntry && resNorm) {
+    const sameCity = workNorm && resNorm && workNorm.toLowerCase() === resNorm.toLowerCase();
+    if (!sameCity) {
+      resRate = resEntry.resident || 0;
+      const credit = Math.min(workCityTax, (income * (resEntry.credit || workRate || 0)) / 100);
+      residentCityTax = Math.max(0, (income * resRate) / 100 - credit);
+    }
+  }
+
+  return {
+    workCityTax: parseFloat(formatNumber(workCityTax)),
+    residentCityTax: parseFloat(formatNumber(residentCityTax)),
+    totalLocalTax: parseFloat(formatNumber(workCityTax + residentCityTax)),
+    workCityName: workNorm,
+    residentCityName: resNorm,
+    workCityRate: workRate,
+    residentCityRate: resRate,
+  };
 };
 
 const calcSDITax = ({ state, income }) => {
@@ -222,6 +279,8 @@ const generateParams = ({
   deductions,
   otherBenefits,
   check_number,
+  company_city,
+  employee_city,
 }) => {
   let params = {
     check_number,
@@ -309,13 +368,30 @@ const generateParams = ({
 
   params.medicarePercent = formatNumber(OTHER_TAX.Medicare);
 
+  // Local / municipality tax (work city vs residence city)
+  const localTaxResult = calcLocalTax({
+    state,
+    workCity: company_city || "",
+    residentCity: employee_city || "",
+    income: grossIncome,
+    days,
+  });
+  let localTax = formatNumber(localTaxResult.totalLocalTax);
+  params.localTaxBreakdown = localTaxResult;
+
   // Build deduction arrays
+  const localTaxLabel = localTaxResult.workCityName
+    ? `Local Tax (${localTaxResult.workCityName})`
+    : "Local Tax";
+  const hasLocalTax = parseFloat(localTax) > 0;
+
   params.deduction_labels = [
     "Federal Tax",
     `${capitalizeString(state)}'s Income Tax`,
     "SUI/SDI Tax",
     "Medicare",
     "Social Security",
+    ...(hasLocalTax ? [localTaxLabel] : []),
     ...deductions.map((el) => el.description),
   ];
 
@@ -325,6 +401,7 @@ const generateParams = ({
     sdiTax,
     medicareTax,
     ssTax,
+    ...(hasLocalTax ? [localTax] : []),
     ...deductions.map((el) => formatNumber(el.amount)),
   ];
 

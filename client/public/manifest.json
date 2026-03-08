@@ -1,6 +1,7 @@
 {
   "short_name": "Saurellius",
-  "name": "Saurellius — Digital Payroll Check Stubs",
+  "name": "Saurellius — Professional Paystub & W-2 Generator",
+  "description": "Create professional pay stubs and W-2 forms online with automatic federal, state, and local tax calculations. FICA compliant. 6 premium templates. Instant PDF download.",
   "icons": [
     {
       "src": "logo.png",
@@ -10,16 +11,46 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a",
+  "categories": ["business", "finance", "productivity"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Create Pay Stub",
+      "short_name": "Pay Stub",
+      "url": "/paystubs",
+      "description": "Generate a professional pay stub with automatic tax calculations",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "W-2 Generator",
+      "short_name": "W-2",
+      "url": "/w2-wizard",
+      "description": "Create IRS-compliant W-2 forms",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Templates",
+      "short_name": "Templates",
+      "url": "/templates",
+      "description": "Browse 6 professional paystub templates"
+    }
+  ]
 }

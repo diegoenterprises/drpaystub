@@ -1,5 +1,6 @@
 import React from "react";
 import { US_STATES } from "./states";
+import AddressAutocomplete from "../../AddressAutocomplete";
 
 const Step2Employee = ({ data, onField, goToStep }) => {
   const handleChange = (e) => onField(e.target.name, e.target.value);
@@ -100,12 +101,20 @@ const Step2Employee = ({ data, onField, goToStep }) => {
             <div className="form-group">
               <label>Address Line 1</label>
               <div className="w2-box-label">Box f</div>
-              <input
-                type="text"
+              <AddressAutocomplete
                 className="form-control"
                 name="employeeAddress1"
                 value={data.employeeAddress1}
-                onChange={handleChange}
+                onChange={(val) => onField("employeeAddress1", val)}
+                onSelect={(place) => {
+                  onField("employeeAddress1", place.address);
+                  if (place.city) onField("employeeCity", place.city);
+                  if (place.stateCode) {
+                    const matched = US_STATES.find(s => s.abbr === place.stateCode);
+                    if (matched) onField("employeeState", matched.abbr);
+                  }
+                  if (place.zip) onField("employeeZip", place.zip);
+                }}
                 placeholder="Street address"
               />
             </div>

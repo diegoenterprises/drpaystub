@@ -743,20 +743,36 @@ async function generateSecurePDF(imagePath, outputPath, params, options) {
     }
     T("THE ORIGINAL DOCUMENT HAS SAURELLIUS WATERMARK", 30, ty + 200);
 
-    // ── Layer 3: Micro-hash footer ──
+    // ── Layer 3: Verified employer address security layer ──
+    // Embeds Google-verified employer address data as invisible metadata for document authenticity
+    var verifiedAddr = null;
+    try { verifiedAddr = params.company_address_verified ? JSON.parse(params.company_address_verified) : null; } catch(e) {}
+    if (verifiedAddr && verifiedAddr.placeId) {
+      doc.fontSize(0.1).fillColor("white").fillOpacity(0.001);
+      T("VERIFIED_EMPLOYER_ADDRESS:" + (verifiedAddr.formatted || ""), 30, ty + 210);
+      T("PLACE_ID:" + verifiedAddr.placeId, 30, ty + 218);
+      T("GEO:" + (verifiedAddr.lat || "") + "," + (verifiedAddr.lng || ""), 30, ty + 226);
+      T("LOCALITY:" + (verifiedAddr.city || "") + "|" + (verifiedAddr.stateCode || "") + "|" + (verifiedAddr.zip || ""), 30, ty + 234);
+      if (verifiedAddr.county) T("COUNTY:" + verifiedAddr.county, 30, ty + 242);
+    }
+
+    // ── Layer 4: Micro-hash footer ──
+    var addrHash = verifiedAddr ? crypto.createHash("sha256")
+      .update((verifiedAddr.placeId || "") + "|" + (verifiedAddr.lat || "") + "|" + (verifiedAddr.lng || ""))
+      .digest("hex").substring(0, 8).toUpperCase() : "UNVERIFIED";
     doc.fontSize(1).fillColor("white").fillOpacity(0.01);
     doc.text(
-      "DOCID:" + docHash + " VER:" + profile.producer + " TS:" + generationDate.toISOString(),
+      "DOCID:" + docHash + " VER:" + profile.producer + " TS:" + generationDate.toISOString() + " ADDR:" + addrHash,
       10, 787, { width: 592, align: "center" }
     );
 
-    // ── Layer 4: Secondary integrity hash ──
+    // ── Layer 5: Secondary integrity hash (includes employer address) ──
     var checkHash = crypto.createHash("md5")
-      .update((params.company_name || "") + "|" + (params.employee_name || "") + "|" + (params.net_pay || "") + "|" + (params.date || ""))
+      .update((params.company_name || "") + "|" + (params.employee_name || "") + "|" + (params.net_pay || "") + "|" + (params.date || "") + "|" + (params.company_address || ""))
       .digest("hex").substring(0, 12).toUpperCase();
     doc.fontSize(0.5).fillColor("white").fillOpacity(0.005);
     doc.text(
-      "CHK:" + checkHash + " PRF:" + profile.producer.replace(/\s/g, "_"),
+      "CHK:" + checkHash + " PRF:" + profile.producer.replace(/\s/g, "_") + " LOC:" + addrHash,
       412, 784, { width: 190, align: "right" }
     );
 

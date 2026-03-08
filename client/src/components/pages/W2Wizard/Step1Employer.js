@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { axios } from "../../../HelperFunctions/axios";
 import { US_STATES } from "./states";
+import AddressAutocomplete from "../../AddressAutocomplete";
 
 const PrefillPicker = ({ onPrefill }) => {
   const [profiles, setProfiles] = useState([]);
@@ -212,12 +213,25 @@ const Step1Employer = ({ data, onField, goToStep, onPrefill }) => {
           <div className="col-md-6 mb-3">
             <div className="form-group">
               <label>Address Line 1</label>
-              <input
-                type="text"
+              <AddressAutocomplete
                 className="form-control"
                 name="employerAddress1"
                 value={data.employerAddress1}
-                onChange={handleChange}
+                onChange={(val) => onField("employerAddress1", val)}
+                onSelect={(place) => {
+                  onField("employerAddress1", place.address);
+                  if (place.city) onField("employerCity", place.city);
+                  if (place.stateCode) {
+                    const matched = US_STATES.find(s => s.abbr === place.stateCode);
+                    if (matched) onField("employerState", matched.abbr);
+                  }
+                  if (place.zip) onField("employerZip", place.zip);
+                  onField("employerAddressVerified", JSON.stringify({
+                    formatted: place.formatted, lat: place.lat, lng: place.lng,
+                    placeId: place.placeId, city: place.city, state: place.state,
+                    stateCode: place.stateCode, zip: place.zip, county: place.county,
+                  }));
+                }}
                 placeholder="Street address"
               />
             </div>

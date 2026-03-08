@@ -118,6 +118,7 @@ router.post("/getZip", async (req, res, next) => {
       startDate,
       actual_pay_dates,
       company_website,
+      company_address_verified,
     } = params_old;
 
     let days = PAY_FREQUENCY[pay_frequency];
@@ -177,6 +178,7 @@ router.post("/getZip", async (req, res, next) => {
       startDate,
       actual_pay_dates,
       company_website,
+      company_address_verified,
     };
 
     let ejsTempalte = `paystub-${template}.ejs`;
@@ -228,6 +230,8 @@ router.post("/getZip", async (req, res, next) => {
           pay_date: convertDate(payDate),
           days,
           check_number: check_numbers[index],
+          company_city: company_city || "",
+          employee_city: employee_city || "",
         }),
       };
       let start_date = startDate;
@@ -463,6 +467,7 @@ router.get("/ytd-profiles", async (req, res) => {
           company_phone: p.company_phone || "",
           company_ein: p.company_ein || "",
           company_website: p.company_website || "",
+          company_address_verified: p.company_address_verified || "",
           emailAddress: p.emailAddress || "",
           bankNumber: p.bankNumber || "",
           routingNumber: p.routingNumber || "",
@@ -607,6 +612,7 @@ router.post("/templates", async (req, res) => {
       company_image,
       startDate,
       company_website,
+      company_address_verified,
     } = params_old;
 
     let days = PAY_FREQUENCY[pay_frequency];
@@ -665,6 +671,7 @@ router.post("/templates", async (req, res) => {
       startDate,
       actual_pay_dates,
       company_website,
+      company_address_verified,
     };
 
     let ejsTempalte = `paystub-${template}.ejs`;
@@ -715,6 +722,8 @@ router.post("/templates", async (req, res) => {
           pay_date: convertDate(payDate),
           days,
           check_number: check_numbers[index],
+          company_city: company_city || "",
+          employee_city: employee_city || "",
         }),
       };
       let start_date = startDate;

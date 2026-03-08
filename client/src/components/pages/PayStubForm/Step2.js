@@ -9,6 +9,7 @@ import useYupValidationResolver from '../../../HelperFunctions/UseYupValidation'
 import './PayStubForm.scss';
 import AC from '../../../redux/actions/actionCreater';
 import { states } from './states';
+import AddressAutocomplete from '../../AddressAutocomplete';
 
 function Step2(props) {
     const [data, setData] = useState(states);
@@ -28,7 +29,7 @@ function Step2(props) {
         [],
     );
     const resolver = useYupValidationResolver(validationSchema);
-    const { handleSubmit, register, errors, control } = useForm({
+    const { handleSubmit, register, errors, control, setValue } = useForm({
         defaultValues: validationSchema.cast({
             employment_status: props.employementStatus,
         }),
@@ -38,6 +39,36 @@ function Step2(props) {
         props.selectedState(data.state);
         props.step2Fn(data);
         props.changeStep(3);
+    };
+
+    const handleEmployeeAddressSelect = (place) => {
+        if (place.city) {
+            setValue('employee_city', place.city);
+            props.handleChange({ target: { name: 'employee_city', value: place.city } }, 2);
+        }
+        if (place.state) {
+            const matched = states.find(s => s.name.toUpperCase() === place.state.toUpperCase());
+            if (matched) {
+                setValue('employee_state', matched.name);
+            }
+        }
+        if (place.zip) {
+            setValue('employeeZipCode', place.zip);
+            props.handleChange({ target: { name: 'employeeZipCode', value: place.zip } }, 2);
+        }
+        props.handleChange({
+            target: { name: 'employee_address_verified', value: JSON.stringify({
+                formatted: place.formatted,
+                lat: place.lat,
+                lng: place.lng,
+                placeId: place.placeId,
+                city: place.city,
+                state: place.state,
+                stateCode: place.stateCode,
+                zip: place.zip,
+                county: place.county,
+            }) }
+        }, 2);
     };
 
     const getAllStates = () => {
@@ -156,16 +187,23 @@ function Step2(props) {
                     <label htmlFor="employee_address">
                         Address <span className="text-muted">(Optional)</span>
                     </label>
-                    <input
-                        ref={register}
-                        type="text"
-                        defaultValue={props.step2.employee_address}
+                    <input type="hidden" ref={register} name="employee_address" value={content.employee_address || props.step2.employee_address || ''} />
+                    <AddressAutocomplete
                         className="form-control"
                         placeholder="Ex. 10000 Spice Ln"
                         id="employee_address"
-                        name="employee_address"
-                        // value={content.employee_address}
-                        onChange={e => props.handleChange(e, 2)}
+                        name="employee_address_display"
+                        value={content.employee_address || props.step2.employee_address || ''}
+                        onChange={(val) => {
+                            props.handleChange({ target: { name: 'employee_address', value: val } }, 2);
+                            setValue('employee_address', val);
+                        }}
+                        onSelect={(place) => {
+                            props.handleChange({ target: { name: 'employee_address', value: place.address } }, 2);
+                            setValue('employee_address', place.address);
+                            handleEmployeeAddressSelect(place);
+                        }}
+                        style={{ width: '100%' }}
                     />
                 </div>
                 <div className="form-group" style={{ width: '100%' }}>

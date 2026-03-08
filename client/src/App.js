@@ -15,7 +15,6 @@ import Contact from "./components/pages/Contact/Contact";
 //pages
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import W2 from "./components/pages/W2Form/W2Form";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "font-awesome/css/font-awesome.min.css";
 import Blogs from "./components/pages/Blog/Blogs";
@@ -94,7 +93,7 @@ const MainLayout = () => {
         <Route exact path="/reviews" component={Review} />
         <Route exact path="/about" component={AboutUs} />
         <Route exact path="/privacyPolicy" component={Privacy} />
-        <Route exact path="/w2form" component={W2} />
+        <Route exact path="/w2form" component={W2Wizard} />
         <Route exact path="/w2-wizard" component={W2Wizard} />
 
         <Route
@@ -103,7 +102,7 @@ const MainLayout = () => {
           component={TermsAndCondition}
         />
         <Route exact path="/templates" component={TemplateShowcase} />
-        <Route exact path="/w2forms" component={W2} />
+        <Route exact path="/w2forms" component={W2Wizard} />
       </Switch>
       <Footer />
     </>

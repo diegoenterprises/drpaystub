@@ -98,10 +98,46 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
   const [generating, setGenerating] = useState(false);
   const [zipFile, setZipFile] = useState(null);
   const [error, setError] = useState(null);
+  const [coupon, setCoupon] = useState("");
+  const [couponError, setCouponError] = useState(false);
+  const [isFree, setIsFree] = useState(false);
+  const [previewFile, setPreviewFile] = useState(null);
+  const [previewLoading, setPreviewLoading] = useState(true);
+
+  const handleCoupon = () => {
+    if (coupon === "DIEGOX1911") {
+      setIsFree(true);
+      handlePaymentSuccess(null);
+    } else {
+      setCoupon("");
+      setCouponError(true);
+      setTimeout(() => setCouponError(false), 3000);
+    }
+  };
+
+  const getBaseUrl = () => {
+    if (process.env.REACT_APP_MODE === "live") return process.env.REACT_APP_FRONTEND_URL_LIVE;
+    return process.env.REACT_APP_BACKEND_URL_LOCAL;
+  };
 
   useEffect(() => {
     fetchPaymentIntent();
+    fetchPreview();
   }, []);
+
+  const fetchPreview = async () => {
+    setPreviewLoading(true);
+    try {
+      const { data: resp } = await axios.post(`${getBaseUrl()}api/w2-wizard/preview`, formData);
+      if (resp.success && resp.previewFile) {
+        setPreviewFile(resp.previewFile);
+      }
+    } catch (err) {
+      console.error("[W2Wizard] Preview error:", err);
+    } finally {
+      setPreviewLoading(false);
+    }
+  };
 
   const fetchPaymentIntent = async () => {
     try {
@@ -123,11 +159,10 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
     setError(null);
 
     try {
-      let url = process.env.REACT_APP_BACKEND_URL_LOCAL;
-      if (process.env.REACT_APP_MODE === "live") {
-        url = process.env.REACT_APP_FRONTEND_URL_LIVE;
-      }
-      const { data: resp } = await axios.post(`${url}api/w2-wizard/generate`, formData);
+      const url = getBaseUrl();
+      const token = localStorage.getItem("tokens");
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+      const { data: resp } = await axios.post(`${url}api/w2-wizard/generate`, formData, { headers });
       if (resp.success) {
         setZipFile(resp.zipFile);
       } else {
@@ -161,11 +196,50 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
     <div className="w2-form-card">
       <div style={{ maxWidth: 720, margin: "0 auto" }}>
         <h3 className="w2-section-title" style={{ marginTop: 0 }}>
-          <i className="fa fa-eye"></i> Review Your W-2 Information
+          <i className="fa fa-eye"></i> Preview Your W-2
         </h3>
         <p className="w2-box-hint" style={{ marginBottom: 16 }}>
-          Please verify all information below before paying. All 6 copies of the official IRS W-2 form will be generated.
+          Review your W-2 preview below. All watermarks will be removed from your final document.
+          All 6 copies of the official IRS W-2 form will be generated after payment.
         </p>
+
+        {/* ── Watermarked W-2 Preview ── */}
+        <div style={{
+          marginBottom: 28,
+          border: "1.5px solid var(--color-border, #2a2d35)",
+          borderRadius: 16,
+          overflow: "hidden",
+          background: "var(--color-bg-elevated, #1a1d23)",
+        }}>
+          {previewLoading ? (
+            <div style={{ padding: 48, textAlign: "center" }}>
+              <i className="fa fa-spinner fa-spin" style={{ fontSize: 28, color: "var(--color-accent, #6366f1)", marginBottom: 12 }}></i>
+              <p style={{ color: "var(--color-text-secondary, #94a3b8)", fontSize: 14, margin: 0 }}>
+                Generating W-2 preview...
+              </p>
+            </div>
+          ) : previewFile ? (
+            <iframe
+              title="W-2 Preview"
+              src={`${getBaseUrl()}${previewFile}#zoom=page-fit`}
+              style={{
+                width: "100%",
+                height: 820,
+                border: "none",
+                display: "block",
+              }}
+            />
+          ) : (
+            <div style={{ padding: 32, textAlign: "center", color: "var(--color-text-secondary, #94a3b8)" }}>
+              <i className="fa fa-file-pdf-o" style={{ fontSize: 32, marginBottom: 12, display: "block" }}></i>
+              <p style={{ margin: 0, fontSize: 14 }}>Preview unavailable. Your W-2 will still generate correctly after payment.</p>
+            </div>
+          )}
+        </div>
+
+        <h3 className="w2-section-title">
+          <i className="fa fa-list-alt"></i> Review Details
+        </h3>
 
         {/* Employer Info */}
         <table className="w2-review-table">
@@ -270,6 +344,54 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
                 <i className="fa fa-download" style={{ marginRight: 8 }}></i>
                 Download W-2 (ZIP)
               </button>
+
+              {/* ─── E-File CTA ─── */}
+              <div style={{
+                marginTop: 28, padding: "20px 24px", borderRadius: 16,
+                background: "linear-gradient(135deg, rgba(245,158,11,0.08), rgba(217,119,6,0.12))",
+                border: "1px solid rgba(245,158,11,0.25)",
+                textAlign: "left",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+                  <i className="fa fa-bolt" style={{ color: "#f59e0b", fontSize: 18 }}></i>
+                  <strong style={{ fontSize: 15, color: "var(--color-text-primary)" }}>
+                    Ready to E-File with the SSA?
+                  </strong>
+                </div>
+                <p style={{ fontSize: 13, color: "var(--color-text-secondary)", margin: "0 0 14px", lineHeight: 1.6 }}>
+                  You can electronically file this W-2 directly with the Social Security Administration — <strong>completely free</strong>.
+                  Go to your <strong>Dashboard → My W-2s</strong> to download the SSA-ready e-file and submit it through the SSA's Business Services Online portal.
+                </p>
+                <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                  <a
+                    href="/dashboard/w2s"
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: 6,
+                      padding: "10px 20px", borderRadius: 12, fontSize: 13, fontWeight: 600,
+                      background: "linear-gradient(135deg, #f59e0b, #d97706)",
+                      color: "#fff", textDecoration: "none",
+                      transition: "transform 0.15s ease",
+                    }}
+                  >
+                    <i className="fa fa-bolt"></i> Go to My W-2s
+                  </a>
+                  <a
+                    href="https://www.ssa.gov/bso/bsowelcome.htm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: 6,
+                      padding: "10px 20px", borderRadius: 12, fontSize: 13, fontWeight: 600,
+                      background: "transparent",
+                      border: "1px solid rgba(245,158,11,0.4)",
+                      color: "#f59e0b", textDecoration: "none",
+                      transition: "transform 0.15s ease",
+                    }}
+                  >
+                    <i className="fa fa-external-link"></i> Open SSA BSO Portal
+                  </a>
+                </div>
+              </div>
             </div>
           ) : paymentComplete && generating ? (
             <div>
@@ -320,6 +442,40 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
                     W-2 Generation — $20.00
                   </div>
                 </div>
+                {/* ─── Promo Code ─── */}
+                <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
+                  <input
+                    value={coupon}
+                    onChange={(e) => { setCoupon(e.target.value); setCouponError(false); }}
+                    type="text"
+                    placeholder="Promo code"
+                    onKeyDown={(e) => e.key === "Enter" && handleCoupon()}
+                    style={{
+                      flex: 1, padding: "10px 14px", borderRadius: 12, fontSize: 14,
+                      border: couponError ? "1.5px solid var(--color-error, #ff5252)" : "1px solid var(--color-border, rgba(255,255,255,0.12))",
+                      background: "var(--color-bg-input, #1a1d23)",
+                      color: "var(--color-text-primary, #f1f5f9)",
+                      outline: "none",
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleCoupon}
+                    disabled={!coupon.trim()}
+                    style={{
+                      padding: "10px 20px", borderRadius: 12, fontSize: 14, fontWeight: 600,
+                      border: "none", cursor: coupon.trim() ? "pointer" : "not-allowed",
+                      background: coupon.trim() ? "linear-gradient(135deg, #7c5cfc, #6366f1)" : "var(--color-bg-tertiary, #374151)",
+                      color: "#fff", opacity: coupon.trim() ? 1 : 0.5,
+                      transition: "all 0.15s ease",
+                    }}
+                  >
+                    Apply
+                  </button>
+                </div>
+                {couponError && (
+                  <p style={{ color: "var(--color-error, #ff5252)", fontSize: 13, marginTop: -8, marginBottom: 12 }}>Invalid promo code</p>
+                )}
                 <Elements
                   stripe={stripePromise}
                   options={{
