@@ -42,7 +42,6 @@ Allow: /
 Disallow: /dashboard/
 Disallow: /admin
 Disallow: /api/
-Crawl-delay: 1
 
 User-agent: Googlebot-Image
 Allow: /
@@ -266,4 +265,3 @@ Crawl-delay: 5
 # SITEMAPS — All formats
 # ═══════════════════════════════════════════════════════════════
 Sitemap: https://www.drpaystub.net/sitemap.xml
-Sitemap: https://drpaystub.net/sitemap.xml

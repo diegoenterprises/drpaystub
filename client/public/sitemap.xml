@@ -9,7 +9,7 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://www.drpaystub.net/</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -23,14 +23,6 @@
     </image:image>
   </url>
 
-  <!-- Canonical alternate (non-www redirect target) -->
-  <url>
-    <loc>https://drpaystub.net/</loc>
-    <lastmod>2026-03-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.3</priority>
-  </url>
-
   <!-- ═══════════════════════════════════════════════════════════ -->
   <!-- CORE PRODUCT PAGES — Highest conversion value              -->
   <!-- ═══════════════════════════════════════════════════════════ -->
@@ -38,7 +30,7 @@
   <!-- Create Pay Stub — PRIMARY conversion page -->
   <url>
     <loc>https://www.drpaystub.net/paystubs</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
   </url>
@@ -46,7 +38,7 @@
   <!-- W2 Form Generator -->
   <url>
     <loc>https://www.drpaystub.net/w2form</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.92</priority>
   </url>
@@ -54,7 +46,7 @@
   <!-- W2 Wizard (guided) -->
   <url>
     <loc>https://www.drpaystub.net/w2-wizard</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
@@ -62,7 +54,7 @@
   <!-- W2 Forms (alternate URL) -->
   <url>
     <loc>https://www.drpaystub.net/w2forms</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -70,7 +62,7 @@
   <!-- Templates Showcase -->
   <url>
     <loc>https://www.drpaystub.net/templates</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.92</priority>
   </url>
@@ -82,7 +74,7 @@
   <!-- Blog Hub — Content cluster root -->
   <url>
     <loc>https://www.drpaystub.net/blogs</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.88</priority>
   </url>
@@ -90,7 +82,7 @@
   <!-- Reviews / Testimonials — Social proof -->
   <url>
     <loc>https://www.drpaystub.net/reviews</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
@@ -98,7 +90,7 @@
   <!-- About Us — E-E-A-T signal -->
   <url>
     <loc>https://www.drpaystub.net/about</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -106,7 +98,7 @@
   <!-- Contact — Local SEO & trust signal -->
   <url>
     <loc>https://www.drpaystub.net/contact</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
@@ -116,49 +108,49 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://www.drpaystub.net/calculators/fica-tax</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://www.drpaystub.net/calculators/federal-withholding</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.88</priority>
   </url>
   <url>
     <loc>https://www.drpaystub.net/calculators/salary-to-hourly</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.drpaystub.net/calculators/overtime</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.drpaystub.net/calculators/net-to-gross</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.83</priority>
   </url>
   <url>
     <loc>https://www.drpaystub.net/calculators/1099-tax</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.drpaystub.net/calculators/payroll-cost</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.83</priority>
   </url>
   <url>
     <loc>https://www.drpaystub.net/glossary</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
@@ -166,136 +158,136 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <!-- COMPETITOR COMPARISON PAGES — Commercial intent             -->
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-123paystubs</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
-  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-thepaystubs</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
-  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-securepaystubs</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
-  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-paystubs-net</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
-  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-shopify</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
-  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-adp</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-gusto</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-paychex</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-123paystubs</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-thepaystubs</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-securepaystubs</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-paystubs-net</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-shopify</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-adp</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-gusto</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/compare/saurellius-vs-paychex</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
   <!-- 50 STATE PAYSTUB LAW PAGES — Programmatic SEO              -->
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <url><loc>https://www.drpaystub.net/paystub-laws/alabama</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/alaska</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/arizona</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/arkansas</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/california</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/colorado</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/connecticut</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/delaware</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/florida</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/georgia</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/hawaii</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/idaho</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/illinois</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/indiana</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/iowa</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/kansas</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/kentucky</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/louisiana</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/maine</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/maryland</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/massachusetts</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/michigan</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/minnesota</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/mississippi</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/missouri</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/montana</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/nebraska</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/nevada</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/new-hampshire</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/new-jersey</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/new-mexico</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/new-york</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/north-carolina</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/north-dakota</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/ohio</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/oklahoma</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/oregon</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/pennsylvania</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/rhode-island</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/south-carolina</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/south-dakota</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/tennessee</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/texas</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/utah</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/vermont</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/virginia</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/washington</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/west-virginia</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/wisconsin</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/paystub-laws/wyoming</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/alabama</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/alaska</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/arizona</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/arkansas</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/california</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/colorado</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/connecticut</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/delaware</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/florida</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/georgia</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/hawaii</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/idaho</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/illinois</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/indiana</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/iowa</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/kansas</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/kentucky</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/louisiana</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/maine</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/maryland</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/massachusetts</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/michigan</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/minnesota</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/mississippi</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/missouri</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/montana</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/nebraska</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/nevada</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/new-hampshire</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/new-jersey</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/new-mexico</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/new-york</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/north-carolina</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/north-dakota</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/ohio</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/oklahoma</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/oregon</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/pennsylvania</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/rhode-island</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/south-carolina</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/south-dakota</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/tennessee</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/texas</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/utah</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/vermont</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/virginia</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/washington</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/west-virginia</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/wisconsin</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/paystub-laws/wyoming</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
   <!-- 50 STATE PAYROLL TAX CALCULATORS — Programmatic SEO        -->
   <!-- ═══════════════════════════════════════════════════════════ -->
-  <url><loc>https://www.drpaystub.net/calculators/alabama-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/alaska-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/arizona-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/arkansas-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/california-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/colorado-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/connecticut-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/delaware-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/florida-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/georgia-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/hawaii-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/idaho-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/illinois-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/indiana-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/iowa-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/kansas-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/kentucky-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/louisiana-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/maine-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/maryland-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/massachusetts-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/michigan-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/minnesota-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/mississippi-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/missouri-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/montana-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/nebraska-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/nevada-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/new-hampshire-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/new-jersey-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/new-mexico-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/new-york-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/north-carolina-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/north-dakota-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/ohio-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/oklahoma-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/oregon-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/pennsylvania-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/rhode-island-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/south-carolina-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/south-dakota-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/tennessee-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/texas-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/utah-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/vermont-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/virginia-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/washington-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/west-virginia-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/wisconsin-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
-  <url><loc>https://www.drpaystub.net/calculators/wyoming-payroll-tax</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/alabama-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/alaska-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/arizona-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/arkansas-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/california-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/colorado-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/connecticut-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/delaware-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/florida-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/georgia-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/hawaii-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/idaho-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/illinois-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/indiana-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/iowa-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/kansas-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/kentucky-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/louisiana-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/maine-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/maryland-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/massachusetts-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/michigan-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/minnesota-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/mississippi-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/missouri-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/montana-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/nebraska-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/nevada-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/new-hampshire-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/new-jersey-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/new-mexico-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/new-york-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/north-carolina-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/north-dakota-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/ohio-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/oklahoma-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/oregon-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/pennsylvania-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/rhode-island-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/south-carolina-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/south-dakota-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/tennessee-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/texas-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/utah-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/vermont-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/virginia-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/washington-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/west-virginia-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/wisconsin-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.drpaystub.net/calculators/wyoming-payroll-tax</loc><lastmod>2026-03-11</lastmod><changefreq>monthly</changefreq><priority>0.72</priority></url>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
   <!-- AUTH / ONBOARDING — Indexed for brand queries              -->
   <!-- ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://www.drpaystub.net/register</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
 
   <url>
     <loc>https://www.drpaystub.net/login</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.45</priority>
   </url>
@@ -305,14 +297,14 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://www.drpaystub.net/privacyPolicy</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.30</priority>
   </url>
 
   <url>
     <loc>https://www.drpaystub.net/terms-and-conditions</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.30</priority>
   </url>

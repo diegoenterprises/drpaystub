@@ -32,6 +32,24 @@ app.use(
 
 app.use(cookieParser());
 
+// ─── SEO: www normalization + trailing slash canonicalization ────────────────
+// This fixes Google Search Console "Page with redirect" errors
+if (process.env.NODE_ENV === "production") {
+  app.use((req, res, next) => {
+    const host = req.headers.host || "";
+    // 301 redirect non-www → www (permanent, SEO-safe)
+    if (host === "drpaystub.net" || host === "drpaystub-app.azurewebsites.net") {
+      return res.redirect(301, `https://www.drpaystub.net${req.originalUrl}`);
+    }
+    // Strip trailing slashes (except root "/") to prevent duplicate content
+    if (req.path.length > 1 && req.path.endsWith("/")) {
+      const cleanUrl = req.path.slice(0, -1) + (req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : "");
+      return res.redirect(301, cleanUrl);
+    }
+    next();
+  });
+}
+
 // ─── SEO + Security + E-E-A-T Headers Middleware ────────────────────────────
 app.use((req, res, next) => {
   // Security headers (Trust signals — Section 9.4 of enterprise strategy)
