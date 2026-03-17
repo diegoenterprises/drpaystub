@@ -38,7 +38,7 @@ if (process.env.NODE_ENV === "production") {
   app.use((req, res, next) => {
     const host = req.headers.host || "";
     // 301 redirect non-www → www (permanent, SEO-safe)
-    if (host === "drpaystub.net" || host === "drpaystub-app.azurewebsites.net") {
+    if ((host === "drpaystub.net" || host === "drpaystub-app.azurewebsites.net") && !req.path.startsWith("/api/")) {
       return res.redirect(301, `https://www.drpaystub.net${req.originalUrl}`);
     }
     // Strip trailing slashes (except root "/") to prevent duplicate content
