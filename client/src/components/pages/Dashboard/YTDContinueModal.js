@@ -163,9 +163,9 @@ class YTDContinueModal extends Component {
           {/* Header */}
           <div className="ytd-modal-header">
             <div>
-              <h2 className="ytd-modal-title">Create New Paystub</h2>
+              <h2 className="ytd-modal-title">Create New Document</h2>
               <p className="ytd-modal-subtitle">
-                Continue from a previous paystub or start fresh
+                Continue from a previous document or start fresh
               </p>
             </div>
             <button
@@ -182,7 +182,7 @@ class YTDContinueModal extends Component {
             {loading ? (
               <div className="ytd-modal-loading">
                 <Spinner animation="border" variant="primary" />
-                <p>Loading your paystub history...</p>
+                <p>Loading your document history...</p>
               </div>
             ) : error ? (
               <div className="ytd-modal-error">
@@ -213,7 +213,7 @@ class YTDContinueModal extends Component {
                   <>
                     <div className="ytd-section-label">
                       <FaClock style={{ marginRight: 6 }} />
-                      Continue from a previous paystub
+                      Continue from a previous document
                     </div>
                     {profiles.map((profile) => {
                       const isExpanded = expandedProfile === profile.profileKey;
@@ -333,7 +333,7 @@ class YTDContinueModal extends Component {
                 {profiles.length === 0 && (
                   <div className="ytd-empty-hint">
                     <FaCalendarAlt style={{ fontSize: 24, marginBottom: 8, opacity: 0.4 }} />
-                    <p>No previous paystubs found. Start fresh to create your first one!</p>
+                    <p>No previous documents found. Start fresh to create your first one!</p>
                   </div>
                 )}
               </>

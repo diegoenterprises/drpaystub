@@ -105,9 +105,9 @@ class ViewPaystub extends Component {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8, flexWrap: "wrap", gap: 12 }}>
           <div>
             <Link to="/dashboard/paystub" style={{ fontSize: 13, color: "var(--color-accent)", display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
-              <FaArrowLeft /> Back to Paystubs
+              <FaArrowLeft /> Back to Documents
             </Link>
-            <h1 className="dash-page-title">{d.company_name || "Paystub Details"}</h1>
+            <h1 className="dash-page-title">{d.company_name || "Document Details"}</h1>
             <p className="dash-page-subtitle">Created {this.state.createdAt}</p>
           </div>
           {this.state.downloading ? (

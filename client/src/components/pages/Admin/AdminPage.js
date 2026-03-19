@@ -231,7 +231,7 @@ class AdminPage extends Component {
       { key: "overview", label: "Overview" },
       { key: "revenue", label: "Revenue & Stripe" },
       { key: "users", label: "Users" },
-      { key: "paystubs", label: "Paystubs" },
+      { key: "paystubs", label: "Paid Documents" },
     ];
 
     return (
@@ -288,14 +288,14 @@ class AdminPage extends Component {
             <>
               <div style={styles.statGrid}>
                 <StatCard icon={<FaUsers />} value={u.total || 0} label="Total Users" />
-                <StatCard icon={<FaFileAlt />} value={p.paid || 0} label="Paid Paystubs" />
+                <StatCard icon={<FaFileAlt />} value={p.paid || 0} label="Paid Documents" />
                 <StatCard icon={<FaUserPlus />} value={u.newThisMonth || 0} label="New Users (This Month)" trend={userGrowth} />
-                <StatCard icon={<FaChartLine />} value={p.thisMonth || 0} label="Paystubs (This Month)" trend={stubGrowth} />
+                <StatCard icon={<FaChartLine />} value={p.thisMonth || 0} label="Documents (This Month)" trend={stubGrowth} />
               </div>
 
               {stats?.monthlyData && (
                 <div style={styles.sectionCard}>
-                  <h4 style={styles.sectionTitle}>Monthly Paystubs (Last 6 Months)</h4>
+                  <h4 style={styles.sectionTitle}>Monthly Documents (Last 6 Months)</h4>
                   <div style={{ display: "flex", alignItems: "flex-end", gap: 8, height: 120, padding: "0 4px" }}>
                     {stats.monthlyData.map((m, i) => {
                       const max = Math.max(...stats.monthlyData.map((d) => d.count), 1);
@@ -323,7 +323,7 @@ class AdminPage extends Component {
                   <InfoRow label="Last Month Signups" value={u.newLastMonth || 0} />
                 </div>
                 <div style={{ ...styles.sectionCard, marginBottom: 0 }}>
-                  <h4 style={styles.sectionTitle}>Paystub Breakdown</h4>
+                  <h4 style={styles.sectionTitle}>Document Breakdown</h4>
                   <InfoRow label="Total Created" value={p.total || 0} />
                   <InfoRow label="Paid" value={p.paid || 0} color="#10b981" />
                   <InfoRow label="Unpaid / Draft" value={p.unpaid || 0} color="#64748b" />
@@ -493,7 +493,7 @@ class AdminPage extends Component {
 
               {stats?.recentPaystubs?.length > 0 && (
                 <div style={styles.sectionCard}>
-                  <h4 style={styles.sectionTitle}>Recent Paid Paystubs</h4>
+                  <h4 style={styles.sectionTitle}>Recent Paid Documents</h4>
                   <div style={{ overflowX: "auto" }}>
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                       <thead>

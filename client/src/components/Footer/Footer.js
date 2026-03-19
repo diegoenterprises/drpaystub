@@ -64,7 +64,7 @@ class Footer extends Component {
                 </li>
 
                 <li className="list-group-item border-0 menu-value">
-                  <Link to="/paystubs">Create Pay Stub</Link>
+                  <Link to="/paystubs">Create Payroll Document</Link>
                 </li>
 		{/*
                 <li className="list-group-item border-0 menu-value">

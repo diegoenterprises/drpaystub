@@ -124,7 +124,7 @@ export default function Reviews() {
     setSubmitting(true);
     try {
       await axios.post("/api/reviews", {
-        product: "Paystub",
+        product: "Payroll",
         customer_name: name.trim(),
         customer_email: email.trim(),
         description: description.trim(),
@@ -156,7 +156,7 @@ export default function Reviews() {
         title="Reviews & Testimonials"
         description="See what thousands of satisfied customers say about Saurellius. Real reviews from business owners, contractors, and freelancers who trust our payroll management platform."
         path="/reviews"
-        keywords="saurellius reviews, payroll management reviews, dr paystub testimonials, payroll software ratings"
+        keywords="saurellius reviews, payroll management reviews, saurellius testimonials, payroll software ratings"
       />
       {/* Hero */}
       <div style={{ textAlign: "center", marginBottom: 48, padding: "0 20px" }}>

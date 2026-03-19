@@ -177,7 +177,7 @@ const SEO_ROUTES = {
   "/blogs": { title: "Payroll Blog — Tax Tips, Guides & Resources | Saurellius", desc: "Expert payroll articles, tax calculation guides, FICA explanations, state tax breakdowns, and small business payroll tips. Stay updated on tax law changes." },
   "/reviews": { title: "Customer Reviews — 4.8★ Rating | Saurellius Payroll Management", desc: "Read what 2,800+ customers say about Saurellius. Rated 4.8/5 stars for accuracy, ease of use, and professional quality payroll documents." },
   "/about": { title: "About Saurellius — Professional Payroll Solutions | Dr. Paystub Corp", desc: "Learn about Saurellius by Dr. Paystub Corp. We provide professional payroll management with bank-grade accuracy and FICA compliance for businesses of all sizes." },
-  "/contact": { title: "Contact Us — Customer Support | Saurellius", desc: "Get help with pay stubs, W-2 forms, tax calculations, or account questions. Our support team is here to help you with your payroll document needs." },
+  "/contact": { title: "Contact Us — Customer Support | Saurellius", desc: "Get help with payroll documents, W-2 forms, tax calculations, or account questions. Our support team is here to help you with your payroll document needs." },
   "/register": { title: "Sign Up Free — Payroll Management in Minutes | Saurellius", desc: "Create your free Saurellius account and start managing professional payroll documents and W-2 forms in minutes. No credit card required to sign up." },
   "/login": { title: "Log In to Your Account | Saurellius", desc: "Access your Saurellius dashboard to manage payroll documents, prepare W-2 forms, and track your payroll history." },
   "/privacyPolicy": { title: "Privacy Policy | Saurellius by Dr. Paystub Corp", desc: "Read the Saurellius privacy policy. We protect your personal and financial data with bank-grade security. Your information is never shared with third parties." },
@@ -188,8 +188,8 @@ const SEO_ROUTES = {
 US_STATES.forEach(slug => {
   const name = STATE_NAMES[slug];
   SEO_ROUTES[`/paystub-laws/${slug}`] = {
-    title: `${name} Paystub Laws & Requirements 2026 | Saurellius`,
-    desc: `Complete guide to ${name} paystub laws, employer requirements, pay stub format rules, and penalties for non-compliance. Updated for 2026. ${name} payroll compliance tools.`
+    title: `${name} Payroll Laws & Requirements 2026 | Saurellius`,
+    desc: `Complete guide to ${name} payroll laws, employer requirements, payroll document format rules, and penalties for non-compliance. Updated for 2026. ${name} payroll compliance tools.`
   };
   SEO_ROUTES[`/calculators/${slug}-payroll-tax`] = {
     title: `${name} Payroll Tax Calculator 2026 | Saurellius`,

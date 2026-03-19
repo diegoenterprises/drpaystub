@@ -145,9 +145,9 @@ export default function Blogs() {
     <div style={{ minHeight: "80vh", padding: "100px 0 60px" }}>
       <SEO
         title="Payroll Blog & Tax Guides"
-        description="Expert payroll guides, tax tips for all 50 states, W2 information, and compliance resources. Your complete knowledge base for payroll and pay stubs."
+        description="Expert payroll guides, tax tips for all 50 states, W2 information, and compliance resources. Your complete knowledge base for payroll and tax compliance."
         path="/blogs"
-        keywords="payroll blog, tax guide by state, payroll tips, W2 guide, paystub FAQ, state tax rates, federal tax brackets, payroll compliance"
+        keywords="payroll blog, tax guide by state, payroll tips, W2 guide, payroll FAQ, state tax rates, federal tax brackets, payroll compliance"
       />
       {/* Hero */}
       <div style={{ textAlign: "center", marginBottom: 40, padding: "0 20px" }}>

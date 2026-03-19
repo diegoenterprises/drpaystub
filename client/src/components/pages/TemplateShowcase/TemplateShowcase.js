@@ -483,7 +483,7 @@ export class TemplateShowcase extends Component {
               animation: "ts-fadeUp 0.7s ease-out",
               fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
             }}>
-              Paystub Templates
+              Payroll Templates
             </h1>
             <p style={{
               fontSize: 18, lineHeight: 1.6, color: "var(--color-text-secondary)",

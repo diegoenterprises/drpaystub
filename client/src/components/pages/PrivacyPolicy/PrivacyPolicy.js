@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
               title="Privacy Policy"
               description="Read the Saurellius privacy policy. Learn how we protect your personal information, payment data, and payroll details with bank-grade security."
               path="/privacyPolicy"
-              keywords="saurellius privacy policy, paystub data protection, payroll privacy"
+              keywords="saurellius privacy policy, payroll data protection, payroll privacy"
             />
             <div className="legal-hero">
                 <span className="legal-hero-badge">
@@ -59,7 +59,7 @@ export default function PrivacyPolicy() {
                         <li>Mailing address and phone number</li>
                         <li>Credit or debit card information (processed securely via Stripe)</li>
                         <li>Employment details such as company name, EIN, and salary information entered for payroll document creation</li>
-                        <li>Social Security Number (partial or full, as entered by you for paystub formatting)</li>
+                        <li>Social Security Number (partial or full, as entered by you for payroll document formatting)</li>
                     </ul>
                     <div className="legal-highlight">
                         <p><strong>Important:</strong> We do not store your full Social Security Number or credit card details on our servers. Payment processing is handled entirely by Stripe, a PCI DSS Level 1 certified payment processor.</p>
@@ -219,7 +219,7 @@ export default function PrivacyPolicy() {
                 <div className="legal-footer">
                     <p>&copy; 2026 Saurellius. All rights reserved.</p>
                     <Link to="/paystubs" className="legal-cta">
-                        Create Your Paystub Now
+                        Create Your Payroll Document Now
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </Link>
                 </div>

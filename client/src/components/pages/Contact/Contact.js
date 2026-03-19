@@ -33,7 +33,7 @@ function injectContactStyles() {
 // ─── FAQ data ────────────────────────────────────────────────────────────────
 const FAQ_ITEMS = [
   { q: "How quickly will I receive a response?", a: "We typically respond within 2-4 business hours during our operating hours. For urgent matters, please call us directly." },
-  { q: "Can I request a custom pay stub format?", a: "Yes. Reach out with your specific requirements and our team will work with you to accommodate your needs." },
+  { q: "Can I request a custom payroll document format?", a: "Yes. Reach out with your specific requirements and our team will work with you to accommodate your needs." },
   { q: "Is my personal information secure?", a: "Absolutely. All data is encrypted in transit and at rest. We never share your information with third parties." },
   { q: "Do you offer refunds?", a: "All sales are final. We do not offer refunds. Please review your information carefully before completing your purchase." },
 ];
@@ -135,7 +135,7 @@ export class Contact extends Component {
           title="Contact Us"
           description="Get in touch with the Saurellius team. Have questions about payroll documents, tax calculations, or your account? We're here to help with fast, friendly support."
           path="/contact"
-          keywords="contact saurellius, payroll support, payroll help, dr paystub contact"
+          keywords="contact saurellius, payroll support, payroll help, saurellius contact"
         />
 
         {/* ── Hero Section ── */}

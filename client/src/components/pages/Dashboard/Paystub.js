@@ -275,9 +275,9 @@ class Paystub extends Component {
       <DashboardLayout>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8, flexWrap: "wrap", gap: 12 }}>
           <div>
-            <h1 className="dash-page-title">My Paystubs</h1>
+            <h1 className="dash-page-title">My Documents</h1>
             <p className="dash-page-subtitle">
-              {stubs.length} paystub group{stubs.length !== 1 ? "s" : ""} &middot; {totalPeriods} total pay period{totalPeriods !== 1 ? "s" : ""}
+              {stubs.length} payroll document{stubs.length !== 1 ? "s" : ""} &middot; {totalPeriods} total pay period{totalPeriods !== 1 ? "s" : ""}
             </p>
           </div>
           <button
@@ -285,7 +285,7 @@ class Paystub extends Component {
             style={{ flexShrink: 0 }}
             onClick={() => this.setState({ showYTDModal: true })}
           >
-            + New Paystub
+            + New Document
           </button>
         </div>
 
@@ -296,12 +296,12 @@ class Paystub extends Component {
         ) : stubs.length === 0 ? (
           <div className="dash-section-card" style={{ textAlign: "center", padding: "60px 20px" }}>
             <FaFileAlt style={{ fontSize: 48, color: "var(--color-text-tertiary)", marginBottom: 16 }} />
-            <h4 style={{ color: "var(--color-text-secondary)", marginBottom: 8 }}>No paystubs yet</h4>
+            <h4 style={{ color: "var(--color-text-secondary)", marginBottom: 8 }}>No documents yet</h4>
             <p style={{ color: "var(--color-text-tertiary)", marginBottom: 20 }}>
-              Create your first paystub to see it here
+              Create your first payroll document to see it here
             </p>
             <button className="btn btn-secondary" onClick={() => this.setState({ showYTDModal: true })}>
-              Create Paystub
+              Create Document
             </button>
           </div>
         ) : (

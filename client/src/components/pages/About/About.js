@@ -36,7 +36,7 @@ export default function About() {
         title="About Us"
         description="Learn about Saurellius by Dr. Paystub Corp — the trusted cloud payroll management platform with FICA-compliant documents, bank-grade accuracy, and premium templates."
         path="/about"
-        keywords="about saurellius, about dr paystub, paystub company, payroll company"
+        keywords="about saurellius, about saurellius payroll, payroll management company, payroll company"
       />
       {/* Hero */}
       <div style={{ textAlign: "center", marginBottom: 56, padding: "0 20px" }}>
@@ -107,7 +107,7 @@ export default function About() {
         <div className="row" style={{ gap: "20px 0", marginBottom: 56 }}>
           <FeatureCard
             icon={<FaFileAlt />}
-            title="Professional Pay Stubs"
+            title="Professional Payroll Documents"
             desc="Choose from multiple templates and create polished, detailed payroll documents that are accepted by lenders, landlords, and government agencies."
           />
           <FeatureCard
@@ -152,7 +152,7 @@ export default function About() {
                 {[
                   { title: "Small Business Owners", desc: "Create payroll documents for your employees without expensive payroll software." },
                   { title: "Freelancers & Contractors", desc: "Create proof of income documentation for loans, leases, and taxes." },
-                  { title: "Self-Employed Professionals", desc: "Document your earnings with professional pay stubs accepted everywhere." },
+                  { title: "Self-Employed Professionals", desc: "Document your earnings with professional payroll documents accepted everywhere." },
                   { title: "Household Employers", desc: "Pay your nanny, housekeeper, or caregiver with proper payroll records." },
                 ].map((item, i) => (
                   <div className="col-sm-6" key={i}>
@@ -182,12 +182,12 @@ export default function About() {
 
         {/* CTA */}
         <div style={{ textAlign: "center", padding: "48px 20px 20px" }}>
-          <h2 style={{ fontSize: 28, fontWeight: 700, letterSpacing: "-0.02em", marginBottom: 12 }}>Ready to create your pay stub?</h2>
+          <h2 style={{ fontSize: 28, fontWeight: 700, letterSpacing: "-0.02em", marginBottom: 12 }}>Ready to create your payroll document?</h2>
           <p style={{ fontSize: 15, color: "var(--color-text-secondary)", marginBottom: 24, maxWidth: 440, margin: "0 auto 24px" }}>
             It takes less than 5 minutes. Accurate tax calculations, professional templates, instant delivery.
           </p>
           <a href="/paystubs" className="btn btn-secondary" style={{ minWidth: 200, fontSize: 15, padding: "12px 32px" }}>
-            Create Your Pay Stub
+            Create Your Document
           </a>
         </div>
       </div>

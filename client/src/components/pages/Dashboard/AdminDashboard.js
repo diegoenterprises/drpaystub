@@ -187,9 +187,9 @@ class AdminDashboard extends Component {
             {/* Top-level KPIs */}
             <div className="dash-stat-grid">
               <StatCard icon={<FaUsers />} value={u.total || 0} label="Total Users" />
-              <StatCard icon={<FaFileAlt />} value={p.paid || 0} label="Paid Paystubs" />
+              <StatCard icon={<FaFileAlt />} value={p.paid || 0} label="Paid Documents" />
               <StatCard icon={<FaUserPlus />} value={u.newThisMonth || 0} label="New Users (Month)" trend={userGrowth} />
-              <StatCard icon={<FaChartLine />} value={p.thisMonth || 0} label="Paystubs (Month)" trend={stubGrowth} />
+              <StatCard icon={<FaChartLine />} value={p.thisMonth || 0} label="Documents (Month)" trend={stubGrowth} />
             </div>
 
             {/* Real-time pulse */}
@@ -202,7 +202,7 @@ class AdminDashboard extends Component {
                 <MiniStat label="Last 24h Users" value={u.newLast24h || 0} />
                 <MiniStat label="Last 7d Users" value={u.newLast7d || 0} />
                 <MiniStat label="Last 30d Users" value={u.newLast30d || 0} />
-                <MiniStat label="Today's Paystubs" value={p.today || 0} />
+                <MiniStat label="Today's Documents" value={p.today || 0} />
                 <MiniStat label="Yesterday" value={p.yesterday || 0} />
                 <MiniStat label="This Week" value={p.thisWeek || 0} />
               </div>
@@ -223,7 +223,7 @@ class AdminDashboard extends Component {
                         <span style={{ fontSize: 9, fontWeight: 600, color: "var(--color-text-primary)" }}>{d.count + paidCount > 0 ? d.count + paidCount : ""}</span>
                         <div style={{ display: "flex", gap: 1, alignItems: "flex-end", height: "100%", width: "100%" }}>
                           <div style={{ flex: 1, height: `${hU}%`, borderRadius: "4px 4px 0 0", background: "var(--color-accent)", opacity: 0.7, minHeight: 2 }} title={`Users: ${d.count}`} />
-                          <div style={{ flex: 1, height: `${hP}%`, borderRadius: "4px 4px 0 0", background: "#10b981", opacity: 0.7, minHeight: 2 }} title={`Paystubs: ${paidCount}`} />
+                          <div style={{ flex: 1, height: `${hP}%`, borderRadius: "4px 4px 0 0", background: "#10b981", opacity: 0.7, minHeight: 2 }} title={`Documents: ${paidCount}`} />
                         </div>
                         <span style={{ fontSize: 8, color: "var(--color-text-tertiary)", whiteSpace: "nowrap" }}>{d.label.split(" ")[1]}</span>
                       </div>
@@ -235,7 +235,7 @@ class AdminDashboard extends Component {
                     <span style={{ width: 10, height: 10, borderRadius: 2, background: "var(--color-accent)", opacity: 0.7 }} /> Signups
                   </span>
                   <span style={{ fontSize: 11, color: "var(--color-text-tertiary)", display: "flex", alignItems: "center", gap: 4 }}>
-                    <span style={{ width: 10, height: 10, borderRadius: 2, background: "#10b981", opacity: 0.7 }} /> Paid Paystubs
+                    <span style={{ width: 10, height: 10, borderRadius: 2, background: "#10b981", opacity: 0.7 }} /> Paid Documents
                   </span>
                 </div>
               </div>
@@ -253,7 +253,7 @@ class AdminDashboard extends Component {
                 <InfoRow label="Yesterday" value={u.newYesterday || 0} />
               </div>
               <div className="dash-section-card" style={{ marginBottom: 0 }}>
-                <h4>Paystub Breakdown</h4>
+                <h4>Document Breakdown</h4>
                 <InfoRow label="Total Created" value={p.total || 0} />
                 <InfoRow label="Paid" value={p.paid || 0} color="#10b981" />
                 <InfoRow label="Unpaid / Draft" value={p.unpaid || 0} color="#64748b" />
@@ -266,7 +266,7 @@ class AdminDashboard extends Component {
             {/* Monthly trend */}
             {trends?.monthlyPaystubs && (
               <div className="dash-section-card" style={{ marginBottom: 24 }}>
-                <h4>Monthly Paid Paystubs (Last 12 Months)</h4>
+                <h4>Monthly Paid Documents (Last 12 Months)</h4>
                 <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height: 130, padding: "0 4px" }}>
                   {trends.monthlyPaid.map((m, i) => {
                     const max = Math.max(...trends.monthlyPaid.map((d) => d.count), 1);
@@ -292,7 +292,7 @@ class AdminDashboard extends Component {
         {activeTab === "kpis" && (
           <>
             <div className="dash-stat-grid">
-              <StatCard icon={<FaPercent />} value={`${p.conversionRate || 0}%`} label="Paystub Conversion" raw />
+              <StatCard icon={<FaPercent />} value={`${p.conversionRate || 0}%`} label="Document Conversion" raw />
               <StatCard icon={<FaUserCheck />} value={`${u.verificationRate || 0}%`} label="Email Verification" raw />
               <StatCard icon={<FaChartLine />} value={p.avgPerUser || "0"} label="Avg Stubs/User" raw />
               <StatCard icon={<FaShieldAlt />} value={u.admins || 0} label="Admin Accounts" />
@@ -314,7 +314,7 @@ class AdminDashboard extends Component {
                   <InfoRow label="Month-over-Month" value={`${userGrowth >= 0 ? "+" : ""}${userGrowth}%`} color={userGrowth >= 0 ? "#10b981" : "#ef4444"} />
                 </div>
                 <div>
-                  <p style={{ fontSize: 12, fontWeight: 600, color: "var(--color-text-tertiary)", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.04em" }}>Paystub Growth</p>
+                  <p style={{ fontSize: 12, fontWeight: 600, color: "var(--color-text-tertiary)", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.04em" }}>Document Growth</p>
                   <InfoRow label="Today" value={p.today || 0} />
                   <InfoRow label="Yesterday" value={p.yesterday || 0} />
                   <InfoRow label="This Week" value={p.thisWeek || 0} />
@@ -356,8 +356,8 @@ class AdminDashboard extends Component {
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 <FunnelBar label="Total Users Registered" value={u.total || 0} pct={100} color="var(--color-accent)" />
                 <FunnelBar label="Email Verified" value={u.verified || 0} pct={u.total ? Math.round((u.verified / u.total) * 100) : 0} color="#6366f1" />
-                <FunnelBar label="Created at Least 1 Paystub" value={p.total > 0 ? Math.min(u.total, p.total) : 0} pct={u.total ? Math.min(100, Math.round(((p.total > 0 ? Math.min(u.total, p.total) : 0) / u.total) * 100)) : 0} color="#8b5cf6" />
-                <FunnelBar label="Paid for Paystub" value={p.paid || 0} pct={u.total ? Math.round((p.paid / Math.max(u.total, 1)) * 100) : 0} color="#10b981" />
+                <FunnelBar label="Created at Least 1 Document" value={p.total > 0 ? Math.min(u.total, p.total) : 0} pct={u.total ? Math.min(100, Math.round(((p.total > 0 ? Math.min(u.total, p.total) : 0) / u.total) * 100)) : 0} color="#8b5cf6" />
+                <FunnelBar label="Paid for Document" value={p.paid || 0} pct={u.total ? Math.round((p.paid / Math.max(u.total, 1)) * 100) : 0} color="#10b981" />
               </div>
             </div>
 
@@ -622,7 +622,7 @@ class AdminDashboard extends Component {
 
             {stats?.recentPaystubs?.length > 0 && (
               <div className="dash-section-card">
-                <h4>Recent Paid Paystubs</h4>
+                <h4>Recent Paid Documents</h4>
                 <div style={{ overflowX: "auto" }}>
                   <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                     <thead>

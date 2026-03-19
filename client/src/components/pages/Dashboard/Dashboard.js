@@ -117,7 +117,7 @@ class Dashboard extends Component {
             </div>
             <div className="dash-stat-info">
               <h3>{paystubCount}</h3>
-              <p>Paystub Groups</p>
+              <p>Payroll Documents</p>
             </div>
           </div>
 
@@ -214,7 +214,7 @@ class Dashboard extends Component {
                   <FaPlus style={{ color: "#fff", fontSize: 16 }} />
                 </div>
                 <div>
-                  <div style={{ fontWeight: 600, fontSize: 14, color: "var(--color-text-primary)" }}>Create Paystub</div>
+                  <div style={{ fontWeight: 600, fontSize: 14, color: "var(--color-text-primary)" }}>Create Document</div>
                   <div style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>Create new payroll documents</div>
                 </div>
               </div>
@@ -237,7 +237,7 @@ class Dashboard extends Component {
                   <FaEye style={{ color: "var(--color-accent)", fontSize: 16 }} />
                 </div>
                 <div>
-                  <div style={{ fontWeight: 600, fontSize: 14, color: "var(--color-text-primary)" }}>My Paystubs</div>
+                  <div style={{ fontWeight: 600, fontSize: 14, color: "var(--color-text-primary)" }}>My Documents</div>
                   <div style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>View &amp; download documents</div>
                 </div>
               </div>
@@ -314,11 +314,11 @@ class Dashboard extends Component {
           </div>
         </div>
 
-        {/* Recent Paystubs */}
+        {/* Recent Documents */}
         {recentStubs.length > 0 && (
           <div className="dash-section-card">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, paddingBottom: 12, borderBottom: "1px solid var(--color-border)" }}>
-              <h4 style={{ margin: 0, border: "none", paddingBottom: 0 }}>Recent Paystubs</h4>
+              <h4 style={{ margin: 0, border: "none", paddingBottom: 0 }}>Recent Documents</h4>
               <Link to="/dashboard/paystub" style={{ fontSize: 13, fontWeight: 500, color: "var(--color-accent)", textDecoration: "none" }}>
                 View All
               </Link>
