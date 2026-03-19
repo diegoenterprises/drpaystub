@@ -168,20 +168,20 @@ const STATE_NAMES = {"alabama":"Alabama","alaska":"Alaska","arizona":"Arizona","
 // Search engine crawlers get page-specific titles/descriptions injected server-side
 // This is critical for SPA SEO since React renders client-side
 const SEO_ROUTES = {
-  "/": { title: "Saurellius — #1 Professional Paystub & W-2 Generator | Instant PDF | FICA Compliant", desc: "Create professional, secure payroll check stubs and W-2 forms online in minutes. Automatic federal, state, and local tax calculations. FICA compliant. 6 premium templates. Starting at $7.99." },
-  "/paystubs": { title: "Create Pay Stub Online — Automatic Tax Calculator | Saurellius", desc: "Generate professional pay stubs with automatic federal, state, local tax, Social Security, and Medicare calculations. Hourly or salaried. 6 premium templates. Instant PDF download. Starting at $7.99." },
-  "/w2form": { title: "W-2 Form Generator Online — IRS Compliant | Saurellius", desc: "Generate IRS-compliant W-2 forms online. Automatic calculation of all W-2 boxes including federal tax, Social Security, Medicare, and state taxes. Instant PDF download." },
-  "/w2-wizard": { title: "W-2 Wizard — Auto-Fill W-2 from Pay Stubs | Saurellius", desc: "Smart W-2 wizard that auto-fills all boxes from your existing paystub data. Calculates total wages, taxes withheld, Social Security, and Medicare automatically." },
-  "/w2forms": { title: "W-2 Forms — Generate Tax Documents Online | Saurellius", desc: "Create W-2 tax forms online with automatic calculations. IRS compliant, instant PDF download, auto-fill from paystub history." },
-  "/templates": { title: "Pay Stub Templates — 6 Professional Designs | Saurellius", desc: "Choose from 6 professional paystub templates designed to match real-world payroll software. Clean layouts, all tax fields, digital signatures, and print-ready PDFs." },
+  "/": { title: "Saurellius — #1 Cloud Payroll Management & W-2 Platform | FICA Compliant", desc: "Cloud payroll management platform with automatic federal, state, and local tax calculations. FICA compliant payroll documents and W-2 forms. 6 professional templates. Starting at $7.99." },
+  "/paystubs": { title: "Payroll Management — Automatic Tax Calculator | Saurellius", desc: "Professional payroll management with automatic federal, state, local tax, Social Security, and Medicare calculations. Hourly or salaried. 6 premium templates. Instant PDF download. Starting at $7.99." },
+  "/w2form": { title: "W-2 Form Preparation Online — IRS Compliant | Saurellius", desc: "Prepare IRS-compliant W-2 forms online. Automatic calculation of all W-2 boxes including federal tax, Social Security, Medicare, and state taxes. Instant PDF download." },
+  "/w2-wizard": { title: "W-2 Wizard — Auto-Fill W-2 from Payroll Data | Saurellius", desc: "Smart W-2 wizard that auto-fills all boxes from your existing payroll data. Calculates total wages, taxes withheld, Social Security, and Medicare automatically." },
+  "/w2forms": { title: "W-2 Forms — Prepare Tax Documents Online | Saurellius", desc: "Prepare W-2 tax forms online with automatic calculations. IRS compliant, instant PDF download, auto-fill from payroll history." },
+  "/templates": { title: "Payroll Templates — 6 Professional Designs | Saurellius", desc: "Choose from 6 professional payroll document templates designed to match real-world payroll software. Clean layouts, all tax fields, digital signatures, and print-ready PDFs." },
   "/blogs": { title: "Payroll Blog — Tax Tips, Guides & Resources | Saurellius", desc: "Expert payroll articles, tax calculation guides, FICA explanations, state tax breakdowns, and small business payroll tips. Stay updated on tax law changes." },
-  "/reviews": { title: "Customer Reviews — 4.8★ Rating | Saurellius Paystub Generator", desc: "Read what 2,800+ customers say about Saurellius. Rated 4.8/5 stars for accuracy, ease of use, and professional quality pay stubs." },
+  "/reviews": { title: "Customer Reviews — 4.8★ Rating | Saurellius Payroll Management", desc: "Read what 2,800+ customers say about Saurellius. Rated 4.8/5 stars for accuracy, ease of use, and professional quality payroll documents." },
   "/about": { title: "About Saurellius — Professional Payroll Solutions | Dr. Paystub Corp", desc: "Learn about Saurellius by Dr. Paystub Corp. We provide professional payroll document generation with bank-grade accuracy and FICA compliance for businesses of all sizes." },
   "/contact": { title: "Contact Us — Customer Support | Saurellius", desc: "Get help with pay stubs, W-2 forms, tax calculations, or account questions. Our support team is here to help you with your payroll document needs." },
-  "/register": { title: "Sign Up Free — Create Pay Stubs in Minutes | Saurellius", desc: "Create your free Saurellius account and start generating professional pay stubs and W-2 forms in minutes. No credit card required to sign up." },
-  "/login": { title: "Log In to Your Account | Saurellius", desc: "Access your Saurellius dashboard to create pay stubs, generate W-2 forms, and manage your payroll documents." },
+  "/register": { title: "Sign Up Free — Payroll Management in Minutes | Saurellius", desc: "Create your free Saurellius account and start managing professional payroll documents and W-2 forms in minutes. No credit card required to sign up." },
+  "/login": { title: "Log In to Your Account | Saurellius", desc: "Access your Saurellius dashboard to manage payroll documents, prepare W-2 forms, and track your payroll history." },
   "/privacyPolicy": { title: "Privacy Policy | Saurellius by Dr. Paystub Corp", desc: "Read the Saurellius privacy policy. We protect your personal and financial data with bank-grade security. Your information is never shared with third parties." },
-  "/terms-and-conditions": { title: "Terms & Conditions | Saurellius by Dr. Paystub Corp", desc: "Read the terms and conditions for using Saurellius pay stub and W-2 generation services." },
+  "/terms-and-conditions": { title: "Terms & Conditions | Saurellius by Dr. Paystub Corp", desc: "Read the terms and conditions for using Saurellius payroll management and W-2 preparation services." },
 };
 
 // Dynamically generate SEO routes for all 50 state paystub law pages + state tax calculators
@@ -189,7 +189,7 @@ US_STATES.forEach(slug => {
   const name = STATE_NAMES[slug];
   SEO_ROUTES[`/paystub-laws/${slug}`] = {
     title: `${name} Paystub Laws & Requirements 2026 | Saurellius`,
-    desc: `Complete guide to ${name} paystub laws, employer requirements, pay stub format rules, and penalties for non-compliance. Updated for 2026. Free ${name} paystub generator.`
+    desc: `Complete guide to ${name} paystub laws, employer requirements, pay stub format rules, and penalties for non-compliance. Updated for 2026. ${name} payroll compliance tools.`
   };
   SEO_ROUTES[`/calculators/${slug}-payroll-tax`] = {
     title: `${name} Payroll Tax Calculator 2026 | Saurellius`,
@@ -201,8 +201,8 @@ US_STATES.forEach(slug => {
 ["123paystubs", "thepaystubs", "securepaystubs", "paystubs-net", "shopify", "adp", "gusto", "paychex"].forEach(comp => {
   const name = comp.replace(/-/g, ".").replace(/^./, c => c.toUpperCase());
   SEO_ROUTES[`/compare/saurellius-vs-${comp}`] = {
-    title: `Saurellius vs ${name} — Paystub Generator Comparison 2026`,
-    desc: `Compare Saurellius and ${name} pay stub generators side-by-side. Features, pricing, tax accuracy, templates, and user reviews. See why businesses choose Saurellius.`
+    title: `Saurellius vs ${name} — Payroll Management Comparison 2026`,
+    desc: `Compare Saurellius and ${name} payroll management platforms side-by-side. Features, pricing, tax accuracy, templates, and user reviews. See why businesses choose Saurellius.`
   };
 });
 
