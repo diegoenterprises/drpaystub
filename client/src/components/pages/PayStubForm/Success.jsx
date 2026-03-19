@@ -84,7 +84,7 @@ const Success = () => {
               </svg>
             </div>
             <h3 className="success-title success-title--loading">
-              Generating your pay stubs
+              Preparing your payroll documents
             </h3>
             <div className="success-shimmer-bar" />
             <p className="success-subtitle">

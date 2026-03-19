@@ -72,7 +72,7 @@ const W2PaymentForm = ({ secret, onSuccess }) => {
         ) : (
           <>
             <i className="fa fa-lock" style={{ marginRight: 8 }}></i>
-            Pay $20.00 &amp; Generate W-2
+            Pay $20.00 &amp; Create W-2
           </>
         )}
       </button>
@@ -166,11 +166,11 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
       if (resp.success) {
         setZipFile(resp.zipFile);
       } else {
-        setError("PDF generation failed. Please contact support.");
+        setError("PDF creation failed. Please contact support.");
       }
     } catch (err) {
       console.error("[W2Wizard] Generate error:", err);
-      setError("PDF generation failed. Please contact support.");
+      setError("PDF creation failed. Please contact support.");
     } finally {
       setGenerating(false);
     }
@@ -200,7 +200,7 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
         </h3>
         <p className="w2-box-hint" style={{ marginBottom: 16 }}>
           Review your W-2 preview below. All watermarks will be removed from your final document.
-          All 6 copies of the official IRS W-2 form will be generated after payment.
+          All 6 copies of the official IRS W-2 form will be prepared after payment.
         </p>
 
         {/* ── Watermarked W-2 Preview ── */}
@@ -215,7 +215,7 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
             <div style={{ padding: 48, textAlign: "center" }}>
               <i className="fa fa-spinner fa-spin" style={{ fontSize: 28, color: "var(--color-accent, #6366f1)", marginBottom: 12 }}></i>
               <p style={{ color: "var(--color-text-secondary, #94a3b8)", fontSize: 14, margin: 0 }}>
-                Generating W-2 preview...
+                Loading W-2 preview...
               </p>
             </div>
           ) : previewFile ? (
@@ -232,7 +232,7 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
           ) : (
             <div style={{ padding: 32, textAlign: "center", color: "var(--color-text-secondary, #94a3b8)" }}>
               <i className="fa fa-file-pdf-o" style={{ fontSize: 32, marginBottom: 12, display: "block" }}></i>
-              <p style={{ margin: 0, fontSize: 14 }}>Preview unavailable. Your W-2 will still generate correctly after payment.</p>
+              <p style={{ margin: 0, fontSize: 14 }}>Preview unavailable. Your W-2 will still be created correctly after payment.</p>
             </div>
           )}
         </div>
@@ -335,7 +335,7 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
                 <i className="fa fa-check" style={{ fontSize: 28, color: "#fff" }}></i>
               </div>
               <h4 style={{ fontWeight: 700, marginBottom: 8, color: "var(--color-text-primary)" }}>
-                W-2 Generated Successfully!
+                W-2 Created Successfully!
               </h4>
               <p style={{ fontSize: 14, color: "var(--color-text-secondary)", marginBottom: 20 }}>
                 Your official IRS W-2 form with all 6 copies is ready for download.
@@ -405,7 +405,7 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
                   <div className="gen-doc-line gen-doc-line--5"></div>
                   <div className="gen-doc-scan"></div>
                 </div>
-                <p className="gen-title">Generating your W-2...</p>
+                <p className="gen-title">Preparing your W-2...</p>
                 <div className="gen-progress">
                   <div className="gen-progress-bar"></div>
                 </div>
@@ -439,7 +439,7 @@ const Step4ReviewPay = ({ data, formData, goToStep }) => {
                     fontSize: 15, fontWeight: 700, color: "var(--color-text-primary)",
                   }}>
                     <i className="fa fa-file-text-o" style={{ color: "var(--color-accent)" }}></i>
-                    W-2 Generation — $20.00
+                    W-2 Preparation — $20.00
                   </div>
                 </div>
                 {/* ─── Promo Code ─── */}

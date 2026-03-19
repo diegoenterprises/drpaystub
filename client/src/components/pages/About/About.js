@@ -34,7 +34,7 @@ export default function About() {
     <div style={{ minHeight: "80vh", padding: "100px 0 60px" }}>
       <SEO
         title="About Us"
-        description="Learn about Saurellius by Dr. Paystub Corp — the trusted platform for creating professional, FICA-compliant payroll check stubs with bank-grade accuracy and premium templates."
+        description="Learn about Saurellius by Dr. Paystub Corp — the trusted cloud payroll management platform with FICA-compliant documents, bank-grade accuracy, and premium templates."
         path="/about"
         keywords="about saurellius, about dr paystub, paystub company, payroll company"
       />
@@ -47,7 +47,7 @@ export default function About() {
           Payroll made simple,<br />accurate, and instant.
         </h1>
         <p style={{ fontSize: 17, color: "var(--color-text-secondary)", maxWidth: 620, margin: "0 auto", lineHeight: 1.7 }}>
-          Saurellius was built to give small business owners, contractors, and self-employed professionals the power to generate professional pay stubs in minutes — with IRS-compliant tax calculations you can trust.
+          Saurellius was built to give small business owners, contractors, and self-employed professionals the power to create professional payroll documents in minutes — with IRS-compliant tax calculations you can trust.
         </p>
       </div>
 
@@ -79,7 +79,7 @@ export default function About() {
               <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 16, letterSpacing: "-0.01em" }}>Our Core Values</h3>
               {[
                 { icon: <FaBullseye />, title: "Accuracy First", desc: "Every calculation is validated against the Internal Revenue Code (IRC), Title 26 of the U.S. Code, and verified by our professional accountant partners." },
-                { icon: <FaBolt />, title: "Speed & Simplicity", desc: "Generate complete, professional pay stubs in under 5 minutes. No software to install, no learning curve." },
+                { icon: <FaBolt />, title: "Speed & Simplicity", desc: "Create complete, professional payroll documents in under 5 minutes. No software to install, no learning curve." },
                 { icon: <FaLock />, title: "Privacy & Security", desc: "Your personal and financial information is encrypted and never shared. We take data protection seriously." },
                 { icon: <FaHandshake />, title: "Customer Commitment", desc: "Real support from real people. If you ever have a question, our team is here to help." },
               ].map((v, i) => (
@@ -108,7 +108,7 @@ export default function About() {
           <FeatureCard
             icon={<FaFileAlt />}
             title="Professional Pay Stubs"
-            desc="Choose from multiple templates and generate polished, detailed pay stubs that are accepted by lenders, landlords, and government agencies."
+            desc="Choose from multiple templates and create polished, detailed payroll documents that are accepted by lenders, landlords, and government agencies."
           />
           <FeatureCard
             icon={<FaCalculator />}
@@ -123,7 +123,7 @@ export default function About() {
           <FeatureCard
             icon={<FaMobileAlt />}
             title="Instant Digital Delivery"
-            desc="Your pay stubs are generated as secure PDFs and delivered instantly to your email. Download anytime from your personal dashboard."
+            desc="Your payroll documents are created as secure PDFs and delivered instantly to your email. Download anytime from your personal dashboard."
           />
           <FeatureCard
             icon={<FaShieldAlt />}
@@ -150,7 +150,7 @@ export default function About() {
             <div className="col-lg-7">
               <div className="row" style={{ gap: "12px 0" }}>
                 {[
-                  { title: "Small Business Owners", desc: "Generate stubs for your employees without expensive payroll software." },
+                  { title: "Small Business Owners", desc: "Create payroll documents for your employees without expensive payroll software." },
                   { title: "Freelancers & Contractors", desc: "Create proof of income documentation for loans, leases, and taxes." },
                   { title: "Self-Employed Professionals", desc: "Document your earnings with professional pay stubs accepted everywhere." },
                   { title: "Household Employers", desc: "Pay your nanny, housekeeper, or caregiver with proper payroll records." },

@@ -215,7 +215,7 @@ class Dashboard extends Component {
                 </div>
                 <div>
                   <div style={{ fontWeight: 600, fontSize: 14, color: "var(--color-text-primary)" }}>Create Paystub</div>
-                  <div style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>Generate new pay documents</div>
+                  <div style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>Create new payroll documents</div>
                 </div>
               </div>
             </div>
@@ -261,7 +261,7 @@ class Dashboard extends Component {
                 </div>
                 <div>
                   <div style={{ fontWeight: 600, fontSize: 14, color: "var(--color-text-primary)" }}>Create W-2</div>
-                  <div style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>Generate official IRS W-2 form</div>
+                  <div style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>Prepare official IRS W-2 form</div>
                 </div>
               </div>
             </Link>

@@ -194,10 +194,10 @@ class W2Wizard extends Component {
       return (
         <div className="W2Wizard">
           <SEO
-            title="W-2 Wizard — Generate Official IRS W-2 Forms"
-            description="Generate official IRS W-2 Wage and Tax Statement forms with our easy step-by-step wizard. All 6 copies included. Instant PDF download."
+            title="W-2 Wizard — Prepare Official IRS W-2 Forms"
+            description="Prepare official IRS W-2 Wage and Tax Statement forms with our easy step-by-step wizard. All 6 copies included. Instant PDF download."
             path="/w2-wizard"
-            keywords="W-2 form, W2 generator, wage tax statement, IRS W-2, W2 wizard"
+            keywords="W-2 form, W2 preparation, wage tax statement, IRS W-2, W2 wizard"
           />
           <div className="container">
             <div className="w2-auth-gate">
@@ -207,7 +207,7 @@ class W2Wizard extends Component {
                 </div>
                 <h2 style={{ fontSize: "26px", marginBottom: 12 }}>W-2 Wizard</h2>
                 <p style={{ fontSize: 15, lineHeight: 1.6, color: "var(--color-text-secondary)", marginBottom: 28 }}>
-                  Generate an official IRS W-2 form with all 6 copies. Please accept our terms to continue.
+                  Prepare an official IRS W-2 form with all 6 copies. Please accept our terms to continue.
                 </p>
 
                 <label style={{
@@ -277,15 +277,15 @@ class W2Wizard extends Component {
     return (
       <div className="W2Wizard">
         <SEO
-          title="W-2 Wizard — Generate Official IRS W-2 Forms"
-          description="Generate official IRS W-2 forms with our easy step-by-step wizard."
+          title="W-2 Wizard — Prepare Official IRS W-2 Forms"
+          description="Prepare official IRS W-2 forms with our easy step-by-step wizard."
           path="/w2-wizard"
         />
         <div className="container">
           {/* Step indicator */}
           <div className="w2-step-bar">
             <h2>W-2 Wizard</h2>
-            <p className="w2-subtitle">Generate your official IRS W-2 form</p>
+            <p className="w2-subtitle">Prepare your official IRS W-2 form</p>
             <ul>
               {[1, 2, 3, 4].map((i) => (
                 <li
@@ -313,7 +313,7 @@ class W2Wizard extends Component {
               </p>
             ) : (
               <p style={{ marginBottom: 4 }}>
-                Review &amp; generate your W-2
+                Review &amp; create your W-2
                 <i className="fa fa-check" style={{ color: "var(--color-success)", fontSize: 18, marginLeft: 8 }}></i>
               </p>
             )}

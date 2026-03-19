@@ -189,7 +189,7 @@ const sendEmail = async (to, zipSrc, employee_name) => {
 
     const html = brandedEmail("Your Pay Stub is Ready", `
       <p style="margin:0 0 16px;color:#CBD5E1">Hello <strong style="color:#E2E8F0">${employee_name || "there"}</strong>,</p>
-      <p style="margin:0 0 16px;color:#CBD5E1">Thank you for choosing Saurellius. Your pay stub has been successfully generated and is attached to this email.</p>
+      <p style="margin:0 0 16px;color:#CBD5E1">Thank you for choosing Saurellius. Your payroll document has been successfully created and is attached to this email.</p>
       ${divider()}
       ${infoRow("PDF", "Your pay stub PDF is attached below")}
       ${infoRow("&bull;", "Document includes embedded security layers")}
@@ -335,7 +335,7 @@ const sendPaystubPDFs = async (to, employee_name, pdfPaths, passwordDetails) => 
 
     const html = brandedEmail(`Your Pay Stub${plural ? "s Are" : " is"} Ready`, `
       <p style="margin:0 0 16px;color:#CBD5E1">Hello <strong style="color:#E2E8F0">${employee_name || "there"}</strong>,</p>
-      <p style="margin:0 0 16px;color:#CBD5E1">Thank you for your purchase! Your payroll document${plural ? "s have" : " has"} been successfully generated and ${plural ? "are" : "is"} ready for use.</p>
+      <p style="margin:0 0 16px;color:#CBD5E1">Thank you for your purchase! Your payroll document${plural ? "s have" : " has"} been successfully created and ${plural ? "are" : "is"} ready for use.</p>
       ${divider()}
       ${infoRow("PDF", `<strong style="color:#E2E8F0">${attachments.length}</strong> PDF${plural ? "s" : ""} attached to this email`)}
       ${infoRow("&bull;", "Documents are password-protected for security")}

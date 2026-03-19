@@ -343,7 +343,7 @@ export const ARTICLES = [
 <p>You can deduct the employer-equivalent portion (7.65%) when filing your tax return.</p>
 
 <h3>Pro Tip</h3>
-<p>Use Saurellius to generate professional pay stubs that are accepted by lenders, landlords, and other institutions requiring proof of income.</p>`
+<p>Use Saurellius to create professional payroll documents that are accepted by lenders, landlords, and other institutions requiring proof of income.</p>`
   },
 
   // ── COMPLIANCE & LAW ──────────────────────────────────────
@@ -575,7 +575,7 @@ export const ARTICLES = [
     id: "how-to-create-paystub",
     category: "help",
     title: "How to Create a Pay Stub with Saurellius",
-    summary: "Step-by-step guide to generating professional, accurate pay stubs using our platform.",
+    summary: "Step-by-step guide to creating professional, accurate payroll documents using our platform.",
     readTime: "3 min",
     content: `<h2>Creating a Pay Stub with Saurellius</h2>
 
@@ -594,10 +594,10 @@ export const ARTICLES = [
 <li>Add deductions (health insurance, 401k, garnishments)</li>
 </ul>
 
-<h3>Step 4: Review & Generate</h3>
+<h3>Step 4: Review & Create</h3>
 <p>Preview your pay stub, choose a professional template, and complete payment. Your pay stubs are:</p>
 <ul>
-<li>Generated as secure PDF documents</li>
+<li>Created as secure PDF documents</li>
 <li>Emailed to the address you specify</li>
 <li>Available for immediate download</li>
 <li>Stored in your dashboard for future access</li>
@@ -605,9 +605,9 @@ export const ARTICLES = [
 
 <h3>Pro Tips</h3>
 <ul>
-<li>Double-check all calculations before generating</li>
+<li>Double-check all calculations before submitting</li>
 <li>Use consistent formatting across all pay periods</li>
-<li>Keep your account active to access all your generated stubs</li>
+<li>Keep your account active to access all your saved documents</li>
 </ul>`
   },
   {

@@ -17,16 +17,16 @@ const SEO = ({
   noindex = false,
   jsonLd = null,
 }) => {
-  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — Professional Paystub Generator | Secure & FICA Compliant`;
+  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — Cloud Payroll Management Platform | Secure & FICA Compliant`;
   const canonical = `${BASE_URL}${path}`;
   const fullImage = image.startsWith("http") ? image : `${BASE_URL}${image}`;
 
   const baseKeywords =
-    "paystub generator, pay stub maker, payroll check stub, create paystub online, paystub creator, " +
-    "paycheck stub generator, salary pay stub, hourly pay stub, W2 form generator, " +
-    "FICA compliant paystub, federal tax calculator, state tax calculator, " +
-    "employee pay stub, self employed paystub, contractor pay stub, " +
-    "professional paystub template, digital paystub, online payroll, " +
+    "payroll management software, payroll management platform, cloud payroll solution, online payroll system, " +
+    "payroll tax compliance, payroll document management, W-2 preparation, " +
+    "FICA compliant payroll, federal tax calculator, state tax calculator, " +
+    "employee payroll management, self employed payroll, contractor payroll, " +
+    "professional payroll templates, digital payroll, online payroll, " +
     "saurellius, dr paystub, drpaystub";
 
   const allKeywords = keywords ? `${keywords}, ${baseKeywords}` : baseKeywords;

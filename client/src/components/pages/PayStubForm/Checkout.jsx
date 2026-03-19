@@ -78,7 +78,7 @@ export const Checkout = ({
           <i className="fa fa-check-circle"></i>
         </div>
         <h4>Discount applied</h4>
-        <p>Your pay stub is being generated — no charge.</p>
+        <p>Your payroll document is being prepared — no charge.</p>
       </div>
     );
   }

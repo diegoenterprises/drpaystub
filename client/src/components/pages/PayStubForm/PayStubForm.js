@@ -470,9 +470,9 @@ export class PayStubForm extends Component {
         <div className="PayStubForm">
           <SEO
             title="Create Pay Stub — Accurate Tax Calculations"
-            description="Generate professional pay stubs with accurate federal and state tax withholdings, Social Security, Medicare, and custom deductions. Choose from 6 premium templates. Instant PDF download."
+            description="Professional payroll documents with accurate federal and state tax withholdings, Social Security, Medicare, and custom deductions. Choose from 6 premium templates. Instant PDF download."
             path="/paystubs"
-            keywords="create pay stub, generate paystub online, pay stub maker, paycheck generator, salary calculator, hourly pay stub, payroll stub creator"
+            keywords="payroll management, payroll documents online, payroll software, payroll calculator, salary calculator, hourly payroll, payroll compliance"
           />
           <div className="container">
             <div className="auth-gate">
@@ -482,7 +482,7 @@ export class PayStubForm extends Component {
                 </div>
                 <h2 className="auth-gate-title">Before we begin</h2>
                 <p className="auth-gate-subtitle">
-                  To generate your pay stub, please accept our terms of service.
+                  To create your payroll document, please accept our terms of service.
                   Creating an account lets you save and manage your stubs.
                 </p>
 
@@ -507,7 +507,7 @@ export class PayStubForm extends Component {
                     cursor: this.state.termsAccepted ? "pointer" : "not-allowed",
                   }}
                 >
-                  Continue to Pay Stub Generator <i className="fa fa-arrow-right"></i>
+                  Continue to Payroll Manager <i className="fa fa-arrow-right"></i>
                 </button>
 
                 <div className="auth-gate-divider">

@@ -12,7 +12,7 @@ export class Introduction extends Component {
               Payroll &amp; tax documents,<br />simplified.
             </h2>
             <p className="intro-subtitle">
-              Saurellius generates professional pay stubs and official IRS W-2
+              Saurellius provides professional payroll documents and official IRS W-2
               forms in minutes — accurate tax calculations, instant PDF
               downloads, and flexible plans that fit any business.
             </p>
@@ -23,9 +23,9 @@ export class Introduction extends Component {
               <div className="intro-card-icon">
                 <i className="fa fa-bolt"></i>
               </div>
-              <h3 className="intro-card-title">Instant generation</h3>
+              <h3 className="intro-card-title">Instant payroll</h3>
               <p className="intro-card-text">
-                Enter your details and download professional pay stubs in minutes.
+                Enter your details and download professional payroll documents in minutes.
                 Accurate federal and state tax calculations built in.
               </p>
             </div>
@@ -47,7 +47,7 @@ export class Introduction extends Component {
               </div>
               <h3 className="intro-card-title">Effortless simplicity</h3>
               <p className="intro-card-text">
-                Generate professional paystubs in minutes. Our streamlined
+                Professional payroll documents in minutes. Our streamlined
                 workflow handles the math so you can focus on your business.
               </p>
             </div>

@@ -10,7 +10,7 @@ export default function TermsAndCondition() {
         <div className="legal-page">
             <SEO
               title="Terms of Service"
-              description="Read the Saurellius terms of service. Understand your rights and obligations when using our professional paystub generator platform."
+              description="Read the Saurellius terms of service. Understand your rights and obligations when using our professional payroll management platform."
               path="/terms-and-conditions"
               keywords="saurellius terms of service, paystub terms, dr paystub legal"
             />
@@ -67,11 +67,11 @@ export default function TermsAndCondition() {
                         <span className="legal-section-num">2</span>
                         <h2>Description of Service</h2>
                     </div>
-                    <p>Saurellius provides a digital platform for generating professional payroll check stubs. Our Service includes:</p>
+                    <p>Saurellius provides a digital platform for creating professional payroll documents. Our Service includes:</p>
                     <ul>
                         <li>A multi-step form for entering company and employee payroll information</li>
                         <li>Automated calculation of taxes, deductions, and net pay</li>
-                        <li>Generation of secure, professionally formatted PDF paystub documents</li>
+                        <li>Creation of secure, professionally formatted PDF payroll documents</li>
                         <li>Multiple premium template designs</li>
                         <li>Document delivery via email and direct download</li>
                     </ul>
@@ -125,7 +125,7 @@ export default function TermsAndCondition() {
                     <p>All purchases are processed securely through <strong>Stripe</strong>, a PCI DSS Level 1 certified payment processor. We do not store credit card information on our servers.</p>
                     <ul>
                         <li>Prices are displayed before checkout and may change without notice</li>
-                        <li>All sales are final once the document has been generated and delivered</li>
+                        <li>All sales are final once the document has been created and delivered</li>
                         <li>You must be of legal age in your jurisdiction to make a purchase</li>
                         <li>Additional terms may apply to specific promotions or features</li>
                     </ul>

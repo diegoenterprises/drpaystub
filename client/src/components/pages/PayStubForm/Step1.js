@@ -252,7 +252,7 @@ function Step1(props) {
         </div>
         <div className="form-group">
           <label htmlFor="company_website">
-            Company Website <span className="text-muted">(Optional — generates QR code on paystub)</span>
+            Company Website <span className="text-muted">(Optional — adds QR code to document)</span>
           </label>
           <input
             ref={register}

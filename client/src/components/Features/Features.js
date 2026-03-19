@@ -40,7 +40,7 @@ export class Features extends Component {
               </div>
               <h3 className="feat-card-title">Always available</h3>
               <p className="feat-card-text">
-                Generate stubs 24/7 from any device. No downloads, no
+                Access payroll tools 24/7 from any device. No downloads, no
                 installations, no waiting.
               </p>
             </div>

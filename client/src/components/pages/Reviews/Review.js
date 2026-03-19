@@ -154,9 +154,9 @@ export default function Reviews() {
     <div style={{ minHeight: "80vh", padding: "100px 0 60px" }}>
       <SEO
         title="Reviews & Testimonials"
-        description="See what thousands of satisfied customers say about Saurellius. Real reviews from business owners, contractors, and freelancers who trust our paystub generator."
+        description="See what thousands of satisfied customers say about Saurellius. Real reviews from business owners, contractors, and freelancers who trust our payroll management platform."
         path="/reviews"
-        keywords="saurellius reviews, paystub generator reviews, dr paystub testimonials, pay stub maker ratings"
+        keywords="saurellius reviews, payroll management reviews, dr paystub testimonials, payroll software ratings"
       />
       {/* Hero */}
       <div style={{ textAlign: "center", marginBottom: 48, padding: "0 20px" }}>

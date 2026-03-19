@@ -31,10 +31,10 @@ class Home extends React.Component {
         return (
             <section className="home  bg-light d-table w-100">
                 <SEO
-                  title="Professional Paystub Generator"
-                  description="Create professional, secure payroll check stubs in minutes. Bank-grade accuracy with federal & state tax calculations, digital signatures, and 6 premium templates. Trusted by thousands of businesses."
+                  title="Professional Payroll Management Platform"
+                  description="Cloud payroll management platform with bank-grade accuracy. Federal & state tax calculations, digital signatures, and 6 professional templates. Trusted by thousands of businesses."
                   path="/"
-                  keywords="paystub generator online, create pay stub, paycheck stub maker, professional paystub, instant paystub"
+                  keywords="payroll management online, payroll documents, payroll compliance, professional payroll, instant payroll"
                 />
                 <Hero />
                 <Pricing />

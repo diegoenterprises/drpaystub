@@ -32,7 +32,7 @@ export class Testimonials extends Component {
             <div className="test-card">
               <div className="test-quote">"</div>
               <p className="test-body">
-                Sign me up! Fastest paystub generator ever. What used to take
+                Sign me up! Fastest payroll platform ever. What used to take
                 me hours now takes minutes. The accuracy is incredible.
               </p>
               <div className="test-author">

@@ -58,7 +58,7 @@ export default function PrivacyPolicy() {
                         <li>Full name and email address</li>
                         <li>Mailing address and phone number</li>
                         <li>Credit or debit card information (processed securely via Stripe)</li>
-                        <li>Employment details such as company name, EIN, and salary information entered for paystub generation</li>
+                        <li>Employment details such as company name, EIN, and salary information entered for payroll document creation</li>
                         <li>Social Security Number (partial or full, as entered by you for paystub formatting)</li>
                     </ul>
                     <div className="legal-highlight">
@@ -75,7 +75,7 @@ export default function PrivacyPolicy() {
                     <p>We collect information from you when you:</p>
                     <ul>
                         <li>Register an account on our platform</li>
-                        <li>Place an order or fill out the paystub generation form</li>
+                        <li>Place an order or fill out the payroll document form</li>
                         <li>Subscribe to our newsletter or marketing communications</li>
                         <li>Contact us through our support channels</li>
                         <li>Browse our website (anonymized analytics data only)</li>
@@ -90,7 +90,7 @@ export default function PrivacyPolicy() {
                     </div>
                     <p>We use the information we collect to:</p>
                     <ul>
-                        <li><strong>Generate your documents</strong> — to create accurate, professional payroll check stubs based on the data you provide</li>
+                        <li><strong>Create your documents</strong> — to produce accurate, professional payroll documents based on the data you provide</li>
                         <li><strong>Process transactions</strong> — to quickly and securely process your payments</li>
                         <li><strong>Personalize your experience</strong> — to deliver content and product offerings relevant to your interests</li>
                         <li><strong>Improve our service</strong> — to continuously enhance our platform based on user feedback and behavior</li>

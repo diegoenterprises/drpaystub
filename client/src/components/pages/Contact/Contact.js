@@ -133,9 +133,9 @@ export class Contact extends Component {
       <div style={{ minHeight: "100vh", paddingBottom: 80 }}>
         <SEO
           title="Contact Us"
-          description="Get in touch with the Saurellius team. Have questions about creating pay stubs, tax calculations, or your account? We're here to help with fast, friendly support."
+          description="Get in touch with the Saurellius team. Have questions about payroll documents, tax calculations, or your account? We're here to help with fast, friendly support."
           path="/contact"
-          keywords="contact saurellius, paystub support, paystub help, dr paystub contact"
+          keywords="contact saurellius, payroll support, payroll help, dr paystub contact"
         />
 
         {/* ── Hero Section ── */}
@@ -189,7 +189,7 @@ export class Contact extends Component {
               maxWidth: 440, margin: "0 auto",
               animation: "ct-fadeUp 0.7s 0.1s ease-out both",
             }}>
-              Have a question about your paystubs or need help with your account?
+              Have a question about your payroll documents or need help with your account?
               We're here to help.
             </p>
           </div>

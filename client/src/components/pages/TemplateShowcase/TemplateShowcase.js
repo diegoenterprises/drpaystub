@@ -434,10 +434,10 @@ export class TemplateShowcase extends Component {
     return (
       <div style={{ minHeight: "100vh", paddingBottom: 80 }}>
         <SEO
-          title="Paystub Templates — 6 Premium Designs"
-          description="Browse 6 professionally designed paystub templates. Classic, modern, executive, and more. Each template includes full tax breakdowns, digital signatures, and bank-grade PDF security."
+          title="Payroll Templates — 6 Premium Designs"
+          description="Browse 6 professionally designed payroll document templates. Classic, modern, executive, and more. Each template includes full tax breakdowns, digital signatures, and bank-grade PDF security."
           path="/templates"
-          keywords="paystub template, pay stub design, professional paystub layout, paystub PDF template, check stub template, payroll template"
+          keywords="payroll template, payroll document design, professional payroll layout, payroll PDF template, payroll compliance template"
         />
 
         {/* ── Hero ── */}
@@ -716,13 +716,13 @@ export class TemplateShowcase extends Component {
               fontSize: 22, fontWeight: 700, color: "var(--color-text-primary)",
               marginBottom: 8, letterSpacing: "-0.02em",
             }}>
-              Ready to Create Your Paystub?
+              Ready to Create Your Payroll Document?
             </h3>
             <p style={{
               fontSize: 14, color: "var(--color-text-secondary)",
               marginBottom: 24, maxWidth: 380, marginLeft: "auto", marginRight: "auto",
             }}>
-              Pick any template and generate a professional, secure pay stub in minutes.
+              Pick any template and create a professional, secure payroll document in minutes.
               $20 per pay date.
             </p>
             <Link

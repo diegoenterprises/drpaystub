@@ -19,7 +19,7 @@ export class Hero extends Component {
         <div className="hero-content text-center mt-5">
           <div className="title-heading">
             <h4 className="heading my-3">
-              Professional Pay Stubs,
+              Professional Payroll,
               <br />
               In Minutes
             </h4>

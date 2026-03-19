@@ -65,7 +65,7 @@ class MyW2s extends Component {
           <div>
             <h1 className="dash-page-title">My W-2 Forms</h1>
             <p className="dash-page-subtitle">
-              {records.length} W-2{records.length !== 1 ? "s" : ""} generated
+              {records.length} W-2{records.length !== 1 ? "s" : ""} on file
             </p>
           </div>
           <Link to="/w2-wizard" className="btn btn-secondary" style={{ flexShrink: 0 }}>
@@ -82,7 +82,7 @@ class MyW2s extends Component {
             <FaFileAlt style={{ fontSize: 48, color: "var(--color-text-tertiary)", marginBottom: 16 }} />
             <h4 style={{ color: "var(--color-text-secondary)", marginBottom: 8 }}>No W-2 forms yet</h4>
             <p style={{ color: "var(--color-text-tertiary)", marginBottom: 20 }}>
-              Generate your first W-2 to see it here
+              Create your first W-2 to see it here
             </p>
             <Link to="/w2-wizard" className="btn btn-secondary">
               Create W-2
