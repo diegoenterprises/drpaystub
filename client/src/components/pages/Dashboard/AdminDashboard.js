@@ -256,7 +256,7 @@ class AdminDashboard extends Component {
                 <h4>Document Breakdown</h4>
                 <InfoRow label="Total Created" value={p.total || 0} />
                 <InfoRow label="Paid" value={p.paid || 0} color="#10b981" />
-                <InfoRow label="Unpaid / Draft" value={p.unpaid || 0} color="#64748b" />
+                <InfoRow label="Unpaid / Draft" value={p.unpaid || 0} color="var(--color-text-tertiary)" />
                 <InfoRow label="Conversion Rate" value={`${p.conversionRate || 0}%`} color={p.conversionRate >= 50 ? "#10b981" : "#f59e0b"} />
                 <InfoRow label="Avg Per User" value={p.avgPerUser || "0"} />
                 <InfoRow label="This Week" value={p.thisWeek || 0} />

@@ -216,7 +216,7 @@ class AdminPage extends Component {
         <div style={styles.dashWrap}>
           <div style={{ textAlign: "center", padding: 80 }}>
             <Spinner animation="border" style={{ color: "#a78bfa" }} />
-            <p style={{ marginTop: 16, color: "#94a3b8" }}>Loading admin data...</p>
+            <p style={{ marginTop: 16, color: "var(--color-text-secondary)" }}>Loading admin data...</p>
           </div>
         </div>
       );
@@ -240,7 +240,7 @@ class AdminPage extends Component {
         <div style={styles.topBar}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={styles.topLogo}>S</div>
-            <span style={{ fontSize: 18, fontWeight: 700, color: "#f1f5f9" }}>Saurellius Admin</span>
+            <span style={{ fontSize: 18, fontWeight: 700, color: "var(--color-text-primary)" }}>Saurellius Admin</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
             <span style={{
@@ -251,7 +251,7 @@ class AdminPage extends Component {
             }}>
               Stripe: {stats?.stripeMode || "---"}
             </span>
-            <span style={{ fontSize: 13, color: "#94a3b8" }}>{adminUser?.email}</span>
+            <span style={{ fontSize: 13, color: "var(--color-text-secondary)" }}>{adminUser?.email}</span>
             <button onClick={this.handleLogout} style={styles.logoutBtn} title="Sign Out">
               <FaSignOutAlt />
             </button>
@@ -274,7 +274,7 @@ class AdminPage extends Component {
                 style={{
                   ...styles.tabBtn,
                   fontWeight: activeTab === t.key ? 600 : 500,
-                  color: activeTab === t.key ? "#a78bfa" : "#94a3b8",
+                  color: activeTab === t.key ? "#a78bfa" : "var(--color-text-secondary)",
                   borderBottom: activeTab === t.key ? "2px solid #a78bfa" : "2px solid transparent",
                 }}
               >
@@ -302,12 +302,12 @@ class AdminPage extends Component {
                       const h = Math.max((m.count / max) * 100, 4);
                       return (
                         <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-                          <span style={{ fontSize: 11, fontWeight: 600, color: "#f1f5f9" }}>{m.count}</span>
+                          <span style={{ fontSize: 11, fontWeight: 600, color: "var(--color-text-primary)" }}>{m.count}</span>
                           <div style={{
                             width: "100%", maxWidth: 60, height: `${h}%`, borderRadius: "8px 8px 0 0",
                             background: "linear-gradient(135deg, #7c3aed, #a78bfa)", transition: "height 0.3s ease",
                           }} />
-                          <span style={{ fontSize: 10, color: "#64748b", whiteSpace: "nowrap" }}>{m.label}</span>
+                          <span style={{ fontSize: 10, color: "var(--color-text-tertiary)", whiteSpace: "nowrap" }}>{m.label}</span>
                         </div>
                       );
                     })}
@@ -326,7 +326,7 @@ class AdminPage extends Component {
                   <h4 style={styles.sectionTitle}>Document Breakdown</h4>
                   <InfoRow label="Total Created" value={p.total || 0} />
                   <InfoRow label="Paid" value={p.paid || 0} color="#10b981" />
-                  <InfoRow label="Unpaid / Draft" value={p.unpaid || 0} color="#64748b" />
+                  <InfoRow label="Unpaid / Draft" value={p.unpaid || 0} color="var(--color-text-tertiary)" />
                   <InfoRow label="This Week" value={p.thisWeek || 0} />
                 </div>
               </div>
@@ -378,7 +378,7 @@ class AdminPage extends Component {
                       <div style={{ overflowX: "auto" }}>
                         <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                           <thead>
-                            <tr style={{ borderBottom: "1px solid rgba(148,163,184,0.15)" }}>
+                            <tr style={{ borderBottom: "1px solid var(--color-border-strong)" }}>
                               <th style={thStyle}>Date</th>
                               <th style={thStyle}>Amount</th>
                               <th style={thStyle}>Email</th>
@@ -388,9 +388,9 @@ class AdminPage extends Component {
                           </thead>
                           <tbody>
                             {revenue.recentCharges.map((c) => (
-                              <tr key={c.id} style={{ borderBottom: "1px solid rgba(148,163,184,0.1)" }}>
+                              <tr key={c.id} style={{ borderBottom: "1px solid var(--color-border)" }}>
                                 <td style={tdStyle}>{moment(c.created).format("MMM D, h:mm A")}</td>
-                                <td style={{ ...tdStyle, fontWeight: 600, color: "#f1f5f9" }}>
+                                <td style={{ ...tdStyle, fontWeight: 600, color: "var(--color-text-primary)" }}>
                                   ${(c.amount / 100).toFixed(2)} {c.currency?.toUpperCase()}
                                 </td>
                                 <td style={tdStyle}>{c.email}</td>
@@ -407,7 +407,7 @@ class AdminPage extends Component {
                                     </span>
                                   )}
                                 </td>
-                                <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: 11, color: "#64748b" }}>
+                                <td style={{ ...tdStyle, fontFamily: "monospace", fontSize: 11, color: "var(--color-text-tertiary)" }}>
                                   {c.id.slice(0, 20)}...
                                 </td>
                               </tr>
@@ -438,7 +438,7 @@ class AdminPage extends Component {
                   <div style={{ overflowX: "auto" }}>
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                       <thead>
-                        <tr style={{ borderBottom: "1px solid rgba(148,163,184,0.15)" }}>
+                        <tr style={{ borderBottom: "1px solid var(--color-border-strong)" }}>
                           <th style={thStyle}>Name</th>
                           <th style={thStyle}>Email</th>
                           <th style={thStyle}>Role</th>
@@ -448,8 +448,8 @@ class AdminPage extends Component {
                       </thead>
                       <tbody>
                         {stats.recentUsers.map((user) => (
-                          <tr key={user._id} style={{ borderBottom: "1px solid rgba(148,163,184,0.1)" }}>
-                            <td style={{ ...tdStyle, fontWeight: 600, color: "#f1f5f9" }}>
+                          <tr key={user._id} style={{ borderBottom: "1px solid var(--color-border)" }}>
+                            <td style={{ ...tdStyle, fontWeight: 600, color: "var(--color-text-primary)" }}>
                               {user.firstName || "---"} {user.lastName || ""}
                             </td>
                             <td style={tdStyle}>{user.email || "---"}</td>
@@ -497,7 +497,7 @@ class AdminPage extends Component {
                   <div style={{ overflowX: "auto" }}>
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                       <thead>
-                        <tr style={{ borderBottom: "1px solid rgba(148,163,184,0.15)" }}>
+                        <tr style={{ borderBottom: "1px solid var(--color-border-strong)" }}>
                           <th style={thStyle}>Company</th>
                           <th style={thStyle}>Employee</th>
                           <th style={thStyle}>Periods</th>
@@ -506,8 +506,8 @@ class AdminPage extends Component {
                       </thead>
                       <tbody>
                         {stats.recentPaystubs.map((ps) => (
-                          <tr key={ps._id} style={{ borderBottom: "1px solid rgba(148,163,184,0.1)" }}>
-                            <td style={{ ...tdStyle, fontWeight: 600, color: "#f1f5f9" }}>{ps.company}</td>
+                          <tr key={ps._id} style={{ borderBottom: "1px solid var(--color-border)" }}>
+                            <td style={{ ...tdStyle, fontWeight: 600, color: "var(--color-text-primary)" }}>{ps.company}</td>
                             <td style={tdStyle}>{ps.employee}</td>
                             <td style={tdStyle}>
                               <span style={{
@@ -544,8 +544,8 @@ function StatCard({ icon, value, label, trend, raw }) {
     <div style={styles.statCard}>
       <div style={styles.statIcon}>{icon}</div>
       <div>
-        <h3 style={{ margin: 0, fontSize: raw ? 22 : 26, fontWeight: 700, color: "#f1f5f9" }}>{value}</h3>
-        <p style={{ margin: 0, fontSize: 12, color: "#94a3b8", marginTop: 2 }}>{label}</p>
+        <h3 style={{ margin: 0, fontSize: raw ? 22 : 26, fontWeight: 700, color: "var(--color-text-primary)" }}>{value}</h3>
+        <p style={{ margin: 0, fontSize: 12, color: "var(--color-text-secondary)", marginTop: 2 }}>{label}</p>
         {trend !== undefined && trend !== 0 && (
           <span style={{
             fontSize: 11, fontWeight: 600,
@@ -565,10 +565,10 @@ function InfoRow({ label, value, color }) {
   return (
     <div style={{
       display: "flex", justifyContent: "space-between", alignItems: "center",
-      padding: "8px 0", borderBottom: "1px solid rgba(148,163,184,0.1)",
+      padding: "8px 0", borderBottom: "1px solid var(--color-border)",
     }}>
-      <span style={{ fontSize: 13, color: "#94a3b8" }}>{label}</span>
-      <span style={{ fontSize: 14, fontWeight: 600, color: color || "#f1f5f9" }}>{value}</span>
+      <span style={{ fontSize: 13, color: "var(--color-text-secondary)" }}>{label}</span>
+      <span style={{ fontSize: 14, fontWeight: 600, color: color || "var(--color-text-primary)" }}>{value}</span>
     </div>
   );
 }
@@ -577,10 +577,10 @@ function InfoRow({ label, value, color }) {
 
 const thStyle = {
   padding: "10px 12px", textAlign: "left", fontSize: 11, fontWeight: 600,
-  textTransform: "uppercase", letterSpacing: "0.04em", color: "#64748b",
+  textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--color-text-tertiary)",
 };
 const tdStyle = {
-  padding: "10px 12px", color: "#94a3b8",
+  padding: "10px 12px", color: "var(--color-text-secondary)",
 };
 
 // ─── Inline styles ──────────────────────────────────────────────────────────
@@ -590,14 +590,14 @@ const styles = {
   loginWrapper: {
     minHeight: "100vh",
     display: "flex", alignItems: "center", justifyContent: "center",
-    background: "#0a0e1a",
+    background: "var(--color-bg)",
     backgroundImage: "radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.12) 0%, transparent 60%)",
     padding: 20,
   },
   loginCard: {
     width: "100%", maxWidth: 420, padding: "48px 36px",
-    background: "rgba(15,23,42,0.85)",
-    border: "1px solid rgba(148,163,184,0.1)",
+    background: "var(--color-bg-card)",
+    border: "1px solid var(--color-border)",
     borderRadius: 16,
     backdropFilter: "blur(16px)",
     display: "flex", flexDirection: "column", alignItems: "center",
@@ -609,25 +609,25 @@ const styles = {
     border: "1px solid rgba(167,139,250,0.25)",
     display: "flex", alignItems: "center", justifyContent: "center",
   },
-  loginTitle: { fontSize: 24, fontWeight: 700, color: "#f1f5f9", margin: "0 0 4px" },
-  loginSubtitle: { fontSize: 14, color: "#64748b", margin: "0 0 28px" },
+  loginTitle: { fontSize: 24, fontWeight: 700, color: "var(--color-text-primary)", margin: "0 0 4px" },
+  loginSubtitle: { fontSize: 14, color: "var(--color-text-tertiary)", margin: "0 0 28px" },
   loginAlert: {
     width: "100%", padding: "10px 14px", borderRadius: 8, marginBottom: 20,
     background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.2)",
     color: "#f87171", fontSize: 13, display: "flex", alignItems: "center",
   },
   fieldGroup: { marginBottom: 20 },
-  label: { display: "block", fontSize: 13, fontWeight: 600, color: "#94a3b8", marginBottom: 6 },
+  label: { display: "block", fontSize: 13, fontWeight: 600, color: "var(--color-text-secondary)", marginBottom: 6 },
   input: {
     width: "100%", padding: "12px 14px", fontSize: 14,
-    background: "rgba(30,41,59,0.6)", border: "1px solid rgba(148,163,184,0.15)",
-    borderRadius: 10, color: "#f1f5f9", outline: "none",
+    background: "var(--color-bg-input)", border: "1px solid var(--color-border-strong)",
+    borderRadius: 10, color: "var(--color-text-primary)", outline: "none",
     transition: "border-color 0.15s",
     boxSizing: "border-box",
   },
   eyeBtn: {
     position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)",
-    background: "none", border: "none", color: "#64748b", cursor: "pointer", fontSize: 16, padding: 4,
+    background: "none", border: "none", color: "var(--color-text-tertiary)", cursor: "pointer", fontSize: 16, padding: 4,
   },
   loginBtn: {
     width: "100%", padding: "14px 0", border: "none", borderRadius: 10,
@@ -636,19 +636,19 @@ const styles = {
     transition: "opacity 0.15s", marginTop: 4,
     display: "flex", alignItems: "center", justifyContent: "center",
   },
-  loginFooter: { marginTop: 28, fontSize: 12, color: "#475569" },
+  loginFooter: { marginTop: 28, fontSize: 12, color: "var(--color-text-tertiary)" },
 
   // Dashboard
   dashWrap: {
     minHeight: "100vh",
-    background: "#0a0e1a",
-    color: "#f1f5f9",
+    background: "var(--color-bg)",
+    color: "var(--color-text-primary)",
   },
   topBar: {
     display: "flex", justifyContent: "space-between", alignItems: "center",
     padding: "14px 32px",
-    background: "rgba(15,23,42,0.9)",
-    borderBottom: "1px solid rgba(148,163,184,0.08)",
+    background: "var(--color-bg-glass)",
+    borderBottom: "1px solid var(--color-border)",
     backdropFilter: "blur(12px)",
     position: "sticky", top: 0, zIndex: 100,
   },
@@ -666,11 +666,11 @@ const styles = {
   dashContent: {
     maxWidth: 1200, margin: "0 auto", padding: "32px 32px 64px",
   },
-  pageTitle: { fontSize: 28, fontWeight: 700, margin: 0, color: "#f1f5f9" },
-  pageSubtitle: { fontSize: 14, color: "#64748b", margin: "4px 0 0" },
+  pageTitle: { fontSize: 28, fontWeight: 700, margin: 0, color: "var(--color-text-primary)" },
+  pageSubtitle: { fontSize: 14, color: "var(--color-text-tertiary)", margin: "4px 0 0" },
   tabBar: {
     display: "flex", gap: 4, marginBottom: 28, marginTop: 20,
-    borderBottom: "1px solid rgba(148,163,184,0.1)", paddingBottom: 0, overflow: "auto",
+    borderBottom: "1px solid var(--color-border)", paddingBottom: 0, overflow: "auto",
   },
   tabBtn: {
     padding: "10px 18px", border: "none", background: "transparent",
@@ -682,8 +682,8 @@ const styles = {
   },
   statCard: {
     padding: "20px 24px",
-    background: "rgba(15,23,42,0.6)",
-    border: "1px solid rgba(148,163,184,0.08)",
+    background: "var(--color-bg-card)",
+    border: "1px solid var(--color-border)",
     borderRadius: 14,
     display: "flex", alignItems: "center", gap: 16,
   },
@@ -695,11 +695,11 @@ const styles = {
   },
   sectionCard: {
     padding: "20px 24px", marginBottom: 24,
-    background: "rgba(15,23,42,0.6)",
-    border: "1px solid rgba(148,163,184,0.08)",
+    background: "var(--color-bg-card)",
+    border: "1px solid var(--color-border)",
     borderRadius: 14,
   },
-  sectionTitle: { fontSize: 15, fontWeight: 600, color: "#e2e8f0", margin: "0 0 16px" },
+  sectionTitle: { fontSize: 15, fontWeight: 600, color: "var(--color-text-primary)", margin: "0 0 16px" },
 };
 
 export default AdminPage;
