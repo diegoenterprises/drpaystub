@@ -49,10 +49,10 @@ export class Features extends Component {
               <div className="feat-icon">
                 <i className="fa fa-dollar"></i>
               </div>
-              <h3 className="feat-card-title">Transparent pricing</h3>
+              <h3 className="feat-card-title">Flexible pricing</h3>
               <p className="feat-card-text">
-                Pay per stub. No subscriptions, no hidden fees, no recurring
-                charges. Ever.
+                Pay per document or subscribe for unlimited access. No hidden
+                fees — choose the plan that fits your business.
               </p>
             </div>
           </div>
