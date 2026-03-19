@@ -10,9 +10,9 @@ const PLAN_COLORS = {
 };
 
 const UPGRADE_PLANS = [
-  { key: "starter", name: "Starter", price: 50, desc: "5 paystub groups/mo, 6 pay periods each" },
-  { key: "professional", name: "Professional", price: 75, desc: "15 groups/mo, 12 periods, 2 W-2s/mo", popular: true },
-  { key: "unlimited", name: "Unlimited", price: 150, desc: "Unlimited paystubs, W-2s, everything" },
+  { key: "starter", name: "Starter", price: 50, desc: "5 payroll docs/mo, 6 pay periods each" },
+  { key: "professional", name: "Professional", price: 75, desc: "15 docs/mo, 12 periods, 2 W-2s/mo", popular: true },
+  { key: "unlimited", name: "Unlimited", price: 150, desc: "Unlimited documents, W-2s, everything" },
 ];
 
 class SubscriptionWidget extends Component {
@@ -158,7 +158,7 @@ class SubscriptionWidget extends Component {
               <div style={{ marginBottom: 8 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
                   <span style={{ fontSize: 12, color: "var(--color-text-tertiary, #64748b)" }}>
-                    Paystubs this period
+                    Documents this period
                   </span>
                   <span style={{ fontSize: 12, fontWeight: 600, color: "var(--color-text-secondary, #94a3b8)" }}>
                     {sub.usage.paystubsCreated} / {sub.limits.paystubs}
@@ -178,7 +178,7 @@ class SubscriptionWidget extends Component {
             )}
             {isUnlimited && (
               <div style={{ fontSize: 13, color: "var(--color-text-secondary, #94a3b8)" }}>
-                <span style={{ fontWeight: 600, color: colors.accent }}>∞</span> Unlimited paystubs
+                <span style={{ fontWeight: 600, color: colors.accent }}>∞</span> Unlimited documents
                 {sub.usage.paystubsCreated > 0 && (
                   <span style={{ color: "var(--color-text-tertiary, #64748b)", marginLeft: 8 }}>
                     ({sub.usage.paystubsCreated} created this period)
@@ -197,7 +197,7 @@ class SubscriptionWidget extends Component {
 
         {isFree && !this.state.showUpgrade && (
           <div style={{ marginTop: 8, fontSize: 12, color: "var(--color-text-tertiary, #475569)" }}>
-            Pay-per-stub at $20 each, or subscribe for volume savings.
+            Pay-per-document at $20 each, or subscribe for volume savings.
           </div>
         )}
 

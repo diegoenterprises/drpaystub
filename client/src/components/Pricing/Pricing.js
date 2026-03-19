@@ -9,7 +9,7 @@ const PLANS = [
     price: 50,
     badge: null,
     features: [
-      "5 paystub groups / month",
+      "5 payroll documents / month",
       "Up to 6 pay periods each",
       "Standard templates",
       "Dashboard access",
@@ -23,7 +23,7 @@ const PLANS = [
     price: 75,
     badge: "Most Popular",
     features: [
-      "15 paystub groups / month",
+      "15 payroll documents / month",
       "Up to 12 pay periods each",
       "All premium templates",
       "2 W-2 forms / month",
@@ -38,7 +38,7 @@ const PLANS = [
     price: 150,
     badge: "Best Value",
     features: [
-      "Unlimited paystub groups",
+      "Unlimited payroll documents",
       "Unlimited pay periods",
       "All premium templates",
       "Unlimited W-2 forms",
@@ -94,7 +94,7 @@ class Pricing extends Component {
               Choose a plan that fits your needs. Cancel anytime.
               <br />
               <span className="pricing-free-note">
-                Or continue using our pay-per-stub option at $20 each — no subscription required.
+                Or continue using our pay-per-document option at $20 each — no subscription required.
               </span>
             </p>
           </div>
