@@ -7,7 +7,7 @@ async function setup() {
 
   const starter = await stripe.products.create({
     name: "Saurellius Starter",
-    description: "5 paystub groups/month, up to 6 pay periods each, standard templates",
+    description: "5 payroll documents/month, up to 6 pay periods each, standard templates",
   });
   const starterPrice = await stripe.prices.create({
     product: starter.id,
@@ -19,7 +19,7 @@ async function setup() {
 
   const pro = await stripe.products.create({
     name: "Saurellius Professional",
-    description: "15 paystub groups/month, up to 12 pay periods, all templates, 2 W-2s/month, priority support",
+    description: "15 payroll documents/month, up to 12 pay periods, all templates, 2 W-2s/month, priority support",
   });
   const proPrice = await stripe.prices.create({
     product: pro.id,
@@ -31,7 +31,7 @@ async function setup() {
 
   const unlimited = await stripe.products.create({
     name: "Saurellius Unlimited",
-    description: "Unlimited paystubs, unlimited pay periods, all templates, unlimited W-2s, priority support",
+    description: "Unlimited payroll documents, unlimited pay periods, all templates, unlimited W-2s, priority support",
   });
   const unlimitedPrice = await stripe.prices.create({
     product: unlimited.id,
