@@ -1,0 +1,493 @@
+{
+  "schemaVersion": "1.0.0",
+  "taxYear": 2026,
+  "jurisdiction": "US-FED",
+  "asOfDate": "2026-08-14",
+  "moneyRepresentation": "integer cents",
+  "roundingPolicy": "Keep percentage-method arithmetic rational and round the final component to the nearest cent, half up. Sum W-2 boxes from ledger-posted cents without recomputing annual liability.",
+  "authorities": [
+    {
+      "id": "IRS-P15T-2026",
+      "title": "Publication 15-T (2026), Federal Income Tax Withholding Methods",
+      "url": "https://www.irs.gov/publications/p15t",
+      "pdfUrl": "https://www.irs.gov/pub/irs-pdf/p15t.pdf",
+      "sha256": "31b3e2428628e8d2e40f6266c2c8f1b9b0b6ccd24607895f9b3be3d9d306d3fb",
+      "pages": [6, 7, 9, 10, 11, 12]
+    },
+    {
+      "id": "IRS-P15-2026",
+      "title": "Publication 15 (2026), Employer's Tax Guide",
+      "url": "https://www.irs.gov/publications/p15",
+      "pdfUrl": "https://www.irs.gov/pub/irs-pdf/p15.pdf",
+      "sha256": "b46c3622439d8521e3a0faca4cd5b5ece3451b526f65f06a5e38d5c9f804c88b",
+      "pages": [23, 24, 27, 29, 30]
+    },
+    {
+      "id": "SSA-CBB-2026",
+      "title": "Contribution and Benefit Base",
+      "url": "https://www.ssa.gov/OACT/cola/cbb.html"
+    },
+    {
+      "id": "IRS-IW2W3-2026",
+      "title": "General Instructions for Forms W-2 and W-3 (2026)",
+      "url": "https://www.irs.gov/instructions/iw2w3",
+      "pdfUrl": "https://www.irs.gov/pub/irs-pdf/iw2w3.pdf",
+      "sha256": "d16b9f506f039f5af24f01fad699b0b60d392ac7920fcff528c7d97740c792b6",
+      "pages": [18, 19]
+    },
+    {
+      "id": "SSA-EFW2-2026",
+      "title": "Specifications for Filing Forms W-2 Electronically, Tax Year 2026",
+      "url": "https://www.ssa.gov/employer/efw/26efw2.pdf",
+      "publicationNumber": "42-007",
+      "observedRevisionDate": "2026-07-07",
+      "pages": [22, 25, 31, 36, 38, 39, 44, 45, 46, 49, 50, 51, 69, 107, 108, 109]
+    },
+    {
+      "id": "SSA-ACCUWAGE",
+      "title": "AccuWage Online Information",
+      "url": "https://www.ssa.gov/employer/accuwage/"
+    }
+  ],
+  "vectors": [
+    {
+      "id": "fit-single-biweekly-standard",
+      "capability": "federalIncomeTaxWithholding",
+      "authorityRefs": ["IRS-P15T-2026"],
+      "input": {
+        "taxableWagesCents": 200000,
+        "payFrequency": "biweekly",
+        "nonresidentAlienAdjustment": false,
+        "w4": {
+          "version": 2026,
+          "filingStatus": "singleOrMarriedFilingSeparately",
+          "step2Checked": false,
+          "step3CreditsCents": 0,
+          "step4OtherIncomeCents": 0,
+          "step4DeductionsCents": 0,
+          "step4AdditionalWithholdingCents": 0,
+          "exempt": false
+        }
+      },
+      "expected": {
+        "employeeFederalIncomeTaxWithheldCents": 15615
+      }
+    },
+    {
+      "id": "fit-single-step3-credit-and-step4c",
+      "capability": "federalIncomeTaxWithholding",
+      "authorityRefs": ["IRS-P15T-2026"],
+      "input": {
+        "taxableWagesCents": 200000,
+        "payFrequency": "biweekly",
+        "nonresidentAlienAdjustment": false,
+        "w4": {
+          "version": 2026,
+          "filingStatus": "singleOrMarriedFilingSeparately",
+          "step2Checked": false,
+          "step3CreditsCents": 200000,
+          "step4OtherIncomeCents": 0,
+          "step4DeductionsCents": 0,
+          "step4AdditionalWithholdingCents": 2500,
+          "exempt": false
+        }
+      },
+      "expected": {
+        "employeeFederalIncomeTaxWithheldCents": 10423
+      }
+    },
+    {
+      "id": "fit-single-step2-checkbox",
+      "capability": "federalIncomeTaxWithholding",
+      "authorityRefs": ["IRS-P15T-2026"],
+      "input": {
+        "taxableWagesCents": 200000,
+        "payFrequency": "biweekly",
+        "nonresidentAlienAdjustment": false,
+        "w4": {
+          "version": 2026,
+          "filingStatus": "singleOrMarriedFilingSeparately",
+          "step2Checked": true,
+          "step3CreditsCents": 0,
+          "step4OtherIncomeCents": 0,
+          "step4DeductionsCents": 0,
+          "step4AdditionalWithholdingCents": 0,
+          "exempt": false
+        }
+      },
+      "expected": {
+        "employeeFederalIncomeTaxWithheldCents": 27019
+      }
+    },
+    {
+      "id": "fit-married-joint-biweekly-standard",
+      "capability": "federalIncomeTaxWithholding",
+      "authorityRefs": ["IRS-P15T-2026"],
+      "input": {
+        "taxableWagesCents": 300000,
+        "payFrequency": "biweekly",
+        "nonresidentAlienAdjustment": false,
+        "w4": {
+          "version": 2026,
+          "filingStatus": "marriedFilingJointly",
+          "step2Checked": false,
+          "step3CreditsCents": 0,
+          "step4OtherIncomeCents": 0,
+          "step4DeductionsCents": 0,
+          "step4AdditionalWithholdingCents": 0,
+          "exempt": false
+        }
+      },
+      "expected": {
+        "employeeFederalIncomeTaxWithheldCents": 19231
+      }
+    },
+    {
+      "id": "fit-head-of-household-biweekly-standard",
+      "capability": "federalIncomeTaxWithholding",
+      "authorityRefs": ["IRS-P15T-2026"],
+      "input": {
+        "taxableWagesCents": 200000,
+        "payFrequency": "biweekly",
+        "nonresidentAlienAdjustment": false,
+        "w4": {
+          "version": 2026,
+          "filingStatus": "headOfHousehold",
+          "step2Checked": false,
+          "step3CreditsCents": 0,
+          "step4OtherIncomeCents": 0,
+          "step4DeductionsCents": 0,
+          "step4AdditionalWithholdingCents": 0,
+          "exempt": false
+        }
+      },
+      "expected": {
+        "employeeFederalIncomeTaxWithheldCents": 11492
+      }
+    },
+    {
+      "id": "fit-single-step4-income-and-deductions",
+      "capability": "federalIncomeTaxWithholding",
+      "authorityRefs": ["IRS-P15T-2026"],
+      "input": {
+        "taxableWagesCents": 200000,
+        "payFrequency": "biweekly",
+        "nonresidentAlienAdjustment": false,
+        "w4": {
+          "version": 2026,
+          "filingStatus": "singleOrMarriedFilingSeparately",
+          "step2Checked": false,
+          "step3CreditsCents": 0,
+          "step4OtherIncomeCents": 500000,
+          "step4DeductionsCents": 200000,
+          "step4AdditionalWithholdingCents": 0,
+          "exempt": false
+        }
+      },
+      "expected": {
+        "employeeFederalIncomeTaxWithheldCents": 17000
+      }
+    },
+    {
+      "id": "fit-valid-current-year-exempt-w4",
+      "capability": "federalIncomeTaxWithholding",
+      "authorityRefs": ["IRS-P15-2026"],
+      "input": {
+        "taxableWagesCents": 200000,
+        "payFrequency": "biweekly",
+        "paymentDate": "2026-02-06",
+        "nonresidentAlienAdjustment": false,
+        "w4": {
+          "version": 2026,
+          "filingStatus": "singleOrMarriedFilingSeparately",
+          "step2Checked": false,
+          "step3CreditsCents": 0,
+          "step4OtherIncomeCents": 0,
+          "step4DeductionsCents": 0,
+          "step4AdditionalWithholdingCents": 0,
+          "exempt": true,
+          "exemptCertificationValidForPaymentDate": true
+        }
+      },
+      "expected": {
+        "employeeFederalIncomeTaxWithheldCents": 0
+      }
+    },
+    {
+      "id": "fit-nonresident-alien-biweekly-adjustment",
+      "capability": "federalIncomeTaxWithholding",
+      "authorityRefs": ["IRS-P15T-2026"],
+      "input": {
+        "taxableWagesCents": 200000,
+        "payFrequency": "biweekly",
+        "nonresidentAlienAdjustment": true,
+        "w4": {
+          "version": 2026,
+          "filingStatus": "singleOrMarriedFilingSeparately",
+          "step2Checked": false,
+          "step3CreditsCents": 0,
+          "step4OtherIncomeCents": 0,
+          "step4DeductionsCents": 0,
+          "step4AdditionalWithholdingCents": 0,
+          "exempt": false
+        }
+      },
+      "expected": {
+        "employeeFederalIncomeTaxWithheldCents": 23661
+      }
+    },
+    {
+      "id": "supplemental-optional-flat-22-percent",
+      "capability": "supplementalFederalWithholding",
+      "authorityRefs": ["IRS-P15-2026"],
+      "input": {
+        "currentSupplementalWagesCents": 100000,
+        "priorYtdSupplementalWagesCents": 0,
+        "method": "optionalFlatRate",
+        "flatRateEligible": true
+      },
+      "expected": {
+        "employeeFederalIncomeTaxWithheldCents": 22000
+      }
+    },
+    {
+      "id": "supplemental-crosses-one-million-threshold",
+      "capability": "supplementalFederalWithholding",
+      "authorityRefs": ["IRS-P15-2026"],
+      "input": {
+        "currentSupplementalWagesCents": 100000,
+        "priorYtdSupplementalWagesCents": 99950000,
+        "method": "optionalFlatRate",
+        "flatRateEligible": true
+      },
+      "expected": {
+        "employeeFederalIncomeTaxWithheldCents": 29500
+      }
+    },
+    {
+      "id": "fica-ordinary-period",
+      "capability": "fica",
+      "authorityRefs": ["IRS-P15-2026", "SSA-CBB-2026"],
+      "input": {
+        "currentSocialSecurityWagesCents": 100000,
+        "priorYtdSocialSecurityWagesCents": 0,
+        "currentMedicareWagesCents": 100000,
+        "priorYtdMedicareWagesCents": 0
+      },
+      "expected": {
+        "currentSocialSecurityTaxableWagesCents": 100000,
+        "employeeSocialSecurityTaxCents": 6200,
+        "employerSocialSecurityTaxCents": 6200,
+        "currentAdditionalMedicareTaxableWagesCents": 0,
+        "employeeRegularMedicareTaxCents": 1450,
+        "employeeAdditionalMedicareTaxCents": 0,
+        "employeeMedicareTaxCents": 1450,
+        "employerMedicareTaxCents": 1450
+      }
+    },
+    {
+      "id": "fica-social-security-cap-crossing-period",
+      "capability": "fica",
+      "authorityRefs": ["IRS-P15-2026", "SSA-CBB-2026"],
+      "input": {
+        "currentSocialSecurityWagesCents": 100000,
+        "priorYtdSocialSecurityWagesCents": 18400000,
+        "currentMedicareWagesCents": 100000,
+        "priorYtdMedicareWagesCents": 18400000
+      },
+      "expected": {
+        "currentSocialSecurityTaxableWagesCents": 50000,
+        "employeeSocialSecurityTaxCents": 3100,
+        "employerSocialSecurityTaxCents": 3100,
+        "currentAdditionalMedicareTaxableWagesCents": 0,
+        "employeeRegularMedicareTaxCents": 1450,
+        "employeeAdditionalMedicareTaxCents": 0,
+        "employeeMedicareTaxCents": 1450,
+        "employerMedicareTaxCents": 1450
+      }
+    },
+    {
+      "id": "fica-social-security-cap-already-reached",
+      "capability": "fica",
+      "authorityRefs": ["IRS-P15-2026", "SSA-CBB-2026"],
+      "input": {
+        "currentSocialSecurityWagesCents": 100000,
+        "priorYtdSocialSecurityWagesCents": 18450000,
+        "currentMedicareWagesCents": 100000,
+        "priorYtdMedicareWagesCents": 18450000
+      },
+      "expected": {
+        "currentSocialSecurityTaxableWagesCents": 0,
+        "employeeSocialSecurityTaxCents": 0,
+        "employerSocialSecurityTaxCents": 0,
+        "currentAdditionalMedicareTaxableWagesCents": 0,
+        "employeeRegularMedicareTaxCents": 1450,
+        "employeeAdditionalMedicareTaxCents": 0,
+        "employeeMedicareTaxCents": 1450,
+        "employerMedicareTaxCents": 1450
+      }
+    },
+    {
+      "id": "fica-additional-medicare-threshold-crossing-period",
+      "capability": "fica",
+      "authorityRefs": ["IRS-P15-2026"],
+      "input": {
+        "currentSocialSecurityWagesCents": 100000,
+        "priorYtdSocialSecurityWagesCents": 19950000,
+        "currentMedicareWagesCents": 100000,
+        "priorYtdMedicareWagesCents": 19950000
+      },
+      "expected": {
+        "currentSocialSecurityTaxableWagesCents": 0,
+        "employeeSocialSecurityTaxCents": 0,
+        "employerSocialSecurityTaxCents": 0,
+        "currentAdditionalMedicareTaxableWagesCents": 50000,
+        "employeeRegularMedicareTaxCents": 1450,
+        "employeeAdditionalMedicareTaxCents": 450,
+        "employeeMedicareTaxCents": 1900,
+        "employerMedicareTaxCents": 1450
+      }
+    },
+    {
+      "id": "fica-additional-medicare-threshold-already-crossed",
+      "capability": "fica",
+      "authorityRefs": ["IRS-P15-2026"],
+      "input": {
+        "currentSocialSecurityWagesCents": 100000,
+        "priorYtdSocialSecurityWagesCents": 20000000,
+        "currentMedicareWagesCents": 100000,
+        "priorYtdMedicareWagesCents": 20000000
+      },
+      "expected": {
+        "currentSocialSecurityTaxableWagesCents": 0,
+        "employeeSocialSecurityTaxCents": 0,
+        "employerSocialSecurityTaxCents": 0,
+        "currentAdditionalMedicareTaxableWagesCents": 100000,
+        "employeeRegularMedicareTaxCents": 1450,
+        "employeeAdditionalMedicareTaxCents": 900,
+        "employeeMedicareTaxCents": 2350,
+        "employerMedicareTaxCents": 1450
+      }
+    },
+    {
+      "id": "w2-ledger-backed-cap-reconciliation",
+      "capability": "w2Aggregation",
+      "authorityRefs": ["IRS-IW2W3-2026"],
+      "input": {
+        "ledgerEntries": [
+          {
+            "federalIncomeTaxWagesCents": 19900000,
+            "federalIncomeTaxWithheldCents": 1000000,
+            "socialSecurityWagesCents": 18400000,
+            "socialSecurityTipsCents": 0,
+            "socialSecurityTaxWithheldCents": 1140800,
+            "medicareWagesTipsCents": 19900000,
+            "medicareTaxWithheldCents": 288550
+          },
+          {
+            "federalIncomeTaxWagesCents": 75000,
+            "federalIncomeTaxWithheldCents": 1000000,
+            "socialSecurityWagesCents": 50000,
+            "socialSecurityTipsCents": 0,
+            "socialSecurityTaxWithheldCents": 3100,
+            "medicareWagesTipsCents": 75000,
+            "medicareTaxWithheldCents": 1088
+          }
+        ]
+      },
+      "expected": {
+        "box1WagesTipsCompensationCents": 19975000,
+        "box2FederalIncomeTaxWithheldCents": 2000000,
+        "box3SocialSecurityWagesCents": 18450000,
+        "box4SocialSecurityTaxWithheldCents": 1143900,
+        "box5MedicareWagesTipsCents": 19975000,
+        "box6MedicareTaxWithheldCents": 289638,
+        "box7SocialSecurityTipsCents": 0
+      }
+    },
+    {
+      "id": "efw2-regular-employer-one-employee-layout",
+      "capability": "efw2Serialization",
+      "authorityRefs": ["SSA-EFW2-2026", "SSA-ACCUWAGE"],
+      "input": {
+        "taxYear": "2026",
+        "submitter": {
+          "ein": "123456789",
+          "bsoUserId": "A1B2C3D4",
+          "companyName": "SYNTHETIC TEST COMPANY",
+          "contactName": "TEST CONTACT",
+          "contactPhone": "3125550100",
+          "contactEmail": "payroll@example.com"
+        },
+        "employer": {
+          "ein": "123456789",
+          "name": "SYNTHETIC TEST COMPANY",
+          "kindOfEmployer": "N",
+          "employmentCode": "R",
+          "taxJurisdictionCode": " ",
+          "thirdPartySickPayIndicator": "0",
+          "contactName": "TEST CONTACT",
+          "contactPhone": "3125550100",
+          "contactEmail": "payroll@example.com"
+        },
+        "employees": [
+          {
+            "ssn": "123456789",
+            "firstName": "TEST",
+            "lastName": "EMPLOYEE",
+            "box1Cents": 200000,
+            "box2Cents": 15615,
+            "box3Cents": 200000,
+            "box4Cents": 12400,
+            "box5Cents": 200000,
+            "box6Cents": 2900,
+            "box7Cents": 0
+          }
+        ]
+      },
+      "expected": {
+        "recordOrder": ["RA", "RE", "RW", "RT", "RF"],
+        "recordLength": 512,
+        "positions": [
+          { "record": "RA", "start": 1, "end": 2, "value": "RA" },
+          { "record": "RA", "start": 3, "end": 11, "value": "123456789" },
+          { "record": "RA", "start": 12, "end": 19, "value": "A1B2C3D4" },
+          { "record": "RA", "start": 446, "end": 485, "value": "payroll@example.com                     " },
+          { "record": "RE", "start": 3, "end": 6, "value": "2026" },
+          { "record": "RE", "start": 8, "end": 16, "value": "123456789" },
+          { "record": "RE", "start": 174, "end": 174, "value": "N" },
+          { "record": "RE", "start": 219, "end": 219, "value": "R" },
+          { "record": "RE", "start": 220, "end": 220, "value": " " },
+          { "record": "RE", "start": 221, "end": 221, "value": "0" },
+          { "record": "RE", "start": 279, "end": 318, "value": "payroll@example.com                     " },
+          { "record": "RW", "start": 3, "end": 11, "value": "123456789" },
+          { "record": "RW", "start": 188, "end": 198, "value": "00000200000" },
+          { "record": "RW", "start": 199, "end": 209, "value": "00000015615" },
+          { "record": "RW", "start": 210, "end": 220, "value": "00000200000" },
+          { "record": "RW", "start": 221, "end": 231, "value": "00000012400" },
+          { "record": "RW", "start": 232, "end": 242, "value": "00000200000" },
+          { "record": "RW", "start": 243, "end": 253, "value": "00000002900" },
+          { "record": "RT", "start": 3, "end": 9, "value": "0000001" },
+          { "record": "RT", "start": 10, "end": 24, "value": "000000000200000" },
+          { "record": "RT", "start": 25, "end": 39, "value": "000000000015615" },
+          { "record": "RF", "start": 3, "end": 7, "value": "     " },
+          { "record": "RF", "start": 8, "end": 16, "value": "000000001" }
+        ]
+      }
+    }
+  ],
+  "explicitUncertifiedGaps": [
+    "Form W-4 from 2019 or earlier and the optional computational bridge",
+    "IRS lock-in letters and modification notices",
+    "Electronic Form W-4 identity, exact-form reproduction, signature, access-log, retention, exemption eligibility, effective-date, and annual renewal controls",
+    "Nonresident-alien exceptions, including students and business apprentices from India",
+    "Supplemental-wage aggregate method, tips, fringe benefits, and common-control aggregation",
+    "FICA exemptions, tips, sick pay, predecessor-successor employers, corrections, and fractions-of-cents reconciliation",
+    "Pretax benefit and wage-base classification across federal income tax, Social Security, Medicare, FUTA, state, and local bases",
+    "Every W-2 box/code not present in the bounded ledger fixture, W-2c/W-3c, territories, and special employment types",
+    "Tax Year 2026 qualified-tip, qualified-overtime, and section 128 Trump Account W-2 and EFW2 reporting fields",
+    "EFW2 RO, RS, RU, RV, EFW2C, multiple employers/employees, territorial jurisdiction layouts, and tipped-occupation fields",
+    "SSA AccuWage Online acceptance and end-to-end BSO transmission",
+    "All state, district, territory, Canadian, and Mexican payroll rules"
+  ]
+}
