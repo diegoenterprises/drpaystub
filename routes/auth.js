@@ -262,9 +262,15 @@ router.get("/get-user", auth(), async (req, res, next) => {
   return res.status(200).json(findUser);
 });
 
-router.get("/get-paystub/:id", async (req, res, next) => {
-  const findUser = await Paystub.findOne({ _id: req.params.id });
-  return res.status(200).json(findUser);
+router.get("/get-paystub/:id", auth(), async (req, res, next) => {
+  const findPaystub = await Paystub.findOne({
+    _id: req.params.id,
+    "params.userId": req.user._id.toString(),
+  });
+  if (!findPaystub) {
+    return res.status(404).json({ status: 404, message: "Paystub not found" });
+  }
+  return res.status(200).json(findPaystub);
 });
 
 router.get("/get-user/:id", async (req, res, next) => {

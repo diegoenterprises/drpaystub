@@ -1,5 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const {
+    createTaxProductGate,
+} = require("../middlewares/taxCertificationContainment");
+
+// This legacy calculator is not mounted today. Keep it default-deny so a
+// future route registration cannot accidentally restore obsolete formulas.
+router.use(createTaxProductGate("legacyW2"));
 const moment = require('moment');
 const numWords = require('num-words');
 const { ToWords } = require('to-words');

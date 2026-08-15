@@ -10,7 +10,8 @@
         "dev": "concurrently \"npm run server\" \"npm run client\"",
         "start": "node app.js",
         "postinstall": "echo 'No browser binary needed — using sharp SVG renderer'",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+        "test:tax-containment": "node --test tests/tax-certification-containment.test.js"
     },
     "author": "Priyanshu Tiwari | tpriyanshu",
     "dependencies": {

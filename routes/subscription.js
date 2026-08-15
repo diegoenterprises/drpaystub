@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/user");
+const {
+  blockUncertifiedCapability,
+} = require("../middlewares/taxCertificationContainment");
 require("dotenv").config();
 
 const { STRIPE_LIVE_KEY, STRIPE_TEST_KEY, STRIPE_MODE } = process.env;
@@ -81,7 +84,7 @@ router.get("/status", auth, async (req, res) => {
 });
 
 // ─── POST /checkout — Create Stripe Checkout Session ────────────────────────
-router.post("/checkout", auth, async (req, res) => {
+router.post("/checkout", auth, blockUncertifiedCapability("tax-product-subscription-checkout"), async (req, res) => {
   try {
     const { plan } = req.body;
     const priceMap = {

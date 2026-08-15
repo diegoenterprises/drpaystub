@@ -10,6 +10,9 @@ const cors = require("cors");
 const fs = require("fs");
 const { logo: watermark } = require("./config/logo");
 const moment = require("moment");
+const {
+  blockUncertifiedGeneratedArtifact,
+} = require("./middlewares/taxCertificationContainment");
 
 app.use(logger("dev"));
 app.set("view engine", "ejs");
@@ -77,6 +80,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Historical payroll and W-2 files lived in the public static root. Keep
+// uncertified artifacts unreachable even when a caller knows their filename.
+app.use(blockUncertifiedGeneratedArtifact);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "assets")));
 

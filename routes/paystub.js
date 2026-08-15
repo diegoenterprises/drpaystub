@@ -35,6 +35,14 @@ const jwt = require("jsonwebtoken");
 
 const Paystub = require("../models/Paystub");
 const { User } = require("../models/user");
+const {
+  createTaxProductGate,
+} = require("../middlewares/taxCertificationContainment");
+
+// Default-deny every paystub operation while 2026 payroll calculations are
+// uncertified. The only allowlisted surface is authenticated, read-only
+// history metadata at GET /ytd-profiles.
+router.use(createTaxProductGate("paystub"));
 
 // Helper: extract userId from JWT if present (no auth required)
 function optionalUserId(req) {

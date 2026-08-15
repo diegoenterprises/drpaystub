@@ -8,6 +8,14 @@ const AdmZip = require("adm-zip");
 
 const W2Record = require("../models/W2Record");
 const TEMPLATE_PATH = path.join(__dirname, "..", "templates", "fw2.pdf");
+const {
+  createTaxProductGate,
+} = require("../middlewares/taxCertificationContainment");
+
+// W-2 preview, generation, prefill, payment, and EFW2 export remain blocked
+// until the 2026 IRS/SSA conformance suite passes. Authenticated history
+// inventory is the only read-only route retained.
+router.use(createTaxProductGate("w2Wizard"));
 
 // ─── Stripe Setup ────────────────────────────────────────────────────────────
 const { STRIPE_LIVE_KEY, STRIPE_TEST_KEY, STRIPE_MODE } = process.env;
