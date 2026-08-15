@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
-const { mongoDevURI, mongoProdURI } = require('../config/default.json');
+const { mongoDevURI } = require('../config/default.json');
 
-// Use env var first, then Atlas prod URI, then local dev URI as last resort
-const MONGO_URI = process.env.MONGODB_URL || mongoProdURI || mongoDevURI;
+const isProduction = process.env.NODE_ENV === 'production';
+const MONGO_URI = process.env.MONGODB_URL || (!isProduction ? mongoDevURI : '');
+
+if (!MONGO_URI) {
+    throw new Error('MONGODB_URL is required when NODE_ENV=production');
+}
 
 const connectDB = async () => {
     try {
